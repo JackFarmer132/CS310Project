@@ -1,6 +1,28 @@
 version: "2.0"
 
 nlu:
+- intent: give_address
+  examples: |
+    - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
+    - I live at [100 Moulton Road](street_address), [CH7 4LH](postcode), please send someone quickly
+    - [Shepherd Market](street_address), London, [W1J 7PA](postcode). I’m a regular at this McDonalds but I’ve never seen him before.
+    - We are at [16 Stoneygate Drive](street_address), Hinckley, [LE10 1TD](postcode). He has been living with our family since 2015. I am his grandson, and my parents are at work.
+    - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
+
+- intent: ask_service
+  examples: |
+    - [Ambulance](service_type) and [police](service_type) quick
+    - Help, we need the [police](service_type)
+    - I think [police](service_type) but I don’t want to cause any trouble
+    - There’s a [fire](service_type) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
+    - Help, there’s a huge [fire](service_type) in [Horsenden Hill](street_address).
+    - Help, my house is on [fire](service_type). Address is [5 Horncastle Close](street_address), [Daventry](city) [NN11 0GH](postcode). Please send help quickly.
+    - Yeah, hi, I live at [82 Grenfell Tower](street_address). There is a [fire](service_type), you are in attendance but I'm stuck on the 11th floor and I don't know how to get out.
+    - Hello, [fire brigade](service_type) please.
+    - I need an [ambulance](service_type) please.
+    - I need the [fire brigade](service_type) please.
+    - I need the [ppolice](service_type) please. 
+
 - intent: greet
   examples: |
     - hey
