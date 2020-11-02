@@ -11,6 +11,21 @@ intents:
   - give_address
   - ask_service
 
+entities:
+  - service_type
+  - street_address
+  - postcode
+  - city
+
+slots:
+  location:
+    type: text
+  service_type:
+    type: text
+
+actions:
+  - action_hello_world
+
 responses:
   utter_greet:
   - text: "Hey! How are you?"
@@ -30,6 +45,10 @@ responses:
 
   utter_iamabot:
   - text: "I am a bot, powered by Rasa."
+
+  utter_ask_location:
+  - text: "Can you please give your location so the {service_type} can find you?"
+  - text: "Please provide your location for the {service_type}"
 
 session_config:
   session_expiration_time: 60

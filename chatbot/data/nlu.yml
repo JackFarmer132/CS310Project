@@ -21,7 +21,11 @@ nlu:
     - Hello, [fire brigade](service_type) please.
     - I need an [ambulance](service_type) please.
     - I need the [fire brigade](service_type) please.
-    - I need the [ppolice](service_type) please. 
+    - I need the [police](service_type) please.
+
+- intent: police_emergency_info
+  examples: |
+    - Someone’s been [stabbed](), she’s bleeding, help. She’s unconscious
 
 - intent: greet
   examples: |
