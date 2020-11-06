@@ -29,53 +29,111 @@ stories:
   - intent: answer_no
   - action: utter_goodbye
 
-- story: test path
+- story: Call 1
   steps:
-  - intent: give_service
-    entities:
-    - service_type: "police"
-  - slot_was_set:
-    - police_service: true
-    - medical_service: false
-    - fire_service: false
-  - action: utter_ask_postcode
-  - intent: give_location
-    entities:
-    - postcode: "NG20 8QF"
-  - slot_was_set:
-    - postcode: "NG20 8QF"
-  - action: utter_goodbye
+    - intent: begin
+    - action: utter_ask_service_type
+    - intent: give_service
+      entities:
+        - service_type: "ambulance"
+        - service_type: "police"
+    - action: utter_describe_emergency
+    - intent: describe_emergency
+      entities:
+        - emergency_details: "stabbed"
+        - victim_details: "bleeding"
+        - emergency_details: "unconscious"
+    - action: utter_ask_if_safe
+    - intent: answer_yes
+    - action: utter_ask_location
+    # note: haven't built anything for handling no specific address yet. The
+    # form will handle that
 
-- story: test path 2
-  steps:
-  - intent: give_service
-    entities:
-    - service_type: "ambulance"
-  - slot_was_set:
-    - police_service: false
-    - medical_service: true
-    - fire_service: false
-  - action: utter_ask_postcode
-  - intent: give_location
-    entities:
-    - postcode: "NN12 0GH"
-  - slot_was_set:
-    - postcode: "NN11 0GH"
-  - action: utter_goodbye
 
-- story: test path 3
+- story: Call 2
   steps:
-  - intent: give_service
-    entities:
-    - service_type: "fire"
-  - slot_was_set:
-    - police_service: false
-    - medical_service: false
-    - fire_service: true
-  - action: utter_ask_postcode
-  - intent: give_location
-    entities:
-    - postcode: "NN13 0GH"
-  - slot_was_set:
-    - postcode: "NN11 0GH"
-  - action: utter_goodbye
+    - intent: begin
+    - action: utter_ask_service_type
+    - intent: give_service
+      entities:
+        - service_type: "police"
+    - action: utter_describe_emergency
+    - intent: describe_emergency
+      entities:
+        - emergency_details: "robbed"
+        - city: "Shirebrook"
+    - action: utter_ask_if_safe
+    - intent: answer_yes
+    - action: utter_ask_location
+
+
+- story: Call 3
+  steps:
+    - intent: begin
+    - action: utter_ask_service_type
+    - intent: give_service
+      entities:
+        - service_type: "police"
+    - action: utter_describe_emergency
+    - intent: describe_emergency
+      entities:
+        - emergency_details: "husband has been getting very violent"
+        - emergency_details: "threw a wine bottle"
+        - victim_details: "scared"
+    - action: utter_ask_if_safe
+    # need another type of answer apart from just yes or no (a 'maybe')
+
+
+
+
+
+# - story: test path
+#   steps:
+#   - intent: give_service
+#     entities:
+#     - service_type: "police"
+#   - slot_was_set:
+#     - police_service: true
+#     - medical_service: false
+#     - fire_service: false
+#   - action: utter_ask_postcode
+#   - intent: give_location
+#     entities:
+#     - postcode: "NG20 8QF"
+#   - slot_was_set:
+#     - postcode: "NG20 8QF"
+#   - action: utter_goodbye
+#
+# - story: test path 2
+#   steps:
+#   - intent: give_service
+#     entities:
+#     - service_type: "ambulance"
+#   - slot_was_set:
+#     - police_service: false
+#     - medical_service: true
+#     - fire_service: false
+#   - action: utter_ask_postcode
+#   - intent: give_location
+#     entities:
+#     - postcode: "NN12 0GH"
+#   - slot_was_set:
+#     - postcode: "NN11 0GH"
+#   - action: utter_goodbye
+#
+# - story: test path 3
+#   steps:
+#   - intent: give_service
+#     entities:
+#     - service_type: "fire"
+#   - slot_was_set:
+#     - police_service: false
+#     - medical_service: false
+#     - fire_service: true
+#   - action: utter_ask_postcode
+#   - intent: give_location
+#     entities:
+#     - postcode: "NN13 0GH"
+#   - slot_was_set:
+#     - postcode: "NN11 0GH"
+#   - action: utter_goodbye

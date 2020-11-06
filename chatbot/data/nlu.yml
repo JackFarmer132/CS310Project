@@ -12,6 +12,11 @@ nlu:
     - \b[A-Z]{1}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
     - \b[A-Z]{2}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
 
+- intent: begin
+  examples: |
+    - begin
+    - start_bot
+
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
@@ -30,7 +35,7 @@ nlu:
   examples: |
     - Someone’s been [stabbed](emergency_details), she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
     - 3 men just [robbed](emergency_details) my local corner shop in [Shirebrook](city)
-    - My husband has been getting very [violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details)
+    - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details)
     - I was walking my labradoodle and it started barking. Then I saw a [fire in the bushes](emergency_details) but it has spread now. It’s next to the car park at the bottom of the hill but it’s making its way up now.
     - I’ve just been [burgled](emergency_details)
     - I'm at the [Whitehall](city) Community Centre at [144 Huntington Place](street_address). Ambrose, a neighbour of mine, is [dead](victim_details). Or he's not moving. I'm not sure. Please send help!

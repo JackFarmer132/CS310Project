@@ -25,15 +25,18 @@ entities:
   - name
 
 slots:
-  police_service:
-    type: bool
+  service_type:
+    type: list
     influence_conversation: true
-  medical_service:
-    type: bool
-    influence_conversation: true
-  fire_service:
-    type: bool
-    influence_conversation: true
+  # police_service:
+  #   type: bool
+  #   influence_conversation: true
+  # medical_service:
+  #   type: bool
+  #   influence_conversation: true
+  # fire_service:
+  #   type: bool
+    # influence_conversation: true
   street_address:
     type: text
     influence_conversation: true
@@ -63,8 +66,11 @@ slots:
     influence_conversation: true
 
 responses:
-  utter_ask_service:
+  utter_ask_service_type:
     - text: "Can you please provide the emergency service that you require"
+
+  utter_ask_location:
+    - text: "Can you please provide details of your location?"
 
   utter_ask_postcode:
     - text: "Can you please provide your postcode?"
