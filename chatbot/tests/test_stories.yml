@@ -41,7 +41,7 @@ stories:
   - action: utter_did_that_help
   - user: |
       yes
-    intent: answer_yes
+    intent: affirm
   - action: utter_happy
 
 - story: sad path 2
@@ -57,7 +57,7 @@ stories:
   - action: utter_did_that_help
   - user: |
       not really
-    intent: answer_no
+    intent: deny
   - action: utter_goodbye
 
 - story: sad path 3
@@ -73,7 +73,7 @@ stories:
   - action: utter_did_that_help
   - user: |
       no
-    intent: answer_no
+    intent: deny
   - action: utter_goodbye
 
 - story: say goodbye
@@ -89,20 +89,3 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
-
-- story: test test path
-  steps:
-  - user: |
-      I need the [police]{"entity": "service_type"}
-    intent: ask_service
-  - slot_was_set:
-    - police_service: true
-    - medical_service: false
-    - fire_service: false
-  - action: utter_ask_postcode
-  - user: |
-      Yes, I live locally, postcode is [NG20 8QF]{"entity": "postcode"}
-    intent: give_location
-  - slot_was_set:
-    - postcode: "NG20 8QF"
-  - action: utter_goodbye
