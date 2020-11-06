@@ -1,7 +1,7 @@
 version: "2.0"
 
 nlu:
-  # note: DIETClassifier will still use training data examples of postcodes. These
+  # note: DIETClassifier will still use training data examples of postcodes. Those
   # should be ignored as they aren't as robust as RegexEntityExtractor
 - regex: postcode
   examples: |
@@ -43,10 +43,6 @@ nlu:
     - I need an [ambulance](service_type) please.
     - I need the [fire brigade](service_type) please.
     - I need the [police](service_type) please.
-
-- intent: police_emergency_info
-  examples: |
-    - Someone’s been [stabbed]{"entity": "police_info"}, she’s bleeding, help. She’s unconscious
 
 - intent: greet
   examples: |

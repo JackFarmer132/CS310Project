@@ -16,17 +16,54 @@ entities:
   - street_address
   - postcode
   - city
+  - phone_number
+  - name
 
 slots:
-  location:
+  police_service:
+    type: bool
+    influence_conversation: true
+  medical_service:
+    type: bool
+    influence_conversation: true
+  fire_service:
+    type: bool
+    influence_conversation: true
+  street_address:
     type: text
-  service_type:
+    influence_conversation: true
+  postcode:
     type: text
-
-actions:
-  - action_hello_world
+    influence_conversation: true
+  city:
+    type: text
+    influence_conversation: true
+  is_safe:
+    type: bool
+    influence_conversation: true
+  emergency_details:
+    type: list
+    influence_conversation: true
+  victim_details:
+    type: list
+    influence_conversation: true
+  name:
+    type: text
+    influence_conversation: true
+  phone_number:
+    type: text
+    influence_conversation: true
 
 responses:
+  utter_ask_service_type:
+    - text: "Can you please provide the emergency service that you require"
+
+  utter_ask_postcode:
+    - text: "Can you please provide your postcode"
+
+  utter_form_filled:
+    - text: "test passed, postcode and service have been seen"
+
   utter_greet:
   - text: "Hey! How are you?"
 

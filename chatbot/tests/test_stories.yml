@@ -89,3 +89,20 @@ stories:
       are you a bot?
     intent: bot_challenge
   - action: utter_iamabot
+
+- story: test test path
+  steps:
+  - user: |
+      I need the [police]{"entity": "service_type"}
+    intent: ask_service
+  - slot_was_set:
+    - police_service: true
+    - medical_service: false
+    - fire_service: false
+  - action: utter_ask_postcode
+  - user: |
+      Yes, I live locally, postcode is [NG20 8QF]{"entity": "postcode"}
+    intent: give_location
+  - slot_was_set:
+    - postcode: "NG20 8QF"
+  - action: utter_goodbye

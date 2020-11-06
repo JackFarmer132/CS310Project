@@ -28,3 +28,54 @@ stories:
   - action: utter_did_that_help
   - intent: deny
   - action: utter_goodbye
+
+- story: test path
+  steps:
+  - intent: ask_service
+    entities:
+    - service_type: "police"
+  - slot_was_set:
+    - police_service: true
+    - medical_service: false
+    - fire_service: false
+  - action: utter_ask_postcode
+  - intent: give_location
+    entities:
+    - postcode: "NG20 8QF"
+  - slot_was_set:
+    - postcode: "NG20 8QF"
+  - action: utter_goodbye
+
+- story: test path 2
+  steps:
+  - intent: ask_service
+    entities:
+    - service_type: "ambulance"
+  - slot_was_set:
+    - police_service: false
+    - medical_service: true
+    - fire_service: false
+  - action: utter_ask_postcode
+  - intent: give_location
+    entities:
+    - postcode: "NN12 0GH"
+  - slot_was_set:
+    - postcode: "NN11 0GH"
+  - action: utter_goodbye
+
+- story: test path 3
+  steps:
+  - intent: ask_service
+    entities:
+    - service_type: "fire"
+  - slot_was_set:
+    - police_service: false
+    - medical_service: false
+    - fire_service: true
+  - action: utter_ask_postcode
+  - intent: give_location
+    entities:
+    - postcode: "NN13 0GH"
+  - slot_was_set:
+    - postcode: "NN11 0GH"
+  - action: utter_goodbye

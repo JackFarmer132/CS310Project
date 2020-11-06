@@ -1,0 +1,26 @@
+[
+  {
+    "text": "There\u2019s a fire on 44 Lolands Road, RM15 4ED",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "ask_service",
+      "confidence": 0.5417470335960388
+    }
+  },
+  {
+    "text": "good afternoon",
+    "intent": "greet",
+    "intent_prediction": {
+      "name": "nlu_fallback",
+      "confidence": 1.0
+    }
+  },
+  {
+    "text": "good afternoon",
+    "intent": "goodbye",
+    "intent_prediction": {
+      "name": "nlu_fallback",
+      "confidence": 1.0
+    }
+  }
+]
