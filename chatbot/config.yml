@@ -21,6 +21,7 @@ pipeline:
 # # https://rasa.com/docs/rasa/components#dietclassifier
   - name: DIETClassifier
     epochs: 100
+# # allows entities to map to synonym names in nlu file
   - name: EntitySynonymMapper
   - name: ResponseSelector
     epochs: 100

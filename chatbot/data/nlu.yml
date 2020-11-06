@@ -1,6 +1,71 @@
 version: "2.0"
 
 nlu:
+
+- synonym: police
+  examples: |
+    - police department
+    - cops
+    - police officer
+    - police officers
+    - law enforcement
+    - police force
+    - policeman
+    - policewoman
+
+- synonym: ambulance
+  examples: |
+    - ambulance
+    - EMS
+    - hospital wagon
+    - ambulance service
+
+- synonym: fire department
+  examples: |
+    - fire service
+    - fire brigade
+    - firemen
+    - firewomen
+    - firefighters
+    - fire fighters
+
+- synonym: stabbing
+  examples: |
+    - stabbed
+    - stabbing
+    - stab
+
+- synonym: burglary
+  examples: |
+    - burgled
+    - broken in
+    - burglary
+    - break and entry
+    - broken in to
+
+- synonym: theft
+  examples: |
+    - theft
+    - stolen
+    - stole
+    - robbed
+    - half-inched
+    - took
+    - robbery
+    - taken
+
+- synonym: bleeding
+  examples: |
+    - cut myself
+    - cut themselves
+    - blood
+    - bleeding
+    - bit of blood
+    - amount of blood
+    - bleed
+    - haemorrhaging
+    - haemorrhage
+
   # note: DIETClassifier will still use training data examples of postcodes. Those
   # should be ignored as they aren't as robust as RegexEntityExtractor
 - regex: postcode
@@ -81,6 +146,7 @@ nlu:
     - Correct
     - Yeah
     - I am
+    - I am now
     - I think so
 
 - intent: answer_no
