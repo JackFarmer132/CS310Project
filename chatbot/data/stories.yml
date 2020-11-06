@@ -16,7 +16,7 @@ stories:
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
-  - intent: affirm
+  - intent: answer_yes
   - action: utter_happy
 
 - story: sad path 2
@@ -26,12 +26,12 @@ stories:
   - intent: mood_unhappy
   - action: utter_cheer_up
   - action: utter_did_that_help
-  - intent: deny
+  - intent: answer_no
   - action: utter_goodbye
 
 - story: test path
   steps:
-  - intent: ask_service
+  - intent: give_service
     entities:
     - service_type: "police"
   - slot_was_set:
@@ -48,7 +48,7 @@ stories:
 
 - story: test path 2
   steps:
-  - intent: ask_service
+  - intent: give_service
     entities:
     - service_type: "ambulance"
   - slot_was_set:
@@ -65,7 +65,7 @@ stories:
 
 - story: test path 3
   steps:
-  - intent: ask_service
+  - intent: give_service
     entities:
     - service_type: "fire"
   - slot_was_set:

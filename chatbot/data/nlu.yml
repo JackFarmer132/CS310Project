@@ -12,6 +12,43 @@ nlu:
     - \b[A-Z]{1}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
     - \b[A-Z]{2}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
 
+- intent: give_service
+  examples: |
+    - [Ambulance](service_type) and [police](service_type) quick
+    - Help, we need the [police](service_type)
+    - I think [police](service_type) but I don’t want to cause any trouble
+    - There’s a [fire](service_type) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
+    - Help, there’s a huge [fire](service_type) in [Horsenden Hill](street_address).
+    - Help, my house is on [fire](service_type). Address is [5 Horncastle Close](street_address), [Daventry](city) [NN11 0GH](postcode). Please send help quickly.
+    - Yeah, hi, I live at [82 Grenfell Tower](street_address). There is a [fire](service_type), you are in attendance but I'm stuck on the 11th floor and I don't know how to get out.
+    - Hello, [fire brigade](service_type) please.
+    - I need an [ambulance](service_type) please.
+    - I need the [fire brigade](service_type) please.
+    - I need the [police](service_type) please.
+
+- intent: describe_emergency
+  examples: |
+    - Someone’s been [stabbed](emergency_details), she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
+    - 3 men just [robbed](emergency_details) my local corner shop in [Shirebrook](city)
+    - My husband has been getting very [violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details)
+    - I was walking my labradoodle and it started barking. Then I saw a [fire in the bushes](emergency_details) but it has spread now. It’s next to the car park at the bottom of the hill but it’s making its way up now.
+    - I’ve just been [burgled](emergency_details)
+    - I'm at the [Whitehall](city) Community Centre at [144 Huntington Place](street_address). Ambrose, a neighbour of mine, is [dead](victim_details). Or he's not moving. I'm not sure. Please send help!
+    - Someone has [fallen](emergency_details) over and [cut their arm](emergency_details)
+    - Someone’s [broken into](emergency_details) our meeting place and [stolen](emergency_details) things.
+
+- intent: describe_victim
+  examples: |
+    - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
+    - He’s really [old](victim_details) and [struggling to breathe](victim_details). He’s [not bleeding](victim_details) though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
+    - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details)
+    - I feel like I’m going to [throw up](victim_details) and I have been [feeling very dizzy](victim_details) since around 3pm. I have a history of [heart conditions](victim_details) so I don’t know if that has caused it.
+    - I need medical assistance. I tested positive for [COVID-19](victim_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details)
+    - No, I don't think so. I don't want to touch him. He's so [pale](victim_details)
+    - She’s got a [nut allergy](victim_details). It’s my mum. She says she [can’t breathe](victim_details) and her [throat is swelling up](victim_details)
+    - Yes she’s [conscious](victim_details)
+    - Yes, but there’s [some blood](victim_details) and I’m really worried
+
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
@@ -30,19 +67,28 @@ nlu:
     - [07427521153](phone_number).
     - [Jack Farmer](name). My number is [07427521153](phone_number).
 
-- intent: ask_service
+- intent: answer_yes
   examples: |
-    - [Ambulance](service_type) and [police](service_type) quick
-    - Help, we need the [police](service_type)
-    - I think [police](service_type) but I don’t want to cause any trouble
-    - There’s a [fire](service_type) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
-    - Help, there’s a huge [fire](service_type) in [Horsenden Hill](street_address).
-    - Help, my house is on [fire](service_type). Address is [5 Horncastle Close](street_address), [Daventry](city) [NN11 0GH](postcode). Please send help quickly.
-    - Yeah, hi, I live at [82 Grenfell Tower](street_address). There is a [fire](service_type), you are in attendance but I'm stuck on the 11th floor and I don't know how to get out.
-    - Hello, [fire brigade](service_type) please.
-    - I need an [ambulance](service_type) please.
-    - I need the [fire brigade](service_type) please.
-    - I need the [police](service_type) please.
+    - Yes
+    - Y
+    - Indeed
+    - Of course
+    - Correct
+    - Yeah
+    - I am
+    - I think so
+
+- intent: answer_no
+  examples: |
+    - No
+    - N
+    - Never
+    - I don't think so
+    - No way
+    - Not really
+    - Nope
+    - I am not
+    - I'm not
 
 - intent: greet
   examples: |
@@ -73,25 +119,6 @@ nlu:
     - see you around
     - bye bye
     - see you later
-
-- intent: affirm
-  examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
-
-- intent: deny
-  examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
 
 - intent: mood_great
   examples: |
