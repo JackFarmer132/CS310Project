@@ -42,7 +42,7 @@ slots:
     type: text
     influence_conversation: true
   any_injured:
-    type: bool
+    type: text
     influence_conversation: true
   emergency_details:
     type: list
