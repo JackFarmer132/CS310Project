@@ -8,11 +8,12 @@ intents:
   - give_phone_number
   - answer_yes
   - answer_no
-  - greet
-  - goodbye
-  - mood_great
-  - mood_unhappy
-  - bot_challenge
+  - answer_unsure
+  # - greet
+  # - goodbye
+  # - mood_great
+  # - mood_unhappy
+  # - bot_challenge
 
 entities:
   - service_type
@@ -28,15 +29,6 @@ slots:
   service_type:
     type: list
     influence_conversation: true
-  # police_service:
-  #   type: bool
-  #   influence_conversation: true
-  # medical_service:
-  #   type: bool
-  #   influence_conversation: true
-  # fire_service:
-  #   type: bool
-    # influence_conversation: true
   street_address:
     type: text
     influence_conversation: true
@@ -47,7 +39,7 @@ slots:
     type: text
     influence_conversation: true
   is_safe:
-    type: bool
+    type: text
     influence_conversation: true
   any_injured:
     type: bool
@@ -78,7 +70,7 @@ responses:
   utter_ask_street_address:
     - text: "Can you please provide the street address?"
 
-  utter_describe_location:
+  utter_ask_location_description:
     - text: "Can you please describe your surroundings? What can you see?"
 
   utter_describe_emergency:
