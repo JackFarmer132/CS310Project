@@ -1,91 +1,262 @@
 #### This file contains tests to evaluate that your bot behaves as expected.
 #### If you want to learn more, please see the docs: https://rasa.com/docs/rasa/testing-your-assistant
-
+# useful link: https://rasa.com/docs/rasa/testing-your-assistant/
 stories:
-- story: happy path 1
+- story: Shooting Test 1
   steps:
   - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
+      start_bot
+    intent: begin
+  - action: utter_ask_service_type
   - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+      [Police]{"entity": "service_type"} to [Oxford Circus]{"entity": "street_address"} underground station quickly!
+    intent: give_service
+  - action: utter_describe_emergency
+  - user: |
+      There’s a man with a [pistol]{"entity": "emergency_details"} and he is waving it around dangerously. We need an [ambulance]{"entity": "service_type"} too, someone has been [shot]{"entity": "victim_details"} in the arm
+    intent: describe_emergency
+  - action: utter_ask_if_safe
+  - user: |
+      We are all running up the stairs now, I don’t know where the man is right now.
+    intent: answer_unsure
+  - action: utter_ask_location
+  - user: |
+      Sorry for the delay, I was helping the lady who got shot wrap a bandage around her arm. I am at [Oxford Circus]{"entity": "street_address"} underground station in [London]{"entity": "city"}
+    intent: give_location
+  - action: utter_dispatch
+  - action: utter_ask_if_first_aid
+  - user: |
+      No I don’t
+    intent: answer_no
+  - action: utter_give_link
+  - action: utter_ask_name
+  - user: |
+      Thanks, my name is [Benjamin]{"entity": "name"}, my number is [07427521153]{"entity": "phone_number"}
+    intent: give_name
+  - action: utter_ask_extra_details
 
-- story: happy path 2
+- story: Car Accident Test 1
   steps:
   - user: |
-      hello there!
-    intent: greet
-  - action: utter_greet
+      start_bot
+    intent: begin
+  - action: utter_ask_service_type
   - user: |
-      amazing
-    intent: mood_great
-  - action: utter_happy
+      [Ambulance]{"entity": "service_type"} to [Charter Avenue]{"entity": "street_address"} please, there has been an accident.
+    intent: give_service
+  - action: utter_describe_emergency
   - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
+      A woman was just [hit by a car]{"entity": "emergency_details"}, she is [unconscious]{"entity": "victim_details"}
+    intent: describe_emergency
+  - action: utter_ask_if_safe
+  - user: |
+      Yes I am, the car is blocking the road so the traffic is not moving
+    intent: answer_yes
+  - action: utter_ask_location
+  - user: |
+      We are opposite [10 Charter Avenue]{"entity": "street_address"} in [Coventry]{"entity": "city"}, I live in number 12 and I was just walking home
+    intent: give_location
+  - action: utter_dispatch
+  - action: utter_ask_if_first_aid
+  - user: |
+      Yes, but I’m a bit rusty, can you give me some advice.
+    intent: answer_yes
+  - action: utter_give_link
+  - action: utter_ask_name
+  - user: |
+      [Mark Pask]{"entity": "name"}
+    intent: give_name
+  - action: utter_ask_phone_number
+  - user: |
+      07547287759
+    intent: give_phone_number
+  - action: utter_ask_extra_details
 
-- story: sad path 1
+- story: Stabbing Test 1
   steps:
   - user: |
-      hello
-    intent: greet
-  - action: utter_greet
+      start_bot
+    intent: begin
+  - action: utter_ask_service_type
   - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+      I’ve just been [stabbed]{"entity": "emergency_details"}! HELP, I don’t want to die just yet
+    intent: describe_emergency
+  #NOTE: change this when system for deducing service type exists
+  - action: utter_ask_service_type
   - user: |
-      yes
-    intent: affirm
-  - action: utter_happy
+      Sorry, I need an [ambulance]{"entity": "service_type"} and a [policeman]{"entity": "service_type"} real quick
+    intent: give_service
+  - action: utter_describe_emergency
+  - user: |
+      I was walking home and I’ve just been [stabbed]{"entity": "emergency_details"} in the back, I live in [Brixton]{"entity": "city"}. Please send help, I’m only [17 years old]{"entity": "victim_details"}
+    intent: describe_emergency
+  - action: utter_ask_if_safe
+  - user: |
+      No, I’ve just been [stabbed]{"entity": "emergency_details"}, I’ve never felt pain like this before, It’s dark and there’s no one around to help me, and I’m scared they might come back.
+    intent: answer_no
+  - action: utter_ask_location
+  #NOTE: add an entity for the underground station when you make 'building_type'
+  - user: |
+      Just opposite [Brixton]{"entity": "city"} underground station. Sorry I don’t know the address, I will find out and let you know.
+    intent: give_location
+  - action: utter_dispatch
+  - action: utter_ask_if_first_aid
+  - user: |
+      Help the pain is getting worse, I don’t have a clue how to do first aid, I’m [bleeding]{"entity": "victim_details"} a lot!
+    intent: answer_no
+  - action: utter_give_link
+  - action: utter_ask_name
+  - user: |
+      [Tyrell Wellick]{"entity": "name"}, my number is [07320497632]{"entity": "phone_number"}
+    intent: give_name
+  - action: utter_ask_extra_details
 
-- story: sad path 2
+- story: Drugs Test 1
   steps:
   - user: |
-      hello
-    intent: greet
-  - action: utter_greet
+      start_bot
+    intent: begin
+  - action: utter_ask_service_type
   - user: |
-      not good
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+      [Police]{"entity": "service_type"}
+    intent: give_service
+  - action: utter_describe_emergency
   - user: |
-      not really
-    intent: deny
-  - action: utter_goodbye
+      They have had a few [dodgy people]{"entity": "emergency_details"} come around the back garden, and I think they’re [growing cannabis]{"entity": "emergency_details"} in their loft. I can smell it.
+    intent: describe_emergency
+  - action: utter_ask_location
+  - user: |
+      [4 Horsenden Crescent]{"entity": "street_address"}, [Greenford]{"entity": "city"}, [UB6 0JE]{"entity": "postcode"}
+    intent: give_location
+  - action: utter_dispatch
+  - action: utter_ask_name
+  - user: |
+      [Tom]{"entity": "name"}
+    intent: give_name
+  - action: utter_ask_phone_number
+  - user: |
+      [07123456789]{"entity": "phone_number"}
+    intent: give_phone_number
+  - action: utter_ask_extra_details
 
-- story: sad path 3
+- story: House Fire Test 1
   steps:
   - user: |
-      hi
-    intent: greet
-  - action: utter_greet
+      start_bot
+    intent: begin
+  - action: utter_ask_service_type
   - user: |
-      very terrible
-    intent: mood_unhappy
-  - action: utter_cheer_up
-  - action: utter_did_that_help
+      Help, I accidentally started a [fire]{"entity": "emergency_details"}. I left my candle on for too long, and it caught my curtain. My room is on fire and I can’t put it out
+    intent: describe_emergency
+  - action: utter_ask_if_safe
+  #NOTE: need a way to have unclear answer to questions just default to 'unsure'
   - user: |
-      no
-    intent: deny
-  - action: utter_goodbye
+      I’m just outside my room. I’m trying to get water to extinguish it.
+    intent: answer_unsure
+  - action: utter_ask_any_injured
+  - user: |
+      No, but it’s very warm in here. I really don’t want to lose all my uni work.
+    intent: answer_no
+  - action: utter_ask_location
+  - user: |
+      [93 Gainsborough Gardens]{"entity": "street_address"}, [Greenford]{"entity": "city"}, [UB6 0PB]{"entity": "postcode"}
+    intent: give_location
+  - action: utter_dispatch
+  - action: utter_ask_name
+  - user: |
+      [Angela Price]{"entity": "name"}
+    intent: give_name
+  - action: utter_ask_phone_number
+  - user: |
+      [07374839287]{"entity": "phone_number"}
+    intent: give_phone_number
+  - action: utter_ask_extra_details
 
-- story: say goodbye
-  steps:
-  - user: |
-      bye-bye!
-    intent: goodbye
-  - action: utter_goodbye
 
-- story: bot challenge
-  steps:
-  - user: |
-      are you a bot?
-    intent: bot_challenge
-  - action: utter_iamabot
+# - story: happy path 1
+#   steps:
+#   - user: |
+#       hello there!
+#     intent: greet
+#   - action: utter_greet
+#   - user: |
+#       amazing
+#     intent: mood_great
+#   - action: utter_happy
+#
+# - story: happy path 2
+#   steps:
+#   - user: |
+#       hello there!
+#     intent: greet
+#   - action: utter_greet
+#   - user: |
+#       amazing
+#     intent: mood_great
+#   - action: utter_happy
+#   - user: |
+#       bye-bye!
+#     intent: goodbye
+#   - action: utter_goodbye
+#
+# - story: sad path 1
+#   steps:
+#   - user: |
+#       hello
+#     intent: greet
+#   - action: utter_greet
+#   - user: |
+#       not good
+#     intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - user: |
+#       yes
+#     intent: affirm
+#   - action: utter_happy
+#
+# - story: sad path 2
+#   steps:
+#   - user: |
+#       hello
+#     intent: greet
+#   - action: utter_greet
+#   - user: |
+#       not good
+#     intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - user: |
+#       not really
+#     intent: deny
+#   - action: utter_goodbye
+#
+# - story: sad path 3
+#   steps:
+#   - user: |
+#       hi
+#     intent: greet
+#   - action: utter_greet
+#   - user: |
+#       very terrible
+#     intent: mood_unhappy
+#   - action: utter_cheer_up
+#   - action: utter_did_that_help
+#   - user: |
+#       no
+#     intent: deny
+#   - action: utter_goodbye
+#
+# - story: say goodbye
+#   steps:
+#   - user: |
+#       bye-bye!
+#     intent: goodbye
+#   - action: utter_goodbye
+#
+# - story: bot challenge
+#   steps:
+#   - user: |
+#       are you a bot?
+#     intent: bot_challenge
+#   - action: utter_iamabot

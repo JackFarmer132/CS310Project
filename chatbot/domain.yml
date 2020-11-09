@@ -93,6 +93,9 @@ responses:
   utter_ask_if_first_aid:
     - text: "Do you or anyone near you have experience with first aid?"
 
+  utter_give_link:
+    - text: "Here is a useful link: www.imgur.com/a/G6rU8"
+    
   utter_ask_name:
     - text: "Can you tell us your name?"
     - text: "Can you please provide us with your name?"

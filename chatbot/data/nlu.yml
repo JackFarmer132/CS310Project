@@ -35,6 +35,16 @@ nlu:
     - stabbing
     - stab
 
+- synonym: shooting
+  examples: |
+    - shooting
+    - shot
+    - shoot
+    - pistol
+    - gun
+    - machine gun
+    - bullet
+
 - synonym: burglary
   examples: |
     - burgled
@@ -136,7 +146,6 @@ nlu:
     - [Shepherd Market](street_address), London, [W1J 7PA](postcode). I’m a regular at this McDonalds but I’ve never seen him before.
     - We are at [16 Stoneygate Drive](street_address), [Hinckley](city), [LE10 1TD](postcode).
     - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
-    - There’s a [fire](service_type) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
 
 - intent: give_name
   examples: |
@@ -180,6 +189,7 @@ nlu:
     - Nope
     - I am not
     - I'm not
+    - I don’t have a clue
 
 - intent: answer_unsure
   examples: |

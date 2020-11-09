@@ -1,0 +1,440 @@
+[
+  {
+    "text": "Yeah, hi, I live at 82 Grenfell Tower. There is a fire, you are in attendance but I'm stuck on the 11th floor and I don't know how to get out.",
+    "entities": [
+      {
+        "start": 20,
+        "end": 37,
+        "value": "82 Grenfell Tower",
+        "entity": "street_address"
+      },
+      {
+        "start": 50,
+        "end": 54,
+        "value": "fire",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 20,
+        "end": 37,
+        "confidence_entity": 0.8133683204650879,
+        "value": "82 Grenfell Tower",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 50,
+        "end": 54,
+        "confidence_entity": 0.3506622612476349,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My husband has been getting very violent recently and he just threw a wine bottle at me. It didn\u2019t hit me but I\u2019m very scared",
+    "entities": [
+      {
+        "start": 3,
+        "end": 40,
+        "value": "husband has been getting very violent",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 62,
+        "end": 81,
+        "value": "threw a wine bottle",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 119,
+        "end": 125,
+        "value": "scared",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 3,
+        "end": 10,
+        "confidence_entity": 0.9945687055587769,
+        "value": "husband",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 20,
+        "end": 40,
+        "confidence_entity": 0.5092793703079224,
+        "value": "getting very violent",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 62,
+        "end": 67,
+        "confidence_entity": 0.9958712458610535,
+        "value": "threw",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 70,
+        "end": 81,
+        "confidence_entity": 0.9927603006362915,
+        "value": "wine bottle",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 114,
+        "end": 118,
+        "confidence_entity": 0.5040262937545776,
+        "value": "very",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 119,
+        "end": 125,
+        "confidence_entity": 0.9950249791145325,
+        "value": "scared",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I was walking my labradoodle and it started barking. Then I saw a fire in the bushes but it has spread now. It\u2019s next to the car park at the bottom of the hill but it\u2019s making its way up now.",
+    "entities": [
+      {
+        "start": 66,
+        "end": 84,
+        "value": "fire in the bushes",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 66,
+        "end": 70,
+        "confidence_entity": 0.38181066513061523,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 78,
+        "end": 84,
+        "confidence_entity": 0.9893229603767395,
+        "value": "bushes",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 184,
+        "end": 186,
+        "confidence_entity": 0.6048113107681274,
+        "value": "up",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "An old man just fell to the ground, he\u2019s clutching onto his chest. I\u2019m in McDonalds.",
+    "entities": [
+      {
+        "start": 3,
+        "end": 10,
+        "value": "old man",
+        "entity": "victim_details"
+      },
+      {
+        "start": 16,
+        "end": 34,
+        "value": "fell to the ground",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 41,
+        "end": 65,
+        "value": "clutching onto his chest",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 3,
+        "end": 10,
+        "confidence_entity": 0.5097282528877258,
+        "value": "old man",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 16,
+        "end": 20,
+        "confidence_entity": 0.9954143762588501,
+        "value": "fell",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 24,
+        "end": 34,
+        "confidence_entity": 0.568498432636261,
+        "value": "the ground",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 41,
+        "end": 65,
+        "confidence_entity": 0.7664961814880371,
+        "value": "clutching onto his chest",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "He\u2019s really old and struggling to breathe. He\u2019s not bleeding though. I think he has heart problems. He has a medical alert bracelet.",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "really old",
+        "entity": "victim_details"
+      },
+      {
+        "start": 20,
+        "end": 41,
+        "value": "struggling to breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 48,
+        "end": 60,
+        "value": "not bleeding",
+        "entity": "victim_details"
+      },
+      {
+        "start": 84,
+        "end": 98,
+        "value": "heart problems",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 12,
+        "end": 15,
+        "confidence_entity": 0.8960127234458923,
+        "value": "old",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 20,
+        "end": 30,
+        "confidence_entity": 0.9972379207611084,
+        "value": "struggling",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 34,
+        "end": 41,
+        "confidence_entity": 0.9988896250724792,
+        "value": "breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 48,
+        "end": 60,
+        "confidence_entity": 0.5992587804794312,
+        "value": "not bleeding",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 84,
+        "end": 98,
+        "confidence_entity": 0.9941054582595825,
+        "value": "heart problems",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I tested positive for COVID-19 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My chest feels very tight and I\u2019m finding it increasingly difficult to breathe. I\u2019m also feeling a bit faint",
+    "entities": [
+      {
+        "start": 22,
+        "end": 30,
+        "value": "COVID-19",
+        "entity": "victim_details"
+      },
+      {
+        "start": 128,
+        "end": 150,
+        "value": "chest feels very tight",
+        "entity": "victim_details"
+      },
+      {
+        "start": 183,
+        "end": 203,
+        "value": "difficult to breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 228,
+        "end": 233,
+        "value": "faint",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 22,
+        "end": 30,
+        "confidence_entity": 0.9931768178939819,
+        "value": "COVID-19",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 31,
+        "end": 32,
+        "confidence_entity": 0.4473020136356354,
+        "value": "2",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 128,
+        "end": 150,
+        "confidence_entity": 0.6874870657920837,
+        "value": "chest feels very tight",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 183,
+        "end": 192,
+        "confidence_entity": 0.997327446937561,
+        "value": "difficult",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 196,
+        "end": 203,
+        "confidence_entity": 0.9983310103416443,
+        "value": "breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 228,
+        "end": 233,
+        "confidence_entity": 0.9958147406578064,
+        "value": "faint",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "She\u2019s got a nut allergy. It\u2019s my mum. She says she can\u2019t breathe and her throat is swelling up",
+    "entities": [
+      {
+        "start": 12,
+        "end": 23,
+        "value": "nut allergy",
+        "entity": "victim_details"
+      },
+      {
+        "start": 51,
+        "end": 64,
+        "value": "can\u2019t breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 73,
+        "end": 94,
+        "value": "throat is swelling up",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 12,
+        "end": 23,
+        "confidence_entity": 0.9929239749908447,
+        "value": "nut allergy",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 51,
+        "end": 64,
+        "confidence_entity": 0.769067108631134,
+        "value": "can\u2019t breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 73,
+        "end": 79,
+        "confidence_entity": 0.9943230152130127,
+        "value": "throat",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 83,
+        "end": 94,
+        "confidence_entity": 0.9843354225158691,
+        "value": "swelling up",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My name is Kirsty Bridgens, I\u2019m 24",
+    "entities": [
+      {
+        "start": 11,
+        "end": 26,
+        "value": "Kirsty Bridgens",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "name",
+        "start": 11,
+        "end": 26,
+        "confidence_entity": 0.994220495223999,
+        "value": "Kirsty Bridgens",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "phone_number",
+        "start": 32,
+        "end": 34,
+        "confidence_entity": 0.4230308532714844,
+        "value": "24",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]
