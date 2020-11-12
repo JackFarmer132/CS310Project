@@ -2,33 +2,6 @@ version: "2.0"
 
 stories:
 
-# - story: happy path
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_great
-#   - action: utter_happy
-#
-# - story: sad path 1
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: answer_yes
-#   - action: utter_happy
-#
-# - story: sad path 2
-#   steps:
-#   - intent: greet
-#   - action: utter_greet
-#   - intent: mood_unhappy
-#   - action: utter_cheer_up
-#   - action: utter_did_that_help
-#   - intent: answer_no
-#   - action: utter_goodbye
-
 - story: Call 1
   steps:
     - intent: begin
@@ -318,20 +291,50 @@ stories:
         - phone_number: "07427521153"
     - action: utter_ask_extra_details
 
-
-# - story: test path
-#   steps:
-#   - intent: give_service
-#     entities:
-#     - service_type: "police"
-#   - slot_was_set:
-#     - police_service: true
-#     - medical_service: false
-#     - fire_service: false
-#   - action: utter_ask_postcode
-#   - intent: give_location
-#     entities:
-#     - postcode: "NG20 8QF"
-#   - slot_was_set:
-#     - postcode: "NG20 8QF"
-#   - action: utter_goodbye
+- story: Interactive Story 1
+  steps:
+  - intent: begin
+  - action: utter_ask_service_type
+  - intent: describe_emergency
+    entities:
+    - service_type: police
+    - emergency_details: hit by a car
+  - slot_was_set:
+    - emergency_details:
+      - hit by a car
+  - slot_was_set:
+    - service_type:
+      - police
+  - action: utter_ask_victim_details
+  - intent: describe_victim
+    entities:
+    - victim_details: bleeding
+    - victim_details: unconscious
+  - slot_was_set:
+    - victim_details:
+      - bleeding
+      - unconscious
+  - action: utter_ask_location
+  - intent: give_location
+    entities:
+    - postcode: CV21 8GE
+    - street_address: 12 Charter Road
+    - postcode: CV21 8GE
+  - slot_was_set:
+    - postcode: CV21 8GE
+  - slot_was_set:
+    - street_address: 12 Charter Road
+  - action: utter_dispatch
+  - action: utter_ask_name
+  - intent: give_name
+    entities:
+    - name: Tom
+  - slot_was_set:
+    - name: Tom
+  - action: utter_ask_phone_number
+  - intent: give_phone_number
+    entities:
+    - phone_number: '07402530350'
+  - slot_was_set:
+    - phone_number: '07402530350'
+  - action: utter_ask_extra_details

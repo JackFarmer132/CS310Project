@@ -1,54 +1,39 @@
-version: "2.0"
-
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
 intents:
-  - give_service
-  - describe_emergency
-  - describe_victim
-  - give_location
-  - give_phone_number
-  - answer_yes
-  - answer_no
-  - answer_unsure
-  # - greet
-  # - goodbye
-  # - mood_great
-  # - mood_unhappy
-  # - bot_challenge
-
+- describe_emergency
+- begin
+- give_location
+- nlu_fallback
+- describe_victim
+- give_name
+- give_phone_number
+- give_service
+- answer_yes
+- answer_no
+- answer_unsure
 entities:
-  - service_type
-  - street_address
-  - postcode
-  - city
-  - emergency_details
-  - victim_details
-  - phone_number
-  - name
-
+- city
+- emergency_details
+- name
+- phone_number
+- postcode
+- service_type
+- street_address
+- victim_details
 slots:
-  service_type:
-    type: list
-    influence_conversation: true
-  street_address:
-    type: text
-    influence_conversation: true
-  postcode:
+  any_injured:
     type: text
     influence_conversation: true
   city:
     type: text
     influence_conversation: true
-  is_safe:
-    type: text
-    influence_conversation: true
-  any_injured:
-    type: text
-    influence_conversation: true
   emergency_details:
     type: list
     influence_conversation: true
-  victim_details:
-    type: list
+  is_safe:
+    type: text
     influence_conversation: true
   name:
     type: text
@@ -56,79 +41,71 @@ slots:
   phone_number:
     type: text
     influence_conversation: true
-
+  postcode:
+    type: text
+    influence_conversation: true
+  service_type:
+    type: list
+    influence_conversation: true
+  street_address:
+    type: text
+    influence_conversation: true
+  victim_details:
+    type: list
+    influence_conversation: true
 responses:
   utter_ask_service_type:
-    - text: "Can you please provide the emergency service that you require"
-
+  - text: Can you please provide the emergency service that you require
   utter_ask_location:
-    - text: "Can you please provide details of your location?"
-
+  - text: Can you please provide details of your location?
   utter_ask_postcode:
-    - text: "Can you please provide your postcode?"
-
+  - text: Can you please provide your postcode?
   utter_ask_street_address:
-    - text: "Can you please provide the street address?"
-
+  - text: Can you please provide the street address?
   utter_ask_location_description:
-    - text: "Can you please describe your surroundings? What can you see?"
-
+  - text: Can you please describe your surroundings? What can you see?
   utter_describe_emergency:
-    - text: "Can you please describe the details of your emergency?"
-    - text: "What is the nature of your emergency?"
-
+  - text: Can you please describe the details of your emergency?
+  - text: What is the nature of your emergency?
   utter_ask_if_safe:
-    - text: "Are you safe?"
-    - text: "Are you currently in a safe location?"
-
+  - text: Are you safe?
+  - text: Are you currently in a safe location?
   utter_ask_victim_details:
-    - text: "What state is the victim in?"
-
+  - text: What state is the victim in?
   utter_ask_any_injured:
-    - text: "Is anyone injured?"
-
+  - text: Is anyone injured?
   utter_dispatch:
-    - text: "DISPATCH"
-
+  - text: DISPATCH
   utter_ask_if_first_aid:
-    - text: "Do you or anyone near you have experience with first aid?"
-
+  - text: Do you or anyone near you have experience with first aid?
   utter_give_link:
-    - text: "Here is a useful link: www.imgur.com/a/G6rU8"
-    
+  - text: 'Here is a useful link: www.imgur.com/a/G6rU8'
   utter_ask_name:
-    - text: "Can you tell us your name?"
-    - text: "Can you please provide us with your name?"
-
+  - text: Can you tell us your name?
+  - text: Can you please provide us with your name?
   utter_ask_phone_number:
-    - text: "Can you please provide your phone number should we need to contact you over the phone?"
-
+  - text: Can you please provide your phone number should we need to contact you over the phone?
   utter_ask_extra_details:
-    - text: "Okay, is there anything else we should know before we get there?"
-
+  - text: Okay, is there anything else we should know before we get there?
   utter_greet:
-  - text: "Hey! How are you?"
-
+  - text: Hey! How are you?
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
-    image: "https://i.imgur.com/nGF1K8f.jpg"
-
+  - text: 'Here is something to cheer you up:'
+    image: https://i.imgur.com/nGF1K8f.jpg
   utter_did_that_help:
-  - text: "Did that help you?"
-
+  - text: Did that help you?
   utter_happy:
-  - text: "Great, carry on!"
-
+  - text: Great, carry on!
   utter_goodbye:
-  - text: "Bye"
-
+  - text: Bye
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
-
-  # utter_ask_location:
-  # - text: "Can you please give your location so the {service_type} can find you?"
-  # - text: "Please provide your location for the {service_type}"
-
-session_config:
-  session_expiration_time: 60
-  carry_over_slots_to_new_session: true
+  - text: I am a bot, powered by Rasa.
+actions:
+- utter_ask_extra_details
+- utter_ask_location
+- utter_ask_name
+- utter_ask_phone_number
+- utter_ask_service_type
+- utter_ask_victim_details
+- utter_dispatch
+version: '2.0'

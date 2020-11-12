@@ -1,115 +1,20 @@
 version: "2.0"
-
 nlu:
-
-- synonym: police
-  examples: |
-    - police department
-    - cops
-    - police officer
-    - police officers
-    - law enforcement
-    - police force
-    - policeman
-    - policewoman
-
-- synonym: ambulance
-  examples: |
-    - ambulance
-    - EMS
-    - hospital wagon
-    - ambulance service
-
-- synonym: fire department
-  examples: |
-    - fire service
-    - fire brigade
-    - firemen
-    - firewomen
-    - firefighters
-    - fire fighters
-
-- synonym: stabbing
-  examples: |
-    - stabbed
-    - stabbing
-    - stab
-
-- synonym: shooting
-  examples: |
-    - shooting
-    - shot
-    - shoot
-    - pistol
-    - gun
-    - machine gun
-    - bullet
-
-- synonym: burglary
-  examples: |
-    - burgled
-    - broken in
-    - burglary
-    - break and entry
-    - broken in to
-    - break in
-    - break-in
-
-- synonym: theft
-  examples: |
-    - theft
-    - stolen
-    - stole
-    - robbed
-    - half-inched
-    - took
-    - robbery
-    - taken
-
-- synonym: bleeding
-  examples: |
-    - cut myself
-    - cut themselves
-    - blood
-    - bleeding
-    - bit of blood
-    - amount of blood
-    - bleed
-    - haemorrhaging
-    - haemorrhage
-
-  # note: DIETClassifier will still use training data examples of postcodes. Those
-  # should be ignored as they aren't as robust as RegexEntityExtractor
-
-- regex: postcode
-  examples: |
-    - \b[A-Z]{1}[0-9]{1}\s?[0-9]{1}[A-Z]{2}\b
-    - \b[A-Z]{1}[0-9]{2}\s?[0-9]{1}[A-Z]{2}\b
-    - \b[A-Z]{2}[0-9]{1}\s?[0-9]{1}[A-Z]{2}\b
-    - \b[A-Z]{2}[0-9]{2}\s?[0-9]{1}[A-Z]{2}\b
-    - \b[A-Z]{1}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
-    - \b[A-Z]{2}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
-
-# Useful links for possible town/city lookup table
-# https://www.paulstenning.com/uk-towns-and-counties-list/
-# https://geoportal.statistics.gov.uk/datasets/a6c138d17ac54532b0ca8ee693922f10_0/data
-
 - intent: begin
   examples: |
     - start_bot
-
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
     - Help, we need the [police](service_type)
     - Help us, we need the [fire department](service_type) to come to [9 Charter Avenue](street_address)
     - I think [police](service_type) but I don’t want to cause any trouble
-    - Yeah, hi, I live at [82 Grenfell Tower](street_address). There is a [fire](service_type), you are in attendance but I'm stuck on the 11th floor and I don't know how to get out.
-    - Hello, [fire brigade](service_type) please.
-    - I need an [ambulance](service_type) please.
-    - I need the [fire brigade](service_type) please.
-    - I need the [police](service_type) please.
-
+    - Yeah, hi, I live at [82 Grenfell Tower](street_address). There is a [fire](emergency_details)
+    - Hello, [fire brigade](service_type) please
+    - I need an [ambulance](service_type) please
+    - I need the [fire brigade](service_type) please
+    - I need the [police](service_type) please
+    - I need the [police](service_type) please, someone was just [hit by a car](emergency_details)
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
@@ -125,7 +30,6 @@ nlu:
     - Someone’s [broken into](emergency_details) our meeting place and [stolen](emergency_details) things.
     - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds.
     - I think my grandad is having a [stroke](emergency_details)
-
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -138,7 +42,7 @@ nlu:
     - Yes she’s [conscious](victim_details)
     - Yes, but there’s [some blood](victim_details) and I’m really worried
     - I have been feeling [very nauseous](victim_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
-
+    - They are [bleeding](victim_details) and [unconscious](victim_details)
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
@@ -146,7 +50,7 @@ nlu:
     - [Shepherd Market](street_address), London, [W1J 7PA](postcode). I’m a regular at this McDonalds but I’ve never seen him before.
     - We are at [16 Stoneygate Drive](street_address), [Hinckley](city), [LE10 1TD](postcode).
     - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
-
+    - I'm at [12 Charter Road](street_address), the postcode is [CV21 8GE](postcode)[CV21 8GE](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -156,16 +60,15 @@ nlu:
     - I’ve got [stomach cramps](victim_details) and it’s really painful now. My name is [Francesca Gomez](name)
     - Thank you. My name is [Rodriguez Sebastia](name)
     - My name is [Ben](name) and I’m calling from [Coventry](city)
-    - [Jack Farmer](name). My number is [07427521153](phone_number).
-
+    - [Jack Farmer](name). My number is [07427521153](phone_number)
+    - [Tom](name)
 - intent: give_phone_number
   examples: |
-    - [07427521153](phone_number).
-    - My number is [07427521153](phone_number).
-    - Thank you. My number is [07427521153](phone_number).
-    - [07946174902](phone_number).
-    - [07427521153](phone_number).
-
+    - [07427521153](phone_number)
+    - My number is [07427521153](phone_number)
+    - Thank you. My number is [07427521153](phone_number)
+    - [07946174902](phone_number)
+    - [07402530350](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -177,7 +80,6 @@ nlu:
     - I am
     - I am now
     - I think so
-
 - intent: answer_no
   examples: |
     - No
@@ -190,7 +92,6 @@ nlu:
     - I am not
     - I'm not
     - I don’t have a clue
-
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -202,75 +103,83 @@ nlu:
     - I might not be
     - I'm unsure
     - I don't really know
-    - might be
-
-# - intent: greet
-#   examples: |
-#     - hey
-#     - hello
-#     - hi
-#     - hello there
-#     - good morning
-#     - good evening
-#     - moin
-#     - hey there
-#     - let's go
-#     - hey dude
-#     - goodmorning
-#     - goodevening
-#     - good afternoon
-#
-# - intent: goodbye
-#   examples: |
-#     - good afternoon
-#     - cu
-#     - good by
-#     - cee you later
-#     - good night
-#     - bye
-#     - goodbye
-#     - have a nice day
-#     - see you around
-#     - bye bye
-#     - see you later
-#
-# - intent: mood_great
-#   examples: |
-#     - perfect
-#     - great
-#     - amazing
-#     - feeling like a king
-#     - wonderful
-#     - I am feeling very good
-#     - I am great
-#     - I am amazing
-#     - I am going to save the world
-#     - super stoked
-#     - extremely good
-#     - so so perfect
-#     - so good
-#     - so perfect
-#
-# - intent: mood_unhappy
-#   examples: |
-#     - my day was horrible
-#     - I am sad
-#     - I don't feel very well
-#     - I am disappointed
-#     - super sad
-#     - I'm so sad
-#     - sad
-#     - very sad
-#     - unhappy
-#     - not good
-#     - not very good
-#     - extremly sad
-#     - so saad
-#     - so sad
-#
-# - intent: bot_challenge
-#   examples: |
-#     - are you a bot?
-#     - are you a human?
-#     - am I talking to a bot?
-#     - am I talking to a human?
+    - Might be
+- intent: nlu_fallback
+  examples: |
+    - end of test
+- synonym: police
+  examples: |
+    - police department
+    - cops
+    - police officer
+    - police officers
+    - law enforcement
+    - police force
+    - policeman
+    - policewoman
+- synonym: ambulance
+  examples: |
+    - ambulance
+    - EMS
+    - hospital wagon
+    - ambulance service
+- synonym: fire department
+  examples: |
+    - fire service
+    - fire brigade
+    - firemen
+    - firewomen
+    - firefighters
+    - fire fighters
+- synonym: stabbing
+  examples: |
+    - stabbed
+    - stabbing
+    - stab
+- synonym: shooting
+  examples: |
+    - shooting
+    - shot
+    - shoot
+    - pistol
+    - gun
+    - machine gun
+    - bullet
+- synonym: burglary
+  examples: |
+    - burgled
+    - broken in
+    - burglary
+    - break and entry
+    - broken in to
+    - break in
+    - break-in
+- synonym: theft
+  examples: |
+    - theft
+    - stolen
+    - stole
+    - robbed
+    - half-inched
+    - took
+    - robbery
+    - taken
+- synonym: bleeding
+  examples: |
+    - cut myself
+    - cut themselves
+    - blood
+    - bleeding
+    - bit of blood
+    - amount of blood
+    - bleed
+    - haemorrhaging
+    - haemorrhage
+- regex: postcode
+  examples: |
+    - \b[A-Z]{1}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
+    - \b[A-Z]{1}[0-9]{1}\s?[0-9]{1}[A-Z]{2}\b
+    - \b[A-Z]{1}[0-9]{2}\s?[0-9]{1}[A-Z]{2}\b
+    - \b[A-Z]{2}[0-9]{1}[A-Z]{1}\s?[0-9]{1}[A-Z]{2}\b
+    - \b[A-Z]{2}[0-9]{1}\s?[0-9]{1}[A-Z]{2}\b
+    - \b[A-Z]{2}[0-9]{2}\s?[0-9]{1}[A-Z]{2}\b

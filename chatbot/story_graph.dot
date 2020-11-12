@@ -1,0 +1,37 @@
+digraph  {
+0 [class="start active", fillcolor=green, fontsize=12, label=START, style=filled];
+"-1" [class=end, fillcolor=red, fontsize=12, label=END, style=filled];
+1 [class=active, fontsize=12, label=action_session_start];
+2 [class=active, fontsize=12, label=utter_ask_service_type];
+3 [class=active, fontsize=12, label=utter_ask_victim_details];
+4 [class=active, fontsize=12, label=utter_ask_location];
+5 [class=active, fontsize=12, label=utter_dispatch];
+6 [class=active, fontsize=12, label=utter_ask_name];
+7 [class=active, fontsize=12, label=utter_ask_phone_number];
+8 [class=active, fontsize=12, label=utter_ask_extra_details];
+9 [class="dashed active", fontsize=12, label=utter_ask_victim_details];
+10 [class="intent active", fillcolor=lightblue, label=start_bot, shape=rect, style=filled];
+11 [class="intent active", fillcolor=lightblue, label="I need the police please, someone was just hit by a car", shape=rect, style=filled];
+12 [class="intent active", fillcolor=lightblue, label="they are bleeding and unconscious", shape=rect, style=filled];
+13 [class="intent active", fillcolor=lightblue, label="i'm at 12 Charter Road, the postcode is CV21 8GE", shape=rect, style=filled];
+14 [class="intent active", fillcolor=lightblue, label=Tom, shape=rect, style=filled];
+15 [class="intent active", fillcolor=lightblue, label=07402530350, shape=rect, style=filled];
+16 [class="intent active", fillcolor=lightblue, label="end of test", shape=rect, style=filled];
+0 -> "-1"  [class="", key=NONE, label=""];
+0 -> 1  [class=active, key=NONE, label=""];
+1 -> 10  [class=active, key=0];
+2 -> 11  [class=active, key=0];
+3 -> 12  [class=active, key=0];
+4 -> 13  [class=active, key=0];
+5 -> 6  [class=active, key=NONE, label=""];
+6 -> 14  [class=active, key=0];
+7 -> 15  [class=active, key=0];
+8 -> 16  [class=active, key=0];
+10 -> 2  [class=active, key=0];
+11 -> 3  [class=active, key=0];
+12 -> 4  [class=active, key=0];
+13 -> 5  [class=active, key=0];
+14 -> 7  [class=active, key=0];
+15 -> 8  [class=active, key=0];
+16 -> 9  [class=active, key=0];
+}

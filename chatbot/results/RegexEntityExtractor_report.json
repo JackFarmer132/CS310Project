@@ -1,16 +1,9 @@
 {
-  "service_type": {
+  "emergency_details": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 13,
-    "confused_with": {}
-  },
-  "phone_number": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 5,
+    "support": 36,
     "confused_with": {}
   },
   "city": {
@@ -27,6 +20,27 @@
     "support": 72,
     "confused_with": {}
   },
+  "phone_number": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "service_type": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 13,
+    "confused_with": {}
+  },
+  "street_address": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 31,
+    "confused_with": {}
+  },
   "name": {
     "precision": 0.0,
     "recall": 0.0,
@@ -39,20 +53,6 @@
     "recall": 1.0,
     "f1-score": 1.0,
     "support": 12,
-    "confused_with": {}
-  },
-  "emergency_details": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 36,
-    "confused_with": {}
-  },
-  "street_address": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 31,
     "confused_with": {}
   },
   "micro avg": {
