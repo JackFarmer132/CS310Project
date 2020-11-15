@@ -109,16 +109,33 @@ class ValidatePoliceForm(FormValidationAction):
 
         # if empty then no valid value
         if not slot_value:
-            return {"service_type": None}
+            return {"postcode": None}
 
         # if there was only 1 classifier that found a postcode
         if isinstance(slot_value, str):
+            postcode = slot_value
+        # else there are two, meaning a ReGeX version and one from DIETClassifier,
+        # which is most likely incorrect
+        else:
+            postcode = slot_value[0]
 
-        url = "https://api.postcodes.io/postcodes/{}".format(slot_value)
-        # url = "https://api.postcodes.io/postcodes/NN11 0GH"
+        url = "https://api.postcodes.io/postcodes/{}/validate".format(postcode)
         # remove possible space in postcode
         url = url.replace(" ", "")
-        print(url)
-        result = json.loads(req.urlopen(url).read())
+        # check postcode is valid
+        result = json.loads(req.urlopen(url).read())["result"]
+        # if postcode isn't valid then don't accept
+        if not result:
+            return {"postcode": None}
+        # get new URL that will fetch information on validated postcode
+        url = url.replace("/validate", "")
+        result = json.loads(req.urlopen(url).read())["result"]
 
-        print(result)
+        # get relevant data from postcode
+        parish = result["parish"]
+        county = result["admin_county"]
+        print(parish)
+        print(county)
+
+        # only return 1 string to eliminate issue with multiple classifiers
+        return {"postcode": postcode}
