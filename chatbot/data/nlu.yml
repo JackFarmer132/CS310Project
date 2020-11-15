@@ -53,7 +53,7 @@ nlu:
     - [Shepherd Market](street_address), London, [W1J 7PA](postcode). I’m a regular at this McDonalds but I’ve never seen him before.
     - We are at [16 Stoneygate Drive](street_address), [Hinckley](city), [LE10 1TD](postcode).
     - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
-    - I'm at [12 Charter Road](street_address), the postcode is [CV21 8GE](postcode)[CV21 8GE](postcode)
+    - I'm at [12 Charter Road](street_address), the postcode is [CV21 8GE](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
