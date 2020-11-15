@@ -106,11 +106,16 @@ class ValidatePoliceForm(FormValidationAction):
 
     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-        print(slot_value)
-        print(slot_value[0])
-        print(slot_value[1])
-        # url = "https://api.postcodes.io/postcodes/{}".format(slot_value[0])
-        url = "https://api.postcodes.io/postcodes/NN11 0GH"
+
+        # if empty then no valid value
+        if not slot_value:
+            return {"service_type": None}
+
+        # if there was only 1 classifier that found a postcode
+        if isinstance(slot_value, str):
+
+        url = "https://api.postcodes.io/postcodes/{}".format(slot_value)
+        # url = "https://api.postcodes.io/postcodes/NN11 0GH"
         # remove possible space in postcode
         url = url.replace(" ", "")
         print(url)
