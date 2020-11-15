@@ -20,9 +20,9 @@ nlu:
     - I need the [police](service_type) please, someone was just [hit by a car](emergency_details)
 - intent: describe_emergency
   examples: |
-    - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
+    - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
     - Help, there’s a huge [fire](emergency_details) in [Horsenden Hill](street_address).
-    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](city) [NN11 0GH](postcode). Please send help quickly.
+    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](city) NN11 0GH. Please send help quickly.
     - Someone’s been [stabbed](emergency_details), she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
     - 3 men just [robbed](emergency_details) my local corner shop in [Shirebrook](city)
     - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details)
@@ -48,12 +48,12 @@ nlu:
     - They are [bleeding](victim_details) and [unconscious](victim_details)
 - intent: give_location
   examples: |
-    - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
-    - I live at [100 Moulton Road](street_address), [CH7 4LH](postcode), please send someone quickly
-    - [Shepherd Market](street_address), London, [W1J 7PA](postcode). I’m a regular at this McDonalds but I’ve never seen him before.
-    - We are at [16 Stoneygate Drive](street_address), [Hinckley](city), [LE10 1TD](postcode).
+    - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
+    - I live at [100 Moulton Road](street_address), CH7 4LH, please send someone quickly
+    - [Shepherd Market](street_address), London, W1J 7PA. I’m a regular at this McDonalds but I’ve never seen him before.
+    - We are at [16 Stoneygate Drive](street_address), [Hinckley](city), LE10 1TD.
     - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
-    - I'm at [12 Charter Road](street_address), the postcode is [CV21 8GE](postcode)
+    - I'm at [12 Charter Road](street_address), the postcode is CV21 8GE
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)

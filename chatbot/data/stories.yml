@@ -342,5 +342,5 @@ stories:
 - story: Form test
   steps:
   - intent: start_form
-  - action: service_form
-  - active_loop: service_form
+  - action: police_form
+  - active_loop: police_form
