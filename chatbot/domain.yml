@@ -2,8 +2,9 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- describe_emergency
 - begin
+- start_form
+- describe_emergency
 - give_location
 - nlu_fallback
 - describe_victim
@@ -100,6 +101,12 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_ask_test_form_service_type:
+  - text: This is from the form. What service you want?
+  utter_ask_test_form_name:
+  - text: This is from the form. What is your name?
+  utter_ask_test_form_phone_number:
+  - text: This is from the form. What is your phone number?
 actions:
 - utter_ask_extra_details
 - utter_ask_location
@@ -108,4 +115,16 @@ actions:
 - utter_ask_service_type
 - utter_ask_victim_details
 - utter_dispatch
+- validate_test_form
+forms:
+  test_form:
+    service_type:
+      - type: from_entity
+        entity: service_type
+    name:
+      - type: from_entity
+        entity: name
+    phone_number:
+      - type: from_entity
+        entity: phone_number
 version: '2.0'

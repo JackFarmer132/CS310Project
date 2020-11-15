@@ -2,339 +2,345 @@ version: "2.0"
 
 stories:
 
-- story: Call 1
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: give_service
-      entities:
-        - service_type: "ambulance"
-        - service_type: "police"
-    - action: utter_describe_emergency
-    - intent: describe_emergency
-      entities:
-        - emergency_details: "stabbed"
-        - victim_details: "bleeding"
-        - emergency_details: "unconscious"
-    - action: utter_ask_if_safe
-    - intent: answer_yes
-    - slot_was_set:
-        - is_safe: "yes"
-    - action: utter_ask_location
-    - intent: answer_unsure
-    - action: utter_ask_location_description
-    # placeholder for some intent that captures description of location
-    - intent: give_location
-    - action: utter_ask_victim_details
-    - intent: describe_victim
-      entities:
-        - victim_details: "breathing"
-        - victim_details: "not responding"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    - intent: give_name
-      entities:
-        - name: "Saranyan"
-    - action: utter_ask_phone_number
-    - intent: give_phone_number
-      entities:
-        - phone_number: "07427521153"
-    - action: utter_ask_extra_details
+# - story: Call 1
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: give_service
+#       entities:
+#         - service_type: "ambulance"
+#         - service_type: "police"
+#     - action: utter_describe_emergency
+#     - intent: describe_emergency
+#       entities:
+#         - emergency_details: "stabbed"
+#         - victim_details: "bleeding"
+#         - emergency_details: "unconscious"
+#     - action: utter_ask_if_safe
+#     - intent: answer_yes
+#     - slot_was_set:
+#         - is_safe: "yes"
+#     - action: utter_ask_location
+#     - intent: answer_unsure
+#     - action: utter_ask_location_description
+#     # placeholder for some intent that captures description of location
+#     - intent: give_location
+#     - action: utter_ask_victim_details
+#     - intent: describe_victim
+#       entities:
+#         - victim_details: "breathing"
+#         - victim_details: "not responding"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     - intent: give_name
+#       entities:
+#         - name: "Saranyan"
+#     - action: utter_ask_phone_number
+#     - intent: give_phone_number
+#       entities:
+#         - phone_number: "07427521153"
+#     - action: utter_ask_extra_details
+#
+#
+# # NOTE: must determine an intent when no name is provided and skip to just
+# #       ask for the phone number
+# - story: Call 2
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: give_service
+#       entities:
+#         - service_type: "police"
+#     - action: utter_describe_emergency
+#     - intent: describe_emergency
+#       entities:
+#         - emergency_details: "robbed"
+#         - city: "Shirebrook"
+#     - action: utter_ask_if_safe
+#     - intent: answer_yes
+#     - slot_was_set:
+#         - is_safe: "yes"
+#     - action: utter_ask_location
+#     - intent: give_location
+#       entities:
+#         - postcode: "NG20 8QF"
+#         - street_address: "769 Russell Road"
+#     - action: utter_ask_any_injured
+#     - intent: answer_no
+#     - slot_was_set:
+#         - any_injured: "no"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     # ideally have 'NOT give_name' or something equivilent, but don't know
+#     # solution yet
+#
+# # NOTE: better way to determine the emergency details when the words are spread
+# #       out i.e. 'husband' and 'violent' should help determine 'abusive partner'
+# - story: Call 3
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: give_service
+#       entities:
+#         - service_type: "police"
+#     - action: utter_describe_emergency
+#     - intent: describe_emergency
+#       entities:
+#         - emergency_details: "husband has been getting very violent"
+#         - emergency_details: "threw a wine bottle"
+#         - victim_details: "scared"
+#     - action: utter_ask_if_safe
+#     # need another type of answer apart from just yes or no (a 'maybe')
+#     - intent: answer_unsure
+#     - slot_was_set:
+#         - is_safe: "unsure"
+#     - action: utter_ask_location
+#     - intent: give_location
+#       entities:
+#         - street_address: "100 Moulton Road"
+#         - postcode: "CH7 4LH"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     - intent: give_name
+#       entities:
+#         - name: "Kirsty Bridgens"
+#     - action: utter_ask_phone_number
+#     - intent: give_phone_number
+#       entities:
+#         - phone_number: "07427521153"
+#     - action: utter_ask_extra_details
+#
+# - story: Call 4
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: give_service
+#       entities:
+#         - service_type: "fire brigade"
+#         - street_address: "44 Lolands Road"
+#         - postcode: "RM15 4ED"
+#     - action: utter_ask_if_safe
+#     # if unsure if safe, always send an ambulance (same with injured)
+#     - intent: answer_unsure
+#     - slot_was_set:
+#         - is_safe: "unsure"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     # no name given situation
+#
+# # NOTE: need a custom action to provide useful links in medical emergencies
+# - story: Call 5
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: describe_emergency
+#       entities:
+#         - victim_details: "old man"
+#         - emergency_details: "fell to the ground"
+#         - emergency_details: "clutching onto his chest"
+#     - action: utter_ask_victim_details
+#     - intent: describe_victim
+#       entities:
+#         - victim_details: "really old"
+#         - victim_details: "struggling to breathe"
+#         - victim_details: "not bleeding"
+#         - victim_details: "heart problems"
+#     - action: utter_ask_location
+#     - intent: give_location
+#       entities:
+#         - street_address: "Shepherd Market"
+#         - city: "London"
+#         - postcode: "W1J 7PA"
+#     - action: utter_dispatch
+#     - action: utter_ask_if_first_aid
+#     - intent: answer_no
+#     # need an action that provides a helpful link based on the victim/emergency
+#     # details
+#
+# - story: Call 6
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: describe_emergency
+#       entities:
+#         - emergency_details: "stroke"
+#     - action: utter_ask_victim_details
+#     - intent: describe_victim
+#       entities:
+#         - victim_details: "84 years old"
+#         - victim_details: "dementia"
+#         - victim_details: "isn't talking properly"
+#         - victim_details: "can’t raise his arms up"
+#         - victim_details: "still breathing"
+#         - victim_details: "in pain"
+#     - action: utter_ask_location
+#     - intent: give_location
+#       entities:
+#         - street_address: "16 Stoneygate Drive"
+#         - city: "Hinckley"
+#         - postcode: "LE10 1TD"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     - intent: give_name
+#       entities:
+#         - name: "Zhang Wei"
+#     - action: utter_ask_phone_number
+#     - intent: give_phone_number
+#       entities:
+#         - phone_number: "07427521153"
+#     - action: utter_ask_extra_details
+#
+# # NOTE: in medical emergencies, is sometimes appropriate to ask if the person
+# #       knows first aid or just provide useful links. Here it is best to just
+# #       provide the links, but there needs to be some kind of metric
+# #       i.e have a subset of emergencies to ask first aid for
+# # NOTE: in training data, this conversation went beyond the usual end point
+# #       with the victim asking about painkillers, so consider altering story
+# #       when the bot is more advanced
+# - story: Call 7
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: describe_victim
+#       entities:
+#         - victim_details: "very nauseous"
+#         - victim_details: "getting worse"
+#     - action: utter_ask_victim_details
+#     - intent: describe_victim
+#       entities:
+#         - victim_details: "throw up"
+#         - victim_details: "feeling very dizzy"
+#         - victim_details: "heart conditions"
+#     - action: utter_ask_location
+#     - intent: give_location
+#       entities:
+#         - street_address: "6 Wintergreen Avenue"
+#         - city: "Liverpool"
+#     - action: utter_dispatch
+#     # need to either provide emergency link or ask if first aid
+#
+# - story: Call 8
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: describe_victim
+#       entities:
+#         - victim_details: "COVID-19"
+#         - victim_details: "chest feels very tight"
+#         - victim_details: "difficult to breathe"
+#         - victim_details: "faint"
+#     - action: utter_ask_location
+#     - intent: give_location
+#       entities:
+#         - street_address: "4 Horncastle Close"
+#         - city: "Daventry"
+#         - postcode: "NN11 0GH"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     - intent: give_name
+#       entities:
+#         - name: "Thomas Ludlow"
+#     - action: utter_ask_phone_number
+#     - intent: give_phone_number
+#       entities:
+#         - phone_number: "07946174902"
+#     - action: utter_ask_extra_details
+#
+# - story: Call 9
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: describe_emergency
+#       entities:
+#         - emergency_details: "fire"
+#         - street_address: "Horsenden Hill"
+#     - action: utter_ask_if_safe
+#     - intent: answer_unsure
+#     - slot_was_set:
+#         - is_safe: "unsure"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     - intent: give_name
+#       entities:
+#         - name: "Rodriguez Sebastia"
+#     - action: utter_ask_phone_number
+#     - intent: give_phone_number
+#       entities:
+#         - phone_number: "07427521153"
+#     - action: utter_ask_extra_details
+#
+# - story: Call 10
+#   steps:
+#     - intent: begin
+#     - action: utter_ask_service_type
+#     - intent: describe_emergency
+#       entities:
+#         - emergency_details: "fire"
+#         - street_address: "5 Horncastle Close"
+#         - city: "Daventry"
+#         - postcode: "NN11 0GH"
+#     - action: utter_ask_if_safe
+#     - intent: answer_yes
+#     - slot_was_set:
+#         - is_safe: "yes"
+#     - action: utter_dispatch
+#     - action: utter_ask_name
+#     - intent: give_name
+#       entities:
+#         - name: "Jack Farmer"
+#         - phone_number: "07427521153"
+#     - action: utter_ask_extra_details
+#
+# - story: Interactive Story 1
+#   steps:
+#   - intent: begin
+#   - action: utter_ask_service_type
+#   - intent: describe_emergency
+#     entities:
+#     - service_type: police
+#     - emergency_details: hit by a car
+#   - slot_was_set:
+#     - emergency_details:
+#       - hit by a car
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - action: utter_ask_victim_details
+#   - intent: describe_victim
+#     entities:
+#     - victim_details: bleeding
+#     - victim_details: unconscious
+#   - slot_was_set:
+#     - victim_details:
+#       - bleeding
+#       - unconscious
+#   - action: utter_ask_location
+#   - intent: give_location
+#     entities:
+#     - postcode: CV21 8GE
+#     - street_address: 12 Charter Road
+#     - postcode: CV21 8GE
+#   - slot_was_set:
+#     - postcode: CV21 8GE
+#   - slot_was_set:
+#     - street_address: 12 Charter Road
+#   - action: utter_dispatch
+#   - action: utter_ask_name
+#   - intent: give_name
+#     entities:
+#     - name: Tom
+#   - slot_was_set:
+#     - name: Tom
+#   - action: utter_ask_phone_number
+#   - intent: give_phone_number
+#     entities:
+#     - phone_number: '07402530350'
+#   - slot_was_set:
+#     - phone_number: '07402530350'
+#   - action: utter_ask_extra_details
 
-
-# NOTE: must determine an intent when no name is provided and skip to just
-#       ask for the phone number
-- story: Call 2
+- story: Form test
   steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: give_service
-      entities:
-        - service_type: "police"
-    - action: utter_describe_emergency
-    - intent: describe_emergency
-      entities:
-        - emergency_details: "robbed"
-        - city: "Shirebrook"
-    - action: utter_ask_if_safe
-    - intent: answer_yes
-    - slot_was_set:
-        - is_safe: "yes"
-    - action: utter_ask_location
-    - intent: give_location
-      entities:
-        - postcode: "NG20 8QF"
-        - street_address: "769 Russell Road"
-    - action: utter_ask_any_injured
-    - intent: answer_no
-    - slot_was_set:
-        - any_injured: "no"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    # ideally have 'NOT give_name' or something equivilent, but don't know
-    # solution yet
-
-# NOTE: better way to determine the emergency details when the words are spread
-#       out i.e. 'husband' and 'violent' should help determine 'abusive partner'
-- story: Call 3
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: give_service
-      entities:
-        - service_type: "police"
-    - action: utter_describe_emergency
-    - intent: describe_emergency
-      entities:
-        - emergency_details: "husband has been getting very violent"
-        - emergency_details: "threw a wine bottle"
-        - victim_details: "scared"
-    - action: utter_ask_if_safe
-    # need another type of answer apart from just yes or no (a 'maybe')
-    - intent: answer_unsure
-    - slot_was_set:
-        - is_safe: "unsure"
-    - action: utter_ask_location
-    - intent: give_location
-      entities:
-        - street_address: "100 Moulton Road"
-        - postcode: "CH7 4LH"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    - intent: give_name
-      entities:
-        - name: "Kirsty Bridgens"
-    - action: utter_ask_phone_number
-    - intent: give_phone_number
-      entities:
-        - phone_number: "07427521153"
-    - action: utter_ask_extra_details
-
-- story: Call 4
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: give_service
-      entities:
-        - service_type: "fire brigade"
-        - street_address: "44 Lolands Road"
-        - postcode: "RM15 4ED"
-    - action: utter_ask_if_safe
-    # if unsure if safe, always send an ambulance (same with injured)
-    - intent: answer_unsure
-    - slot_was_set:
-        - is_safe: "unsure"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    # no name given situation
-
-# NOTE: need a custom action to provide useful links in medical emergencies
-- story: Call 5
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: describe_emergency
-      entities:
-        - victim_details: "old man"
-        - emergency_details: "fell to the ground"
-        - emergency_details: "clutching onto his chest"
-    - action: utter_ask_victim_details
-    - intent: describe_victim
-      entities:
-        - victim_details: "really old"
-        - victim_details: "struggling to breathe"
-        - victim_details: "not bleeding"
-        - victim_details: "heart problems"
-    - action: utter_ask_location
-    - intent: give_location
-      entities:
-        - street_address: "Shepherd Market"
-        - city: "London"
-        - postcode: "W1J 7PA"
-    - action: utter_dispatch
-    - action: utter_ask_if_first_aid
-    - intent: answer_no
-    # need an action that provides a helpful link based on the victim/emergency
-    # details
-
-- story: Call 6
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: describe_emergency
-      entities:
-        - emergency_details: "stroke"
-    - action: utter_ask_victim_details
-    - intent: describe_victim
-      entities:
-        - victim_details: "84 years old"
-        - victim_details: "dementia"
-        - victim_details: "isn't talking properly"
-        - victim_details: "can’t raise his arms up"
-        - victim_details: "still breathing"
-        - victim_details: "in pain"
-    - action: utter_ask_location
-    - intent: give_location
-      entities:
-        - street_address: "16 Stoneygate Drive"
-        - city: "Hinckley"
-        - postcode: "LE10 1TD"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    - intent: give_name
-      entities:
-        - name: "Zhang Wei"
-    - action: utter_ask_phone_number
-    - intent: give_phone_number
-      entities:
-        - phone_number: "07427521153"
-    - action: utter_ask_extra_details
-
-# NOTE: in medical emergencies, is sometimes appropriate to ask if the person
-#       knows first aid or just provide useful links. Here it is best to just
-#       provide the links, but there needs to be some kind of metric
-#       i.e have a subset of emergencies to ask first aid for
-# NOTE: in training data, this conversation went beyond the usual end point
-#       with the victim asking about painkillers, so consider altering story
-#       when the bot is more advanced
-- story: Call 7
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: describe_victim
-      entities:
-        - victim_details: "very nauseous"
-        - victim_details: "getting worse"
-    - action: utter_ask_victim_details
-    - intent: describe_victim
-      entities:
-        - victim_details: "throw up"
-        - victim_details: "feeling very dizzy"
-        - victim_details: "heart conditions"
-    - action: utter_ask_location
-    - intent: give_location
-      entities:
-        - street_address: "6 Wintergreen Avenue"
-        - city: "Liverpool"
-    - action: utter_dispatch
-    # need to either provide emergency link or ask if first aid
-
-- story: Call 8
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: describe_victim
-      entities:
-        - victim_details: "COVID-19"
-        - victim_details: "chest feels very tight"
-        - victim_details: "difficult to breathe"
-        - victim_details: "faint"
-    - action: utter_ask_location
-    - intent: give_location
-      entities:
-        - street_address: "4 Horncastle Close"
-        - city: "Daventry"
-        - postcode: "NN11 0GH"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    - intent: give_name
-      entities:
-        - name: "Thomas Ludlow"
-    - action: utter_ask_phone_number
-    - intent: give_phone_number
-      entities:
-        - phone_number: "07946174902"
-    - action: utter_ask_extra_details
-
-- story: Call 9
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: describe_emergency
-      entities:
-        - emergency_details: "fire"
-        - street_address: "Horsenden Hill"
-    - action: utter_ask_if_safe
-    - intent: answer_unsure
-    - slot_was_set:
-        - is_safe: "unsure"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    - intent: give_name
-      entities:
-        - name: "Rodriguez Sebastia"
-    - action: utter_ask_phone_number
-    - intent: give_phone_number
-      entities:
-        - phone_number: "07427521153"
-    - action: utter_ask_extra_details
-
-- story: Call 10
-  steps:
-    - intent: begin
-    - action: utter_ask_service_type
-    - intent: describe_emergency
-      entities:
-        - emergency_details: "fire"
-        - street_address: "5 Horncastle Close"
-        - city: "Daventry"
-        - postcode: "NN11 0GH"
-    - action: utter_ask_if_safe
-    - intent: answer_yes
-    - slot_was_set:
-        - is_safe: "yes"
-    - action: utter_dispatch
-    - action: utter_ask_name
-    - intent: give_name
-      entities:
-        - name: "Jack Farmer"
-        - phone_number: "07427521153"
-    - action: utter_ask_extra_details
-
-- story: Interactive Story 1
-  steps:
-  - intent: begin
-  - action: utter_ask_service_type
-  - intent: describe_emergency
-    entities:
-    - service_type: police
-    - emergency_details: hit by a car
-  - slot_was_set:
-    - emergency_details:
-      - hit by a car
-  - slot_was_set:
-    - service_type:
-      - police
-  - action: utter_ask_victim_details
-  - intent: describe_victim
-    entities:
-    - victim_details: bleeding
-    - victim_details: unconscious
-  - slot_was_set:
-    - victim_details:
-      - bleeding
-      - unconscious
-  - action: utter_ask_location
-  - intent: give_location
-    entities:
-    - postcode: CV21 8GE
-    - street_address: 12 Charter Road
-    - postcode: CV21 8GE
-  - slot_was_set:
-    - postcode: CV21 8GE
-  - slot_was_set:
-    - street_address: 12 Charter Road
-  - action: utter_dispatch
-  - action: utter_ask_name
-  - intent: give_name
-    entities:
-    - name: Tom
-  - slot_was_set:
-    - name: Tom
-  - action: utter_ask_phone_number
-  - intent: give_phone_number
-    entities:
-    - phone_number: '07402530350'
-  - slot_was_set:
-    - phone_number: '07402530350'
-  - action: utter_ask_extra_details
+  - intent: start_form
+  - action: test_form
+  - active_loop: test_form

@@ -3,6 +3,9 @@ nlu:
 - intent: begin
   examples: |
     - start_bot
+- intent: start_form
+  examples: |
+    - begin_form
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
