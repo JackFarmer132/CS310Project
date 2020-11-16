@@ -123,6 +123,7 @@ actions:
 - utter_dispatch
 - validate_service_form
 - validate_police_form
+- validate_ambulance_form
 forms:
   service_form:
     service_type:
