@@ -15,7 +15,7 @@ intents:
 - answer_no
 - answer_unsure
 entities:
-- city
+- district
 - emergency_details
 - name
 - phone_number
@@ -27,7 +27,7 @@ slots:
   any_injured:
     type: text
     influence_conversation: true
-  city:
+  district:
     type: text
     influence_conversation: true
   emergency_details:

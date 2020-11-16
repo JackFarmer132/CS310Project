@@ -21,7 +21,7 @@ stories:
     intent: answer_unsure
   - action: utter_ask_location
   - user: |
-      Sorry for the delay, I was helping the lady who got shot wrap a bandage around her arm. I am at [Oxford Circus]{"entity": "street_address"} underground station in [London]{"entity": "city"}
+      Sorry for the delay, I was helping the lady who got shot wrap a bandage around her arm. I am at [Oxford Circus]{"entity": "street_address"} underground station in [London]{"entity": "district"}
     intent: give_location
   - action: utter_dispatch
   - action: utter_ask_if_first_aid
@@ -54,7 +54,7 @@ stories:
     intent: answer_yes
   - action: utter_ask_location
   - user: |
-      We are opposite [10 Charter Avenue]{"entity": "street_address"} in [Coventry]{"entity": "city"}, I live in number 12 and I was just walking home
+      We are opposite [10 Charter Avenue]{"entity": "street_address"} in [Coventry]{"entity": "district"}, I live in number 12 and I was just walking home
     intent: give_location
   - action: utter_dispatch
   - action: utter_ask_if_first_aid
@@ -88,7 +88,7 @@ stories:
     intent: give_service
   - action: utter_describe_emergency
   - user: |
-      I was walking home and I’ve just been [stabbed]{"entity": "emergency_details"} in the back, I live in [Brixton]{"entity": "city"}. Please send help, I’m only [17 years old]{"entity": "victim_details"}
+      I was walking home and I’ve just been [stabbed]{"entity": "emergency_details"} in the back, I live in [Brixton]{"entity": "district"}. Please send help, I’m only [17 years old]{"entity": "victim_details"}
     intent: describe_emergency
   - action: utter_ask_if_safe
   - user: |
@@ -97,7 +97,7 @@ stories:
   - action: utter_ask_location
   #NOTE: add an entity for the underground station when you make 'building_type'
   - user: |
-      Just opposite [Brixton]{"entity": "city"} underground station. Sorry I don’t know the address, I will find out and let you know.
+      Just opposite [Brixton]{"entity": "district"} underground station. Sorry I don’t know the address, I will find out and let you know.
     intent: give_location
   - action: utter_dispatch
   - action: utter_ask_if_first_aid
@@ -126,7 +126,7 @@ stories:
     intent: describe_emergency
   - action: utter_ask_location
   - user: |
-      [4 Horsenden Crescent]{"entity": "street_address"}, [Greenford]{"entity": "city"}, [UB6 0JE]{"entity": "postcode"}
+      [4 Horsenden Crescent]{"entity": "street_address"}, [Greenford]{"entity": "district"}, [UB6 0JE]{"entity": "postcode"}
     intent: give_location
   - action: utter_dispatch
   - action: utter_ask_name
@@ -159,7 +159,7 @@ stories:
     intent: answer_no
   - action: utter_ask_location
   - user: |
-      [93 Gainsborough Gardens]{"entity": "street_address"}, [Greenford]{"entity": "city"}, [UB6 0PB]{"entity": "postcode"}
+      [93 Gainsborough Gardens]{"entity": "street_address"}, [Greenford]{"entity": "district"}, [UB6 0PB]{"entity": "postcode"}
     intent: give_location
   - action: utter_dispatch
   - action: utter_ask_name

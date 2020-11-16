@@ -22,13 +22,13 @@ nlu:
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
     - Help, there’s a huge [fire](emergency_details) in [Horsenden Hill](street_address).
-    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](city) [AA99 9AA](postcode). Please send help quickly.
+    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [AA99 9AA](postcode). Please send help quickly.
     - Someone’s been [stabbed](emergency_details), she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
-    - 3 men just [robbed](emergency_details) my local corner shop in [Shirebrook](city)
+    - 3 men just [robbed](emergency_details) my local corner shop in [Shirebrook](district)
     - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details)
     - I was walking my labradoodle and it started barking. Then I saw a [fire in the bushes](emergency_details) but it has spread now. It’s next to the car park at the bottom of the hill but it’s making its way up now.
     - I’ve just been [burgled](emergency_details)
-    - I'm at the [Whitehall](city) Community Centre at [144 Huntington Place](street_address). Ambrose, a neighbour of mine, is [dead](victim_details). Or he's not moving. I'm not sure. Please send help!
+    - I'm at the [Whitehall](district) Community Centre at [144 Huntington Place](street_address). Ambrose, a neighbour of mine, is [dead](victim_details). Or he's not moving. I'm not sure. Please send help!
     - Someone has [fallen](emergency_details) over and [cut their arm](emergency_details)
     - Someone’s [broken into](emergency_details) our meeting place and [stolen](emergency_details) things.
     - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds.
@@ -51,7 +51,7 @@ nlu:
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
     - I live at [100 Moulton Road](street_address), CH7 4LH, please send someone quickly
     - [Shepherd Market](street_address), London, W1J 7PA. I’m a regular at this McDonalds but I’ve never seen him before.
-    - We are at [16 Stoneygate Drive](street_address), [Hinckley](city), LE10 1TD.
+    - We are at [16 Stoneygate Drive](street_address), [Hinckley](district), LE10 1TD.
     - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
     - I'm at [12 Charter Road](street_address), the postcode is [ZZ99 9ZZ](postcode)
 - intent: give_name
@@ -62,7 +62,7 @@ nlu:
     - Thank you. My name is [Zhang Wei](name)
     - I’ve got [stomach cramps](victim_details) and it’s really painful now. My name is [Francesca Gomez](name)
     - Thank you. My name is [Rodriguez Sebastia](name)
-    - My name is [Ben](name) and I’m calling from [Coventry](city)
+    - My name is [Ben](name) and I’m calling from [Coventry](district)
     - [Jack Farmer](name). My number is [07427521153](phone_number)
     - [Tom](name)
 - intent: give_phone_number

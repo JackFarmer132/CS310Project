@@ -138,8 +138,14 @@ class ValidatePoliceForm(FormValidationAction):
         print(county)
         print(ccg)
 
-        # only return 1 string to eliminate issue with multiple classifiers
-        return {"postcode": postcode}
+        # if district is not None from postocde search, set slot
+        if district:
+            # only return 1 string to eliminate issue with multiple classifiers
+            return{"postcode": postcode,
+                   "district": district}
+        # otherwise just set the validated poscode
+        else:
+            return {"postcode": postcode}
 
 
 class ValidateAmbulanceFormForm(FormValidationAction):
@@ -155,7 +161,8 @@ class ValidateAmbulanceFormForm(FormValidationAction):
                    "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
                    "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
                    "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
-                   "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/"}
+                   "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
+                   "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
         # default options:
         # https://www.nhs.uk/conditions/first-aid/after-an-accident/
         # https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/
@@ -169,6 +176,7 @@ class ValidateAmbulanceFormForm(FormValidationAction):
           return {"victim_details": None}
 
         links = []
+        # load in associated symptoms and medical links
         hotlist = self.medical_hot_list()
 
         # if only 1 detail, search hotlist directly
@@ -179,7 +187,7 @@ class ValidateAmbulanceFormForm(FormValidationAction):
                 links.append(hotlist[slot_value])
             # else no associated useful link, so provide default
             else:
-                links.append("https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/")
+                links.append(hotlist["__default__"])
         # else is a list and each must be searched for separately
         else:
             for v in slot_value:
@@ -189,13 +197,12 @@ class ValidateAmbulanceFormForm(FormValidationAction):
                     links.append(hotlist[v])
             # if no links found, include fallback default
             if not links:
-                links.append("https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/")
+                links.append(hotlist["__default__"])
 
         for l in links:
             print(l)
 
         return {"victim_details": slot_value}
-
 
 
     # possible api if free: https://osdatahub.os.uk/docs
@@ -240,5 +247,11 @@ class ValidateAmbulanceFormForm(FormValidationAction):
         print(county)
         print(ccg)
 
-        # only return 1 string to eliminate issue with multiple classifiers
-        return {"postcode": postcode}
+        # if district is not None from postocde search, set slot
+        if district:
+            # only return 1 string to eliminate issue with multiple classifiers
+            return{"postcode": postcode,
+                   "district": district}
+        # otherwise just set the validated poscode
+        else:
+            return {"postcode": postcode}

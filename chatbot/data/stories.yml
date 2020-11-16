@@ -55,7 +55,7 @@ stories:
 #     - intent: describe_emergency
 #       entities:
 #         - emergency_details: "robbed"
-#         - city: "Shirebrook"
+#         - district: "Shirebrook"
 #     - action: utter_ask_if_safe
 #     - intent: answer_yes
 #     - slot_was_set:
@@ -149,7 +149,7 @@ stories:
 #     - intent: give_location
 #       entities:
 #         - street_address: "Shepherd Market"
-#         - city: "London"
+#         - district: "London"
 #         - postcode: "W1J 7PA"
 #     - action: utter_dispatch
 #     - action: utter_ask_if_first_aid
@@ -177,7 +177,7 @@ stories:
 #     - intent: give_location
 #       entities:
 #         - street_address: "16 Stoneygate Drive"
-#         - city: "Hinckley"
+#         - district: "Hinckley"
 #         - postcode: "LE10 1TD"
 #     - action: utter_dispatch
 #     - action: utter_ask_name
@@ -215,7 +215,7 @@ stories:
 #     - intent: give_location
 #       entities:
 #         - street_address: "6 Wintergreen Avenue"
-#         - city: "Liverpool"
+#         - district: "Liverpool"
 #     - action: utter_dispatch
 #     # need to either provide emergency link or ask if first aid
 #
@@ -233,7 +233,7 @@ stories:
 #     - intent: give_location
 #       entities:
 #         - street_address: "4 Horncastle Close"
-#         - city: "Daventry"
+#         - district: "Daventry"
 #         - postcode: "NN11 0GH"
 #     - action: utter_dispatch
 #     - action: utter_ask_name
@@ -277,7 +277,7 @@ stories:
 #       entities:
 #         - emergency_details: "fire"
 #         - street_address: "5 Horncastle Close"
-#         - city: "Daventry"
+#         - district: "Daventry"
 #         - postcode: "NN11 0GH"
 #     - action: utter_ask_if_safe
 #     - intent: answer_yes
@@ -342,5 +342,9 @@ stories:
 - story: Form test
   steps:
   - intent: start_form
+  - action: service_form
+  - active_loop: service_form
+  - active_loop: null
   - action: ambulance_form
   - active_loop: ambulance_form
+  - active_loop: null
