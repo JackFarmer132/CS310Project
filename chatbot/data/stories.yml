@@ -16,7 +16,7 @@ stories:
 #         - emergency_details: "stabbed"
 #         - victim_details: "bleeding"
 #         - emergency_details: "unconscious"
-#     - action: utter_ask_if_safe
+#     - action: utter_ask_is_safe
 #     - intent: answer_yes
 #     - slot_was_set:
 #         - is_safe: "yes"
@@ -56,7 +56,7 @@ stories:
 #       entities:
 #         - emergency_details: "robbed"
 #         - district: "Shirebrook"
-#     - action: utter_ask_if_safe
+#     - action: utter_ask_is_safe
 #     - intent: answer_yes
 #     - slot_was_set:
 #         - is_safe: "yes"
@@ -89,7 +89,7 @@ stories:
 #         - emergency_details: "husband has been getting very violent"
 #         - emergency_details: "threw a wine bottle"
 #         - victim_details: "scared"
-#     - action: utter_ask_if_safe
+#     - action: utter_ask_is_safe
 #     # need another type of answer apart from just yes or no (a 'maybe')
 #     - intent: answer_unsure
 #     - slot_was_set:
@@ -119,7 +119,7 @@ stories:
 #         - service_type: "fire brigade"
 #         - street_address: "44 Lolands Road"
 #         - postcode: "RM15 4ED"
-#     - action: utter_ask_if_safe
+#     - action: utter_ask_is_safe
 #     # if unsure if safe, always send an ambulance (same with injured)
 #     - intent: answer_unsure
 #     - slot_was_set:
@@ -254,7 +254,7 @@ stories:
 #       entities:
 #         - emergency_details: "fire"
 #         - street_address: "Horsenden Hill"
-#     - action: utter_ask_if_safe
+#     - action: utter_ask_is_safe
 #     - intent: answer_unsure
 #     - slot_was_set:
 #         - is_safe: "unsure"
@@ -279,7 +279,7 @@ stories:
 #         - street_address: "5 Horncastle Close"
 #         - district: "Daventry"
 #         - postcode: "NN11 0GH"
-#     - action: utter_ask_if_safe
+#     - action: utter_ask_is_safe
 #     - intent: answer_yes
 #     - slot_was_set:
 #         - is_safe: "yes"
@@ -345,6 +345,6 @@ stories:
   - action: service_form
   - active_loop: service_form
   - active_loop: null
-  - action: fire_form
-  - active_loop: fire_form
+  - action: police_form
+  - active_loop: police_form
   - active_loop: null

@@ -91,6 +91,13 @@ class ValidatePoliceForm(FormValidationAction):
     def name(self) -> Text:
         return "validate_police_form"
 
+    def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                         tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        #
+        print(slot_value)
+        print("Hello")
+        return {"is_safe": slot_value}
+
     # possible api if free: https://osdatahub.os.uk/docs
     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
@@ -255,6 +262,13 @@ class ValidateFireForm(FormValidationAction):
 
     def name(self) -> Text:
         return "validate_fire_form"
+
+    def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                         tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        #
+        print(slot_value)
+        print("Hello")
+        return {"is_safe": slot_value}
 
     # possible api if free: https://osdatahub.os.uk/docs
     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,

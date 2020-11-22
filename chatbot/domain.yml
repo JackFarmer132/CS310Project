@@ -34,7 +34,7 @@ slots:
     type: list
     influence_conversation: true
   is_safe:
-    type: text
+    type: bool
     influence_conversation: true
   name:
     type: text
@@ -68,7 +68,7 @@ responses:
   utter_describe_emergency:
   - text: Can you please describe the details of your emergency?
   - text: What is the nature of your emergency?
-  utter_ask_if_safe:
+  utter_ask_is_safe:
   - text: Are you safe?
   - text: Are you currently in a safe location?
   utter_ask_victim_details:
@@ -131,7 +131,26 @@ forms:
         entity: emergency_details
   police_form:
     # need way to get the text from any answer
-    # if_safe:
+    is_safe:
+      - type: from_text
+        intent: |
+          - answer_yes
+          - answer_no
+          - answer_unsure
+        # need list of all other intents
+        not_intent: |
+          - begin
+          - start_form
+          - describe_emergency
+          - give_location
+          - nlu_fallback
+          - describe_victim
+          - give_name
+          - give_phone_number
+          - give_service
+          - answer_yes
+          - answer_no
+          - answer_unsure
     street_address:
       - type: from_entity
         entity: street_address
@@ -150,7 +169,7 @@ forms:
         entity: postcode
   fire_form:
     # need way to get the text from any answer
-    # if_safe:
+    # is_safe:
     street_address:
       - type: from_entity
         entity: street_address

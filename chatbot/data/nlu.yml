@@ -75,7 +75,7 @@ nlu:
 - intent: answer_yes
   examples: |
     - Yes
-    - IY
+    - Y
     - Indeed
     - Of course
     - Correct
@@ -94,7 +94,6 @@ nlu:
     - Nope
     - I am not
     - I'm not
-    - I don’t have a clue
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -106,7 +105,8 @@ nlu:
     - I might not be
     - I'm unsure
     - I don't really know
-    - Might be
+    - might be
+    - I don’t have a clue
 - intent: nlu_fallback
   examples: |
     - end of test
@@ -178,19 +178,6 @@ nlu:
     - bleed
     - haemorrhaging
     - haemorrhage
-# - synonym: yes
-#   examples: |
-#     - yes
-#     - yeah
-#     - yep
-#     - i am
-#     - someone is
-# - synonym: no
-#   examples: |
-#     - no
-#     - i'm not
-#     - nah
-#     - nope
 - regex: postcode
   examples: |
     - \b[A-Za-z]{1}[0-9]{1}[A-Za-z]{1}\s?[0-9]{1}[A-Za-z]{2}\b
