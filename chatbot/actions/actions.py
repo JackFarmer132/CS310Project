@@ -1,7 +1,3 @@
-# This files contains your custom actions which can be used to run
-# custom Python code.
-#
-# See this guide on how to implement these action:
 # https://rasa.com/docs/rasa/custom-actions
 
 from typing import Any, Text, Dict, List
@@ -147,8 +143,7 @@ class ValidatePoliceForm(FormValidationAction):
         else:
             return {"postcode": postcode}
 
-
-class ValidateAmbulanceFormForm(FormValidationAction):
+class ValidateAmbulanceForm(FormValidationAction):
 
     def name(self) -> Text:
         return "validate_ambulance_form"
@@ -210,6 +205,63 @@ class ValidateAmbulanceFormForm(FormValidationAction):
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         #
         return {"street_address": slot_value}
+
+    def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # if empty then no valid value
+        if not slot_value:
+            return {"postcode": None}
+
+        # if there was only 1 classifier that found a postcode
+        if isinstance(slot_value, str):
+            postcode = slot_value
+        # else there are two, meaning a ReGeX version and one from DIETClassifier,
+        # which is most likely incorrect
+        else:
+            postcode = slot_value[0]
+
+        url = "https://api.postcodes.io/postcodes/{}/validate".format(postcode)
+        # remove possible space in postcode
+        url = url.replace(" ", "")
+        # check postcode is valid
+        result = json.loads(req.urlopen(url).read())["result"]
+        # if postcode isn't valid then don't accept
+        if not result:
+            return {"postcode": None}
+        # get new URL that will fetch information on validated postcode
+        url = url.replace("/validate", "")
+        result = json.loads(req.urlopen(url).read())["result"]
+
+        # get relevant data from postcode
+        # https://postcodes.io/docs
+        district = result["admin_district"]
+        county = result["admin_county"]
+        ccg = result["ccg"]
+        print(result)
+        print(district)
+        print(county)
+        print(ccg)
+
+        # if district is not None from postocde search, set slot
+        if district:
+            # only return 1 string to eliminate issue with multiple classifiers
+            return{"postcode": postcode,
+                   "district": district}
+        # otherwise just set the validated poscode
+        else:
+            return {"postcode": postcode}
+
+class ValidateFireForm(FormValidationAction):
+
+    def name(self) -> Text:
+        return "validate_fire_form"
+
+    # possible api if free: https://osdatahub.os.uk/docs
+    def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        #
+        return {"street_address": slot_value}
+
 
     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:

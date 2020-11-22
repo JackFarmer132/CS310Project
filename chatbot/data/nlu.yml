@@ -178,6 +178,19 @@ nlu:
     - bleed
     - haemorrhaging
     - haemorrhage
+# - synonym: yes
+#   examples: |
+#     - yes
+#     - yeah
+#     - yep
+#     - i am
+#     - someone is
+# - synonym: no
+#   examples: |
+#     - no
+#     - i'm not
+#     - nah
+#     - nope
 - regex: postcode
   examples: |
     - \b[A-Za-z]{1}[0-9]{1}[A-Za-z]{1}\s?[0-9]{1}[A-Za-z]{2}\b

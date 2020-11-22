@@ -345,6 +345,6 @@ stories:
   - action: service_form
   - active_loop: service_form
   - active_loop: null
-  - action: ambulance_form
-  - active_loop: ambulance_form
+  - action: fire_form
+  - active_loop: fire_form
   - active_loop: null

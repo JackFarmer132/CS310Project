@@ -105,10 +105,6 @@ responses:
   - text: This is from the form. What service you want?
   utter_ask_service_form_emergency_details:
   - text: This is from the form. Can you please describe your emergency?
-  utter_ask_test_form_name:
-  - text: This is from the form. What is your name?
-  utter_ask_test_form_phone_number:
-  - text: This is from the form. What is your phone number?
   utter_ask_police_form_street_address:
   - text: This is from the form. What is your street address?
   utter_ask_police_form_postcode:
@@ -124,6 +120,7 @@ actions:
 - validate_service_form
 - validate_police_form
 - validate_ambulance_form
+- validate_fire_form
 forms:
   service_form:
     service_type:
