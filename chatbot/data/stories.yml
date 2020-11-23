@@ -345,6 +345,3 @@ stories:
   - action: service_form
   - active_loop: service_form
   - active_loop: null
-  - action: police_form
-  - active_loop: police_form
-  - active_loop: null

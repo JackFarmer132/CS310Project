@@ -45,23 +45,29 @@ slots:
   postcode:
     type: text
     influence_conversation: true
+  location_description:
+    type: text
+    influence_conversation: true
   service_type:
     type: list
     influence_conversation: true
   street_address:
     type: text
     influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
   victim_details:
     type: list
     influence_conversation: true
 responses:
+  utter_introduce:
+  - text: I am Whitehall, the emergency service chatbot
   utter_ask_service_type:
   - text: Can you please provide the emergency service that you require
-  utter_ask_location:
-  - text: Can you please provide details of your location?
   utter_ask_postcode:
   - text: Can you please provide your postcode?
-  utter_ask_street_address:
+  utter_ask_location:
   - text: Can you please provide the street address?
   utter_ask_location_description:
   - text: Can you please describe your surroundings? What can you see?
@@ -129,51 +135,31 @@ forms:
     emergency_details:
       - type: from_entity
         entity: emergency_details
-  police_form:
-    # need way to get the text from any answer
     is_safe:
       - type: from_text
-        intent: |
-          - answer_yes
-          - answer_no
-          - answer_unsure
-        # need list of all other intents
-        not_intent: |
-          - begin
-          - start_form
-          - describe_emergency
-          - give_location
-          - nlu_fallback
-          - describe_victim
-          - give_name
-          - give_phone_number
-          - give_service
-          - answer_yes
-          - answer_no
-          - answer_unsure
-    street_address:
+    any_injured:
+      - type: from_text
+    victim_details:
       - type: from_entity
-        entity: street_address
+        entity: victim_details
+    location:
+      - type: from_text
+    location_description:
+      - type: from_text
     postcode:
       - type: from_entity
         entity: postcode
+  police_form:
+    is_safe:
+      - type: from_text
   ambulance_form:
     victim_details:
       - type: from_entity
         entity: victim_details
-    street_address:
-      - type: from_entity
-        entity: street_address
-    postcode:
-      - type: from_entity
-        entity: postcode
   fire_form:
     # need way to get the text from any answer
     # is_safe:
     street_address:
       - type: from_entity
         entity: street_address
-    postcode:
-      - type: from_entity
-        entity: postcode
 version: '2.0'
