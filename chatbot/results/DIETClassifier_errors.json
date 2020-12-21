@@ -1,0 +1,399 @@
+[
+  {
+    "text": "Help us, we need the fire department to come to 9 Charter Avenue",
+    "entities": [
+      {
+        "start": 21,
+        "end": 36,
+        "value": "fire department",
+        "entity": "service_type"
+      },
+      {
+        "start": 48,
+        "end": 64,
+        "value": "9 Charter Avenue",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 21,
+        "end": 36,
+        "confidence_entity": 0.5415662527084351,
+        "value": "fire department",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 48,
+        "end": 64,
+        "confidence_entity": 0.8403874635696411,
+        "value": "9 Charter Avenue",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "3 men just robbed my local corner shop in Shirebrook",
+    "entities": [
+      {
+        "start": 11,
+        "end": 17,
+        "value": "robbed",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 42,
+        "end": 52,
+        "value": "Shirebrook",
+        "entity": "district"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 0,
+        "end": 1,
+        "confidence_entity": 0.41184794902801514,
+        "value": "3",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 11,
+        "end": 17,
+        "confidence_entity": 0.9960569143295288,
+        "value": "theft",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "district",
+        "start": 42,
+        "end": 52,
+        "confidence_entity": 0.9953566193580627,
+        "value": "Shirebrook",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My husband has been getting very violent recently and he just threw a wine bottle at me. It didn\u2019t hit me but I\u2019m very scared",
+    "entities": [
+      {
+        "start": 3,
+        "end": 40,
+        "value": "husband has been getting very violent",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 62,
+        "end": 81,
+        "value": "threw a wine bottle",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 119,
+        "end": 125,
+        "value": "scared",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 3,
+        "end": 14,
+        "confidence_entity": 0.49770212173461914,
+        "value": "husband has",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 20,
+        "end": 40,
+        "confidence_entity": 0.4940386414527893,
+        "value": "getting very violent",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 62,
+        "end": 81,
+        "confidence_entity": 0.8419222831726074,
+        "value": "threw a wine bottle",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 114,
+        "end": 118,
+        "confidence_entity": 0.598942756652832,
+        "value": "very",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 119,
+        "end": 125,
+        "confidence_entity": 0.9954055547714233,
+        "value": "scared",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I was walking my labradoodle and it started barking. Then I saw a fire in the bushes but it has spread now. It\u2019s next to the car park at the bottom of the hill but it\u2019s making its way up now.",
+    "entities": [
+      {
+        "start": 66,
+        "end": 84,
+        "value": "fire in the bushes",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 66,
+        "end": 73,
+        "confidence_entity": 0.5430793762207031,
+        "value": "fire in",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 78,
+        "end": 84,
+        "confidence_entity": 0.994277834892273,
+        "value": "bushes",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 184,
+        "end": 186,
+        "confidence_entity": 0.5256328582763672,
+        "value": "up",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "An old man just fell to the ground, he\u2019s clutching onto his chest. I\u2019m in McDonalds.",
+    "entities": [
+      {
+        "start": 3,
+        "end": 10,
+        "value": "old man",
+        "entity": "victim_details"
+      },
+      {
+        "start": 16,
+        "end": 34,
+        "value": "fell to the ground",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 41,
+        "end": 65,
+        "value": "clutching onto his chest",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 3,
+        "end": 10,
+        "confidence_entity": 0.676190197467804,
+        "value": "old man",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 16,
+        "end": 20,
+        "confidence_entity": 0.9956764578819275,
+        "value": "fell",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 24,
+        "end": 34,
+        "confidence_entity": 0.5980380177497864,
+        "value": "the ground",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 41,
+        "end": 65,
+        "confidence_entity": 0.8618934154510498,
+        "value": "clutching onto his chest",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I tested positive for COVID-19 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My chest feels very tight and I\u2019m finding it increasingly difficult to breathe. I\u2019m also feeling a bit faint",
+    "entities": [
+      {
+        "start": 22,
+        "end": 30,
+        "value": "COVID-19",
+        "entity": "victim_details"
+      },
+      {
+        "start": 128,
+        "end": 150,
+        "value": "chest feels very tight",
+        "entity": "victim_details"
+      },
+      {
+        "start": 183,
+        "end": 203,
+        "value": "difficult to breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 228,
+        "end": 233,
+        "value": "faint",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 22,
+        "end": 30,
+        "confidence_entity": 0.9928538203239441,
+        "value": "COVID-19",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 31,
+        "end": 32,
+        "confidence_entity": 0.41599470376968384,
+        "value": "2",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 128,
+        "end": 150,
+        "confidence_entity": 0.7705738544464111,
+        "value": "chest feels very tight",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 183,
+        "end": 203,
+        "confidence_entity": 0.7127863168716431,
+        "value": "difficult to breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 228,
+        "end": 233,
+        "confidence_entity": 0.9948186278343201,
+        "value": "faint",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "She\u2019s got a nut allergy. It\u2019s my mum. She says she can\u2019t breathe and her throat is swelling up",
+    "entities": [
+      {
+        "start": 12,
+        "end": 23,
+        "value": "nut allergy",
+        "entity": "victim_details"
+      },
+      {
+        "start": 51,
+        "end": 64,
+        "value": "can\u2019t breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 73,
+        "end": 94,
+        "value": "throat is swelling up",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 12,
+        "end": 23,
+        "confidence_entity": 0.996180534362793,
+        "value": "nut allergy",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 51,
+        "end": 64,
+        "confidence_entity": 0.8101944327354431,
+        "value": "can\u2019t breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 73,
+        "end": 79,
+        "confidence_entity": 0.9975876808166504,
+        "value": "throat",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 83,
+        "end": 94,
+        "confidence_entity": 0.978135883808136,
+        "value": "swelling up",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My name is Kirsty Bridgens, I\u2019m 24",
+    "entities": [
+      {
+        "start": 11,
+        "end": 26,
+        "value": "Kirsty Bridgens",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "name",
+        "start": 11,
+        "end": 26,
+        "confidence_entity": 0.9921591281890869,
+        "value": "Kirsty Bridgens",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 32,
+        "end": 34,
+        "confidence_entity": 0.5173699259757996,
+        "value": "24",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  }
+]

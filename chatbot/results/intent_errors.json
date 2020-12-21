@@ -1,0 +1,10 @@
+[
+  {
+    "text": "I think so",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "nlu_fallback",
+      "confidence": 1.0
+    }
+  }
+]

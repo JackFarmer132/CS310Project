@@ -59,7 +59,7 @@ class ValidateServiceForm(FormValidationAction):
             return_dict["victim_details"] = "No Victim"
         else:
             return_dict["victim_details"] = None
-            return_dict["any_injured"] = "Yes"
+            return_dict["any_injured"] = "yes"
 
         return return_dict
 
@@ -124,10 +124,10 @@ class ValidateServiceForm(FormValidationAction):
         # otherwise prompt user to get to safety
         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
             ####################################################################
-            return {"is_safe": "No"}
+            return {"is_safe": "no"}
         elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
             ####################################################################
-            return {"is_safe": "Unsure"}
+            return {"is_safe": "unsure"}
         # otherwise answer wasn't given, but no need to re-ask
         else:
             ####################################################################
@@ -141,7 +141,7 @@ class ValidateServiceForm(FormValidationAction):
 
         # if someone is injured, add ambulance to list of required services
         if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-            return_dict["any_injured"] = "Yes"
+            return_dict["any_injured"] = "yes"
             return_dict["victim_details"] = None
 
             # get list of services and add ambulance if not already there
@@ -156,9 +156,9 @@ class ValidateServiceForm(FormValidationAction):
             return_dict["service_type"] = services
         # otherwise likely no one is injured
         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-            return_dict["any_injured"] = "No"
+            return_dict["any_injured"] = "no"
         elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
-            return_dict["any_injured"] = "Unsure"
+            return_dict["any_injured"] = "unsure"
         else:
             return_dict["any_injured"] = slot_value
         return return_dict
@@ -215,7 +215,8 @@ class ValidateServiceForm(FormValidationAction):
             return_dict["street_address"] = slot_value
             return_dict["location"] = slot_value
         # if user is unsure of where they are, will ask to describe location
-        elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
+        elif ((tracker.latest_message['intent'].get('name') == "answer_unsure") or
+              (tracker.latest_message['intent'].get('name') == "answer_no")):
             return_dict["street_address"] = "Unknown"
             return_dict["location_description"] = None
             # don't ask for postcode since probably don't know
@@ -230,8 +231,6 @@ class ValidateServiceForm(FormValidationAction):
     def validate_location_description(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
-        print(slot_value)
-        print("if this here then bad")
         return {"location_description": slot_value}
 
     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
@@ -288,330 +287,75 @@ class ValidateServiceForm(FormValidationAction):
             return {"postcode": None}
 
 
-# class ValidatePoliceForm(FormValidationAction):
-#
-#     def name(self) -> Text:
-#         return "validate_police_form"
-#
-#     @staticmethod
-#     # hotlist matching victim details with useful links to help user
-#     # apply first aid
-#     def medical_hot_list() -> Dict[Text, Text]:
-#         hotlist = {"bleeding": "https://www.redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily#:~:text=Put%20pressure%20on%20the%20wound,clot%20and%20stop%20the%20bleeding.&text=If%20you%20can't%20call,someone%20else%20to%20do%20it.",
-#                    "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
-#                    "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
-#                    "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
-#                    "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
-#                    "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
-#         # default options:
-#         # https://www.nhs.uk/conditions/first-aid/after-an-accident/
-#         # https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/
-#         return hotlist
-#
-#     def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         # if victim safe, continue
-#         if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-#             return {"is_safe": "yes"}
-#         # otherwise prompt user to get to safety
-#         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-#             ####################################################################
-#             return {"is_safe": "No"}
-#         elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
-#             ####################################################################
-#             return {"is_safe": "Unsure"}
-#         # otherwise answer wasn't given, but no need to re-ask
-#         else:
-#             ####################################################################
-#             # return text user gave in case hman user can make more sense of it than bot
-#             return {"is_safe": slot_value}
-#
-#     def validate_any_injured(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                              tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#
-#         return_dict = {}
-#
-#         # if someone is injured, add ambulance to list of required services
-#         if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-#             return_dict["any_injured"] = "Yes"
-#             return_dict["victim_details"] = None
-#
-#             # get list of services and add ambulance if not already there
-#             services = tracker.slots.get("service_type")
-#
-#             if "ambulance" not in services:
-#                 # if string then needs turning into an array
-#                 if isinstance(services, str):
-#                     services = [services]
-#                 services.append("ambulance")
-#
-#             return_dict["service_type"] = services
-#         # otherwise likely no one is injured
-#         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-#             return_dict["any_injured"] = "No"
-#         elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
-#             return_dict["any_injured"] = "Unsure"
-#         else:
-#             return_dict["any_injured"] = slot_value
-#         return return_dict
-#
-#     def validate_victim_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         # if empty then no valid set of victim details
-#         if not slot_value:
-#           return {"victim_details": None}
-#
-#         links = []
-#         # load in associated symptoms and medical links
-#         hotlist = self.medical_hot_list()
-#
-#         # if only 1 detail, search hotlist directly
-#         if isinstance(slot_value, str):
-#             # if victim detail has useful link associated
-#             if slot_value in hotlist:
-#                 # save the link for later use
-#                 links.append(hotlist[slot_value])
-#             # else no associated useful link, so provide default
-#             else:
-#                 links.append(hotlist["__default__"])
-#         # else is a list and each must be searched for separately
-#         else:
-#             for v in slot_value:
-#                 # if victim detail has useful link associated
-#                 if v in hotlist:
-#                     # save the link for later use
-#                     links.append(hotlist[v])
-#             # if no links found, include fallback default
-#             if not links:
-#                 links.append(hotlist["__default__"])
-#
-#         for l in links:
-#             print(l)
-#
-#         return {"victim_details": slot_value}
-#
-#     # possible api if free: https://osdatahub.os.uk/docs
-#     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         #
-#         return {"street_address": slot_value}
-#
-#
-#     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         # if empty then no valid value
-#         if not slot_value:
-#             return {"postcode": None}
-#
-#         return_dict = {}
-#
-#         # if there was only 1 classifier that found a postcode
-#         if isinstance(slot_value, str):
-#             postcode = slot_value
-#         # else there are two, meaning a ReGeX version and one from DIETClassifier,
-#         # which is most likely incorrect
-#         else:
-#             postcode = slot_value[0]
-#
-#         url = "https://api.postcodes.io/postcodes/{}/validate".format(postcode)
-#         # remove possible space in postcode
-#         url = url.replace(" ", "")
-#         # check postcode is valid
-#         result = json.loads(req.urlopen(url).read())["result"]
-#         # if postcode isn't valid then don't accept
-#         if not result:
-#             return {"postcode": None}
-#
-#         # add valid postode assignment to return dictionary
-#         return_dict["postcode"] = postcode
-#
-#         # get new URL that will fetch information on validated postcode
-#         url = url.replace("/validate", "")
-#         result = json.loads(req.urlopen(url).read())["result"]
-#
-#         # get relevant data from postcode
-#         # https://postcodes.io/docs
-#         district = result["admin_district"]
-#         county = result["admin_county"]
-#         ccg = result["ccg"]
-#         print(result)
-#         print(district)
-#         print(county)
-#         print(ccg)
-#
-#         # if district is not None from postocde search, set slot
-#         if district:
-#             return_dict["district"] = district
-#
-#         return return_dict
-#
-#
-# class ValidateAmbulanceForm(FormValidationAction):
-#
-#     def name(self) -> Text:
-#         return "validate_ambulance_form"
-#
-#     @staticmethod
-#     # hotlist matching victim details with useful links to help user
-#     # apply first aid
-#     def medical_hot_list() -> Dict[Text, Text]:
-#         hotlist = {"bleeding": "https://www.redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily#:~:text=Put%20pressure%20on%20the%20wound,clot%20and%20stop%20the%20bleeding.&text=If%20you%20can't%20call,someone%20else%20to%20do%20it.",
-#                    "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
-#                    "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
-#                    "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
-#                    "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
-#                    "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
-#         # default options:
-#         # https://www.nhs.uk/conditions/first-aid/after-an-accident/
-#         # https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/
-#         return hotlist
-#
-#
-#     def validate_victim_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         # if empty then no valid set of victim details
-#         if not slot_value:
-#           return {"victim_details": None}
-#
-#         links = []
-#         # load in associated symptoms and medical links
-#         hotlist = self.medical_hot_list()
-#
-#         # if only 1 detail, search hotlist directly
-#         if isinstance(slot_value, str):
-#             # if victim detail has useful link associated
-#             if slot_value in hotlist:
-#                 # save the link for later use
-#                 links.append(hotlist[slot_value])
-#             # else no associated useful link, so provide default
-#             else:
-#                 links.append(hotlist["__default__"])
-#         # else is a list and each must be searched for separately
-#         else:
-#             for v in slot_value:
-#                 # if victim detail has useful link associated
-#                 if v in hotlist:
-#                     # save the link for later use
-#                     links.append(hotlist[v])
-#             # if no links found, include fallback default
-#             if not links:
-#                 links.append(hotlist["__default__"])
-#
-#         for l in links:
-#             print(l)
-#
-#         return {"victim_details": slot_value}
-#
-#
-#     # possible api if free: https://osdatahub.os.uk/docs
-#     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         #
-#         return {"street_address": slot_value}
-#
-#     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         # if empty then no valid value
-#         if not slot_value:
-#             return {"postcode": None}
-#
-#         # if there was only 1 classifier that found a postcode
-#         if isinstance(slot_value, str):
-#             postcode = slot_value
-#         # else there are two, meaning a ReGeX version and one from DIETClassifier,
-#         # which is most likely incorrect
-#         else:
-#             postcode = slot_value[0]
-#
-#         url = "https://api.postcodes.io/postcodes/{}/validate".format(postcode)
-#         # remove possible space in postcode
-#         url = url.replace(" ", "")
-#         # check postcode is valid
-#         result = json.loads(req.urlopen(url).read())["result"]
-#         # if postcode isn't valid then don't accept
-#         if not result:
-#             return {"postcode": None}
-#         # get new URL that will fetch information on validated postcode
-#         url = url.replace("/validate", "")
-#         result = json.loads(req.urlopen(url).read())["result"]
-#
-#         # get relevant data from postcode
-#         # https://postcodes.io/docs
-#         district = result["admin_district"]
-#         county = result["admin_county"]
-#         ccg = result["ccg"]
-#         print(result)
-#         print(district)
-#         print(county)
-#         print(ccg)
-#
-#         # if district is not None from postocde search, set slot
-#         if district:
-#             # only return 1 string to eliminate issue with multiple classifiers
-#             return{"postcode": postcode,
-#                    "district": district}
-#         # otherwise just set the validated poscode
-#         else:
-#             return {"postcode": postcode}
-#
-# class ValidateFireForm(FormValidationAction):
-#
-#     def name(self) -> Text:
-#         return "validate_fire_form"
-#
-#     def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         #
-#         return {"is_safe": slot_value}
-#
-#     # possible api if free: https://osdatahub.os.uk/docs
-#     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         #
-#         return {"street_address": slot_value}
-#
-#
-#     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
-#                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-#         # if empty then no valid value
-#         if not slot_value:
-#             return {"postcode": None}
-#
-#         # if there was only 1 classifier that found a postcode
-#         if isinstance(slot_value, str):
-#             postcode = slot_value
-#         # else there are two, meaning a ReGeX version and one from DIETClassifier,
-#         # which is most likely incorrect
-#         else:
-#             postcode = slot_value[0]
-#
-#         url = "https://api.postcodes.io/postcodes/{}/validate".format(postcode)
-#         # remove possible space in postcode
-#         url = url.replace(" ", "")
-#         # check postcode is valid
-#         result = json.loads(req.urlopen(url).read())["result"]
-#         # if postcode isn't valid then don't accept
-#         if not result:
-#             return {"postcode": None}
-#         # get new URL that will fetch information on validated postcode
-#         url = url.replace("/validate", "")
-#         result = json.loads(req.urlopen(url).read())["result"]
-#
-#         # get relevant data from postcode
-#         # https://postcodes.io/docs
-#         district = result["admin_district"]
-#         county = result["admin_county"]
-#         ccg = result["ccg"]
-#         print(result)
-#         print(district)
-#         print(county)
-#         print(ccg)
-#
-#         # if district is not None from postocde search, set slot
-#         if district:
-#             # only return 1 string to eliminate issue with multiple classifiers
-#             return{"postcode": postcode,
-#                    "district": district}
-#         # otherwise just set the validated poscode
-#         else:
-#             return {"postcode": postcode}
+class ValidateWrapupForm(FormValidationAction):
+
+    def name(self) -> Text:
+        return "validate_wrapup_form"
+
+
+    @staticmethod
+    # hotlist matching victim details with useful links to help user
+    # apply first aid
+    def medical_hot_list() -> Dict[Text, Text]:
+        hotlist = {"bleeding": "https://www.redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily#:~:text=Put%20pressure%20on%20the%20wound,clot%20and%20stop%20the%20bleeding.&text=If%20you%20can't%20call,someone%20else%20to%20do%20it.",
+                   "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
+                   "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
+                   "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
+                   "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
+                   "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
+        # default options:
+        # https://www.nhs.uk/conditions/first-aid/after-an-accident/
+        # https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/
+        return hotlist
+
+
+    def validate_first_aid(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                           tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # get the victim details to search for useful links
+        victim_details = tracker.slots.get("victim_details")
+        links = []
+        return_dict = {}
+
+        # load in associated symptoms and medical links
+        hotlist = self.medical_hot_list()
+        print("hello")
+
+        # if victim safe, continue
+        if (tracker.latest_message['intent'].get('name') == "answer_yes"):
+            return_dict["first_aid"] = "yes"
+            print("yes")
+            dispatcher.utter_message(text="Okay, if you feel you can help the situation, please do")
+        # otherwise prompt user to get to safety
+        elif (tracker.latest_message['intent'].get('name') == "answer_no"):
+            return_dict["first_aid"] = "no"
+            dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+        else:
+            return_dict["first_aid"] = "unknown"
+            dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+
+        # if only 1 detail, search hotlist directly
+        if isinstance(victim_details, str):
+            # if victim detail has useful link associated
+            if victim_details in hotlist:
+                # save the link for later use
+                links.append(hotlist[victim_details])
+            # else no associated useful link, so provide default
+            else:
+                links.append(hotlist["__default__"])
+        # else is a list and each must be searched for separately
+        else:
+            for v in victim_details:
+                # if victim detail has useful link associated
+                if v in hotlist:
+                    # save the link for later use
+                    links.append(hotlist[v])
+            # if no links found, include fallback default
+            if not links:
+                links.append(hotlist["__default__"])
+
+        dispatcher.utter_message(text="Here are some links that I found that can help:")
+        for l in links:
+            print(l)
+            dispatcher.utter_message(text=l)
+
+        return return_dict

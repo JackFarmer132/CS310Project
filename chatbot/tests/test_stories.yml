@@ -5,8 +5,8 @@ stories:
 - story: Shooting Test 1
   steps:
   - user: |
-      start_bot
-    intent: begin
+      begin_form
+    intent: start_form
   - action: utter_ask_service_type
   - user: |
       [Police]{"entity": "service_type"} to [Oxford Circus]{"entity": "street_address"} underground station quickly!
@@ -38,8 +38,8 @@ stories:
 - story: Car Accident Test 1
   steps:
   - user: |
-      start_bot
-    intent: begin
+      begin_form
+    intent: start_form
   - action: utter_ask_service_type
   - user: |
       [Ambulance]{"entity": "service_type"} to [Charter Avenue]{"entity": "street_address"} please, there has been an accident.
@@ -75,8 +75,8 @@ stories:
 - story: Stabbing Test 1
   steps:
   - user: |
-      start_bot
-    intent: begin
+      begin_form
+    intent: start_form
   - action: utter_ask_service_type
   - user: |
       I’ve just been [stabbed]{"entity": "emergency_details"}! HELP, I don’t want to die just yet
@@ -114,8 +114,8 @@ stories:
 - story: Drugs Test 1
   steps:
   - user: |
-      start_bot
-    intent: begin
+      begin_form
+    intent: start_form
   - action: utter_ask_service_type
   - user: |
       [Police]{"entity": "service_type"}
@@ -142,8 +142,8 @@ stories:
 - story: House Fire Test 1
   steps:
   - user: |
-      start_bot
-    intent: begin
+      begin_form
+    intent: start_form
   - action: utter_ask_service_type
   - user: |
       Help, I accidentally started a [fire]{"entity": "emergency_details"}. I left my candle on for too long, and it caught my curtain. My room is on fire and I can’t put it out

@@ -1,0 +1,78 @@
+{
+  "service_type": {
+    "precision": 1.0,
+    "recall": 0.8461538461538461,
+    "f1-score": 0.9166666666666666,
+    "support": 13,
+    "confused_with": {
+      "emergency_details": 2
+    }
+  },
+  "phone_number": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 6,
+    "confused_with": {}
+  },
+  "emergency_details": {
+    "precision": 0.95,
+    "recall": 0.926829268292683,
+    "f1-score": 0.9382716049382716,
+    "support": 41,
+    "confused_with": {}
+  },
+  "name": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 15,
+    "confused_with": {}
+  },
+  "postcode": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 4,
+    "confused_with": {}
+  },
+  "street_address": {
+    "precision": 0.918918918918919,
+    "recall": 1.0,
+    "f1-score": 0.9577464788732395,
+    "support": 34,
+    "confused_with": {}
+  },
+  "district": {
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1-score": 1.0,
+    "support": 5,
+    "confused_with": {}
+  },
+  "victim_details": {
+    "precision": 0.9733333333333334,
+    "recall": 0.9864864864864865,
+    "f1-score": 0.9798657718120806,
+    "support": 74,
+    "confused_with": {}
+  },
+  "micro avg": {
+    "precision": 0.9637305699481865,
+    "recall": 0.96875,
+    "f1-score": 0.9662337662337663,
+    "support": 192
+  },
+  "macro avg": {
+    "precision": 0.9802815315315315,
+    "recall": 0.9699337001166269,
+    "f1-score": 0.9740688152862823,
+    "support": 192
+  },
+  "weighted avg": {
+    "precision": 0.9646870307807808,
+    "recall": 0.96875,
+    "f1-score": 0.9659335930464579,
+    "support": 192
+  }
+}

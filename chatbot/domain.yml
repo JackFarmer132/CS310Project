@@ -2,17 +2,18 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- begin
+- answer_no
+- answer_yes
+- stop
+- describe_victim
 - start_form
+- give_service
 - describe_emergency
+- begin
 - give_location
 - nlu_fallback
-- describe_victim
 - give_name
 - give_phone_number
-- give_service
-- answer_yes
-- answer_no
 - answer_unsure
 entities:
 - district
@@ -27,6 +28,9 @@ slots:
   any_injured:
     type: text
     influence_conversation: true
+  first_aid:
+    type: text
+    influence_conversation: true
   district:
     type: text
     influence_conversation: true
@@ -35,6 +39,12 @@ slots:
     influence_conversation: true
   is_safe:
     type: bool
+    influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
+  location_description:
+    type: text
     influence_conversation: true
   name:
     type: text
@@ -45,16 +55,13 @@ slots:
   postcode:
     type: text
     influence_conversation: true
-  location_description:
+  requested_slot:
     type: text
-    influence_conversation: true
+    influence_conversation: false
   service_type:
     type: list
     influence_conversation: true
   street_address:
-    type: text
-    influence_conversation: true
-  location:
     type: text
     influence_conversation: true
   victim_details:
@@ -71,7 +78,7 @@ responses:
   - text: Can you please provide the street address?
   utter_ask_location_description:
   - text: Can you please describe your surroundings? What can you see?
-  utter_describe_emergency:
+  utter_ask_emergency_details:
   - text: Can you please describe the details of your emergency?
   - text: What is the nature of your emergency?
   utter_ask_is_safe:
@@ -83,7 +90,7 @@ responses:
   - text: Is anyone injured?
   utter_dispatch:
   - text: DISPATCH
-  utter_ask_if_first_aid:
+  utter_ask_first_aid:
   - text: Do you or anyone near you have experience with first aid?
   utter_give_link:
   - text: 'Here is a useful link: www.imgur.com/a/G6rU8'
@@ -107,14 +114,6 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
-  utter_ask_service_form_service_type:
-  - text: This is from the form. What service you want?
-  utter_ask_service_form_emergency_details:
-  - text: This is from the form. Can you please describe your emergency?
-  utter_ask_police_form_street_address:
-  - text: This is from the form. What is your street address?
-  utter_ask_police_form_postcode:
-  - text: This is from the form. What is your postcode?
 actions:
 - utter_ask_extra_details
 - utter_ask_location
@@ -123,43 +122,38 @@ actions:
 - utter_ask_service_type
 - utter_ask_victim_details
 - utter_dispatch
+- utter_introduce
 - validate_service_form
-- validate_police_form
-- validate_ambulance_form
-- validate_fire_form
+- validate_wrapup_form
 forms:
   service_form:
     service_type:
-      - type: from_entity
-        entity: service_type
+    - type: from_entity
+      entity: service_type
     emergency_details:
-      - type: from_entity
-        entity: emergency_details
+    - type: from_entity
+      entity: emergency_details
     is_safe:
-      - type: from_text
+    - type: from_text
     any_injured:
-      - type: from_text
+    - type: from_text
     victim_details:
-      - type: from_entity
-        entity: victim_details
+    - type: from_entity
+      entity: victim_details
     location:
-      - type: from_text
+    - type: from_text
     location_description:
-      - type: from_text
+    - type: from_text
     postcode:
-      - type: from_entity
-        entity: postcode
-  police_form:
-    is_safe:
-      - type: from_text
-  ambulance_form:
-    victim_details:
-      - type: from_entity
-        entity: victim_details
-  fire_form:
-    # need way to get the text from any answer
-    # is_safe:
-    street_address:
-      - type: from_entity
-        entity: street_address
+    - type: from_entity
+      entity: postcode
+  wrapup_form:
+    name:
+    - type: from_entity
+      entity: name
+    phone_number:
+    - type: from_entity
+      entity: phone_number
+    first_aid:
+    - type: from_text
 version: '2.0'
