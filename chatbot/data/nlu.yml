@@ -6,6 +6,7 @@ nlu:
 - intent: start_form
   examples: |
     - begin_form
+    - begin
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
@@ -18,6 +19,8 @@ nlu:
     - I need the [fire brigade](service_type) please
     - I need the [police](service_type) please, someone was just [hit by a car](emergency_details)
     - i need the [police](service_type) please
+    - [police](service_type)
+    - please hurry
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -35,6 +38,8 @@ nlu:
     - I think my grandad is having a [stroke](emergency_details)
     - someone was just [stabbed]{"entity": "emergency_details", "value": "stabbing"}
     - someone was just [robbed]{"entity": "emergency_details", "value": "theft"}
+    - Someone’s been [stabbed]{"entity": "emergency_details", "value": "stabbing"}, she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
+    - [robbery]{"entity": "emergency_details", "value": "theft"}
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -49,6 +54,8 @@ nlu:
     - I have been feeling [very nauseous](victim_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
     - They are [bleeding](victim_details) and [unconscious](victim_details)
     - i feel a bit [dizzy](victim_details)
+    - they're [bleeding](victim_details) quite a lot and [not responding](victim_details)
+    - I’m not sure, I think she’s in her 50’s. I did see someone in the distance run off, but I couldn’t see them.
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -57,6 +64,9 @@ nlu:
     - We are at [16 Stoneygate Drive](street_address), [Hinckley](district), LE10 1TD.
     - [6 Wintergreen Avenue](street_address), Liverpool. I am by myself at home.
     - I'm at [12 Charter Road](street_address), the postcode is [ZZ99 9ZZ](postcode)
+    - i'm near the park in [Daventry](district)
+    - [4 Horncastle Close](street_address)
+    - [nn11 0gh](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -68,6 +78,9 @@ nlu:
     - My name is [Ben](name) and I’m calling from [Coventry](district)
     - [Jack Farmer](name). My number is [07427521153](phone_number)
     - [Tom](name)
+    - [Jack](name)
+    - I’m [Saranyan](name).
+    - [Jack](name)
 - intent: give_phone_number
   examples: |
     - [07427521153](phone_number)
@@ -75,6 +88,8 @@ nlu:
     - Thank you. My number is [07427521153](phone_number)
     - [07946174902](phone_number)
     - [07402530350](phone_number)
+    - [07402 550350](phone_number)
+    - [07402550350](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -88,6 +103,10 @@ nlu:
     - I think so
     - i am, yeah
     - yeah i am
+    - i think so, yeah
+    - i do, yeah
+    - Yeah but I need help here
+    - yeah
 - intent: answer_no
   examples: |
     - No
@@ -100,6 +119,7 @@ nlu:
     - I am not
     - I'm not
     - no
+    - no, that's it
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -113,6 +133,26 @@ nlu:
     - I don't really know
     - might be
     - I don’t have a clue
+    - i'm not sure where I am
+    - I don't know, wait let me check, I’m in [Canley](district), not sure where though
+- intent: describe_location
+  examples: |
+    - I’m near Goody’s chicken shop, near the pedestrian crossing. There’s a big field opposite me.
+- synonym: stabbing
+  examples: |
+    - stabbed
+    - stabbing
+    - stab
+- synonym: theft
+  examples: |
+    - robbed
+    - theft
+    - stolen
+    - stole
+    - half-inched
+    - took
+    - robbery
+    - taken
 - synonym: police
   examples: |
     - police department
@@ -137,11 +177,6 @@ nlu:
     - firewomen
     - firefighters
     - fire fighters
-- synonym: stabbing
-  examples: |
-    - stabbed
-    - stabbing
-    - stab
 - synonym: shooting
   examples: |
     - shooting
@@ -160,16 +195,6 @@ nlu:
     - broken in to
     - break in
     - break-in
-- synonym: theft
-  examples: |
-    - theft
-    - stolen
-    - stole
-    - robbed
-    - half-inched
-    - took
-    - robbery
-    - taken
 - synonym: bleeding
   examples: |
     - cut myself

@@ -2,19 +2,20 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- answer_no
-- answer_yes
-- stop
-- describe_victim
-- start_form
-- give_service
 - describe_emergency
-- begin
+- give_service
+- answer_yes
 - give_location
-- nlu_fallback
+- answer_no
 - give_name
+- start_form
 - give_phone_number
+- describe_location
+- describe_victim
 - answer_unsure
+- stop
+- begin
+- nlu_fallback
 entities:
 - district
 - emergency_details
@@ -28,14 +29,20 @@ slots:
   any_injured:
     type: text
     influence_conversation: true
-  first_aid:
-    type: text
-    influence_conversation: true
   district:
     type: text
     influence_conversation: true
   emergency_details:
     type: list
+    influence_conversation: true
+  emergency_details_memory:
+    type: list
+    influence_conversation: false
+  extra_details:
+    type: text
+    influence_conversation: true
+  first_aid:
+    type: text
     influence_conversation: true
   is_safe:
     type: bool
@@ -61,12 +68,18 @@ slots:
   service_type:
     type: list
     influence_conversation: true
+  service_type_memory:
+    type: list
+    influence_conversation: false
   street_address:
     type: text
     influence_conversation: true
   victim_details:
     type: list
     influence_conversation: true
+  victim_details_memory:
+    type: list
+    influence_conversation: false
 responses:
   utter_introduce:
   - text: I am Whitehall, the emergency service chatbot
@@ -114,6 +127,10 @@ responses:
   - text: Bye
   utter_iamabot:
   - text: I am a bot, powered by Rasa.
+  utter_finish:
+  - text: Help is on the way, please stay safe and wait for the professionals to arrive
+  utter_unsure:
+  - text: Sorry, I didn't understand what you just said, could you please respond to the last question?
 actions:
 - utter_ask_extra_details
 - utter_ask_location
@@ -122,7 +139,9 @@ actions:
 - utter_ask_service_type
 - utter_ask_victim_details
 - utter_dispatch
+- utter_finish
 - utter_introduce
+- utter_unsure
 - validate_service_form
 - validate_wrapup_form
 forms:
@@ -155,5 +174,7 @@ forms:
     - type: from_entity
       entity: phone_number
     first_aid:
+    - type: from_text
+    extra_details:
     - type: from_text
 version: '2.0'

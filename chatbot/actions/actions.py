@@ -29,20 +29,6 @@ class ValidateServiceForm(FormValidationAction):
                    "fire": ["fire department"]}
         return hotlist
 
-    @staticmethod
-    # hotlist matching victim details with useful links to help user
-    # apply first aid
-    def medical_hot_list() -> Dict[Text, Text]:
-        hotlist = {"bleeding": "https://www.redcross.org.uk/first-aid/learn-first-aid/bleeding-heavily#:~:text=Put%20pressure%20on%20the%20wound,clot%20and%20stop%20the%20bleeding.&text=If%20you%20can't%20call,someone%20else%20to%20do%20it.",
-                   "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
-                   "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
-                   "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
-                   "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
-                   "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
-        # default options:
-        # https://www.nhs.uk/conditions/first-aid/after-an-accident/
-        # https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/
-        return hotlist
 
     def validate_service_type(self, slot_value: Any, dispatcher: CollectingDispatcher,
                               tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
@@ -52,16 +38,49 @@ class ValidateServiceForm(FormValidationAction):
 
         return_dict = {}
 
-        return_dict["service_type"] = slot_value
+        # if entry is only 1 entity, is string and needs to be list
+        if isinstance(slot_value, str):
+            slot_value = [slot_value]
 
+        # make entries lower case
+        s.lower() for s in slot_value
+
+        # get current requested services
+        cur_service_type = tracker.slots.get("service_type_memory")
+
+        # if other serivces have been requested, need to append new one(s)
+        if cur_service_type:
+            # if entry is only 1 entity, is string and needs to be list
+            if isinstance(cur_service_type, str):
+                cur_service_type = [cur_service_type]
+
+            # append and remove duplicates
+            slot_value = slot_value + cur_service_type
+            slot_value = list(dict.fromkeys(slot_value))
+
+        # removes invalid service types
+        for s in slot_value:
+            if (s != "police") and (s != "ambulance") and (s != "fire department"):
+                slot_value.remove(s)
+
+        return_dict["service_type"] = slot_value
+        return_dict["service_type_memory"] = slot_value
+
+        print(slot_value)
+        print(("ambulance" not in slot_value))
         # if ambulance was not requested, no victim
         if ("ambulance" not in slot_value):
             return_dict["victim_details"] = "No Victim"
         else:
-            return_dict["victim_details"] = None
+            victim_details = tracker.slots.get("victim_details")
+            # if bot thought no victim, then wipe slot to allow asking about them
+            if victim_details == "No Victim":
+                return_dict["victim_details"] = None
+            return_dict["first_aid"] = None
             return_dict["any_injured"] = "yes"
 
         return return_dict
+
 
     def validate_emergency_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                    tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
@@ -69,9 +88,31 @@ class ValidateServiceForm(FormValidationAction):
         if not slot_value:
           return {"emergency_details": None}
 
-        return_dict = {"emergency_details": slot_value}
-        # initialise this here since this always happens, so guaranteed to init
+        return_dict = {}
+
+        # gets current emergency details to append new ones
+        cur_emergency_details = tracker.slots.get("emergency_details_memory")
+
+        if cur_emergency_details:
+            # if entry is only 1 entity, is string and needs to be list
+            if isinstance(cur_emergency_details, str):
+                cur_emergency_details = [cur_emergency_details]
+
+            # if entry is only 1 entity, is string and needs to be list
+            if isinstance(slot_value, str):
+                slot_value = [slot_value]
+
+            # append and remove duplicates
+            slot_value = slot_value + cur_emergency_details
+            slot_value = list(dict.fromkeys(slot_value))
+
+        return_dict["emergency_details"] = slot_value
+        return_dict["emergency_details_memory"] = slot_value
+
+        # initialise these here since this always happens, so guaranteed to init
         return_dict["location_description"] = "Not Needed"
+        return_dict["first_aid"] = "Not Needed"
+
         explicit_service_type = tracker.slots.get("service_type")
 
         # if entry is only 1 type of service, is string and needs to be list
@@ -102,19 +143,27 @@ class ValidateServiceForm(FormValidationAction):
                     for s in hotlist.get(e, None):
                         implicit_service_type.append(s)
 
-        explicit_service_type = explicit_service_type + implicit_service_type
+        if explicit_service_type:
+            explicit_service_type = explicit_service_type + implicit_service_type
+        else:
+            explicit_service_type = implicit_service_type
         # remove duplicates
         explicit_service_type = list(dict.fromkeys(explicit_service_type))
 
         return_dict["service_type"] = explicit_service_type
+        return_dict["service_type_memory"] = explicit_service_type
+
+        print(return_dict)
 
         # if ambulance was not requested, no victim
         if ("ambulance" not in explicit_service_type):
             return_dict["victim_details"] = "No Victim"
         else:
             return_dict["victim_details"] = None
+            return_dict["first_aid"] = None
             return_dict["any_injured"] = "Yes"
         return return_dict
+
 
     def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
@@ -134,6 +183,7 @@ class ValidateServiceForm(FormValidationAction):
             # return text user gave in case hman user can make more sense of it than bot
             return {"is_safe": slot_value}
 
+
     def validate_any_injured(self, slot_value: Any, dispatcher: CollectingDispatcher,
                              tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
 
@@ -143,6 +193,8 @@ class ValidateServiceForm(FormValidationAction):
         if (tracker.latest_message['intent'].get('name') == "answer_yes"):
             return_dict["any_injured"] = "yes"
             return_dict["victim_details"] = None
+            return_dict["first_aid"] = None
+            return_dict["victim_details_memory"] = None
 
             # get list of services and add ambulance if not already there
             services = tracker.slots.get("service_type")
@@ -154,6 +206,7 @@ class ValidateServiceForm(FormValidationAction):
                 services.append("ambulance")
 
             return_dict["service_type"] = services
+            return_dict["service_type_memory"] = slot_value
         # otherwise likely no one is injured
         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
             return_dict["any_injured"] = "no"
@@ -163,40 +216,32 @@ class ValidateServiceForm(FormValidationAction):
             return_dict["any_injured"] = slot_value
         return return_dict
 
+
     def validate_victim_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # if empty then no valid set of victim details
         if not slot_value:
           return {"victim_details": None}
 
-        links = []
-        # load in associated symptoms and medical links
-        hotlist = self.medical_hot_list()
+        # prevents current list of victim details from being overwritten
+        cur_victim_details = tracker.slots.get("victim_details_memory")
 
-        # if only 1 detail, search hotlist directly
-        if isinstance(slot_value, str):
-            # if victim detail has useful link associated
-            if slot_value in hotlist:
-                # save the link for later use
-                links.append(hotlist[slot_value])
-            # else no associated useful link, so provide default
-            else:
-                links.append(hotlist["__default__"])
-        # else is a list and each must be searched for separately
-        else:
-            for v in slot_value:
-                # if victim detail has useful link associated
-                if v in hotlist:
-                    # save the link for later use
-                    links.append(hotlist[v])
-            # if no links found, include fallback default
-            if not links:
-                links.append(hotlist["__default__"])
+        if cur_victim_details and not (cur_victim_details == "No Victim"):
+            # if entry is only 1 entity, is string and needs to be list
+            if isinstance(cur_victim_details, str):
+                cur_victim_details = [cur_victim_details]
 
-        for l in links:
-            print(l)
+            # if entry is only 1 entity, is string and needs to be list
+            if isinstance(slot_value, str):
+                slot_value = [slot_value]
 
-        return {"victim_details": slot_value}
+            # append and remove duplicates
+            slot_value = slot_value + cur_victim_details
+            slot_value = list(dict.fromkeys(slot_value))
+
+        return {"victim_details": slot_value,
+                "victim_details_memory": slot_value}
+
 
     # possible api if free: https://osdatahub.os.uk/docs
     def validate_location(self, slot_value: Any, dispatcher: CollectingDispatcher,
@@ -228,10 +273,12 @@ class ValidateServiceForm(FormValidationAction):
 
         return return_dict
 
+
     def validate_location_description(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
         return {"location_description": slot_value}
+
 
     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
                           tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
@@ -359,3 +406,9 @@ class ValidateWrapupForm(FormValidationAction):
             dispatcher.utter_message(text=l)
 
         return return_dict
+
+
+    def validate_extra_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                      tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # just save as the user textual input since is a description for humans
+        return {"location_description": slot_value}

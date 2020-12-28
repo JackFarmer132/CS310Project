@@ -585,9 +585,230 @@ stories:
 - story: Form test
   steps:
   - intent: start_form
-  # - action: service_form
-  # - active_loop: service_form
-  # - active_loop: null
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - active_loop: null
+  - action: utter_dispatch
   - action: wrapup_form
   - active_loop: wrapup_form
   - active_loop: null
+  - action: utter_finish
+
+- story: interactive_story_1
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - service_type_memory:
+      - police
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - requested_slot: emergency_details
+  - slot_was_set:
+    - emergency_details:
+      - stabbing
+  - slot_was_set:
+    - emergency_details: stabbing
+  - slot_was_set:
+    - emergency_details_memory: stabbing
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: null
+  - slot_was_set:
+    - service_type:
+      - police
+      - ambulance
+  - slot_was_set:
+    - service_type_memory:
+      - police
+      - ambulance
+  - slot_was_set:
+    - victim_details: null
+  - slot_was_set:
+    - any_injured: Yes
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: yes
+  - slot_was_set:
+    - requested_slot: victim_details
+  - slot_was_set:
+    - victim_details:
+      - bleeding
+      - not responding
+  - slot_was_set:
+    - victim_details:
+      - bleeding
+      - not responding
+  - slot_was_set:
+    - victim_details_memory:
+      - bleeding
+      - not responding
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - location: i'm not sure where I am
+  - slot_was_set:
+    - street_address: Unknown
+  - slot_was_set:
+    - location_description: null
+  - slot_was_set:
+    - postcode: Unknown
+  - slot_was_set:
+    - requested_slot: location_description
+  - slot_was_set:
+    - district: Daventry
+  - slot_was_set:
+    - location_description: i'm near the park in Daventry
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: wrapup_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Jack
+  - slot_was_set:
+    - name: Jack
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: 07402 550350
+  - slot_was_set:
+    - phone_number: 07402 550350
+  - slot_was_set:
+    - requested_slot: first_aid
+  - slot_was_set:
+    - first_aid: yes
+  - slot_was_set:
+    - requested_slot: extra_details
+  - intent: answer_no
+  - slot_was_set:
+    - extra_details: no, that's all
+  - action: action_deactivate_loop
+  - active_loop: null
+  - slot_was_set:
+    - requested_slot: null
+  - action: utter_finish
+
+# - story: Call 1
+#   steps:
+#   - intent: start_form
+#   - action: utter_introduce
+#   - action: service_form
+#   - active_loop: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - service_type:
+#       - Ambulance
+#       - police
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type_memory:
+#       - police
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - slot_was_set:
+#     - emergency_details:
+#       - stabbing
+#   - slot_was_set:
+#     - victim_details:
+#       - bleeding
+#       - unconscious
+#   - slot_was_set:
+#     - emergency_details: stabbing
+#   - slot_was_set:
+#     - victim_details:
+#       - bleeding
+#       - unconscious
+#   - slot_was_set:
+#     - emergency_details_memory: stabbing
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - first_aid: null
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#       - ambulance
+#   - slot_was_set:
+#     - service_type_memory:
+#       - police
+#       - ambulance
+#   - slot_was_set:
+#     - any_injured: Yes
+#   - slot_was_set:
+#     - victim_details_memory:
+#       - bleeding
+#       - unconscious
+#   - slot_was_set:
+#     - requested_slot: is_safe
+#   - slot_was_set:
+#     - is_safe: yes
+#   - slot_was_set:
+#     - requested_slot: location
+#   - slot_was_set:
+#     - district: Canley
+#   - slot_was_set:
+#     - location: I don't know, wait let me check, I’m in Canley, not sure where though
+#   - slot_was_set:
+#     - street_address: Unknown
+#   - slot_was_set:
+#     - location_description: null
+#   - slot_was_set:
+#     - postcode: Unknown
+#   - slot_was_set:
+#     - requested_slot: location_description
+#   - slot_was_set:
+#     - location_description: 'I’m near Goody’s chicken shop, near the pedestrian crossing. There’s a big field opposite me.'
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_dispatch
+#   - action: wrapup_form
+#   - active_loop: wrapup_form
+#   - slot_was_set:
+#     - requested_slot: name
+#   - slot_was_set:
+#     - name: Saranyan
+#   - slot_was_set:
+#     - name: Saranyan
+#   - slot_was_set:
+#     - requested_slot: phone_number
+#   - slot_was_set:
+#     - phone_number: '07427521153'
+#   - slot_was_set:
+#     - phone_number: '07427521153'
+#   - slot_was_set:
+#     - requested_slot: first_aid
+#   - slot_was_set:
+#     - first_aid: yes
+#   - slot_was_set:
+#     - requested_slot: extra_details
+#   - slot_was_set:
+#     - extra_details: 'I’m not sure, I think she’s in her 50’s. I did see someone in the distance run off, but I couldn’t see them.'
+#   - action: action_deactivate_loop
+#   - active_loop: null
+#   - slot_was_set:
+#     - requested_slot: null
+#   - action: utter_finish
