@@ -42,9 +42,6 @@ class ValidateServiceForm(FormValidationAction):
         if isinstance(slot_value, str):
             slot_value = [slot_value]
 
-        # make entries lower case
-        s.lower() for s in slot_value
-
         # get current requested services
         cur_service_type = tracker.slots.get("service_type_memory")
 
@@ -60,6 +57,7 @@ class ValidateServiceForm(FormValidationAction):
 
         # removes invalid service types
         for s in slot_value:
+            s.lower()
             if (s != "police") and (s != "ambulance") and (s != "fire department"):
                 slot_value.remove(s)
 
@@ -358,57 +356,77 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_first_aid(self, slot_value: Any, dispatcher: CollectingDispatcher,
                            tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-        # get the victim details to search for useful links
-        victim_details = tracker.slots.get("victim_details")
-        links = []
+
         return_dict = {}
 
-        # load in associated symptoms and medical links
-        hotlist = self.medical_hot_list()
-        print("hello")
-
-        # if victim safe, continue
-        if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-            return_dict["first_aid"] = "yes"
-            print("yes")
-            dispatcher.utter_message(text="Okay, if you feel you can help the situation, please do")
-        # otherwise prompt user to get to safety
-        elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-            return_dict["first_aid"] = "no"
-            dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+        # only do this if the first aid is required (not "Not Needed")#
+        if slot_value == "Not Needed":
+            return_dict["first_aid"] = slot_value
         else:
-            return_dict["first_aid"] = "unknown"
-            dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+            # get the victim details to search for useful links
+            victim_details = tracker.slots.get("victim_details")
+            links = []
 
-        # if only 1 detail, search hotlist directly
-        if isinstance(victim_details, str):
-            # if victim detail has useful link associated
-            if victim_details in hotlist:
-                # save the link for later use
-                links.append(hotlist[victim_details])
-            # else no associated useful link, so provide default
+            # load in associated symptoms and medical links
+            hotlist = self.medical_hot_list()
+            print("hello")
+
+            # if victim safe, continue
+            if (tracker.latest_message['intent'].get('name') == "answer_yes"):
+                return_dict["first_aid"] = "yes"
+                print("yes")
+                dispatcher.utter_message(text="Okay, if you feel you can help the situation, please do")
+            # otherwise prompt user to get to safety
+            elif (tracker.latest_message['intent'].get('name') == "answer_no"):
+                return_dict["first_aid"] = "no"
+                dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
             else:
-                links.append(hotlist["__default__"])
-        # else is a list and each must be searched for separately
-        else:
-            for v in victim_details:
-                # if victim detail has useful link associated
-                if v in hotlist:
-                    # save the link for later use
-                    links.append(hotlist[v])
-            # if no links found, include fallback default
-            if not links:
-                links.append(hotlist["__default__"])
+                return_dict["first_aid"] = "unknown"
+                dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
 
-        dispatcher.utter_message(text="Here are some links that I found that can help:")
-        for l in links:
-            print(l)
-            dispatcher.utter_message(text=l)
+            # if only 1 detail, search hotlist directly
+            if isinstance(victim_details, str):
+                # if victim detail has useful link associated
+                if victim_details in hotlist:
+                    # save the link for later use
+                    links.append(hotlist[victim_details])
+                # else no associated useful link, so provide default
+                else:
+                    links.append(hotlist["__default__"])
+            # else is a list and each must be searched for separately
+            else:
+                for v in victim_details:
+                    # if victim detail has useful link associated
+                    if v in hotlist:
+                        # save the link for later use
+                        links.append(hotlist[v])
+                # if no links found, include fallback default
+                if not links:
+                    links.append(hotlist["__default__"])
+
+            dispatcher.utter_message(text="Here are some links that I found that can help:")
+            for l in links:
+                print(l)
+                dispatcher.utter_message(text=l)
 
         return return_dict
+
+
+    def validate_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                      tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # just save as the user textual input since is a description for humans
+        print("In here")
+        print("slot value here is ", slot_value)
+        return {"name": slot_value}
+
+
+    def validate_phone_number(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                      tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # just save as the user textual input since is a description for humans
+        return {"phone_number": slot_value}
 
 
     def validate_extra_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
-        return {"location_description": slot_value}
+        return {"extra_details": slot_value}

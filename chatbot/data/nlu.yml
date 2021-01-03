@@ -21,6 +21,7 @@ nlu:
     - i need the [police](service_type) please
     - [police](service_type)
     - please hurry
+    - Help, we need the [police](service_type)
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -40,6 +41,8 @@ nlu:
     - someone was just [robbed]{"entity": "emergency_details", "value": "theft"}
     - Someone’s been [stabbed]{"entity": "emergency_details", "value": "stabbing"}, she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
     - [robbery]{"entity": "emergency_details", "value": "theft"}
+    - [stabbing](emergency_details)
+    - 3 men just [robbed]{"entity": "emergency_details", "value": "theft"} my local corner shop in [Shirebrook](district)
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -56,6 +59,7 @@ nlu:
     - i feel a bit [dizzy](victim_details)
     - they're [bleeding](victim_details) quite a lot and [not responding](victim_details)
     - I’m not sure, I think she’s in her 50’s. I did see someone in the distance run off, but I couldn’t see them.
+    - [bleeding](victim_details)
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -67,6 +71,8 @@ nlu:
     - i'm near the park in [Daventry](district)
     - [4 Horncastle Close](street_address)
     - [nn11 0gh](postcode)
+    - [nn11 0gh](postcode)[nn11 0gh](postcode)
+    - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -80,7 +86,6 @@ nlu:
     - [Tom](name)
     - [Jack](name)
     - I’m [Saranyan](name).
-    - [Jack](name)
 - intent: give_phone_number
   examples: |
     - [07427521153](phone_number)
@@ -107,6 +112,7 @@ nlu:
     - i do, yeah
     - Yeah but I need help here
     - yeah
+    - Yes they’ve ran off
 - intent: answer_no
   examples: |
     - No
@@ -120,6 +126,7 @@ nlu:
     - I'm not
     - no
     - no, that's it
+    - No, we are all safe, one of the men was [carrying a knife](emergency_details) and he threatened us with it. He [stole]{"entity": "emergency_details", "value": "theft"} from the till and ran away.
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -135,6 +142,7 @@ nlu:
     - I don’t have a clue
     - i'm not sure where I am
     - I don't know, wait let me check, I’m in [Canley](district), not sure where though
+    - Do I have to?
 - intent: describe_location
   examples: |
     - I’m near Goody’s chicken shop, near the pedestrian crossing. There’s a big field opposite me.
@@ -146,12 +154,12 @@ nlu:
 - synonym: theft
   examples: |
     - robbed
+    - robbery
     - theft
     - stolen
     - stole
     - half-inched
     - took
-    - robbery
     - taken
 - synonym: police
   examples: |

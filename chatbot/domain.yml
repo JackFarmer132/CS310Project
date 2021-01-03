@@ -2,17 +2,17 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- describe_emergency
-- give_service
 - answer_yes
 - give_location
+- give_service
+- describe_emergency
 - answer_no
-- give_name
 - start_form
+- answer_unsure
+- describe_victim
+- give_name
 - give_phone_number
 - describe_location
-- describe_victim
-- answer_unsure
 - stop
 - begin
 - nlu_fallback
@@ -168,11 +168,9 @@ forms:
       entity: postcode
   wrapup_form:
     name:
-    - type: from_entity
-      entity: name
+    - type: from_text
     phone_number:
-    - type: from_entity
-      entity: phone_number
+    - type: from_text
     first_aid:
     - type: from_text
     extra_details:
