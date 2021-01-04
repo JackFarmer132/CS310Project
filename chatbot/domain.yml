@@ -2,22 +2,23 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- answer_yes
-- give_location
-- give_service
-- describe_emergency
-- answer_no
-- start_form
-- answer_unsure
 - describe_victim
 - give_name
+- answer_yes
+- answer_no
+- give_location
+- start_form
 - give_phone_number
+- give_service
+- describe_emergency
+- answer_unsure
 - describe_location
 - stop
 - begin
 - nlu_fallback
 entities:
 - district
+- emergency_detail
 - emergency_details
 - name
 - phone_number
@@ -88,6 +89,8 @@ responses:
   utter_ask_postcode:
   - text: Can you please provide your postcode?
   utter_ask_location:
+  - text: Can you please provide your location?
+  utter_ask_street_address:
   - text: Can you please provide the street address?
   utter_ask_location_description:
   - text: Can you please describe your surroundings? What can you see?
@@ -144,6 +147,7 @@ actions:
 - utter_unsure
 - validate_service_form
 - validate_wrapup_form
+- action_manage_first_aid
 forms:
   service_form:
     service_type:
@@ -166,12 +170,15 @@ forms:
     postcode:
     - type: from_entity
       entity: postcode
+    street_address:
+    - type: from_entity
+      entity: street_address
   wrapup_form:
+    first_aid:
+    - type: from_text
     name:
     - type: from_text
     phone_number:
-    - type: from_text
-    first_aid:
     - type: from_text
     extra_details:
     - type: from_text

@@ -6,6 +6,7 @@ from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
 from rasa_sdk import Tracker, FormValidationAction
 from rasa_sdk.types import DomainDict
+from rasa_sdk.events import SlotSet
 
 # for api calls
 import urllib.request as req
@@ -26,7 +27,9 @@ class ValidateServiceForm(FormValidationAction):
     # derriving the required emergency service
     def emergency_hot_list() -> Dict[Text, List[Text]]:
         hotlist = {"stabbing": ["police", "ambulance"],
-                   "fire": ["fire department"]}
+                   "fire": ["fire department"],
+                   "stroke": ["ambulance"],
+                   "COVID": ["ambulance"]}
         return hotlist
 
 
@@ -108,8 +111,15 @@ class ValidateServiceForm(FormValidationAction):
         return_dict["emergency_details_memory"] = slot_value
 
         # initialise these here since this always happens, so guaranteed to init
-        return_dict["location_description"] = "Not Needed"
-        return_dict["first_aid"] = "Not Needed"
+        # only set location description if it hasn't been set yet (None)
+        location_description = tracker.slots.get("location_description")
+        if location_description == None:
+            return_dict["location_description"] = "Not Needed"
+
+        # only set first aid to 'not needed' if it is currently None
+        first_aid = tracker.slots.get("first_aid")
+        if first_aid == None:
+            return_dict["first_aid"] = "Not Needed"
 
         explicit_service_type = tracker.slots.get("service_type")
 
@@ -212,6 +222,7 @@ class ValidateServiceForm(FormValidationAction):
             return_dict["any_injured"] = "unsure"
         else:
             return_dict["any_injured"] = slot_value
+
         return return_dict
 
 
@@ -220,6 +231,13 @@ class ValidateServiceForm(FormValidationAction):
         # if empty then no valid set of victim details
         if not slot_value:
           return {"victim_details": None}
+
+        return_dict = {}
+
+        # if first aid is "Not Needed", need to change here since victim present
+        first_aid = tracker.slots.get("first_aid")
+        if first_aid == "Not Needed":
+            return_dict["first_aid"] = None
 
         # prevents current list of victim details from being overwritten
         cur_victim_details = tracker.slots.get("victim_details_memory")
@@ -237,8 +255,19 @@ class ValidateServiceForm(FormValidationAction):
             slot_value = slot_value + cur_victim_details
             slot_value = list(dict.fromkeys(slot_value))
 
-        return {"victim_details": slot_value,
-                "victim_details_memory": slot_value}
+        return_dict["victim_details"] = slot_value
+        return_dict["victim_details_memory"] = slot_value
+
+        return return_dict
+
+
+    def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # if street address is given, don't ask again
+        return_dict = {}
+        return_dict["street_address"] = slot_value
+        return_dict["location"] = slot_value
+        return return_dict
 
 
     # possible api if free: https://osdatahub.os.uk/docs
@@ -329,7 +358,7 @@ class ValidateServiceForm(FormValidationAction):
 
             return return_dict
         else:
-            return {"postcode": None}
+            return {"postcode": slot_value}
 
 
 class ValidateWrapupForm(FormValidationAction):
@@ -415,8 +444,6 @@ class ValidateWrapupForm(FormValidationAction):
     def validate_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
-        print("In here")
-        print("slot value here is ", slot_value)
         return {"name": slot_value}
 
 
@@ -430,3 +457,18 @@ class ValidateWrapupForm(FormValidationAction):
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
         return {"extra_details": slot_value}
+
+
+# there will be some cases where asking about first aid is not relevant,
+# namely when there is no victim. if there is no victim, this will ensure the
+# bot doesn't ask
+class ActionManageFirstAid(Action):
+    def name(self):
+        return "action_manage_first_aid"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: DomainDict) -> Dict[Text, Any]:
+
+        victim_details = tracker.slots.get("victim_details")
+        if not victim_details:
+            return [SlotSet("first_aid", "Not Needed")]

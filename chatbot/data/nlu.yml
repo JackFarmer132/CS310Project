@@ -21,7 +21,8 @@ nlu:
     - i need the [police](service_type) please
     - [police](service_type)
     - please hurry
-    - Help, we need the [police](service_type)
+    - There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the [police](service_type) he will get really angry. Please come quick.
+    - an [ambulance](service_type), i guess
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -43,23 +44,35 @@ nlu:
     - [robbery]{"entity": "emergency_details", "value": "theft"}
     - [stabbing](emergency_details)
     - 3 men just [robbed]{"entity": "emergency_details", "value": "theft"} my local corner shop in [Shirebrook](district)
+    - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details).
+    - I’m hiding in the bathroom right now, but I can hear him and he’s getting angry.
+    - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
+    - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), [RM15 4ED](postcode)[RM15 4ED](postcode)
+    - The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
+    - [ambulance](service_type) please, an [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds
+    - I think my grandad is having a [stroke](emergency_details).
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
     - He’s [really old](victim_details) and [struggling to breathe](victim_details). He’s [not bleeding](victim_details) though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
     - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he [can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details)
     - I feel like I’m going to [throw up](victim_details) and I have been [feeling very dizzy](victim_details) since around 3pm. I have a history of [heart conditions](victim_details) so I don’t know if that has caused it.
-    - I tested positive for [COVID-19](victim_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details)
+    - I tested positive for [COVID-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details)
     - No, I don't think so. I don't want to touch him. He's so [pale](victim_details)
     - She’s got a [nut allergy](victim_details). It’s my mum. She says she [can’t breathe](victim_details) and her [throat is swelling up](victim_details)
     - Yes she’s [conscious](victim_details)
     - Yes, but there’s [some blood](victim_details) and I’m really worried
-    - I have been feeling [very nauseous](victim_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
+    - I have been feeling [very nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
     - They are [bleeding](victim_details) and [unconscious](victim_details)
     - i feel a bit [dizzy](victim_details)
     - they're [bleeding](victim_details) quite a lot and [not responding](victim_details)
     - I’m not sure, I think she’s in her 50’s. I did see someone in the distance run off, but I couldn’t see them.
     - [bleeding](victim_details)
+    - He’s [really old](victim_details) and [struggling to breathe](victim_details). He’s not bleeding though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
+    - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he [can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details).
+    - I don’t think so. What should I do if he stops breathing? He has asthma and he has [difficulty breathing](victim_details) sometimes.
+    - I need some advice. I have been feeling very [nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
+    - i need an [ambulance](service_type), I tested positive for [Covid-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -73,6 +86,12 @@ nlu:
     - [nn11 0gh](postcode)
     - [nn11 0gh](postcode)[nn11 0gh](postcode)
     - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
+    - I live at [100 Moulton Road](street_address), [CH7 4LH](postcode), please send someone quickly
+    - [44 Lolands Road](street_address)
+    - [Shepherd Market](street_address), London, [W1J 7PA](postcode). I’m a regular at this McDonalds but I’ve never seen him before.
+    - We are at [16 Stoneygate Drive](street_address), [Hinckley](district), [LE10 1TD](postcode). He has been living with our family since 2015. I am his grandson, and my parents are at work.
+    - it's [L11 1AF](postcode)
+    - [4 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode).
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -86,6 +105,9 @@ nlu:
     - [Tom](name)
     - [Jack](name)
     - I’m [Saranyan](name).
+    - Thank you. My name is [Zhang Wei](name).
+    - I’ve got [stomach cramps](victim_details) and it’s really painful now. My name is [Francesca Gomez](name).
+    - Thank you. [Thomas Ludlow](name).
 - intent: give_phone_number
   examples: |
     - [07427521153](phone_number)
@@ -95,6 +117,9 @@ nlu:
     - [07402530350](phone_number)
     - [07402 550350](phone_number)
     - [07402550350](phone_number)
+    - My number is [07427521153](phone_number).
+    - Thank you. My number is [07427521153](phone_number).
+    - [07946174902](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -113,6 +138,10 @@ nlu:
     - Yeah but I need help here
     - yeah
     - Yes they’ve ran off
+    - i am yeah but he isn't
+    - eah
+    - i am yeah
+    - yeah i'm at home
 - intent: answer_no
   examples: |
     - No
@@ -127,6 +156,19 @@ nlu:
     - no
     - no, that's it
     - No, we are all safe, one of the men was [carrying a knife](emergency_details) and he threatened us with it. He [stole]{"entity": "emergency_details", "value": "theft"} from the till and ran away.
+    - no I'm okay
+    - Sorry I don’t want to.
+    - i'd rather not
+    - No, we just need help, quick.
+    - no thanks
+    - No, I don’t but I was part of the cadets at school, but that was a long time ago. I’ve forgotten everything
+    - No, I don’t but I was part of the cadets at school, but that was a long time ago. I’ve forgotten everything.
+    - No not really. Just come quickly.
+    - No, I don’t.
+    - i can't think what it is right now, sorry
+    - i don't
+    - No, that’s all I think
+    - No, I think that’s it.
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -143,6 +185,8 @@ nlu:
     - i'm not sure where I am
     - I don't know, wait let me check, I’m in [Canley](district), not sure where though
     - Do I have to?
+    - I don’t know, someone just ran out of the building now and he seems hurt. I will go and ask him if there’s anyone else inside
+    - I don’t know, someone just ran out of the building now and he seems hurt. I will go and ask him if there’s anyone else inside.
 - intent: describe_location
   examples: |
     - I’m near Goody’s chicken shop, near the pedestrian crossing. There’s a big field opposite me.
@@ -155,9 +199,9 @@ nlu:
   examples: |
     - robbed
     - robbery
+    - stole
     - theft
     - stolen
-    - stole
     - half-inched
     - took
     - taken

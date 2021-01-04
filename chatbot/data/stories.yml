@@ -582,7 +582,8 @@ stories:
 #   - slot_was_set:
 #     - requested_slot: postcode
 
-- story: Form test
+# general structure of interactions used as a fallback for the bot
+- story: Vague Form Structure
   steps:
   - intent: start_form
   - action: utter_introduce
@@ -590,120 +591,47 @@ stories:
   - active_loop: service_form
   - active_loop: null
   - action: utter_dispatch
+  - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
   - active_loop: null
   - action: utter_finish
 
-- story: interactive_story_1
+
+# allows bot to understand when it runs out of things to do in the service form,
+# it should dispatch and move to next form
+- story: Form Switching Glue 1
   steps:
-  - intent: start_form
-  - action: utter_introduce
   - action: service_form
   - active_loop: service_form
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - service_type:
-      - police
-  - slot_was_set:
-    - service_type:
-      - police
-  - slot_was_set:
-    - service_type_memory:
-      - police
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - requested_slot: emergency_details
-  - slot_was_set:
-    - emergency_details:
-      - stabbing
-  - slot_was_set:
-    - emergency_details: stabbing
-  - slot_was_set:
-    - emergency_details_memory: stabbing
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - first_aid: null
-  - slot_was_set:
-    - service_type:
-      - police
-      - ambulance
-  - slot_was_set:
-    - service_type_memory:
-      - police
-      - ambulance
-  - slot_was_set:
-    - victim_details: null
-  - slot_was_set:
-    - any_injured: Yes
-  - slot_was_set:
-    - requested_slot: is_safe
-  - slot_was_set:
-    - is_safe: yes
-  - slot_was_set:
-    - requested_slot: victim_details
-  - slot_was_set:
-    - victim_details:
-      - bleeding
-      - not responding
-  - slot_was_set:
-    - victim_details:
-      - bleeding
-      - not responding
-  - slot_was_set:
-    - victim_details_memory:
-      - bleeding
-      - not responding
-  - slot_was_set:
-    - requested_slot: location
-  - slot_was_set:
-    - location: i'm not sure where I am
-  - slot_was_set:
-    - street_address: Unknown
-  - slot_was_set:
-    - location_description: null
-  - slot_was_set:
-    - postcode: Unknown
-  - slot_was_set:
-    - requested_slot: location_description
-  - slot_was_set:
-    - district: Daventry
-  - slot_was_set:
-    - location_description: i'm near the park in Daventry
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_manage_first_aid
   - action: wrapup_form
-  - slot_was_set:
-    - requested_slot: name
-  - slot_was_set:
-    - name: Jack
-  - slot_was_set:
-    - name: Jack
-  - slot_was_set:
-    - requested_slot: phone_number
-  - slot_was_set:
-    - phone_number: 07402 550350
-  - slot_was_set:
-    - phone_number: 07402 550350
-  - slot_was_set:
-    - requested_slot: first_aid
-  - slot_was_set:
-    - first_aid: yes
-  - slot_was_set:
-    - requested_slot: extra_details
-  - intent: answer_no
-  - slot_was_set:
-    - extra_details: no, that's all
+
+
+# allows bot to have better chance of uttering finish statement
+- story: Form Switching Glue 2
+  steps:
+  - action: wrapup_form
+  - active_loop: wrapup_form
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
   - action: utter_finish
 
+
+# allows bot to have better chance of following triple action
+- story: Form Switching Glue 3
+  steps:
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+
+
+# stabbing
 - story: Call 1
   steps:
   - intent: start_form
@@ -783,8 +711,13 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
+  - slot_was_set:
+    - requested_slot: first_aid
+  - slot_was_set:
+    - first_aid: yes
   - slot_was_set:
     - requested_slot: name
   - slot_was_set:
@@ -798,10 +731,6 @@ stories:
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
-    - requested_slot: first_aid
-  - slot_was_set:
-    - first_aid: yes
-  - slot_was_set:
     - requested_slot: extra_details
   - slot_was_set:
     - extra_details: 'I’m not sure, I think she’s in her 50’s. I did see someone in the distance run off, but I couldn’t see them.'
@@ -811,18 +740,8 @@ stories:
   - action: utter_finish
 
 
-- story: solution to not switching forms
-  steps:
-  - action: service_form
-  - active_loop: service_form
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_dispatch
-  - action: wrapup_form
-
-
-- story: interactive_story_1
+# robbery
+- story: Call 2
   steps:
   - intent: start_form
   - action: utter_introduce
@@ -906,6 +825,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
   - slot_was_set:
@@ -926,6 +846,612 @@ stories:
     - requested_slot: extra_details
   - slot_was_set:
     - extra_details: 'No, they all ran away.'
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_finish
+
+
+# abuse
+- story: Call 3
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - service_type_memory:
+      - police
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - requested_slot: emergency_details
+  - slot_was_set:
+    - emergency_details:
+      - husband has been getting very violent
+      - threw a wine bottle
+  - slot_was_set:
+    - victim_details:
+      - scared
+  - slot_was_set:
+    - emergency_details:
+      - husband has been getting very violent
+      - threw a wine bottle
+  - slot_was_set:
+    - victim_details: scared
+  - slot_was_set:
+    - emergency_details_memory:
+      - husband has been getting very violent
+      - threw a wine bottle
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - service_type_memory:
+      - police
+  - slot_was_set:
+    - victim_details_memory: scared
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: I’m hiding in the bathroom right now, but I can hear him and he’s getting angry.
+  - slot_was_set:
+    - requested_slot: any_injured
+  - slot_was_set:
+    - any_injured: no
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - postcode: CH7 4LH
+  - slot_was_set:
+    - street_address: 100 Moulton Road
+  - slot_was_set:
+    - location: I live at 100 Moulton Road, CH7 4LH, please send someone quickly
+  - slot_was_set:
+    - postcode: CH7 4LH
+  - slot_was_set:
+    - street_address: 100 Moulton Road
+  - slot_was_set:
+    - district: Flintshire
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Kirsty Bridgens
+  - slot_was_set:
+    - name: My name is Kirsty Bridgens, I’m 24
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - extra_details: There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the police he will get really angry. Please come quick.
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_finish
+
+
+# arson
+- story: Call 4
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - emergency_details:
+      - fire
+  - slot_was_set:
+    - postcode: RM15 4ED
+  - slot_was_set:
+    - street_address: 44 Lolands Road
+  - slot_was_set:
+    - street_address: 44 Lolands Road
+  - slot_was_set:
+    - postcode: RM15 4ED
+  - slot_was_set:
+    - emergency_details: fire
+  - slot_was_set:
+    - location: 44 Lolands Road
+  - slot_was_set:
+    - district: Thurrock
+  - slot_was_set:
+    - emergency_details_memory: fire
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - service_type:
+      - fire department
+  - slot_was_set:
+    - service_type_memory:
+      - fire department
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: yes
+  - slot_was_set:
+    - requested_slot: any_injured
+  - slot_was_set:
+    - any_injured: unsure
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Sorry I don’t want to.
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: no thanks
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - extra_details: The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_finish
+
+
+# heart attack
+- story: Call 5
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - emergency_details:
+      - fell to the ground
+      - clutching onto his chest
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - victim_details:
+      - old man
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - victim_details: null
+  - slot_was_set:
+    - emergency_details:
+      - fell to the ground
+      - clutching onto his chest
+  - slot_was_set:
+    - service_type_memory:
+      - ambulance
+  - slot_was_set:
+    - first_aid: null
+  - slot_was_set:
+    - any_injured: Yes
+  - slot_was_set:
+    - victim_details_memory: old man
+  - slot_was_set:
+    - emergency_details_memory:
+      - fell to the ground
+      - clutching onto his chest
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: yes
+  - slot_was_set:
+    - requested_slot: victim_details
+  - slot_was_set:
+    - victim_details:
+      - really old
+      - struggling to breathe
+      - heart problems
+  - slot_was_set:
+    - victim_details:
+      - really old
+      - struggling to breathe
+      - heart problems
+      - old man
+  - slot_was_set:
+    - victim_details_memory:
+      - really old
+      - struggling to breathe
+      - heart problems
+      - old man
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - postcode: W1J 7PA
+  - slot_was_set:
+    - street_address: Shepherd Market
+  - slot_was_set:
+    - location: Shepherd Market
+  - slot_was_set:
+    - street_address: Shepherd Market
+  - slot_was_set:
+    - postcode: W1J 7PA
+  - slot_was_set:
+    - district: Westminster
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Taikisha Abimbola
+  - slot_was_set:
+    - name: Thanks, Taikisha Abimbola
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - requested_slot: first_aid
+  - slot_was_set:
+    - first_aid: no
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - extra_details: No not really. Just come quickly.
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_finish
+
+
+# stroke
+- story: Call 6
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - emergency_details:
+      - stroke
+  - slot_was_set:
+    - emergency_details: stroke
+  - slot_was_set:
+    - emergency_details_memory: stroke
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: null
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - service_type_memory:
+      - ambulance
+  - slot_was_set:
+    - victim_details: null
+  - slot_was_set:
+    - any_injured: Yes
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: yes
+  - slot_was_set:
+    - requested_slot: victim_details
+  - slot_was_set:
+    - victim_details:
+      - 84 years old
+      - dementia
+      - isn’t talking properly
+      - can’t raise his arms up
+      - still breathing
+      - in pain
+  - slot_was_set:
+    - victim_details:
+      - 84 years old
+      - dementia
+      - isn’t talking properly
+      - can’t raise his arms up
+      - still breathing
+      - in pain
+  - slot_was_set:
+    - victim_details_memory:
+      - 84 years old
+      - dementia
+      - isn’t talking properly
+      - can’t raise his arms up
+      - still breathing
+      - in pain
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - district: Hinckley
+  - slot_was_set:
+    - postcode: LE10 1TD
+  - slot_was_set:
+    - street_address: 16 Stoneygate Drive
+  - slot_was_set:
+    - location: 16 Stoneygate Drive
+  - slot_was_set:
+    - street_address: 16 Stoneygate Drive
+  - slot_was_set:
+    - postcode: LE10 1TD
+  - slot_was_set:
+    - district: Hinckley and Bosworth
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - requested_slot: first_aid
+  - slot_was_set:
+    - first_aid: no
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Zhang Wei
+  - slot_was_set:
+    - name: Thank you. My name is Zhang Wei.
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: My number is 07427521153.
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - victim_details:
+      - difficulty breathing
+  - slot_was_set:
+    - extra_details: I don’t think so. What should I do if he stops breathing? He has asthma and he has difficulty breathing sometimes.
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_finish
+
+
+# nausia
+- story: Call 7
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - emergency_details:
+      - nauseous
+  - slot_was_set:
+    - victim_details:
+      - getting worse
+  - slot_was_set:
+    - victim_details: getting worse
+  - slot_was_set:
+    - emergency_details: nauseous
+  - slot_was_set:
+    - victim_details_memory: getting worse
+  - slot_was_set:
+    - emergency_details_memory: nauseous
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - service_type_memory:
+      - ambulance
+  - slot_was_set:
+    - first_aid: null
+  - slot_was_set:
+    - any_injured: yes
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: yes
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - street_address: 6 Wintergreen Avenue
+  - slot_was_set:
+    - location: 6 Wintergreen Avenue
+  - slot_was_set:
+    - street_address: 6 Wintergreen Avenue
+  - slot_was_set:
+    - requested_slot: postcode
+  - intent: answer_no
+  - action: service_form
+  - slot_was_set:
+    - requested_slot: postcode
+  - slot_was_set:
+    - postcode: L11 1AF
+  - slot_was_set:
+    - postcode: L11 1AF
+  - slot_was_set:
+    - district: Liverpool
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - requested_slot: first_aid
+  - slot_was_set:
+    - first_aid: no
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Francesca Gomez
+  - slot_was_set:
+    - victim_details:
+      - stomach cramps
+  - slot_was_set:
+    - name: I’ve got stomach cramps and it’s really painful now. My name is Francesca Gomez.
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: Thank you. My number is 07427521153.
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - extra_details: No, that’s all I think
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_finish
+
+
+# COVID
+- story: Call 8
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - emergency_details:
+      - Covid-19
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - victim_details:
+      - chest feels very tight
+      - difficult to breathe
+      - faint
+  - slot_was_set:
+    - service_type:
+      - ambulance
+  - slot_was_set:
+    - victim_details:
+      - chest feels very tight
+      - difficult to breathe
+      - faint
+  - slot_was_set:
+    - emergency_details: Covid-19
+  - slot_was_set:
+    - service_type_memory:
+      - ambulance
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - any_injured: yes
+  - slot_was_set:
+    - victim_details_memory:
+      - chest feels very tight
+      - difficult to breathe
+      - faint
+  - slot_was_set:
+    - emergency_details_memory: Covid-19
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: yes
+  - slot_was_set:
+    - requested_slot: location
+  - slot_was_set:
+    - district: Daventry
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - street_address: 4 Horncastle Close
+  - slot_was_set:
+    - location: 4 Horncastle Close
+  - slot_was_set:
+    - street_address: 4 Horncastle Close
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - district: Daventry
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - first_aid: Not Needed
+  - slot_was_set:
+    - requested_slot: name
+  - slot_was_set:
+    - name: Thomas Ludlow
+  - slot_was_set:
+    - name: Thank you. Thomas Ludlow.
+  - slot_was_set:
+    - requested_slot: phone_number
+  - slot_was_set:
+    - phone_number: '07946174902'
+  - slot_was_set:
+    - phone_number: '07946174902'
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - extra_details: No, I think that’s it.
   - slot_was_set:
     - requested_slot: null
   - active_loop: null
