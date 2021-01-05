@@ -23,6 +23,7 @@ nlu:
     - please hurry
     - There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the [police](service_type) he will get really angry. Please come quick.
     - an [ambulance](service_type), i guess
+    - [police](service_type)
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -51,6 +52,8 @@ nlu:
     - The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
     - [ambulance](service_type) please, an [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds
     - I think my grandad is having a [stroke](emergency_details).
+    - i was [stabbed]{"entity": "emergency_details", "value": "stabbing"}
+    - [stabbing](emergency_details)
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -73,6 +76,7 @@ nlu:
     - I don’t think so. What should I do if he stops breathing? He has asthma and he has [difficulty breathing](victim_details) sometimes.
     - I need some advice. I have been feeling very [nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
     - i need an [ambulance](service_type), I tested positive for [Covid-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - [bleeding](victim_details)
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -119,7 +123,6 @@ nlu:
     - [07402550350](phone_number)
     - My number is [07427521153](phone_number).
     - Thank you. My number is [07427521153](phone_number).
-    - [07946174902](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -142,6 +145,7 @@ nlu:
     - eah
     - i am yeah
     - yeah i'm at home
+    - yes
 - intent: answer_no
   examples: |
     - No
@@ -190,6 +194,9 @@ nlu:
 - intent: describe_location
   examples: |
     - I’m near Goody’s chicken shop, near the pedestrian crossing. There’s a big field opposite me.
+- intent: nlu_fallback
+  examples: |
+    - a swingset
 - synonym: stabbing
   examples: |
     - stabbed
