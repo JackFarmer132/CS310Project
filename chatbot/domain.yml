@@ -2,17 +2,18 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- answer_yes
-- describe_victim
 - describe_emergency
+- start_form
+- answer_yes
+- give_name
+- answer_no
+- answer_unsure
+- give_phone_number
+- describe_victim
+- give_location
 - give_service
 - nlu_fallback
-- answer_no
-- start_form
-- give_name
-- give_location
-- give_phone_number
-- answer_unsure
+- give_form_street_address
 - describe_location
 - stop
 - begin
@@ -45,11 +46,14 @@ slots:
   first_aid:
     type: text
     influence_conversation: true
+  form_postcode:
+    type: text
+    influence_conversation: true
+  form_street_address:
+    type: text
+    influence_conversation: true
   is_safe:
     type: bool
-    influence_conversation: true
-  location:
-    type: text
     influence_conversation: true
   location_description:
     type: text
@@ -86,9 +90,9 @@ responses:
   - text: I am Whitehall, the emergency service chatbot
   utter_ask_service_type:
   - text: Can you please provide the emergency service that you require
-  utter_ask_postcode:
+  utter_ask_form_postcode:
   - text: Can you please provide your postcode?
-  utter_ask_location:
+  utter_ask_form_street_address:
   - text: Can you please provide your location?
   utter_ask_street_address:
   - text: Can you please provide the street address?
@@ -138,7 +142,7 @@ actions:
 - action_init_slots
 - action_manage_first_aid
 - utter_ask_extra_details
-- utter_ask_location
+- utter_ask_form_street_address
 - utter_ask_name
 - utter_ask_phone_number
 - utter_ask_service_type
@@ -164,16 +168,18 @@ forms:
     victim_details:
     - type: from_entity
       entity: victim_details
-    location:
+    form_street_address:
     - type: from_text
     location_description:
     - type: from_text
-    postcode:
-    - type: from_entity
-      entity: postcode
+    form_postcode:
+    - type: from_text
     street_address:
     - type: from_entity
       entity: street_address
+    postcode:
+    - type: from_entity
+      entity: postcode
   wrapup_form:
     first_aid:
     - type: from_text

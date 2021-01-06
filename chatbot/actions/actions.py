@@ -17,6 +17,38 @@ import json
 def getAPIResult(url):
     return json.loads(req.urlopen(url).read())
 
+
+# certain slots need to be given an initial value to prevent the chatbot from
+# asking irrelevant detials (like victim info when there's no victim). doing
+# this all in a custom action is better than doing it in the form (like before)
+class ActionInitSlots(Action):
+    def name(self):
+        return "action_init_slots"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: DomainDict) -> Dict[Text, Any]:
+        # sets the slots that start as not None
+        return [SlotSet("victim_details", "No Victim"),
+                SlotSet("location_description", "Not Needed"),
+                SlotSet("first_aid", "Not Relevant"),
+                SlotSet("is_safe", "Irrelevant")]
+
+
+# there will be some cases where asking about first aid is not relevant,
+# namely when there is no victim. if there is a victim, it will ask about
+# first aid experience
+class ActionManageFirstAid(Action):
+    def name(self):
+        return "action_manage_first_aid"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: DomainDict) -> Dict[Text, Any]:
+
+        victim_details = tracker.slots.get("victim_details")
+        if victim_details and not (victim_details == "No Victim"):
+            return [SlotSet("first_aid", None)]
+
+
 class ValidateServiceForm(FormValidationAction):
 
     def name(self) -> Text:
@@ -67,8 +99,6 @@ class ValidateServiceForm(FormValidationAction):
         return_dict["service_type"] = slot_value
         return_dict["service_type_memory"] = slot_value
 
-        print(slot_value)
-        print(("ambulance" not in slot_value))
         # if ambulance was not requested, no victim
         if "ambulance" in slot_value:
             victim_details = tracker.slots.get("victim_details")
@@ -77,6 +107,14 @@ class ValidateServiceForm(FormValidationAction):
                 return_dict["victim_details"] = None
             # prevents asking if anyone is injured since clearly someone is
             return_dict["any_injured"] = "Yes"
+
+        # only want to ask if safe if there's a fire or crime, so check that
+        # service is requested
+        safe = tracker.slots.get("is_safe")
+        # only wipes if not answered yet
+        if ("police" in slot_value or "fire department" in slot_value) and (safe == "Irrelevant"):
+            # wipe slot so bot will now ask about it to fill again
+            return_dict["is_safe"] = None
 
         return return_dict
 
@@ -148,8 +186,6 @@ class ValidateServiceForm(FormValidationAction):
         return_dict["service_type"] = explicit_service_type
         return_dict["service_type_memory"] = explicit_service_type
 
-        print(return_dict)
-
         # if ambulance was not requested, no victim
         if ("ambulance" in explicit_service_type):
             victim_details = tracker.slots.get("victim_details")
@@ -158,6 +194,15 @@ class ValidateServiceForm(FormValidationAction):
                 return_dict["victim_details"] = None
             # prevents asking if anyone is injured since clearly someone is
             return_dict["any_injured"] = "Yes"
+
+        # only want to ask if safe if there's a fire or crime, so check that
+        # service is requested
+        safe = tracker.slots.get("is_safe")
+        # only wipes if not answered yet
+        if ("police" in explicit_service_type or "fire department" in explicit_service_type) and (safe == "Irrelevant"):
+            # wipe slot so bot will now ask about it to fill again
+            return_dict["is_safe"] = None
+
         return return_dict
 
 
@@ -165,14 +210,14 @@ class ValidateServiceForm(FormValidationAction):
                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # if victim safe, continue
         if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-            return {"is_safe": "yes"}
+            return {"is_safe": "Yes"}
         # otherwise prompt user to get to safety
         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
             ####################################################################
-            return {"is_safe": "no"}
+            return {"is_safe": "No"}
         elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
             ####################################################################
-            return {"is_safe": "unsure"}
+            return {"is_safe": "Unsure"}
         # otherwise answer wasn't given, but no need to re-ask
         else:
             ####################################################################
@@ -203,9 +248,9 @@ class ValidateServiceForm(FormValidationAction):
             return_dict["service_type_memory"] = slot_value
         # otherwise likely no one is injured
         elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-            return_dict["any_injured"] = "no"
+            return_dict["any_injured"] = "No"
         elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
-            return_dict["any_injured"] = "unsure"
+            return_dict["any_injured"] = "Unsure"
         else:
             return_dict["any_injured"] = slot_value
 
@@ -214,32 +259,36 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_victim_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # if only being initialised, then accept it
+        if slot_value == "No Victim":
+            return {"victim_details": slot_value}
+        # otherwise it's been updated during runtime
+        else:
+            return_dict = {}
 
-        return_dict = {}
+            # there is someone injured, so save this info
+            return_dict["any_injured"] = "Yes"
 
-        # there is someone injured, so save this info
-        return_dict["any_injured"] = "Yes"
+            # prevents current list of victim details from being overwritten
+            cur_victim_details = tracker.slots.get("victim_details_memory")
 
-        # prevents current list of victim details from being overwritten
-        cur_victim_details = tracker.slots.get("victim_details_memory")
+            if cur_victim_details and not (cur_victim_details == "No Victim"):
+                # if entry is only 1 entity, is string and needs to be list
+                if isinstance(cur_victim_details, str):
+                    cur_victim_details = [cur_victim_details]
 
-        if cur_victim_details and not (cur_victim_details == "No Victim"):
-            # if entry is only 1 entity, is string and needs to be list
-            if isinstance(cur_victim_details, str):
-                cur_victim_details = [cur_victim_details]
+                # if entry is only 1 entity, is string and needs to be list
+                if isinstance(slot_value, str):
+                    slot_value = [slot_value]
 
-            # if entry is only 1 entity, is string and needs to be list
-            if isinstance(slot_value, str):
-                slot_value = [slot_value]
+                # append and remove duplicates
+                slot_value = slot_value + cur_victim_details
+                slot_value = list(dict.fromkeys(slot_value))
 
-            # append and remove duplicates
-            slot_value = slot_value + cur_victim_details
-            slot_value = list(dict.fromkeys(slot_value))
+            return_dict["victim_details"] = slot_value
+            return_dict["victim_details_memory"] = slot_value
 
-        return_dict["victim_details"] = slot_value
-        return_dict["victim_details_memory"] = slot_value
-
-        return return_dict
+            return return_dict
 
 
     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
@@ -247,41 +296,48 @@ class ValidateServiceForm(FormValidationAction):
         # if street address is given, don't ask again
         return_dict = {}
         return_dict["street_address"] = slot_value
-        return_dict["location"] = slot_value
+        return_dict["form_street_address"] = slot_value
         return return_dict
 
 
     # possible api if free: https://osdatahub.os.uk/docs
-    def validate_location(self, slot_value: Any, dispatcher: CollectingDispatcher,
+    def validate_form_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
 
         street_address = tracker.slots.get("street_address")
+        postcode = tracker.slots.get("postcode")
         return_dict = {}
 
         # if there is an entity for the street address, save it
         if street_address:
             return_dict["street_address"] = street_address
-            return_dict["location"] = slot_value
+            return_dict["form_street_address"] = slot_value
         # if not but user did have intent to do so, may have missed so save
         elif (tracker.latest_message['intent'].get('name') == "give_location"):
             # saves all text from user input for human to read
             return_dict["street_address"] = slot_value
-            return_dict["location"] = slot_value
+            return_dict["form_street_address"] = slot_value
         # if user is unsure of where they are, will ask to describe location
         elif ((tracker.latest_message['intent'].get('name') == "answer_unsure") or
               (tracker.latest_message['intent'].get('name') == "answer_no")):
             return_dict["street_address"] = "Unknown"
+            return_dict["form_street_address"] = slot_value
+            # free up this slot so bot will now ask about it
             return_dict["location_description"] = None
-            # don't ask for postcode since probably don't know
-            return_dict["postcode"] = "Unknown"
-            return_dict["location"] = slot_value
+            # if postcode then keep it, otherwise set to Unknown since user
+            # probably doesn't know it
+            if not postcode:
+                return_dict["postcode"] = "Unknown"
+                return_dict["form_postcode"] = slot_value
         else:
             # utters message saying it didn't understand, assume they don't know
             dispatcher.utter_message(text="Sorry, I didn't understand that just then")
             return_dict["street_address"] = "Unknown"
+            return_dict["form_street_address"] = slot_value
             return_dict["location_description"] = None
-            return_dict["postcode"] = "Unknown"
-            return_dict["location"] = slot_value
+            if not postcode:
+                return_dict["postcode"] = "Unknown"
+                return_dict["form_postcode"] = slot_value
 
         return return_dict
 
@@ -293,13 +349,9 @@ class ValidateServiceForm(FormValidationAction):
 
 
     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
-                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-
+                                tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # if street address is given, don't ask again
         return_dict = {}
-
-        # if user is unsure of postcode, accept it and move on
-        if (tracker.latest_message['intent'].get('name') == "answer_unsure"):
-            return_dict["postcode"] = "Unknown"
 
         # if there was only 1 classifier that found a postcode
         if isinstance(slot_value, str):
@@ -309,19 +361,41 @@ class ValidateServiceForm(FormValidationAction):
         else:
             postcode = slot_value[0]
 
-        # if postcode, validate it
+        return_dict["postcode"] = postcode
+        return_dict["form_postcode"] = postcode
+        return return_dict
+
+
+    def validate_form_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
+        return_dict = {}
+
+        # gets the actual postcode if it exists
+        postcode = tracker.slots.get("postcode")
+
+        # if an actual postcode was found, then save it here
         if postcode:
+            # if there was only 1 classifier that found a postcode
+            if isinstance(postcode, str):
+                postcode = postcode
+            # else there are two, meaning a ReGeX version and one from DIETClassifier,
+            # which is most likely incorrect
+            else:
+                postcode = postcode[0]
+
             url = "https://api.postcodes.io/postcodes/{}/validate".format(postcode)
             # remove possible space in postcode
             url = url.replace(" ", "")
             # check postcode is valid
             result = json.loads(req.urlopen(url).read())["result"]
-            # if postcode isn't valid then don't accept
+            # if postcode isn't valid then hopefully human can understand
             if not result:
-                return {"postcode": None}
+                return {"form_postcode": slot_value,
+                        "postcode": slot_value}
 
-            # add valid postode assignment to return dictionary
-            return_dict["postcode"] = postcode
+            # add valid postcode assignment to return dictionary
+            return_dict["form_postcode"] = postcode
 
             # get new URL that will fetch information on validated postcode
             url = url.replace("/validate", "")
@@ -332,18 +406,16 @@ class ValidateServiceForm(FormValidationAction):
             district = result["admin_district"]
             county = result["admin_county"]
             ccg = result["ccg"]
-            print(result)
-            print(district)
-            print(county)
-            print(ccg)
 
             # if district is not None from postocde search, set slot
             if district:
                 return_dict["district"] = district
 
             return return_dict
+        # else postcode not given, so assume person doesn't know it
         else:
-            return {"postcode": slot_value}
+            return {"form_postcode": slot_value,
+                    "postcode": slot_value}
 
 
 class ValidateWrapupForm(FormValidationAction):
@@ -370,58 +442,62 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_first_aid(self, slot_value: Any, dispatcher: CollectingDispatcher,
                            tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-
-        return_dict = {}
-
-        # get the victim details to search for useful links
-        victim_details = tracker.slots.get("victim_details")
-        links = []
-
-        # load in associated symptoms and medical links
-        hotlist = self.medical_hot_list()
-
-        # if victim safe, continue
-        if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-            return_dict["first_aid"] = "Yes"
-            dispatcher.utter_message(text="Okay, if you feel you can help the situation, please do")
-        # otherwise prompt user to get to safety
-        elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-            return_dict["first_aid"] = "No"
-            dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+        # if being initialised, just set as slot value
+        if slot_value == "Not Relevant":
+            return {"first_aid": slot_value}
+        # else is being set from user interaction
         else:
-            return_dict["first_aid"] = "Unknown"
-            dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+            return_dict = {}
 
-        # if only 1 detail, search hotlist directly
-        if isinstance(victim_details, str):
-            # if victim detail has useful link associated
-            if victim_details in hotlist:
-                # save the link for later use
-                links.append(hotlist[victim_details])
-            # else no associated useful link, so provide default
+            # get the victim details to search for useful links
+            victim_details = tracker.slots.get("victim_details")
+            links = []
+
+            # load in associated symptoms and medical links
+            hotlist = self.medical_hot_list()
+
+            # if victim safe, continue
+            if (tracker.latest_message['intent'].get('name') == "answer_yes"):
+                return_dict["first_aid"] = "Yes"
+                dispatcher.utter_message(text="Okay, if you feel you can help the situation, please do")
+            # otherwise prompt user to get to safety
+            elif (tracker.latest_message['intent'].get('name') == "answer_no"):
+                return_dict["first_aid"] = "No"
+                dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
             else:
-                links.append(hotlist["__default__"])
-        # else is a list and each must be searched for separately
-        else:
-            for v in victim_details:
+                return_dict["first_aid"] = "Unknown"
+                dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
+
+            # if only 1 detail, search hotlist directly
+            if isinstance(victim_details, str):
                 # if victim detail has useful link associated
-                if v in hotlist:
+                if victim_details in hotlist:
                     # save the link for later use
-                    links.append(hotlist[v])
-            # if no links found, include fallback default
-            if not links:
-                links.append(hotlist["__default__"])
+                    links.append(hotlist[victim_details])
+                # else no associated useful link, so provide default
+                else:
+                    links.append(hotlist["__default__"])
+            # else is a list and each must be searched for separately
+            else:
+                for v in victim_details:
+                    # if victim detail has useful link associated
+                    if v in hotlist:
+                        # save the link for later use
+                        links.append(hotlist[v])
+                # if no links found, include fallback default
+                if not links:
+                    links.append(hotlist["__default__"])
 
-        # get the plural right
-        if len(links) > 1:
-            dispatcher.utter_message(text="Here are some links that I found that can help:")
-        else:
-            dispatcher.utter_message(text="Here is a useful link that I found that can help:")
+            # get the plural right
+            if len(links) > 1:
+                dispatcher.utter_message(text="Here are some links that I found that can help:")
+            else:
+                dispatcher.utter_message(text="Here is a useful link that I found that can help:")
 
-        for l in links:
-            dispatcher.utter_message(text=l)
+            for l in links:
+                dispatcher.utter_message(text=l)
 
-        return return_dict
+            return return_dict
 
 
     def validate_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
@@ -440,33 +516,3 @@ class ValidateWrapupForm(FormValidationAction):
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
         return {"extra_details": slot_value}
-
-
-# certain slots need to be given an initial value to prevent the chatbot from
-# asking irrelevant detials (like victim info when there's no victim). doing
-# this all in a custom action is better than doing it in the form (like before)
-class ActionInitSlots(Action):
-    def name(self):
-        return "action_init_slots"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
-            domain: DomainDict) -> Dict[Text, Any]:
-        # sets the slots that start as not None
-        return [SlotSet("victim_details", "No Victim"),
-                SlotSet("location_description", "Not Needed"),
-                SlotSet("first_aid", "Not Relevant")]
-
-
-# there will be some cases where asking about first aid is not relevant,
-# namely when there is no victim. if there is a victim, it will ask about
-# first aid experience
-class ActionManageFirstAid(Action):
-    def name(self):
-        return "action_manage_first_aid"
-
-    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
-            domain: DomainDict) -> Dict[Text, Any]:
-
-        victim_details = tracker.slots.get("victim_details")
-        if victim_details:
-            return [SlotSet("first_aid", None)]
