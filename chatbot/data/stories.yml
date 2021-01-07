@@ -179,15 +179,19 @@ stories:
   - slot_was_set:
     - first_aid: No
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Saranyan
   - slot_was_set:
-    - name: I’m Saranyan.
+    - form_name: Saranyan
   - slot_was_set:
-    - requested_slot: phone_number
+    - name: Saranyan
+  - slot_was_set:
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
+  - slot_was_set:
+    - form_phone_number: '07427521153'
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
@@ -296,13 +300,17 @@ stories:
   - slot_was_set:
     - first_aid: Not Relevant
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
+  - slot_was_set:
+    - form_name: Do I have to?
   - slot_was_set:
     - name: Do I have to?
   - slot_was_set:
-    - requested_slot: phone_number
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
+  - slot_was_set:
+    - form_phone_number: '07427521153'
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
@@ -402,15 +410,19 @@ stories:
   - slot_was_set:
     - first_aid: Not Relevant
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Kirsty Bridgens
   - slot_was_set:
-    - name: My name is Kirsty Bridgens, I’m 24
+    - form_name: Kirsty Bridgens
   - slot_was_set:
-    - requested_slot: phone_number
+    - name: Kirsty Bridgens
+  - slot_was_set:
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
+  - slot_was_set:
+    - form_phone_number: '07427521153'
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
@@ -495,11 +507,17 @@ stories:
   - slot_was_set:
     - first_aid: Not Relevant
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
+  - slot_was_set:
+    - form_name: The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
   - slot_was_set:
     - name: The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
   - slot_was_set:
-    - requested_slot: phone_number
+    - requested_slot: form_phone_number
+  - slot_was_set:
+    - phone_number: Sorry I don’t want to.
+  - slot_was_set:
+    - form_phone_number: Sorry I don’t want to.
   - slot_was_set:
     - phone_number: Sorry I don’t want to.
   - slot_was_set:
@@ -592,15 +610,19 @@ stories:
   - slot_was_set:
     - first_aid: No
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Taikisha Abimbola
   - slot_was_set:
-    - name: Thanks, Taikisha Abimbola
+    - form_name: Taikisha Abimbola
   - slot_was_set:
-    - requested_slot: phone_number
+    - name: Taikisha Abimbola
+  - slot_was_set:
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
+  - slot_was_set:
+    - form_phone_number: '07427521153'
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
@@ -712,17 +734,21 @@ stories:
   - slot_was_set:
     - first_aid: No
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Zhang Wei
   - slot_was_set:
-    - name: Thank you. My name is Zhang Wei.
+    - form_name: Zhang Wei
   - slot_was_set:
-    - requested_slot: phone_number
+    - name: Zhang Wei
+  - slot_was_set:
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
-    - phone_number: My number is 07427521153.
+    - form_phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: '07427521153'
   - slot_was_set:
     - requested_slot: extra_details
   - slot_was_set:
@@ -814,20 +840,26 @@ stories:
   - slot_was_set:
     - first_aid: No
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
+  - slot_was_set:
+    - name: Francesca Gomez
+  - slot_was_set:
+    - form_name: Francesca Gomez
   - slot_was_set:
     - name: Francesca Gomez
   - slot_was_set:
     - victim_details:
       - stomach cramps
   - slot_was_set:
-    - name: I’ve got stomach cramps and it’s really painful now. My name is Francesca Gomez.
+    - name: Francesca Gomez
   - slot_was_set:
-    - requested_slot: phone_number
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
-    - phone_number: My number is 07427521153.
+    - form_phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: '07427521153'
   - slot_was_set:
     - requested_slot: extra_details
   - slot_was_set:
@@ -930,17 +962,21 @@ stories:
   - slot_was_set:
     - first_aid: Yes
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Thomas Ludlow
   - slot_was_set:
-    - name: Thank you. Thomas Ludlow.
+    - form_name: Thomas Ludlow
   - slot_was_set:
-    - requested_slot: phone_number
+    - name: Thomas Ludlow
   - slot_was_set:
-    - phone_number: '07946174902'
+    - requested_slot: form_phone_number
   - slot_was_set:
-    - phone_number: '07946174902'
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - form_phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: '07427521153'
   - slot_was_set:
     - requested_slot: extra_details
   - slot_was_set:
@@ -1024,17 +1060,21 @@ stories:
   - slot_was_set:
     - first_aid: Not Relevant
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Rodriguez Sebastia
   - slot_was_set:
-    - name: Thank you. My name is Rodriguez Sebastia.
+    - form_name: Rodriguez Sebastia
   - slot_was_set:
-    - requested_slot: phone_number
+    - name: Rodriguez Sebastia
+  - slot_was_set:
+    - requested_slot: form_phone_number
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
-    - phone_number: '07427521153.'
+    - form_phone_number: '07427521153'
+  - slot_was_set:
+    - phone_number: '07427521153'
   - slot_was_set:
     - requested_slot: extra_details
   - slot_was_set:
@@ -1114,13 +1154,19 @@ stories:
   - slot_was_set:
     - first_aid: Not Relevant
   - slot_was_set:
-    - requested_slot: name
+    - requested_slot: form_name
   - slot_was_set:
     - name: Jack Farmer
   - slot_was_set:
     - phone_number: '07427521153'
   - slot_was_set:
-    - name: Jack Farmer. My number is 07427521153
+    - form_name: Jack Farmer
+  - slot_was_set:
+    - phone_number: '07427521153'
+  - slot_was_set:
+    - name: Jack Farmer
+  - slot_was_set:
+    - form_phone_number: '07427521153'
   - slot_was_set:
     - requested_slot: extra_details
   - slot_was_set:
@@ -1129,3 +1175,161 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_finish
+
+- story: interactive_story_1
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: action_init_slots
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: Not Relevant
+  - slot_was_set:
+    - is_safe: Irrelevant
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - is_safe: Irrelevant
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - district: Daventry
+  - slot_was_set:
+    - emergency_details:
+      - fire
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - street_address: 5 Horncastle Close
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - street_address: 5 Horncastle Close
+  - slot_was_set:
+    - emergency_details: fire
+  - slot_was_set:
+    - form_postcode: NN11 0GH
+  - slot_was_set:
+    - form_street_address: 5 Horncastle Close
+  - slot_was_set:
+    - emergency_details_memory: fire
+  - slot_was_set:
+    - service_type:
+      - fire department
+  - slot_was_set:
+    - service_type_memory:
+      - fire department
+  - slot_was_set:
+    - is_safe: null
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: Yes
+  - slot_was_set:
+    - requested_slot: any_injured
+  - slot_was_set:
+    - any_injured: No
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - first_aid: Not Relevant
+  - slot_was_set:
+    - requested_slot: form_name
+  - slot_was_set:
+    - name: Jack Farmer
+  - slot_was_set:
+    - form_name: Jack Farmer
+  - slot_was_set:
+    - name: Jack Farmer
+  - slot_was_set:
+    - requested_slot: form_phone_number
+
+- story: interactive_story_1
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: action_init_slots
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: Not Relevant
+  - slot_was_set:
+    - is_safe: Irrelevant
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - is_safe: Irrelevant
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - district: Daventry
+  - slot_was_set:
+    - emergency_details:
+      - fire
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - street_address: 5 Horncastle Close
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - street_address: 5 Horncastle Close
+  - slot_was_set:
+    - emergency_details: fire
+  - slot_was_set:
+    - form_postcode: NN11 0GH
+  - slot_was_set:
+    - form_street_address: 5 Horncastle Close
+  - slot_was_set:
+    - emergency_details_memory: fire
+  - slot_was_set:
+    - service_type:
+      - fire department
+  - slot_was_set:
+    - service_type_memory:
+      - fire department
+  - slot_was_set:
+    - is_safe: null
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: Yes
+  - slot_was_set:
+    - requested_slot: any_injured
+  - slot_was_set:
+    - any_injured: No
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - first_aid: Not Relevant
+  - slot_was_set:
+    - requested_slot: form_name
+  - slot_was_set:
+    - form_name: The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
+  - slot_was_set:
+    - name: The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
+  - slot_was_set:
+    - requested_slot: form_phone_number

@@ -2,16 +2,16 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- describe_emergency
-- start_form
 - answer_yes
-- give_name
 - answer_no
-- answer_unsure
+- start_form
+- describe_emergency
+- give_name
 - give_phone_number
 - describe_victim
-- give_location
 - give_service
+- answer_unsure
+- give_location
 - nlu_fallback
 - give_form_street_address
 - describe_location
@@ -44,6 +44,12 @@ slots:
     type: text
     influence_conversation: true
   first_aid:
+    type: text
+    influence_conversation: true
+  form_name:
+    type: text
+    influence_conversation: true
+  form_phone_number:
     type: text
     influence_conversation: true
   form_postcode:
@@ -114,10 +120,10 @@ responses:
   - text: Do you or anyone near you have experience with first aid?
   utter_give_link:
   - text: 'Here is a useful link: www.imgur.com/a/G6rU8'
-  utter_ask_name:
+  utter_ask_form_name:
   - text: Can you tell us your name?
   - text: Can you please provide us with your name?
-  utter_ask_phone_number:
+  utter_ask_form_phone_number:
   - text: Can you please provide your phone number should we need to contact you over the phone?
   utter_ask_extra_details:
   - text: Okay, is there anything else we should know before we get there?
@@ -183,10 +189,16 @@ forms:
   wrapup_form:
     first_aid:
     - type: from_text
+    form_name:
+    - type: from_text
+    form_phone_number:
+    - type: from_text
     name:
-    - type: from_text
+    - type: from_entity
+      entity: name
     phone_number:
-    - type: from_text
+    - type: from_entity
+      entity: phone_number
     extra_details:
     - type: from_text
 version: '2.0'

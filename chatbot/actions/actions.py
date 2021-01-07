@@ -501,15 +501,51 @@ class ValidateWrapupForm(FormValidationAction):
 
 
     def validate_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # if there was only 1 classifier that found a name
+        if isinstance(slot_value, str):
+            name = slot_value
+        # else there are two, meaning a ReGeX version and one from DIETClassifier,
+        # which is most likely incorrect
+        else:
+            name = slot_value[0]
+
+        # if valid name is found, don't ask again
+        return_dict = {}
+        return_dict["name"] = name
+        return_dict["form_name"] = name
+        return return_dict
+
+
+    def validate_form_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
-        return {"name": slot_value}
+        return {"name": slot_value,
+                "form_name": slot_value}
 
 
     def validate_phone_number(self, slot_value: Any, dispatcher: CollectingDispatcher,
+                                tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+        # if there was only 1 classifier that found a phone number
+        if isinstance(slot_value, str):
+            phone_number = slot_value
+        # else there are two, meaning a ReGeX version and one from DIETClassifier,
+        # which is most likely incorrect
+        else:
+            phone_number = slot_value[0]
+
+        # if valid phone number is found, don't ask again
+        return_dict = {}
+        return_dict["phone_number"] = phone_number
+        return_dict["form_phone_number"] = phone_number
+        return return_dict
+
+
+    def validate_form_phone_number(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # just save as the user textual input since is a description for humans
-        return {"phone_number": slot_value}
+        return {"phone_number": slot_value,
+                "form_phone_number": slot_value}
 
 
     def validate_extra_details(self, slot_value: Any, dispatcher: CollectingDispatcher,

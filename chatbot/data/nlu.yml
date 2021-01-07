@@ -7,6 +7,7 @@ nlu:
   examples: |
     - begin_form
     - begin
+    - BEGIN
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
@@ -57,6 +58,8 @@ nlu:
     - An old man just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds
     - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds.
     - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode). Please send help quickly.
+    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode)[NN11 0GH](postcode). Please send help quickly.
+    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode)[NN11 0GH](postcode). Please send help quickly.
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -108,7 +111,7 @@ nlu:
     - I’ve got [stomach cramps](victim_details) and it’s really painful now. My name is [Francesca Gomez](name)
     - Thank you. My name is [Rodriguez Sebastia](name)
     - My name is [Ben](name) and I’m calling from [Coventry](district)
-    - [Jack Farmer](name). My number is [07427521153](phone_number)
+    - [Jack Farmer](name). My number is [07000000000](phone_number)
     - [Tom](name)
     - [Jack](name)
     - I’m [Saranyan](name).
@@ -116,19 +119,20 @@ nlu:
     - I’ve got [stomach cramps](victim_details) and it’s really painful now. My name is [Francesca Gomez](name).
     - Thank you. [Thomas Ludlow](name).
     - Thank you. My name is [Rodriguez Sebastia](name).
+    - my name is [Jack Farmer](name)
     - [Jack Farmer](name). My number is [07427521153](phone_number)
+    - [Jack Farmer](name)
 - intent: give_phone_number
   examples: |
+    - [07000000000](phone_number)
+    - My number is [07000000000](phone_number)
+    - Thank you. My number is [07000000000](phone_number)
+    - [07000 000000](phone_number)
+    - My number is [07000000000](phone_number).
+    - Thank you. My number is [07000000000](phone_number).
+    - [07000000000](phone_number).
     - [07427521153](phone_number)
     - My number is [07427521153](phone_number)
-    - Thank you. My number is [07427521153](phone_number)
-    - [07946174902](phone_number)
-    - [07402530350](phone_number)
-    - [07402 550350](phone_number)
-    - [07402550350](phone_number)
-    - My number is [07427521153](phone_number).
-    - Thank you. My number is [07427521153](phone_number).
-    - [07427521153](phone_number).
 - intent: answer_yes
   examples: |
     - Yes
@@ -224,8 +228,6 @@ nlu:
     - theft
     - stolen
     - half-inched
-    - took
-    - taken
 - synonym: police
   examples: |
     - police department
@@ -279,6 +281,9 @@ nlu:
     - bleed
     - haemorrhaging
     - haemorrhage
+- regex: phone_number
+  examples: |
+    - \b07[0-9]{3}\s?[0-9]{3}\s?[0-9]{3}\b
 - regex: postcode
   examples: |
     - \b[A-Za-z]{1}[0-9]{1}[A-Za-z]{1}\s?[0-9]{1}[A-Za-z]{2}\b
