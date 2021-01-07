@@ -147,6 +147,7 @@ responses:
 actions:
 - action_init_slots
 - action_manage_first_aid
+- action_save_service_info
 - utter_ask_extra_details
 - utter_ask_form_street_address
 - utter_ask_name

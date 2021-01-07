@@ -20,6 +20,7 @@ stories:
   - active_loop: service_form
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -53,6 +54,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
 
@@ -68,10 +70,11 @@ stories:
   - action: utter_finish
 
 
-# allows bot to have better chance of following triple action
+# allows bot to have better chance of following quad action
 - story: Form Switching Glue 4
   steps:
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
 
@@ -169,6 +172,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -294,6 +298,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -404,6 +409,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -501,6 +507,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -600,6 +607,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -724,6 +732,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -830,6 +839,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -952,6 +962,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -1054,6 +1065,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -1148,6 +1160,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -1268,6 +1281,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -1393,6 +1407,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -1509,6 +1524,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -1612,6 +1628,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -1727,6 +1744,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -1831,6 +1849,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -1979,6 +1998,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -2100,6 +2120,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - action: wrapup_form
   - active_loop: wrapup_form
@@ -2209,6 +2230,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null
@@ -2330,6 +2352,7 @@ stories:
     - requested_slot: null
   - active_loop: null
   - action: utter_dispatch
+  - action: action_save_service_info
   - action: action_manage_first_aid
   - slot_was_set:
     - first_aid: null

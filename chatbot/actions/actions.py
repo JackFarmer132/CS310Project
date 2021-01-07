@@ -49,6 +49,41 @@ class ActionManageFirstAid(Action):
             return [SlotSet("first_aid", None)]
 
 
+class ActionSaveServiceInfo(Action):
+    def name(self):
+        return "action_save_service_info"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: DomainDict) -> Dict[Text, Any]:
+        #collect slot values for storing
+        saved_slots = {}
+
+        saved_slots["service_type"] = tracker.slots.get("service_type")
+        saved_slots["emergency_details"] = tracker.slots.get("emergency_details")
+        saved_slots["is_safe"] = tracker.slots.get("is_safe")
+        saved_slots["any_injured"] = tracker.slots.get("any_injured")
+        saved_slots["victim_details"] = tracker.slots.get("victim_details")
+        saved_slots["street_address"] = tracker.slots.get("street_address")
+        saved_slots["postcode"] = tracker.slots.get("postcode")
+        saved_slots["location_description"] = tracker.slots.get("location_description")
+
+        # open file to write to
+        f = open("savedslots.txt", "w")
+
+        # write info to file
+        for k in saved_slots:
+            val = saved_slots[k]
+            # if slot value is a list, need to convert to string
+            if not isinstance(val, str):
+                val = ", ".join(val)
+
+            string = k + ": " + val + "\n"
+            print(string)
+            f.write(string)
+
+        f.close()
+
+
 class ValidateServiceForm(FormValidationAction):
 
     def name(self) -> Text:
