@@ -61,7 +61,8 @@ class ValidateServiceForm(FormValidationAction):
         hotlist = {"stabbing": ["police", "ambulance"],
                    "fire": ["fire department"],
                    "stroke": ["ambulance"],
-                   "COVID": ["ambulance"]}
+                   "COVID": ["ambulance"],
+                   "dead": ["ambulance"]}
         return hotlist
 
 
@@ -268,6 +269,19 @@ class ValidateServiceForm(FormValidationAction):
 
             # there is someone injured, so save this info
             return_dict["any_injured"] = "Yes"
+            # get current services required and add ambulance if not there
+            services = tracker.slots.get("service_type")
+            # if a string, make it a list
+            if isinstance(services, str):
+                services = [services]
+
+            if ("ambulance" not in services) and (services) :
+                services.append("ambulance")
+                return_dict["service_type"] = services
+                return_dict["service_type_memory"] = services
+            # else if services is empty, add ambulance to it
+            elif not services:
+                services = ["ambulance"]
 
             # prevents current list of victim details from being overwritten
             cur_victim_details = tracker.slots.get("victim_details_memory")

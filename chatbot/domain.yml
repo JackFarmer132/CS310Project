@@ -2,16 +2,16 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- answer_yes
-- answer_no
-- start_form
-- describe_emergency
-- give_name
-- give_phone_number
-- describe_victim
-- give_service
-- answer_unsure
 - give_location
+- give_name
+- give_service
+- describe_victim
+- give_phone_number
+- answer_yes
+- start_form
+- answer_no
+- answer_unsure
+- describe_emergency
 - nlu_fallback
 - give_form_street_address
 - describe_location

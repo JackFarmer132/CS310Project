@@ -24,6 +24,15 @@ nlu:
     - There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the [police](service_type) he will get really angry. Please come quick.
     - an [ambulance](service_type), i guess
     - an [ambulance](service_type) please
+    - I need [police](service_type) and an [ambulance](service_type). My friend has just been [shot](emergency_details) outside of [15 South Molton Street](street_address). My name is [Harry Aust](name) and my contact number is [0740255035,]{"entity": "phone_number", "value": "07402550350"} please come quick! He's [bleeding](victim_details) and I don't know what to do, the postcode is [W1K 5QR](postcode). Hurry!
+    - [police](service_type), please help someone is holding us [hostage](emergency_details)
+    - I need an [ambulance](service_type), my sister just [broke her arm](emergency_details)
+    - an [ambulance](service_type), please. my husband is [acting very confused](victim_details)
+    - an [ambulance](service_type), please. my husband is [acting very confused](emergency_details)
+    - can you send a [policeman]{"entity": "service_type", "value": "police"} to [8 Main Street](street_address) please
+    - i need a [hospital wagon](service_type) right now
+    - i need a [hospital wagon]{"entity": "service_type", "value": "ambulance"}
+    - [police](service_type) and an [ambulance](service_type) please, we just had a [car crash](emergency_details)
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -59,7 +68,17 @@ nlu:
     - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds.
     - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode). Please send help quickly.
     - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode)[NN11 0GH](postcode). Please send help quickly.
-    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode)[NN11 0GH](postcode). Please send help quickly.
+    - there are 4 or 5 guys here with guns, please get here quick
+    - can i get the [police](service_type)? just found my son with some [drugs](emergency_details) and it's not on
+    - just send a couple bobbies over to teach him a lesson, shouldn't be having to but he's having a laught to be honest
+    - help! my son is [choking](emergency_details) on a grape he found and he [can't breathe](victim_details), send a paramedic
+    - help! my son is [choking](emergency_details) on a grape he found and he [can't breathe](victim_details), send a [paramedic](service_type)
+    - oh god it's huge now!
+    - we need [firefighters]{"entity": "service_type", "value": "fire department"} right now, there's a massive [fire](emergency_details) at [Saddington Road](street_address)!
+    - it's spreading across all the houses now, you need to hurry!
+    - someone just barged in and [took](emergency_details) my purse from me, then [ran away](emergency_details)
+    - i'll be at the house, the guy had dark hair and a scar
+    - i think my brother is having a [drug overdose](emergency_details)
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -83,6 +102,15 @@ nlu:
     - I need some advice. I have been feeling very [nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
     - i need an [ambulance](service_type), I tested positive for [Covid-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
     - I need an [ambulance](service_type), I tested positive for [Covid-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, i think he's [dead](victim_details)
+    - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, I think they're [dead](victim_details)
+    - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, I think they might be [dead](victim_details)
+    - she's [crying](victim_details) and [in pain](victim_details), it looks pretty bad
+    - he's [acting strange](victim_details), we've seen the doctor before and think he's getting [dementia](victim_details) but he hasn't been like this before
+    - he looks like he's [in pain](victim_details) please hurry, i don't want him to die!
+    - some have [burns](victim_details) all over, [burnt](victim_details) by the [fire](emergency_details)
+    - they're [seizing up](victim_details) and [not responding](victim_details)
+    - my partner is [dizzy](victim_details) but mostly okay, the other car driver is [bleeding](victim_details) and [can't stand up](victim_details)
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -102,6 +130,18 @@ nlu:
     - We are at [16 Stoneygate Drive](street_address), [Hinckley](district), [LE10 1TD](postcode). He has been living with our family since 2015. I am his grandson, and my parents are at work.
     - it's [L11 1AF](postcode)
     - [4 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode).
+    - we're at the Tesco in [Daventry](district)
+    - [NN11 4BT](postcode)
+    - we're at the park in [Kilsby](district)
+    - we're at the front of the park near the swingset
+    - we're at home, [12 Charter Avenue](street_address), [CV4 8GE](postcode)
+    - we're at [1 Essen Lane](street_address) in [Kilsby](district)
+    - sure, it's [CV23 8XQ](postcode)
+    - [23 Frederick Street](street_address), [B1 3HR](postcode)
+    - the postcodes [le12 8th](postcode)
+    - we're at [11 Campbell Avenue](street_address), postcode is [LE48HD](postcode) I think
+    - we're on [Cold Overton Road](street_address) i think
+    - we've blocked up the road a bit but you should get here okay. the postcode is [LE15 6NU](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -122,6 +162,14 @@ nlu:
     - my name is [Jack Farmer](name)
     - [Jack Farmer](name). My number is [07427521153](phone_number)
     - [Jack Farmer](name)
+    - it's [Judy Harolds](name)
+    - my name's [Ben Abbis](name)
+    - [Don Hughes](name)
+    - [Julie](name)
+    - [Susie Evans](name)
+    - [Aaron Hardwick](name)
+    - [Katie Price](name)
+    - [Mark Pask](name)
 - intent: give_phone_number
   examples: |
     - [07000000000](phone_number)
@@ -133,6 +181,12 @@ nlu:
     - [07000000000](phone_number).
     - [07427521153](phone_number)
     - My number is [07427521153](phone_number)
+    - [07406 342110](phone_number)
+    - it's [07502 660480](phone_number)
+    - yeah it's [07844 861 433](phone_number)
+    - my phone number is [07884 249687](phone_number)
+    - [07123 564 222](phone_number)
+    - it's [07881 112 234](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -158,6 +212,16 @@ nlu:
     - yes
     - yeah, my family and I are all outside
     - Yes we will do thanks.
+    - yeah we're inside now but he's in a lot of [pain](victim_details), send someone!
+    - I do a bit, yeah
+    - someone here probably does, yeah
+    - she does but she can't really do anything right now
+    - don't know about my son's smackhead friends but yeah he's home with me and his mum
+    - i have medical training, yes
+    - yeah I got away from it, but there are people still around
+    - there are some people tending to the [burned](victim_details) people, yeah
+    - yeah i'm okay now
+    - yeah we pulled over
 - intent: answer_no
   examples: |
     - No
@@ -195,6 +259,14 @@ nlu:
     - i don't know exactly what it is, sorry. Just near [Horsenden Hill](street_address)
     - No that’s it, but please get someone here quickly, thanks.
     - no, we're okay
+    - no, I'm hiding right now but they might find me
+    - nah
+    - that's all, thanks
+    - we don't!
+    - you don't need that! just hurry!
+    - a bit of a scratch but nothing serious
+    - I'd rather not say
+    - not sure, I can try and find out
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -215,6 +287,31 @@ nlu:
     - I don’t know, someone just ran out of the building now and he seems hurt. I will go and ask him if there’s anyone else inside.
     - i'm not sure
     - Not that I know of, but there might be.
+    - I don't know how long he has, please be quick
+    - sorry i don't know it
+    - I don't know that!
+    - i don't know it, and my phone was in my purse
+    - i haven't got a clue
+- synonym: '07402550350'
+  examples: |
+    - 0740255035,
+- synonym: police
+  examples: |
+    - policeman
+    - police department
+    - cops
+    - police officer
+    - police officers
+    - law enforcement
+    - police force
+    - policewoman
+- synonym: ambulance
+  examples: |
+    - hospital wagon
+    - ambulance
+    - EMS
+    - ambulance service
+    - paramedic
 - synonym: stabbing
   examples: |
     - stabbed
@@ -228,39 +325,33 @@ nlu:
     - theft
     - stolen
     - half-inched
-- synonym: police
-  examples: |
-    - police department
-    - cops
-    - police officer
-    - police officers
-    - law enforcement
-    - police force
-    - policeman
-    - policewoman
-- synonym: ambulance
-  examples: |
-    - ambulance
-    - EMS
-    - hospital wagon
-    - ambulance service
+    - mugged
+    - took
 - synonym: fire department
   examples: |
+    - firefighters
     - fire service
     - fire brigade
     - firemen
+    - fireman
     - firewomen
-    - firefighters
+    - firewoman
     - fire fighters
+    - fire truck
 - synonym: shooting
   examples: |
-    - shooting
     - shot
+    - shooting
     - shoot
     - pistol
     - gun
     - machine gun
     - bullet
+- synonym: burns
+  examples: |
+    - burns
+    - burnt
+    - burned
 - synonym: burglary
   examples: |
     - burgled
