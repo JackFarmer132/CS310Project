@@ -23,4 +23,5 @@ urlpatterns = [
     path('', home_view, name='home'),
     path('about/', about_view, name='about'),
     path('tinymce/', include('tinymce.urls')),
+    path('my_app/', include('my_app.urls'))
 ]
