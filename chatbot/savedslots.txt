@@ -1,8 +1,8 @@
-service_type: police, ambulance
-emergency_details: stabbing, Falcon Castle
+service_type: fire department
+emergency_details: fire
 is_safe: Yes
-any_injured: Yes
-victim_details: bleeding, bleeding, in pain
-street_address: 4 Horncastle close
-postcode: NN11 0GH
+any_injured: Unsure
+victim_details: No Victim
+street_address: my house
+postcode: nn11 0gh
 location_description: Not Needed

@@ -5,9 +5,7 @@ nlu:
     - start_bot
 - intent: start_form
   examples: |
-    - begin_form
-    - begin
-    - BEGIN
+    - ___
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
@@ -33,6 +31,12 @@ nlu:
     - i need a [hospital wagon](service_type) right now
     - i need a [hospital wagon]{"entity": "service_type", "value": "ambulance"}
     - [police](service_type) and an [ambulance](service_type) please, we just had a [car crash](emergency_details)
+    - [Police](service_type)
+    - [ambulance](service_type)
+    - please come quick
+    - [fire engine](service_type)
+    - I need an [ambulance](service_type)
+    - i need a [fire engine]{"entity": "service_type", "value": "fire department"}
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -79,6 +83,14 @@ nlu:
     - someone just barged in and [took](emergency_details) my purse from me, then [ran away](emergency_details)
     - i'll be at the house, the guy had dark hair and a scar
     - i think my brother is having a [drug overdose](emergency_details)
+    - someone is trying to [break into the house](emergency_details)
+    - he has a gun
+    - someone is having an [alergic reaction](emergency_details)
+    - there's a [fire](emergency_details) in my house
+    - there's lots of smoke
+    - someone has a [broken leg](emergency_details)
+    - there's a [fire](emergency_details) in the garden
+    - there's a [fire](emergency_details)
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -111,6 +123,9 @@ nlu:
     - some have [burns](victim_details) all over, [burnt](victim_details) by the [fire](emergency_details)
     - they're [seizing up](victim_details) and [not responding](victim_details)
     - my partner is [dizzy](victim_details) but mostly okay, the other car driver is [bleeding](victim_details) and [can't stand up](victim_details)
+    - they're having [difficulty breathing](victim_details)
+    - they're [unconscious](victim_details) currently
+    - he's [bleeding](victim_details) a lot
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -142,6 +157,13 @@ nlu:
     - we're at [11 Campbell Avenue](street_address), postcode is [LE48HD](postcode) I think
     - we're on [Cold Overton Road](street_address) i think
     - we've blocked up the road a bit but you should get here okay. the postcode is [LE15 6NU](postcode)
+    - [4 Snowford Close](street_address)
+    - [b90 1da](postcode)
+    - my house is at [48 Ferndale Park](street_address), [dy9 0rb](postcode)
+    - we're in a field
+    - England
+    - my house
+    - [nn11 0gh](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -170,6 +192,12 @@ nlu:
     - [Aaron Hardwick](name)
     - [Katie Price](name)
     - [Mark Pask](name)
+    - [julie](name)
+    - [Matty Carter](name)
+    - [Hillary Smith](name)
+    - [alice](name)
+    - [alice](name)
+    - my name is [alice](name)
 - intent: give_phone_number
   examples: |
     - [07000000000](phone_number)
@@ -187,6 +215,8 @@ nlu:
     - my phone number is [07884 249687](phone_number)
     - [07123 564 222](phone_number)
     - it's [07881 112 234](phone_number)
+    - [07882 481625](phone_number)
+    - [07823 462 111](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -222,6 +252,7 @@ nlu:
     - there are some people tending to the [burned](victim_details) people, yeah
     - yeah i'm okay now
     - yeah we pulled over
+    - i used to be a nurse
 - intent: answer_no
   examples: |
     - No
@@ -267,6 +298,10 @@ nlu:
     - a bit of a scratch but nothing serious
     - I'd rather not say
     - not sure, I can try and find out
+    - not yet
+    - we don't, no
+    - no i'm still inside
+    - no, but it's getting hard to breath
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -292,6 +327,8 @@ nlu:
     - I don't know that!
     - i don't know it, and my phone was in my purse
     - i haven't got a clue
+    - i don't know it
+    - not that I know of
 - synonym: '07402550350'
   examples: |
     - 0740255035,
@@ -338,6 +375,7 @@ nlu:
     - firewoman
     - fire fighters
     - fire truck
+    - fire engine
 - synonym: shooting
   examples: |
     - shot
