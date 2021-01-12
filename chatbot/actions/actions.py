@@ -138,9 +138,14 @@ class ActionGenerateReport(Action):
             if dict['event'] == "user":
                 speaker = "User"
                 text = dict['text'].capitalize()
-                transcript += speaker + ": " + text + "\n"
+                # if bot was restarted, ignore what has been done so far
+                if text == "/restart":
+                    transcript = ""
+                else:
+                    transcript += speaker + ": " + text + "\n"
             elif dict['event'] == "bot":
                 speaker = "Whitehall"
+                text = dict['text']
                 transcript += speaker + ": " + text + "\n"
 
         data.append(["Transcript", transcript])
@@ -153,9 +158,10 @@ class ActionGenerateReport(Action):
         from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
         from reportlab.lib.pagesizes import letter
         from reportlab.lib import colors
+        from reportlab.lib.units import inch
 
         pdf = SimpleDocTemplate("report.pdf", pagesize=letter)
-        table = Table(data)
+        table = Table(data, colWidths=[1.9*inch] * 5)
         style = TableStyle([
             ('BACKGROUND', (0,0), (-1,0), colors.grey),
             ('TEXTCOLOUR', (0,0), (-1,0), colors.whitesmoke),
