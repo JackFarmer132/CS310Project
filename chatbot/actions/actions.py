@@ -55,17 +55,18 @@ class ActionSaveServiceInfo(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: DomainDict) -> Dict[Text, Any]:
+        print("running service things")
         #collect slot values for storing
         saved_slots = {}
 
-        saved_slots["service_type"] = tracker.slots.get("service_type")
-        saved_slots["emergency_details"] = tracker.slots.get("emergency_details")
-        saved_slots["is_safe"] = tracker.slots.get("is_safe")
-        saved_slots["any_injured"] = tracker.slots.get("any_injured")
-        saved_slots["victim_details"] = tracker.slots.get("victim_details")
-        saved_slots["street_address"] = tracker.slots.get("street_address")
-        saved_slots["postcode"] = tracker.slots.get("postcode")
-        saved_slots["location_description"] = tracker.slots.get("location_description")
+        saved_slots["Requested Services"] = tracker.slots.get("service_type")
+        saved_slots["Emergency Details"] = tracker.slots.get("emergency_details")
+        saved_slots["Safe?"] = tracker.slots.get("is_safe")
+        saved_slots["Someone(s) Injured"] = tracker.slots.get("any_injured")
+        saved_slots["Victim Details"] = tracker.slots.get("victim_details")
+        saved_slots["Street Address"] = tracker.slots.get("street_address")
+        saved_slots["Postcode"] = tracker.slots.get("postcode")
+        saved_slots["Location Description"] = tracker.slots.get("location_description")
 
         # open file to write to
         f = open("savedslots.txt", "w")
@@ -73,15 +74,115 @@ class ActionSaveServiceInfo(Action):
         # write info to file
         for k in saved_slots:
             val = saved_slots[k]
-            # if slot value is a list, need to convert to string
-            if not isinstance(val, str):
-                val = ", ".join(val)
+            if val:
+                # if slot value is a list, need to convert to string
+                if not isinstance(val, str):
+                    val = ", ".join(val)
 
-            string = k + ": " + val + "\n"
-            print(string)
-            f.write(string)
+                string = k + ": " + val + "\n"
+                f.write(string)
 
         f.close()
+
+
+class ActionSaveWrapupInfo(Action):
+    def name(self):
+        return "action_save_wrapup_info"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: DomainDict) -> Dict[Text, Any]:
+        print("running wrapup things")
+        #collect slot values for storing
+        saved_slots = {}
+
+        saved_slots["First Aid Knowledge"] = tracker.slots.get("first_aid")
+        saved_slots["Name"] = tracker.slots.get("name")
+        saved_slots["Phone Number"] = tracker.slots.get("phone_number")
+        saved_slots["Extra Details"] = tracker.slots.get("extra_details")
+
+        # open file to write to
+        f = open("savedslots.txt", "a")
+
+        # write info to file
+        for k in saved_slots:
+            val = saved_slots[k]
+            if val:
+                string = k + ": " + val + "\n"
+                f.write(string)
+
+        f.close()
+
+
+class ActionGenerateReport(Action):
+    def name(self):
+        return "action_generate_report"
+
+    def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
+            domain: DomainDict) -> Dict[Text, Any]:
+
+        data = [["Slot", "User Response"]]
+
+        # open file to write to
+        f = open("savedslots.txt", "r")
+
+        # go through text file and get the saved information
+        for l in f:
+            slot_name = l[0:(l.find(":"))]
+            slot_val = (l[(l.find(":")+2):].lower()).capitalize()
+
+            data.append([slot_name, slot_val])
+
+        # get transcript of whole conversation
+        transcript = ""
+        for dict in tracker.events:
+            if dict['event'] == "user":
+                speaker = "User"
+                text = dict['text'].capitalize()
+                transcript += speaker + ": " + text + "\n"
+            elif dict['event'] == "bot":
+                speaker = "Whitehall"
+                transcript += speaker + ": " + text + "\n"
+
+        data.append(["Transcript", transcript])
+
+        self.make_pdf(data)
+
+    # uses data from run to make a table in a pdf
+    def make_pdf(self, data):
+
+        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+        from reportlab.lib.pagesizes import letter
+        from reportlab.lib import colors
+
+        pdf = SimpleDocTemplate("report.pdf", pagesize=letter)
+        table = Table(data)
+        style = TableStyle([
+            ('BACKGROUND', (0,0), (-1,0), colors.grey),
+            ('TEXTCOLOUR', (0,0), (-1,0), colors.whitesmoke),
+            ('ALLIGN', (0,0), (-1,0), 'CENTER'),
+        ])
+        table.setStyle(style)
+
+        # alternating row colours
+        row_num = len(data)
+        for i in range(1, row_num):
+            if (i % 2) == 0:
+                ts = TableStyle(
+                    [('BACKGROUND', (0,i), (-1,i), colors.lightgrey)]
+                )
+                table.setStyle(ts)
+
+        # add borders
+        ts = TableStyle([
+            ('BOX', (0,0), (-1,-1), 1, colors.black),
+            ('GRID', (0,0), (-1,-1), 1, colors.black),
+        ])
+        table.setStyle(ts)
+
+        elements = []
+        elements.append(table)
+
+        pdf.build(elements)
 
 
 class ValidateServiceForm(FormValidationAction):

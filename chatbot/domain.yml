@@ -147,6 +147,8 @@ actions:
 - action_init_slots
 - action_manage_first_aid
 - action_save_service_info
+- action_save_wrapup_info
+- action_generate_report
 - utter_ask_extra_details
 - utter_ask_form_street_address
 - utter_ask_name

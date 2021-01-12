@@ -2,3 +2,5 @@ rasa==2.0.3
 typing_extensions==3.7.4.3
 django==3.1.4
 django-tinymce4-lite
+PyPDF2==1.26.0
+reportlab==3.5.59
