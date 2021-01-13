@@ -55,7 +55,6 @@ class ActionSaveServiceInfo(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: DomainDict) -> Dict[Text, Any]:
-        print("running service things")
         #collect slot values for storing
         saved_slots = {}
 
@@ -91,7 +90,6 @@ class ActionSaveWrapupInfo(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: DomainDict) -> Dict[Text, Any]:
-        print("running wrapup things")
         #collect slot values for storing
         saved_slots = {}
 
@@ -119,8 +117,18 @@ class ActionGenerateReport(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: DomainDict) -> Dict[Text, Any]:
+        # needed for allowing text to wrap in the report table
+        from reportlab.platypus import Paragraph
+        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+        from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
-        data = [["Slot", "User Response"]]
+        styles = getSampleStyleSheet()
+        headingStyle = ParagraphStyle(name="left", alignment=TA_CENTER, fontSize=13, leading=10)
+
+        data = [
+            [Paragraph("<b>Slot</b>", headingStyle),
+             Paragraph("<b>User Response</b>", headingStyle)]
+        ]
 
         # open file to write to
         f = open("savedslots.txt", "r")
@@ -129,6 +137,8 @@ class ActionGenerateReport(Action):
         for l in f:
             slot_name = l[0:(l.find(":"))]
             slot_val = (l[(l.find(":")+2):].lower()).capitalize()
+            slot_name = Paragraph(("<b>" + slot_name + "</b>"), styles['Normal'])
+            slot_val = Paragraph(slot_val, styles['Normal'])
 
             data.append([slot_name, slot_val])
 
@@ -136,19 +146,20 @@ class ActionGenerateReport(Action):
         transcript = ""
         for dict in tracker.events:
             if dict['event'] == "user":
-                speaker = "User"
+                speaker = "<b>User</b>"
                 text = dict['text'].capitalize()
                 # if bot was restarted, ignore what has been done so far
                 if text == "/restart":
                     transcript = ""
                 else:
-                    transcript += speaker + ": " + text + "\n"
+                    transcript += speaker + ": " + text + "<br/>"
             elif dict['event'] == "bot":
-                speaker = "Whitehall"
+                speaker = "<b>Whitehall</b>"
                 text = dict['text']
-                transcript += speaker + ": " + text + "\n"
+                transcript += speaker + ": " + text + "<br/>"
 
-        data.append(["Transcript", transcript])
+        transcript = Paragraph(transcript, styles['Normal'])
+        data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
 
         self.make_pdf(data)
 
@@ -161,11 +172,13 @@ class ActionGenerateReport(Action):
         from reportlab.lib.units import inch
 
         pdf = SimpleDocTemplate("report.pdf", pagesize=letter)
-        table = Table(data, colWidths=[1.9*inch] * 5)
+        table = Table(data, colWidths=(2*inch, 5*inch))
         style = TableStyle([
-            ('BACKGROUND', (0,0), (-1,0), colors.grey),
-            ('TEXTCOLOUR', (0,0), (-1,0), colors.whitesmoke),
-            ('ALLIGN', (0,0), (-1,0), 'CENTER'),
+            ('BACKGROUND', (0,0), (-1,0), colors.darkgrey),
+            ('TEXTCOLOR', (0,0), (-1,0), colors.white),
+            ('BOTTOMPADDING', (0,0), (-1,0), 10),
+            ('VALIGN', (0, 1), (0, -1), 'TOP'),
+
         ])
         table.setStyle(style)
 
