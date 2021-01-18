@@ -8,6 +8,16 @@ from rasa_sdk import Tracker, FormValidationAction
 from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 
+import sqlite3
+
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.lib.pagesizes import letter
+from reportlab.lib import colors
+from reportlab.lib.units import inch
+from reportlab.platypus import Paragraph
+from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
+from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
+
 # for api calls
 import urllib.request as req
 import json
@@ -60,28 +70,75 @@ class ActionSaveServiceInfo(Action):
 
         saved_slots["Requested Services"] = tracker.slots.get("service_type")
         saved_slots["Emergency Details"] = tracker.slots.get("emergency_details")
-        saved_slots["Safe?"] = tracker.slots.get("is_safe")
-        saved_slots["Someone(s) Injured"] = tracker.slots.get("any_injured")
+        saved_slots["Safe"] = tracker.slots.get("is_safe")
+        saved_slots["Someone Injured"] = tracker.slots.get("any_injured")
         saved_slots["Victim Details"] = tracker.slots.get("victim_details")
         saved_slots["Street Address"] = tracker.slots.get("street_address")
         saved_slots["Postcode"] = tracker.slots.get("postcode")
         saved_slots["Location Description"] = tracker.slots.get("location_description")
+        saved_slots["District"] = tracker.slots.get("district")
+        if not saved_slots["District"]:
+            saved_slots["District"] = "Unknown"
 
-        # open file to write to
-        f = open("savedslots.txt", "w")
-
-        # write info to file
+        # turn any lists into readable strings
         for k in saved_slots:
             val = saved_slots[k]
             if val:
                 # if slot value is a list, need to convert to string
                 if not isinstance(val, str):
                     val = ", ".join(val)
+                    saved_slots[k] = val
 
-                string = k + ": " + val + "\n"
-                f.write(string)
+        # # file-based implementation
+        # # open file to write to
+        # f = open("savedslots.txt", "w")
+        # # write info to file
+        # for k in saved_slots:
+        #     val = saved_slots[k]
+        #     if val:
+        #         # if slot value is a list, need to convert to string
+        #         if not isinstance(val, str):
+        #             val = ", ".join(val)
+        #         string = k + ": " + val + "\n"
+        #         f.write(string)
+        # f.close()
 
-        f.close()
+        # database-based implementation
+        conn = sqlite3.connect('conversations.db')
+        c = conn.cursor()
+
+        # initialise query
+        c.execute("""INSERT INTO conversations(
+                    Requested_Services,
+                    Emergency_Details,
+                    Safe,
+                    Someone_Injured,
+                    Victim_Details,
+                    Street_Address,
+                    Postcode,
+                    District,
+                    Location_Description,
+                    First_Aid_Knowledge,
+                    Name,
+                    Phone_Number,
+                    Extra_Details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (str(saved_slots["Requested Services"]),
+                    str(saved_slots["Emergency Details"]),
+                    str(saved_slots["Safe"]),
+                    str(saved_slots["Someone Injured"]),
+                    str(saved_slots["Victim Details"]),
+                    str(saved_slots["Street Address"]),
+                    str(saved_slots["Postcode"]),
+                    str(saved_slots["District"]),
+                    str(saved_slots["Location Description"]),
+                    "Unknown",
+                    "Unknown",
+                    "Unknown",
+                    "Unknown"))
+
+        # run insert query
+        conn.commit()
+        conn.close()
 
 
 class ActionSaveWrapupInfo(Action):
@@ -98,17 +155,42 @@ class ActionSaveWrapupInfo(Action):
         saved_slots["Phone Number"] = tracker.slots.get("phone_number")
         saved_slots["Extra Details"] = tracker.slots.get("extra_details")
 
-        # open file to write to
-        f = open("savedslots.txt", "a")
+        # # file-based implementation
+        # # open file to write to
+        # f = open("savedslots.txt", "a")
+        # # write info to file
+        # for k in saved_slots:
+        #     val = saved_slots[k]
+        #     if val:
+        #         string = k + ": " + val + "\n"
+        #         f.write(string)
+        # f.close()
 
-        # write info to file
-        for k in saved_slots:
-            val = saved_slots[k]
-            if val:
-                string = k + ": " + val + "\n"
-                f.write(string)
+        # database-based implementation
+        conn = sqlite3.connect('conversations.db')
+        c = conn.cursor()
 
-        f.close()
+        # get id of the last inserted row
+        c.execute("""SELECT * FROM conversations
+                    ORDER BY id DESC
+                    LIMIT 1""")
+        cur_id = c.fetchone()[0]
+
+        # update row with new values
+        c.execute("""UPDATE conversations SET
+                    First_Aid_Knowledge=?,
+                    Name=?,
+                    Phone_Number=?,
+                    Extra_Details=? WHERE id=?""",
+                    (str(saved_slots["First Aid Knowledge"]),
+                    str(saved_slots["Name"]),
+                    str(saved_slots["Phone Number"]),
+                    str(saved_slots["Extra Details"]),
+                    int(cur_id)))
+
+        # run update query
+        conn.commit()
+        conn.close()
 
 
 class ActionGenerateReport(Action):
@@ -117,10 +199,6 @@ class ActionGenerateReport(Action):
 
     def run(self, dispatcher: CollectingDispatcher, tracker: Tracker,
             domain: DomainDict) -> Dict[Text, Any]:
-        # needed for allowing text to wrap in the report table
-        from reportlab.platypus import Paragraph
-        from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
-        from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 
         styles = getSampleStyleSheet()
         headingStyle = ParagraphStyle(name="left", alignment=TA_CENTER, fontSize=13, leading=10)
@@ -130,17 +208,59 @@ class ActionGenerateReport(Action):
              Paragraph("<b>User Response</b>", headingStyle)]
         ]
 
-        # open file to write to
-        f = open("savedslots.txt", "r")
+        # database-based implementation
+        conn = sqlite3.connect('conversations.db')
+        c = conn.cursor()
 
-        # go through text file and get the saved information
-        for l in f:
-            slot_name = l[0:(l.find(":"))]
-            slot_val = (l[(l.find(":")+2):].lower()).capitalize()
-            slot_name = Paragraph(("<b>" + slot_name + "</b>"), styles['Normal'])
-            slot_val = Paragraph(slot_val, styles['Normal'])
+        # get id of the last inserted row
+        c.execute("""SELECT * FROM conversations
+                    ORDER BY id DESC
+                    LIMIT 1""")
+        cur_id = c.fetchone()[0]
 
-            data.append([slot_name, slot_val])
+        # get the appropriate row
+        c.execute("SELECT * FROM conversations WHERE id=?", (int(cur_id),))
+
+        # link data from db into array for pdf
+        for i, val in enumerate(c.fetchone()):
+            if i == 1:
+                data.append(self.prepare_report("Requested Services", val))
+            elif i == 2:
+                data.append(self.prepare_report("Emergency Details", val))
+            elif i == 3:
+                data.append(self.prepare_report("Safe", val))
+            elif i == 4:
+                data.append(self.prepare_report("Someone Injured", val))
+            elif i == 5:
+                data.append(self.prepare_report("Victim Details", val))
+            elif i == 6:
+                data.append(self.prepare_report("Street Address", val))
+            elif i == 7:
+                data.append(self.prepare_report("Postcode", val))
+            elif i == 8:
+                data.append(self.prepare_report("District", val))
+            elif i == 9:
+                data.append(self.prepare_report("Location Description", val))
+            elif i == 10:
+                data.append(self.prepare_report("First Aid Knowledge", val))
+            elif i == 11:
+                data.append(self.prepare_report("Name", val))
+            elif i == 12:
+                data.append(self.prepare_report("Phone Number", val))
+            elif i == 13:
+                data.append(self.prepare_report("Extra Details", val))
+
+        # # file-based implementation
+        # # open file to write to
+        # f = open("savedslots.txt", "r")
+        # # go through text file and get the saved information
+        # for l in f:
+        #     slot_name = l[0:(l.find(":"))]
+        #     slot_val = (l[(l.find(":")+2):].lower()).capitalize()
+        #     slot_name = Paragraph(("<b>" + slot_name + "</b>"), styles['Normal'])
+        #     slot_val = Paragraph(slot_val, styles['Normal'])
+        #
+        #     data.append([slot_name, slot_val])
 
         # get transcript of whole conversation
         transcript = ""
@@ -163,13 +283,21 @@ class ActionGenerateReport(Action):
 
         self.make_pdf(data)
 
+
+    # formats the text correctly for insertion into pdf report
+    def prepare_report(self, slot_name, slot_val):
+
+        styles = getSampleStyleSheet()
+
+        slot_val = (slot_val.lower()).capitalize()
+        slot_name = Paragraph(("<b>" + slot_name + "</b>"), styles['Normal'])
+        slot_val = Paragraph(slot_val, styles['Normal'])
+
+        return [slot_name, slot_val]
+
+
     # uses data from run to make a table in a pdf
     def make_pdf(self, data):
-
-        from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
-        from reportlab.lib.pagesizes import letter
-        from reportlab.lib import colors
-        from reportlab.lib.units import inch
 
         pdf = SimpleDocTemplate("report.pdf", pagesize=letter)
         table = Table(data, colWidths=(2*inch, 5*inch))
