@@ -111,7 +111,8 @@ class ActionSaveServiceInfo(Action):
                     First_Aid_Knowledge,
                     Name,
                     Phone_Number,
-                    Extra_Details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    Extra_Details,
+                    Report) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
                     (str(saved_slots["Requested Services"]),
                     str(saved_slots["Emergency Details"]),
                     str(saved_slots["Safe"]),
@@ -124,7 +125,8 @@ class ActionSaveServiceInfo(Action):
                     "Unknown",
                     "Unknown",
                     "Unknown",
-                    "Unknown"))
+                    "Unknown",
+                    "-"))
 
         # run insert query
         conn.commit()
@@ -254,7 +256,16 @@ class ActionGenerateReport(Action):
         transcript = Paragraph(transcript, styles['Normal'])
         data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
 
-        self.make_pdf(data, cur_id)
+        pdf_path = self.make_pdf(data, cur_id)
+
+        c.execute("""UPDATE conversations SET
+                    Report=?  WHERE id=?""",
+                    (str(pdf_path),
+                    int(cur_id)))
+
+        # run update query
+        conn.commit()
+        conn.close()
 
 
     # formats the text correctly for insertion into pdf report
@@ -308,6 +319,8 @@ class ActionGenerateReport(Action):
 
         pdf.build(elements)
 
+        return file_name
+
 
 class ValidateServiceForm(FormValidationAction):
 
@@ -328,9 +341,6 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_service_type(self, slot_value: Any, dispatcher: CollectingDispatcher,
                               tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-        # if empty then no valid service type
-        if not slot_value:
-            return {"service_type": None}
 
         return_dict = {}
 
@@ -384,7 +394,7 @@ class ValidateServiceForm(FormValidationAction):
                                    tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
         # if empty then no valid set of emergency details
         if not slot_value:
-          return {"emergency_details": None}
+            return {"emergency_details": None}
 
         return_dict = {}
 
@@ -469,6 +479,7 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if victim safe, continue
         if (tracker.latest_message['intent'].get('name') == "answer_yes"):
             return {"is_safe": "Yes"}
@@ -520,6 +531,7 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_victim_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if only being initialised, then accept it
         if slot_value == "No Victim":
             return {"victim_details": slot_value}
@@ -567,6 +579,7 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_street_address(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if street address is given, don't ask again
         return_dict = {}
         return_dict["street_address"] = slot_value
@@ -618,12 +631,14 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_location_description(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # just save as the user textual input since is a description for humans
         return {"location_description": slot_value}
 
 
     def validate_postcode(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if street address is given, don't ask again
         return_dict = {}
 
@@ -716,6 +731,7 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_first_aid(self, slot_value: Any, dispatcher: CollectingDispatcher,
                            tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if being initialised, just set as slot value
         if slot_value == "Not Relevant":
             return {"first_aid": slot_value}
@@ -776,6 +792,7 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if there was only 1 classifier that found a name
         if isinstance(slot_value, str):
             name = slot_value
@@ -793,6 +810,7 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_form_name(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # just save as the user textual input since is a description for humans
         return {"name": slot_value,
                 "form_name": slot_value}
@@ -800,6 +818,7 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_phone_number(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                 tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # if there was only 1 classifier that found a phone number
         if isinstance(slot_value, str):
             phone_number = slot_value
@@ -817,6 +836,7 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_form_phone_number(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # just save as the user textual input since is a description for humans
         return {"phone_number": slot_value,
                 "form_phone_number": slot_value}
@@ -824,5 +844,6 @@ class ValidateWrapupForm(FormValidationAction):
 
     def validate_extra_details(self, slot_value: Any, dispatcher: CollectingDispatcher,
                                       tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
+
         # just save as the user textual input since is a description for humans
         return {"extra_details": slot_value}

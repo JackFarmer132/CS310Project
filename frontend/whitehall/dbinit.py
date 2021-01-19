@@ -1,12 +1,6 @@
 import sqlite3
-import pathlib
 
-path = str(pathlib.Path(__file__).parent.absolute().parent.absolute())
-path += "/frontend/whitehall/conversations.db"
-
-print(path)
-
-conn = sqlite3.connect(path)
+conn = sqlite3.connect('conversations.db')
 
 c = conn.cursor()
 
@@ -25,53 +19,45 @@ c = conn.cursor()
 #             First_Aid_Knowledge text,
 #             Name text,
 #             Phone_Number text,
-#             Extra_Details text
+#             Extra_Details text,
+#             Report text
 #             )""")
 
 
-# # clears table
-# c.execute("DELETE FROM conversations WHERE id>0")
+# clears table
+c.execute("DELETE FROM conversations WHERE id>0")
 
 
-# sample insert for current table
-print(c.execute("""INSERT INTO conversations(
-            Requested_Services,
-            Emergency_Details,
-            Safe,
-            Someone_Injured,
-            Victim_Details,
-            Street_Address,
-            Postcode,
-            District,
-            Location_Description,
-            First_Aid_Knowledge,
-            Name,
-            Phone_Number,
-            Extra_Details) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
-            ("police, ambulance",
-            "stabbing",
-            "No",
-            "Yes",
-            "bleeding",
-            "Unknown",
-            "Unknown",
-            "Unknown",
-            "there's a tree",
-            "Yes",
-            "Jack",
-            "I'd rather not",
-            "nope")).lastrowid)
-
-cur_id = 10
-# select everything from table
-c.execute("SELECT * FROM conversations WHERE id=?", (int(cur_id),))
-
-# print all entries
-for i, val in enumerate(c.fetchone()):
-    print(i)
-    print(val)
-print(c.fetchone())
-
+# # sample insert for current table
+# print(c.execute("""INSERT INTO conversations(
+#             Requested_Services,
+#             Emergency_Details,
+#             Safe,
+#             Someone_Injured,
+#             Victim_Details,
+#             Street_Address,
+#             Postcode,
+#             District,
+#             Location_Description,
+#             First_Aid_Knowledge,
+#             Name,
+#             Phone_Number,
+#             Extra_Details,
+#             Report) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+#             ("police, ambulance",
+#             "stabbing",
+#             "No",
+#             "Yes",
+#             "bleeding",
+#             "Unknown",
+#             "Unknown",
+#             "Unknown",
+#             "there's a tree",
+#             "Yes",
+#             "Jack",
+#             "I'd rather not",
+#             "nope",
+#             "-")).lastrowid)
 
 conn.commit()
 conn.close()

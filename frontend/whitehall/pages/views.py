@@ -52,6 +52,8 @@ def about_view(request, *args, **kwargs):
                 db_data.append(["Phone Number", val])
             elif i == 13:
                 db_data.append(["Extra Details", val])
+            elif i == 14:
+                db_data.append(["Report", val])
         cur_entry.append(db_data)
 
     my_context = {
