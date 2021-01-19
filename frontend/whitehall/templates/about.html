@@ -12,8 +12,16 @@
     </ul>
 
     <ul>
-        {% for my_sub_item in my_list %}
-            <li>{{ my_sub_item }}</li>
+        {% for entry in cur_entry %}
+            <li>
+            </li>
+            {% for data in entry %}
+                <li>
+                {% for e in data %}
+                    {{ e }}:
+                {% endfor %}
+                </li>
+            {% endfor %}
         {% endfor %}
     </ul>
 

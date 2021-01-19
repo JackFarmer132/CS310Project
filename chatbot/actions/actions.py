@@ -9,6 +9,7 @@ from rasa_sdk.types import DomainDict
 from rasa_sdk.events import SlotSet
 
 import sqlite3
+import pathlib
 
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
 from reportlab.lib.pagesizes import letter
@@ -89,22 +90,11 @@ class ActionSaveServiceInfo(Action):
                     val = ", ".join(val)
                     saved_slots[k] = val
 
-        # # file-based implementation
-        # # open file to write to
-        # f = open("savedslots.txt", "w")
-        # # write info to file
-        # for k in saved_slots:
-        #     val = saved_slots[k]
-        #     if val:
-        #         # if slot value is a list, need to convert to string
-        #         if not isinstance(val, str):
-        #             val = ", ".join(val)
-        #         string = k + ": " + val + "\n"
-        #         f.write(string)
-        # f.close()
+        # get path of database
+        path = str(pathlib.Path(__file__).parent.absolute().parent.absolute().parent.absolute())
+        path += "/frontend/whitehall/conversations.db"
 
-        # database-based implementation
-        conn = sqlite3.connect('conversations.db')
+        conn = sqlite3.connect(path)
         c = conn.cursor()
 
         # initialise query
@@ -155,19 +145,11 @@ class ActionSaveWrapupInfo(Action):
         saved_slots["Phone Number"] = tracker.slots.get("phone_number")
         saved_slots["Extra Details"] = tracker.slots.get("extra_details")
 
-        # # file-based implementation
-        # # open file to write to
-        # f = open("savedslots.txt", "a")
-        # # write info to file
-        # for k in saved_slots:
-        #     val = saved_slots[k]
-        #     if val:
-        #         string = k + ": " + val + "\n"
-        #         f.write(string)
-        # f.close()
+        # get path of database
+        path = str(pathlib.Path(__file__).parent.absolute().parent.absolute().parent.absolute())
+        path += "/frontend/whitehall/conversations.db"
 
-        # database-based implementation
-        conn = sqlite3.connect('conversations.db')
+        conn = sqlite3.connect(path)
         c = conn.cursor()
 
         # get id of the last inserted row
@@ -208,18 +190,21 @@ class ActionGenerateReport(Action):
              Paragraph("<b>User Response</b>", headingStyle)]
         ]
 
-        # database-based implementation
-        conn = sqlite3.connect('conversations.db')
+        # get path of database
+        path = str(pathlib.Path(__file__).parent.absolute().parent.absolute().parent.absolute())
+        path += "/frontend/whitehall/conversations.db"
+
+        conn = sqlite3.connect(path)
         c = conn.cursor()
 
         # get id of the last inserted row
         c.execute("""SELECT * FROM conversations
                     ORDER BY id DESC
                     LIMIT 1""")
-        cur_id = c.fetchone()[0]
+        cur_id = int(c.fetchone()[0])
 
         # get the appropriate row
-        c.execute("SELECT * FROM conversations WHERE id=?", (int(cur_id),))
+        c.execute("SELECT * FROM conversations WHERE id=?", (cur_id,))
 
         # link data from db into array for pdf
         for i, val in enumerate(c.fetchone()):
@@ -250,18 +235,6 @@ class ActionGenerateReport(Action):
             elif i == 13:
                 data.append(self.prepare_report("Extra Details", val))
 
-        # # file-based implementation
-        # # open file to write to
-        # f = open("savedslots.txt", "r")
-        # # go through text file and get the saved information
-        # for l in f:
-        #     slot_name = l[0:(l.find(":"))]
-        #     slot_val = (l[(l.find(":")+2):].lower()).capitalize()
-        #     slot_name = Paragraph(("<b>" + slot_name + "</b>"), styles['Normal'])
-        #     slot_val = Paragraph(slot_val, styles['Normal'])
-        #
-        #     data.append([slot_name, slot_val])
-
         # get transcript of whole conversation
         transcript = ""
         for dict in tracker.events:
@@ -281,7 +254,7 @@ class ActionGenerateReport(Action):
         transcript = Paragraph(transcript, styles['Normal'])
         data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
 
-        self.make_pdf(data)
+        self.make_pdf(data, cur_id)
 
 
     # formats the text correctly for insertion into pdf report
@@ -297,9 +270,13 @@ class ActionGenerateReport(Action):
 
 
     # uses data from run to make a table in a pdf
-    def make_pdf(self, data):
+    def make_pdf(self, data, id):
 
-        pdf = SimpleDocTemplate("report.pdf", pagesize=letter)
+        path = str(pathlib.Path(__file__).parent.absolute().parent.absolute().parent.absolute())
+        path += "/frontend/whitehall/reports/"
+
+        file_name = path + "report_" + str(id) + ".pdf"
+        pdf = SimpleDocTemplate(file_name, pagesize=letter)
         table = Table(data, colWidths=(2*inch, 5*inch))
         style = TableStyle([
             ('BACKGROUND', (0,0), (-1,0), colors.darkgrey),

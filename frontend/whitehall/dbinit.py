@@ -1,9 +1,14 @@
 import sqlite3
+import pathlib
 
-conn = sqlite3.connect('conversations.db')
+path = str(pathlib.Path(__file__).parent.absolute().parent.absolute())
+path += "/frontend/whitehall/conversations.db"
+
+print(path)
+
+conn = sqlite3.connect(path)
 
 c = conn.cursor()
-
 
 # # create table again if ever deleted
 # c.execute("""CREATE TABLE conversations (
