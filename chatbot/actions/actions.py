@@ -239,6 +239,9 @@ class ActionGenerateReport(Action):
 
         # get transcript of whole conversation
         transcript = ""
+        # help eliminate duplicates
+        last = ""
+
         for dict in tracker.events:
             if dict['event'] == "user":
                 speaker = "<b>User</b>"
@@ -246,12 +249,16 @@ class ActionGenerateReport(Action):
                 # if bot was restarted, ignore what has been done so far
                 if text == "/restart":
                     transcript = ""
+                    last = "<b>Whitehall</b>"
                 else:
-                    transcript += speaker + ": " + text + "<br/>"
+                    if not (speaker == last):
+                        transcript += speaker + ": " + text + "<br/>"
+                        last = speaker
             elif dict['event'] == "bot":
                 speaker = "<b>Whitehall</b>"
                 text = dict['text']
                 transcript += speaker + ": " + text + "<br/>"
+                last = speaker
 
         transcript = Paragraph(transcript, styles['Normal'])
         data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
@@ -454,11 +461,15 @@ class ValidateServiceForm(FormValidationAction):
         # remove duplicates
         explicit_service_type = list(dict.fromkeys(explicit_service_type))
 
+        # makes sure it doesn't save [] as the service type value
+        if explicit_service_type == []:
+            explicit_service_type = None
+
         return_dict["service_type"] = explicit_service_type
         return_dict["service_type_memory"] = explicit_service_type
 
         # if ambulance was not requested, no victim
-        if ("ambulance" in explicit_service_type):
+        if (explicit_service_type) and ("ambulance" in explicit_service_type):
             victim_details = tracker.slots.get("victim_details")
             # if bot thought no victim, then wipe slot to allow asking about them
             if victim_details == "No Victim":
@@ -470,7 +481,7 @@ class ValidateServiceForm(FormValidationAction):
         # service is requested
         safe = tracker.slots.get("is_safe")
         # only wipes if not answered yet
-        if ("police" in explicit_service_type or "fire department" in explicit_service_type) and (safe == "Irrelevant"):
+        if (explicit_service_type) and ("police" in explicit_service_type or "fire department" in explicit_service_type) and (safe == "Irrelevant"):
             # wipe slot so bot will now ask about it to fill again
             return_dict["is_safe"] = None
 
@@ -547,7 +558,7 @@ class ValidateServiceForm(FormValidationAction):
             if isinstance(services, str):
                 services = [services]
 
-            if ("ambulance" not in services) and (services) :
+            if (services) and ("ambulance" not in services) :
                 services.append("ambulance")
                 return_dict["service_type"] = services
                 return_dict["service_type_memory"] = services

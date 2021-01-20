@@ -2,16 +2,16 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- start_form
-- describe_emergency
-- give_name
-- answer_no
-- give_location
-- answer_unsure
-- answer_yes
-- give_service
-- describe_victim
 - give_phone_number
+- answer_no
+- start_form
+- give_location
+- describe_victim
+- give_name
+- give_service
+- describe_emergency
+- answer_yes
+- answer_unsure
 - nlu_fallback
 - give_form_street_address
 - stop
@@ -144,11 +144,11 @@ responses:
   utter_unsure:
   - text: Sorry, I didn't understand what you just said, could you please respond to the last question?
 actions:
+- action_generate_report
 - action_init_slots
 - action_manage_first_aid
 - action_save_service_info
 - action_save_wrapup_info
-- action_generate_report
 - utter_ask_extra_details
 - utter_ask_form_street_address
 - utter_ask_name

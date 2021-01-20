@@ -22,7 +22,7 @@ nlu:
     - There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the [police](service_type) he will get really angry. Please come quick.
     - an [ambulance](service_type), i guess
     - an [ambulance](service_type) please
-    - I need [police](service_type) and an [ambulance](service_type). My friend has just been [shot](emergency_details) outside of [15 South Molton Street](street_address). My name is [Harry Aust](name) and my contact number is [0740255035,]{"entity": "phone_number", "value": "07402550350"} please come quick! He's [bleeding](victim_details) and I don't know what to do, the postcode is [W1K 5QR](postcode). Hurry!
+    - I need [police](service_type) and an [ambulance](service_type). My friend has just been [shot](emergency_details) outside of [15 South Molton Street](street_address). My name is [Harry Aust](name) and my contact number is [07402550350]{"entity": "phone_number", "value": "07402550350"} please come quick! He's [bleeding](victim_details) and I don't know what to do, the postcode is [W1K 5QR](postcode). Hurry!
     - [police](service_type), please help someone is holding us [hostage](emergency_details)
     - I need an [ambulance](service_type), my sister just [broke her arm](emergency_details)
     - an [ambulance](service_type), please. my husband is [acting very confused](victim_details)
@@ -37,6 +37,10 @@ nlu:
     - [fire engine](service_type)
     - I need an [ambulance](service_type)
     - i need a [fire engine]{"entity": "service_type", "value": "fire department"}
+    - [police](service_type) please, my friend was just [hit by a car](emergency_details) and they drove off
+    - sorry, [police](service_type)
+    - sorry, [police](service_type) please
+    - help
 - intent: describe_emergency
   examples: |
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
@@ -91,6 +95,16 @@ nlu:
     - someone has a [broken leg](emergency_details)
     - there's a [fire](emergency_details) in the garden
     - there's a [fire](emergency_details)
+    - [Police](service_type) please, someone just [robbed]{"entity": "emergency_details", "value": "theft"} me and [stabbed]{"entity": "emergency_details", "value": "stabbing"} my friend
+    - we'll stay here at the corner, the guy was wearing a red hat so be careful
+    - please hurry, that sod in the car might get away
+    - help
+    - someone [stole]{"entity": "emergency_details", "value": "theft"} my wallet
+    - no but be careful or that guy will steal your wallets too
+    - there's been a [shooting](emergency_details) at [9 Seven Trees Court](street_address), I'm their neighbour. I heard shouting and then [gunfire](emergency_details), I think someone is [injured](victim_details) or even [dead](victim_details). The postcode is [PL4 8PQ](postcode) and my name is [Danny Johnson](name), my number is [07400 554923](phone_number) and you need to send someone please
+    - two people live there, it's been really quiet for a while so be careful
+    - i'm have [stroke](emergency_details)
+    - i am [stroke](emergency_details)
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
@@ -126,6 +140,10 @@ nlu:
     - they're having [difficulty breathing](victim_details)
     - they're [unconscious](victim_details) currently
     - he's [bleeding](victim_details) a lot
+    - They're [bleeding](victim_details) and say they're [in pain](victim_details), they say they're [light-headed](victim_details) too
+    - i think she [broke her leg](emergency_details) and she's [freaking out](victim_details)
+    - i'm [confused](victim_details)
+    - i am [confused](victim_details) please
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -163,7 +181,14 @@ nlu:
     - we're in a field
     - England
     - my house
-    - [nn11 0gh](postcode)
+    - we're on the corner of [Factory Road](street_address), [LE10 0DS](postcode)
+    - we're on the corner of [Iveston Lane](street_address) now, yeah
+    - I'm not sure, street address is [Iveston Lane](street_address) though
+    - i'm at home at [4 Horncastle Close](street_address), [NN11 0GH](postcode)
+    - i live at [73 Ramsey Gardens](street_address)
+    - my postcode for my address is [PL5 3UP](postcode)
+    - my address is [73 Ramsey Gardens](street_address)
+    - my postcode for home is [PL5 3UP](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -196,8 +221,10 @@ nlu:
     - [Matty Carter](name)
     - [Hillary Smith](name)
     - [alice](name)
-    - [alice](name)
     - my name is [alice](name)
+    - my name is [Oliver](name)
+    - [Georgia Harris](name)
+    - my name is [Ronald](name)
 - intent: give_phone_number
   examples: |
     - [07000000000](phone_number)
@@ -217,6 +244,10 @@ nlu:
     - it's [07881 112 234](phone_number)
     - [07882 481625](phone_number)
     - [07823 462 111](phone_number)
+    - my number is [07112 435 646](phone_number)
+    - [07888 124 342](phone_number)
+    - 07111111111111 haha
+    - my number is [07401 222112](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -253,6 +284,12 @@ nlu:
     - yeah i'm okay now
     - yeah we pulled over
     - i used to be a nurse
+    - my friend does but he can't help
+    - yeah, we're at the corner of [Iveston Lane](street_address) now
+    - my friend got her leg under the wheel
+    - i guess
+    - i am yeah, i'm just nextdoor
+    - i do but I can't get over there, I don't think it's safe
 - intent: answer_no
   examples: |
     - No
@@ -302,6 +339,9 @@ nlu:
     - we don't, no
     - no i'm still inside
     - no, but it's getting hard to breath
+    - i don't want to really
+    - i don't want to
+    - n
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -329,6 +369,8 @@ nlu:
     - i haven't got a clue
     - i don't know it
     - not that I know of
+    - We ran away but I don't know
+    - not a clue
 - synonym: '07402550350'
   examples: |
     - 0740255035,
@@ -349,6 +391,18 @@ nlu:
     - EMS
     - ambulance service
     - paramedic
+- synonym: fire department
+  examples: |
+    - fire engine
+    - firefighters
+    - fire service
+    - fire brigade
+    - firemen
+    - fireman
+    - firewomen
+    - firewoman
+    - fire fighters
+    - fire truck
 - synonym: stabbing
   examples: |
     - stabbed
@@ -364,18 +418,6 @@ nlu:
     - half-inched
     - mugged
     - took
-- synonym: fire department
-  examples: |
-    - firefighters
-    - fire service
-    - fire brigade
-    - firemen
-    - fireman
-    - firewomen
-    - firewoman
-    - fire fighters
-    - fire truck
-    - fire engine
 - synonym: shooting
   examples: |
     - shot
