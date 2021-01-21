@@ -2,15 +2,15 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- give_phone_number
-- answer_no
-- start_form
 - give_location
-- describe_victim
-- give_name
-- give_service
-- describe_emergency
+- start_form
 - answer_yes
+- describe_emergency
+- answer_no
+- give_service
+- give_name
+- describe_victim
+- give_phone_number
 - answer_unsure
 - nlu_fallback
 - give_form_street_address
@@ -18,7 +18,6 @@ intents:
 - begin
 entities:
 - district
-- emergency_detail
 - emergency_details
 - name
 - phone_number

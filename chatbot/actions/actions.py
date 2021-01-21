@@ -241,8 +241,8 @@ class ActionGenerateReport(Action):
         transcript = ""
         # help eliminate duplicates
         last = ""
-
-        for dict in tracker.events:
+        print(tracker.events)
+        for i, dict in enumerate(tracker.events):
             if dict['event'] == "user":
                 speaker = "<b>User</b>"
                 text = dict['text'].capitalize()
@@ -253,7 +253,9 @@ class ActionGenerateReport(Action):
                 else:
                     if not (speaker == last):
                         transcript += speaker + ": " + text + "<br/>"
-                        last = speaker
+                        # ensures that duplicates are removed and all user texts added
+                        if (tracker.events[i+1]) and not ((tracker.events[i+1])['event'] == "action_execution_rejected"):
+                            last = speaker
             elif dict['event'] == "bot":
                 speaker = "<b>Whitehall</b>"
                 text = dict['text']

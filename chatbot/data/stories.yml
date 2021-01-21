@@ -3290,366 +3290,641 @@ stories:
   - action: action_save_wrapup_info
   - action: utter_finish
   - action: action_generate_report
-
-
-# difficult user
-- story: Call 28
-  steps:
-  - intent: start_form
-  - action: utter_introduce
-  - action: action_init_slots
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - first_aid: Not Relevant
-  - slot_was_set:
-    - is_safe: Irrelevant
-  - action: service_form
-  - active_loop: service_form
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - is_safe: Irrelevant
-  - slot_was_set:
-    - requested_slot: service_type
-  - intent: describe_emergency
-  - action: service_form
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - service_type:
-      - police
-  - slot_was_set:
-    - service_type:
-      - police
-  - slot_was_set:
-    - service_type_memory:
-      - police
-  - slot_was_set:
-    - is_safe: null
-  - slot_was_set:
-    - requested_slot: emergency_details
-  - intent: answer_no
-  - action: service_form
-  - slot_was_set:
-    - requested_slot: emergency_details
-  - slot_was_set:
-    - emergency_details:
-      - theft
-  - slot_was_set:
-    - emergency_details: theft
-  - slot_was_set:
-    - emergency_details_memory: theft
-  - slot_was_set:
-    - requested_slot: is_safe
-  - slot_was_set:
-    - is_safe: Yes
-  - slot_was_set:
-    - requested_slot: any_injured
-  - slot_was_set:
-    - any_injured: No
-  - slot_was_set:
-    - requested_slot: form_street_address
-  - slot_was_set:
-    - form_street_address: i don't want to really
-  - slot_was_set:
-    - street_address: Unknown
-  - slot_was_set:
-    - location_description: null
-  - slot_was_set:
-    - postcode: Unknown
-  - slot_was_set:
-    - form_postcode: i don't want to really
-  - slot_was_set:
-    - requested_slot: location_description
-  - slot_was_set:
-    - postcode: NN11 0GH
-  - slot_was_set:
-    - street_address: 4 Horncastle Close
-  - slot_was_set:
-    - location_description: i'm at home at 4 Horncastle Close, NN11 0GH
-  - slot_was_set:
-    - postcode: NN11 0GH
-  - slot_was_set:
-    - street_address: 4 Horncastle Close
-  - slot_was_set:
-    - form_postcode: NN11 0GH
-  - slot_was_set:
-    - form_street_address: 4 Horncastle Close
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_dispatch
-  - action: action_save_service_info
-  - action: action_manage_first_aid
-  - action: wrapup_form
-  - active_loop: wrapup_form
-  - slot_was_set:
-    - first_aid: Not Relevant
-  - slot_was_set:
-    - requested_slot: form_name
-  - slot_was_set:
-    - form_name: i don't want to
-  - slot_was_set:
-    - name: i don't want to
-  - slot_was_set:
-    - requested_slot: form_phone_number
-  - slot_was_set:
-    - form_phone_number: 07111111111111 haha
-  - slot_was_set:
-    - phone_number: 07111111111111 haha
-  - slot_was_set:
-    - requested_slot: extra_details
-  - slot_was_set:
-    - extra_details: no but be careful or that guy will steal your wallets too
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: action_save_wrapup_info
-  - action: utter_finish
-  - action: action_generate_report
-
-
-# shooting lots of info
-- story: Call 29
-  steps:
-  - intent: start_form
-  - action: utter_introduce
-  - action: action_init_slots
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - first_aid: Not Relevant
-  - slot_was_set:
-    - is_safe: Irrelevant
-  - action: service_form
-  - active_loop: service_form
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - is_safe: Irrelevant
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - emergency_details:
-      - shooting
-      - gunfire
-  - slot_was_set:
-    - name: Danny Johnson
-  - slot_was_set:
-    - phone_number: 07400 554923
-  - slot_was_set:
-    - postcode: PL4 8PQ
-  - slot_was_set:
-    - street_address: 9 Seven Trees Court
-  - slot_was_set:
-    - victim_details:
-      - injured
-      - dead
-  - slot_was_set:
-    - postcode: PL4 8PQ
-  - slot_was_set:
-    - street_address: 9 Seven Trees Court
-  - slot_was_set:
-    - victim_details:
-      - injured
-      - dead
-  - slot_was_set:
-    - emergency_details:
-      - shooting
-      - gunfire
-  - slot_was_set:
-    - form_postcode: PL4 8PQ
-  - slot_was_set:
-    - form_street_address: 9 Seven Trees Court
-  - slot_was_set:
-    - any_injured: Yes
-  - slot_was_set:
-    - victim_details_memory:
-      - injured
-      - dead
-  - slot_was_set:
-    - emergency_details_memory:
-      - shooting
-      - gunfire
-  - slot_was_set:
-    - service_type: null
-  - slot_was_set:
-    - service_type_memory: null
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - service_type:
-      - police
-  - slot_was_set:
-    - service_type:
-      - police
-  - slot_was_set:
-    - service_type_memory:
-      - police
-  - slot_was_set:
-    - is_safe: null
-  - slot_was_set:
-    - requested_slot: is_safe
-  - slot_was_set:
-    - is_safe: Yes
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_dispatch
-  - action: action_save_service_info
-  - action: action_manage_first_aid
-  - slot_was_set:
-    - first_aid: null
-  - action: wrapup_form
-  - active_loop: wrapup_form
-  - slot_was_set:
-    - phone_number: 07400 554923
-  - slot_was_set:
-    - name: Danny Johnson
-  - slot_was_set:
-    - form_phone_number: 07400 554923
-  - slot_was_set:
-    - form_name: Danny Johnson
-  - slot_was_set:
-    - requested_slot: first_aid
-  - slot_was_set:
-    - first_aid: Yes
-  - slot_was_set:
-    - requested_slot: extra_details
-  - slot_was_set:
-    - extra_details: two people live there, it's been really quiet for a while so be careful
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: action_save_wrapup_info
-  - action: utter_finish
-  - action: action_generate_report
-
-
-# stroke
-- story: Call 30
-  steps:
-  - intent: start_form
-  - action: utter_introduce
-  - action: action_init_slots
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - first_aid: Not Relevant
-  - slot_was_set:
-    - is_safe: Irrelevant
-  - action: service_form
-  - active_loop: service_form
-  - slot_was_set:
-    - location_description: Not Needed
-  - slot_was_set:
-    - victim_details: No Victim
-  - slot_was_set:
-    - is_safe: Irrelevant
-  - slot_was_set:
-    - requested_slot: service_type
-  - intent: give_name
-    entities:
-    - name: Ronald
-  - slot_was_set:
-    - name: Ronald
-  - action: service_form
-  - slot_was_set:
-    - requested_slot: service_type
-  - intent: give_phone_number
-    entities:
-    - phone_number: 07401 222112
-  - slot_was_set:
-    - phone_number: 07401 222112
-  - action: service_form
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - street_address: 73 Ramsey Gardens
-  - slot_was_set:
-    - street_address: 73 Ramsey Gardens
-  - slot_was_set:
-    - form_street_address: 73 Ramsey Gardens
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - postcode: PL5 3UP
-  - slot_was_set:
-    - postcode: PL5 3UP
-  - slot_was_set:
-    - form_postcode: PL5 3UP
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - victim_details:
-      - confused
-  - slot_was_set:
-    - victim_details: confused
-  - slot_was_set:
-    - any_injured: Yes
-  - slot_was_set:
-    - victim_details_memory: confused
-  - slot_was_set:
-    - requested_slot: service_type
-  - slot_was_set:
-    - emergency_details:
-      - stroke
-  - slot_was_set:
-    - emergency_details: stroke
-  - slot_was_set:
-    - emergency_details_memory: stroke
-  - slot_was_set:
-    - service_type:
-      - ambulance
-  - slot_was_set:
-    - service_type_memory:
-      - ambulance
-  - slot_was_set:
-    - any_injured: Yes
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: utter_dispatch
-  - action: action_save_service_info
-  - action: action_manage_first_aid
-  - slot_was_set:
-    - first_aid: null
-  - action: wrapup_form
-  - active_loop: wrapup_form
-  - slot_was_set:
-    - phone_number: 07401 222112
-  - slot_was_set:
-    - name: Ronald
-  - slot_was_set:
-    - form_phone_number: 07401 222112
-  - slot_was_set:
-    - form_name: Ronald
-  - slot_was_set:
-    - phone_number: 07401 222112
-  - slot_was_set:
-    - form_phone_number: 07401 222112
-  - slot_was_set:
-    - requested_slot: first_aid
-  - slot_was_set:
-    - first_aid: No
-  - slot_was_set:
-    - requested_slot: extra_details
-  - slot_was_set:
-    - extra_details: help
-  - slot_was_set:
-    - requested_slot: null
-  - active_loop: null
-  - action: action_save_wrapup_info
-  - action: utter_finish
-  - action: action_generate_report
+#
+#
+# # difficult user
+# - story: Call 28
+#   steps:
+#   - intent: start_form
+#   - action: utter_introduce
+#   - action: action_init_slots
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - action: service_form
+#   - active_loop: service_form
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - intent: describe_emergency
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type_memory:
+#       - police
+#   - slot_was_set:
+#     - is_safe: null
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - intent: answer_no
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - slot_was_set:
+#     - emergency_details:
+#       - theft
+#   - slot_was_set:
+#     - emergency_details: theft
+#   - slot_was_set:
+#     - emergency_details_memory: theft
+#   - slot_was_set:
+#     - requested_slot: is_safe
+#   - slot_was_set:
+#     - is_safe: Yes
+#   - slot_was_set:
+#     - requested_slot: any_injured
+#   - slot_was_set:
+#     - any_injured: No
+#   - slot_was_set:
+#     - requested_slot: form_street_address
+#   - slot_was_set:
+#     - form_street_address: i don't want to really
+#   - slot_was_set:
+#     - street_address: Unknown
+#   - slot_was_set:
+#     - location_description: null
+#   - slot_was_set:
+#     - postcode: Unknown
+#   - slot_was_set:
+#     - form_postcode: i don't want to really
+#   - slot_was_set:
+#     - requested_slot: location_description
+#   - slot_was_set:
+#     - postcode: NN11 0GH
+#   - slot_was_set:
+#     - street_address: 4 Horncastle Close
+#   - slot_was_set:
+#     - location_description: i'm at home at 4 Horncastle Close, NN11 0GH
+#   - slot_was_set:
+#     - postcode: NN11 0GH
+#   - slot_was_set:
+#     - street_address: 4 Horncastle Close
+#   - slot_was_set:
+#     - form_postcode: NN11 0GH
+#   - slot_was_set:
+#     - form_street_address: 4 Horncastle Close
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_dispatch
+#   - action: action_save_service_info
+#   - action: action_manage_first_aid
+#   - action: wrapup_form
+#   - active_loop: wrapup_form
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - requested_slot: form_name
+#   - slot_was_set:
+#     - form_name: i don't want to
+#   - slot_was_set:
+#     - name: i don't want to
+#   - slot_was_set:
+#     - requested_slot: form_phone_number
+#   - slot_was_set:
+#     - form_phone_number: 07111111111111 haha
+#   - slot_was_set:
+#     - phone_number: 07111111111111 haha
+#   - slot_was_set:
+#     - requested_slot: extra_details
+#   - slot_was_set:
+#     - extra_details: no but be careful or that guy will steal your wallets too
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_save_wrapup_info
+#   - action: utter_finish
+#   - action: action_generate_report
+#
+#
+# # shooting lots of info
+# - story: Call 29
+#   steps:
+#   - intent: start_form
+#   - action: utter_introduce
+#   - action: action_init_slots
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - action: service_form
+#   - active_loop: service_form
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - emergency_details:
+#       - shooting
+#       - gunfire
+#   - slot_was_set:
+#     - name: Danny Johnson
+#   - slot_was_set:
+#     - phone_number: 07400 554923
+#   - slot_was_set:
+#     - postcode: PL4 8PQ
+#   - slot_was_set:
+#     - street_address: 9 Seven Trees Court
+#   - slot_was_set:
+#     - victim_details:
+#       - injured
+#       - dead
+#   - slot_was_set:
+#     - postcode: PL4 8PQ
+#   - slot_was_set:
+#     - street_address: 9 Seven Trees Court
+#   - slot_was_set:
+#     - victim_details:
+#       - injured
+#       - dead
+#   - slot_was_set:
+#     - emergency_details:
+#       - shooting
+#       - gunfire
+#   - slot_was_set:
+#     - form_postcode: PL4 8PQ
+#   - slot_was_set:
+#     - form_street_address: 9 Seven Trees Court
+#   - slot_was_set:
+#     - any_injured: Yes
+#   - slot_was_set:
+#     - victim_details_memory:
+#       - injured
+#       - dead
+#   - slot_was_set:
+#     - emergency_details_memory:
+#       - shooting
+#       - gunfire
+#   - slot_was_set:
+#     - service_type: null
+#   - slot_was_set:
+#     - service_type_memory: null
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type_memory:
+#       - police
+#   - slot_was_set:
+#     - is_safe: null
+#   - slot_was_set:
+#     - requested_slot: is_safe
+#   - slot_was_set:
+#     - is_safe: Yes
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_dispatch
+#   - action: action_save_service_info
+#   - action: action_manage_first_aid
+#   - slot_was_set:
+#     - first_aid: null
+#   - action: wrapup_form
+#   - active_loop: wrapup_form
+#   - slot_was_set:
+#     - phone_number: 07400 554923
+#   - slot_was_set:
+#     - name: Danny Johnson
+#   - slot_was_set:
+#     - form_phone_number: 07400 554923
+#   - slot_was_set:
+#     - form_name: Danny Johnson
+#   - slot_was_set:
+#     - requested_slot: first_aid
+#   - slot_was_set:
+#     - first_aid: Yes
+#   - slot_was_set:
+#     - requested_slot: extra_details
+#   - slot_was_set:
+#     - extra_details: two people live there, it's been really quiet for a while so be careful
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_save_wrapup_info
+#   - action: utter_finish
+#   - action: action_generate_report
+#
+#
+# # stroke
+# - story: Call 30
+#   steps:
+#   - intent: start_form
+#   - action: utter_introduce
+#   - action: action_init_slots
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - action: service_form
+#   - active_loop: service_form
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - intent: give_name
+#     entities:
+#     - name: Ronald
+#   - slot_was_set:
+#     - name: Ronald
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - intent: give_phone_number
+#     entities:
+#     - phone_number: 07401 222112
+#   - slot_was_set:
+#     - phone_number: 07401 222112
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - street_address: 73 Ramsey Gardens
+#   - slot_was_set:
+#     - street_address: 73 Ramsey Gardens
+#   - slot_was_set:
+#     - form_street_address: 73 Ramsey Gardens
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - postcode: PL5 3UP
+#   - slot_was_set:
+#     - postcode: PL5 3UP
+#   - slot_was_set:
+#     - form_postcode: PL5 3UP
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - victim_details:
+#       - confused
+#   - slot_was_set:
+#     - victim_details: confused
+#   - slot_was_set:
+#     - any_injured: Yes
+#   - slot_was_set:
+#     - victim_details_memory: confused
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - emergency_details:
+#       - stroke
+#   - slot_was_set:
+#     - emergency_details: stroke
+#   - slot_was_set:
+#     - emergency_details_memory: stroke
+#   - slot_was_set:
+#     - service_type:
+#       - ambulance
+#   - slot_was_set:
+#     - service_type_memory:
+#       - ambulance
+#   - slot_was_set:
+#     - any_injured: Yes
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_dispatch
+#   - action: action_save_service_info
+#   - action: action_manage_first_aid
+#   - slot_was_set:
+#     - first_aid: null
+#   - action: wrapup_form
+#   - active_loop: wrapup_form
+#   - slot_was_set:
+#     - phone_number: 07401 222112
+#   - slot_was_set:
+#     - name: Ronald
+#   - slot_was_set:
+#     - form_phone_number: 07401 222112
+#   - slot_was_set:
+#     - form_name: Ronald
+#   - slot_was_set:
+#     - phone_number: 07401 222112
+#   - slot_was_set:
+#     - form_phone_number: 07401 222112
+#   - slot_was_set:
+#     - requested_slot: first_aid
+#   - slot_was_set:
+#     - first_aid: No
+#   - slot_was_set:
+#     - requested_slot: extra_details
+#   - slot_was_set:
+#     - extra_details: help
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_save_wrapup_info
+#   - action: utter_finish
+#   - action: action_generate_report
+#
+#
+# # suicide very difficult for bot
+# - story: Call 31
+#   steps:
+#   - intent: start_form
+#   - action: utter_introduce
+#   - action: action_init_slots
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - action: service_form
+#   - active_loop: service_form
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - intent: answer_no
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - intent: answer_no
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - intent: give_service
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type:
+#       - police
+#   - slot_was_set:
+#     - service_type_memory:
+#       - police
+#   - slot_was_set:
+#     - is_safe: null
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - intent: answer_no
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - intent: answer_yes
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - intent: give_name
+#     entities:
+#     - name: Jack
+#   - slot_was_set:
+#     - name: Jack
+#   - action: service_form
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - slot_was_set:
+#     - emergency_details:
+#       - suicide
+#   - slot_was_set:
+#     - emergency_details: suicide
+#   - slot_was_set:
+#     - emergency_details_memory: suicide
+#   - slot_was_set:
+#     - requested_slot: is_safe
+#   - slot_was_set:
+#     - is_safe: No
+#   - slot_was_set:
+#     - requested_slot: any_injured
+#   - slot_was_set:
+#     - any_injured: No
+#   - slot_was_set:
+#     - requested_slot: form_street_address
+#   - slot_was_set:
+#     - form_street_address: no
+#   - slot_was_set:
+#     - street_address: Unknown
+#   - slot_was_set:
+#     - location_description: null
+#   - slot_was_set:
+#     - postcode: Unknown
+#   - slot_was_set:
+#     - form_postcode: no
+#   - slot_was_set:
+#     - requested_slot: location_description
+#   - slot_was_set:
+#     - district: Birmingham
+#   - slot_was_set:
+#     - location_description: I'm at the Birmingham Hotel, room 407
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_dispatch
+#   - action: action_save_service_info
+#   - action: action_manage_first_aid
+#   - action: wrapup_form
+#   - active_loop: wrapup_form
+#   - slot_was_set:
+#     - name: Jack
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - form_name: Jack
+#   - slot_was_set:
+#     - name: Jack
+#   - slot_was_set:
+#     - form_name: Jack
+#   - slot_was_set:
+#     - requested_slot: form_phone_number
+#   - slot_was_set:
+#     - phone_number: '07411848586'
+#   - slot_was_set:
+#     - form_phone_number: '07411848586'
+#   - slot_was_set:
+#     - phone_number: '07411848586'
+#   - slot_was_set:
+#     - requested_slot: extra_details
+#   - slot_was_set:
+#     - extra_details: yeah, the floor i'm on is floor 4
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_save_wrapup_info
+#   - action: utter_finish
+#   - action: action_generate_report
+#
+#
+# # beat up
+# - story: Call 32
+#   steps:
+#   - intent: start_form
+#   - action: utter_introduce
+#   - action: action_init_slots
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - first_aid: Not Relevant
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - action: service_form
+#   - active_loop: service_form
+#   - slot_was_set:
+#     - location_description: Not Needed
+#   - slot_was_set:
+#     - victim_details: No Victim
+#   - slot_was_set:
+#     - is_safe: Irrelevant
+#   - slot_was_set:
+#     - requested_slot: service_type
+#   - slot_was_set:
+#     - service_type:
+#       - law enforcement
+#       - paramedic
+#   - slot_was_set:
+#     - street_address: Monks Pond Street
+#   - slot_was_set:
+#     - service_type:
+#       - paramedic
+#   - slot_was_set:
+#     - street_address: Monks Pond Street
+#   - slot_was_set:
+#     - service_type_memory:
+#       - paramedic
+#   - slot_was_set:
+#     - form_street_address: Monks Pond Street
+#   - slot_was_set:
+#     - requested_slot: emergency_details
+#   - slot_was_set:
+#     - emergency_details:
+#       - beat up
+#   - slot_was_set:
+#     - emergency_details: beat up
+#   - slot_was_set:
+#     - emergency_details_memory: beat up
+#   - slot_was_set:
+#     - requested_slot: any_injured
+#   - slot_was_set:
+#     - any_injured: Yes
+#   - slot_was_set:
+#     - victim_details: null
+#   - slot_was_set:
+#     - service_type:
+#       - paramedic
+#       - ambulance
+#   - slot_was_set:
+#     - service_type_memory: yeah my brother
+#   - slot_was_set:
+#     - requested_slot: victim_details
+#   - slot_was_set:
+#     - emergency_details:
+#       - concussion
+#   - slot_was_set:
+#     - victim_details:
+#       - dazed
+#   - slot_was_set:
+#     - victim_details: dazed
+#   - slot_was_set:
+#     - emergency_details:
+#       - concussion
+#       - beat up
+#   - slot_was_set:
+#     - any_injured: Yes
+#   - slot_was_set:
+#     - victim_details_memory: dazed
+#   - slot_was_set:
+#     - emergency_details_memory:
+#       - concussion
+#       - beat up
+#   - slot_was_set:
+#     - service_type:
+#       - paramedic
+#       - ambulance
+#   - slot_was_set:
+#     - service_type_memory:
+#       - paramedic
+#       - ambulance
+#   - slot_was_set:
+#     - requested_slot: form_postcode
+#   - slot_was_set:
+#     - form_postcode: i don't know it, sorry
+#   - slot_was_set:
+#     - postcode: i don't know it, sorry
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: utter_dispatch
+#   - action: action_save_service_info
+#   - action: action_manage_first_aid
+#   - slot_was_set:
+#     - first_aid: null
+#   - action: wrapup_form
+#   - active_loop: wrapup_form
+#   - slot_was_set:
+#     - requested_slot: first_aid
+#   - slot_was_set:
+#     - first_aid: No
+#   - slot_was_set:
+#     - requested_slot: form_name
+#   - slot_was_set:
+#     - name: Henry Higgins
+#   - slot_was_set:
+#     - form_name: Henry Higgins
+#   - slot_was_set:
+#     - name: Henry Higgins
+#   - slot_was_set:
+#     - requested_slot: form_phone_number
+#   - slot_was_set:
+#     - phone_number: 07443 001002
+#   - slot_was_set:
+#     - form_phone_number: 07443 001002
+#   - slot_was_set:
+#     - phone_number: 07443 001002
+#   - slot_was_set:
+#     - requested_slot: extra_details
+#   - slot_was_set:
+#     - extra_details: the guy was really tall and ran over to the bridge near us
+#   - slot_was_set:
+#     - requested_slot: null
+#   - active_loop: null
+#   - action: action_save_wrapup_info
+#   - action: utter_finish
+#   - action: action_generate_report
