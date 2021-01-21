@@ -241,7 +241,7 @@ class ActionGenerateReport(Action):
         transcript = ""
         # help eliminate duplicates
         last = ""
-        print(tracker.events)
+
         for i, dict in enumerate(tracker.events):
             if dict['event'] == "user":
                 speaker = "<b>User</b>"
