@@ -26,6 +26,9 @@ entities:
 - street_address
 - victim_details
 slots:
+  service_type_string:
+    type: text
+    influence_conversation: false
   any_injured:
     type: text
     influence_conversation: true
@@ -91,40 +94,75 @@ slots:
     influence_conversation: false
 responses:
   utter_introduce:
-  - text: I am Whitehall, the emergency service chatbot
+  - text: I'm Whitehall, the emergency service chatbot
+  - text: My name is Whitehall, the emergency service chatbot
   utter_ask_service_type:
   - text: Can you please provide the emergency service that you require
+  - text: What emergency service do you require?
+  - text: Who's services do you require?
   utter_ask_form_postcode:
   - text: Can you please provide your postcode?
+  - text: Could you provide your postcode please?
+  - text: Could you give me the postcode please?
+  - text: Could I please have the postcode?
+  - text: Do you know the postcode to {street_address}
+  - text: Could you tell me the postcode for {street_address}
+  - text: Do you know the postcode to {street_address} to help the {service_type_string} get there?
+  - text: Could you tell me the postcode for {street_address} to help the {service_type_string} get there?
   utter_ask_form_street_address:
   - text: Can you please provide your location?
+  - text: Do you know the street address so I can notify the {service_type_string}?
+  - text: Could you please provide the street address?
+  - text: Are you able to tell me the street address?
   utter_ask_street_address:
   - text: Can you please provide the street address?
   utter_ask_location_description:
   - text: Can you please describe your surroundings? What can you see?
+  - text: Can you give a description of where you are so the {service_type_string} can help get to you?
+  - text: What are your surroundings like? Can you describe where you are?
+  - text: Could you tell me about your surrounding so I can pass it onto the {service_type_string}?
   utter_ask_emergency_details:
   - text: Can you please describe the details of your emergency?
   - text: What is the nature of your emergency?
+  - text: Could you describe the nature of the emergency please?
   utter_ask_is_safe:
   - text: Are you safe?
   - text: Are you currently in a safe location?
+  - text: Is the situation safe now?
   utter_ask_victim_details:
   - text: What state is the victim in?
+  - text: Can you describe how the victim is doing?
+  - text: Can you give me more details on the victim please?
+  - text: Could you tell me more about the victim please?
   utter_ask_any_injured:
   - text: Is anyone injured?
+  - text: Is anybody injured?
+  - text: Has anybody been injured?
+  - text: Do you require any paramedics?
+  - text: Has anyone been injured?
   utter_dispatch:
-  - text: DISPATCH
+  - text: Okay, I've notified the {service_type_string} and they're on their way
+  - text: The {service_type_string} have been dispatched and will be with you shortly
+  - text: Alright, I've sent everything to the {service_type_string} and they've been dispatched. They'll be with you shortly
+  - text: The {service_type_string} are on their way, they'll be with you soon
   utter_ask_first_aid:
   - text: Do you or anyone near you have experience with first aid?
-  utter_give_link:
-  - text: 'Here is a useful link: www.imgur.com/a/G6rU8'
+  - text: Does anyone there have any first aid knowledge?
+  - text: Is there someone there with any experience with first aid?
+  - text: Do you know anyone there who could provide first aid?
   utter_ask_form_name:
-  - text: Can you tell us your name?
-  - text: Can you please provide us with your name?
+  - text: Can you tell me your name please?
+  - text: Could you please give me your name so the {service_type_string} will be more informed when they arrive please?
+  - text: Would you be okay giving me your name? The {service_type_string} may need to know more about you
+  - text: Could you enter your name please?
   utter_ask_form_phone_number:
-  - text: Can you please provide your phone number should we need to contact you over the phone?
+  - text: Can you please provide your phone number should the {service_type_string} need to contact you over the phone?
+  - text: Okay, would you mind giving me your phone number to forward to the {service_type_string}?
+  - text: Alright, if possible, could you give me your phone number so my team can get in contact with you?
   utter_ask_extra_details:
-  - text: Okay, is there anything else we should know before we get there?
+  - text: Alright, do you think there's anything else the {service_type_string} should know before getting there?
+  - text: Do you have any extra details on the situation that you think could be helpful?
+  - text: Okay, is there anything else the {service_type_string} should know before they arrive?
   utter_greet:
   - text: Hey! How are you?
   utter_cheer_up:
@@ -140,6 +178,9 @@ responses:
   - text: I am a bot, powered by Rasa.
   utter_finish:
   - text: Help is on the way, please stay safe and wait for the professionals to arrive
+  - text: Okay, help is coming, please stay safe, the {service_type_string} are on their way
+  - text: Alright, I've passed everything onto a human now, please stay safe and wait for the {service_type_string}
+  - text: Thanks, the {service_type_string} will be there soon. Stay safe
   utter_unsure:
   - text: Sorry, I didn't understand what you just said, could you please respond to the last question?
 actions:

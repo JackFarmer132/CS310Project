@@ -344,7 +344,10 @@ class ValidateServiceForm(FormValidationAction):
                    "fire": ["fire department"],
                    "stroke": ["ambulance"],
                    "COVID": ["ambulance"],
-                   "dead": ["ambulance"]}
+                   "dead": ["ambulance"],
+                   "shooting": ["police", "ambulance"],
+                   "theft": ["police"],
+                   "burns": ["ambulance"]}
         return hotlist
 
 
@@ -352,7 +355,6 @@ class ValidateServiceForm(FormValidationAction):
                               tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
 
         return_dict = {}
-
         # if entry is only 1 entity, is string and needs to be list
         if isinstance(slot_value, str):
             slot_value = [slot_value]
@@ -376,8 +378,26 @@ class ValidateServiceForm(FormValidationAction):
             if (s != "police") and (s != "ambulance") and (s != "fire department"):
                 slot_value.remove(s)
 
+        # will hold a string version of the services to allow bot to use them
+        service_string = ""
+        if ("police" in slot_value) and ("ambulance" in slot_value) and ("fire department" in slot_value):
+            service_string = "police, paramedics and fire department"
+        elif ("police" in slot_value) and ("ambulance" in slot_value):
+            service_string = "police and paramedics"
+        elif ("police" in slot_value) and ("fire department" in slot_value):
+            service_string = "police and fire department"
+        elif ("ambulance" in slot_value) and ("fire department" in slot_value):
+            service_string = "paramedics and fire department"
+        elif ("police" in slot_value):
+            service_string = "police"
+        elif ("ambulance" in slot_value):
+            service_string = "paramedics"
+        elif ("fire department" in slot_value):
+            service_string = "fire department"
+
         return_dict["service_type"] = slot_value
         return_dict["service_type_memory"] = slot_value
+        return_dict["service_type_string"] = service_string
 
         # if ambulance was not requested, no victim
         if "ambulance" in slot_value:
@@ -426,8 +446,7 @@ class ValidateServiceForm(FormValidationAction):
         return_dict["emergency_details"] = slot_value
         return_dict["emergency_details_memory"] = slot_value
 
-        explicit_service_type = tracker.slots.get("service_type")
-
+        explicit_service_type = tracker.slots.get("service_type_memory")
         # if entry is only 1 type of service, is string and needs to be list
         if isinstance(explicit_service_type, str):
             explicit_service_type = [explicit_service_type]
@@ -466,6 +485,24 @@ class ValidateServiceForm(FormValidationAction):
         # makes sure it doesn't save [] as the service type value
         if explicit_service_type == []:
             explicit_service_type = None
+        else:
+            # will hold a string version of the services to allow bot to use them
+            service_string = ""
+            if ("police" in explicit_service_type) and ("ambulance" in explicit_service_type) and ("fire department" in explicit_service_type):
+                service_string = "police, paramedics and fire department"
+            elif ("police" in explicit_service_type) and ("ambulance" in explicit_service_type):
+                service_string = "police and paramedics"
+            elif ("police" in explicit_service_type) and ("fire department" in explicit_service_type):
+                service_string = "police and fire department"
+            elif ("ambulance" in explicit_service_type) and ("fire department" in explicit_service_type):
+                service_string = "paramedics and fire department"
+            elif ("police" in explicit_service_type):
+                service_string = "police"
+            elif ("ambulance" in explicit_service_type):
+                service_string = "paramedics"
+            elif ("fire department" in explicit_service_type):
+                service_string = "fire department"
+            return_dict["service_type_string"] = service_string
 
         return_dict["service_type"] = explicit_service_type
         return_dict["service_type_memory"] = explicit_service_type
@@ -523,11 +560,30 @@ class ValidateServiceForm(FormValidationAction):
             # get list of services and add ambulance if not already there
             services = tracker.slots.get("service_type")
 
-            if "ambulance" not in services:
+            if services and ("ambulance" not in services):
                 # if string then needs turning into an array
                 if isinstance(services, str):
                     services = [services]
                 services.append("ambulance")
+
+            if services:
+                # will hold a string version of the services to allow bot to use them
+                service_string = ""
+                if ("police" in services) and ("ambulance" in services) and ("fire department" in services):
+                    service_string = "police, paramedics and fire department"
+                elif ("police" in services) and ("ambulance" in services):
+                    service_string = "police and paramedics"
+                elif ("police" in services) and ("fire department" in services):
+                    service_string = "police and fire department"
+                elif ("ambulance" in services) and ("fire department" in services):
+                    service_string = "paramedics and fire department"
+                elif ("police" in services):
+                    service_string = "police"
+                elif ("ambulance" in services):
+                    service_string = "paramedics"
+                elif ("fire department" in services):
+                    service_string = "fire department"
+                return_dict["service_type_string"] = service_string
 
             return_dict["service_type"] = services
             return_dict["service_type_memory"] = slot_value
