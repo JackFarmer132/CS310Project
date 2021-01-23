@@ -790,7 +790,10 @@ class ValidateWrapupForm(FormValidationAction):
                    "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
                    "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
                    "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
-                   "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
+                   "COVID": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
+                   "burns": "https://www.nhs.uk/conditions/burns-and-scalds/treatment/",
+                   "dizziness": "https://www.nhs.uk/conditions/dizziness/",
+                   "can't breathe": "https://www.redcross.org.uk/first-aid/learn-first-aid/unresponsive-and-not-breathing#:~:text=Get%20the%20person%20safely%20to,chest%20at%20a%20regular%20rate.",
                    "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
         # default options:
         # https://www.nhs.uk/conditions/first-aid/after-an-accident/
@@ -810,6 +813,8 @@ class ValidateWrapupForm(FormValidationAction):
 
             # get the victim details to search for useful links
             victim_details = tracker.slots.get("victim_details")
+            # append with emergency details in case links exist for helping with them
+            emergency_details = tracker.slots.get("emergency_details")
             links = []
 
             # load in associated symptoms and medical links

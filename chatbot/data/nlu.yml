@@ -47,6 +47,15 @@ nlu:
     - [police](service_type)
 - intent: describe_emergency
   examples: |
+    - I was diagnosed with [COVID]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [covid]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [covid-19]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [covid 19]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [COVID 19]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [coronavirus]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [Covid 19]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with [Covid-19]{"entity": "emergency_details", "value": "COVID-19"}
+    - I was diagnosed with the [rona]{"entity": "emergency_details", "value": "COVID-19"}
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), RM15 4ED
     - Help, there’s a huge [fire](emergency_details) in [Horsenden Hill](street_address).
     - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [AA99 9AA](postcode). Please send help quickly.
@@ -123,9 +132,9 @@ nlu:
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
-    - He’s [really old](victim_details) and [struggling to breathe](victim_details). He’s [not bleeding](victim_details) though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
+    - He’s [really old](victim_details) and [struggling to breathe]{"entity": "victim_details", "value": "can't breathe"}. He’s [not bleeding](victim_details) though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
     - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he [can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details)
-    - I feel like I’m going to [throw up](victim_details) and I have been [feeling very dizzy](victim_details) since around 3pm. I have a history of [heart conditions](victim_details) so I don’t know if that has caused it.
+    - I feel like I’m going to [throw up](victim_details) and I have been [feeling very dizzy]{"entity": "victim_details", "value": "dizziness"} since around 3pm. I have a history of [heart conditions](victim_details) so I don’t know if that has caused it.
     - I tested positive for [COVID-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details)
     - No, I don't think so. I don't want to touch him. He's so [pale](victim_details)
     - She’s got a [nut allergy](victim_details). It’s my mum. She says she [can’t breathe](victim_details) and her [throat is swelling up](victim_details)
@@ -133,16 +142,17 @@ nlu:
     - Yes, but there’s [some blood](victim_details) and I’m really worried
     - I have been feeling [very nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
     - They are [bleeding](victim_details) and [unconscious](victim_details)
-    - i feel a bit [dizzy](victim_details)
+    - i feel some [dizziness](victim_details)
     - they're [bleeding](victim_details) quite a lot and [not responding](victim_details)
     - I’m not sure, I think she’s in her 50’s. I did see someone in the distance run off, but I couldn’t see them.
     - [bleeding](victim_details)
-    - He’s [really old](victim_details) and [struggling to breathe](victim_details). He’s not bleeding though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
+    - He’s [really old](victim_details) and [struggling to breathe]{"entity": "victim_details", "value": "can't breathe"}. He’s not bleeding though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
     - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he [can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details).
-    - I don’t think so. What should I do if he stops breathing? He has asthma and he has [difficulty breathing](victim_details) sometimes.
+    - I don’t think so. What should I do if he stops breathing? He has asthma and he has [difficulty breathing]{"entity": "victim_details", "value": "can't breathe"} sometimes.
     - I need some advice. I have been feeling very [nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
-    - i need an [ambulance](service_type), I tested positive for [Covid-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
-    - I need an [ambulance](service_type), I tested positive for [Covid-19](emergency_details) 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - i need an [ambulance](service_type), I tested positive for [covid]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - I need an [ambulance](service_type), I tested positive for [Covid-19]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - I need an [ambulance](service_type), I tested positive for [coronavirus]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
     - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, i think he's [dead](victim_details)
     - the guy has a [pistol]{"entity": "emergency_details", "value": "shooting"} and looks like he's going to use it
     - the man here has a [gun]{"entity": "emergency_details", "value": "shooting"} and looks like he's going to hurt someone
@@ -153,8 +163,11 @@ nlu:
     - he looks like he's [in pain](victim_details) please hurry, i don't want him to die!
     - some have [burns](victim_details) all over, [burnt]{"entity": "victim_details", "value": "burns"} by the [fire](emergency_details)
     - they're [seizing up](victim_details) and [not responding](victim_details)
-    - my partner is [dizzy](victim_details) but mostly okay, the other car driver is [bleeding](victim_details) and [can't stand up](victim_details)
-    - they're having [difficulty breathing](victim_details)
+    - my partner is [dizzy]{"entity": "victim_details", "value": "dizziness"} but mostly okay, the other car driver is [bleeding](victim_details) and [can't stand up](victim_details)
+    - they're having [difficulty breathing]{"entity": "victim_details", "value": "can't breathe"}
+    - they [cannot breathe]{"entity": "victim_details", "value": "can't breathe"}
+    - they're having [trouble breathing]{"entity": "victim_details", "value": "can't breathe"}
+    - they're [unable to breathe]{"entity": "victim_details", "value": "can't breathe"}
     - they're [unconscious](victim_details) currently
     - he's [bleeding](victim_details) a lot
     - They're [bleeding](victim_details) and say they're [in pain](victim_details), they say they're [light-headed](victim_details) too
@@ -369,7 +382,7 @@ nlu:
     - not yet
     - we don't, no
     - no i'm still inside
-    - no, but it's getting hard to breath
+    - no, but it's getting [hard to breath]{"entity": "victim_details", "value": "can't breathe"}
     - i don't want to really
     - i don't want to
     - n
@@ -477,6 +490,28 @@ nlu:
     - cut themselves
     - blood
     - bleeding
+- synonym: dizziness
+  examples: |
+    - dizzy
+- synonym: can't breathe
+  examples: |
+    - difficulty breathing
+    - cannot breathe
+    - struggling to breathe
+    - trouble breathing
+    - unable to breathe
+    - hard to breathe
+- synonym: COVID-19
+  examples: |
+    - COVID
+    - covid
+    - covid-19
+    - covid 19
+    - COVID 19
+    - coronavirus
+    - Covid-19
+    - Covid 19
+    - rona
 - regex: phone_number
   examples: |
     - \b07[0-9]{3}\s?[0-9]{3}\s?[0-9]{3}\b
