@@ -1,17 +1,18 @@
+version: '2.0'
 session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- give_location
-- start_form
-- answer_yes
-- describe_emergency
-- answer_no
 - give_service
 - give_name
-- describe_victim
-- give_phone_number
 - answer_unsure
+- answer_no
+- start_form
+- give_phone_number
+- describe_emergency
+- give_location
+- describe_victim
+- answer_yes
 - nlu_fallback
 - give_form_street_address
 - stop
@@ -243,4 +244,3 @@ forms:
       entity: phone_number
     extra_details:
     - type: from_text
-version: '2.0'

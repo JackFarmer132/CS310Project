@@ -529,21 +529,25 @@ class ValidateServiceForm(FormValidationAction):
 
     def validate_is_safe(self, slot_value: Any, dispatcher: CollectingDispatcher,
                          tracker: Tracker, domain: DomainDict) -> Dict[Text, Any]:
-
-        # if victim safe, continue
-        if (tracker.latest_message['intent'].get('name') == "answer_yes"):
-            return {"is_safe": "Yes"}
-        # otherwise prompt user to get to safety
-        elif (tracker.latest_message['intent'].get('name') == "answer_no"):
-            ####################################################################
-            return {"is_safe": "No"}
-        elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
-            ####################################################################
-            return {"is_safe": "Unsure"}
-        # otherwise answer wasn't given, but no need to re-ask
+        # only print things if this isn't being set at initialisation
+        if not (tracker.latest_message['intent'].get('name') == "start_form"):
+            # if victim safe, continue
+            if (tracker.latest_message['intent'].get('name') == "answer_yes"):
+                dispatcher.utter_message(text="Good, please make sure to keep safe")
+                return {"is_safe": "Yes"}
+            # otherwise prompt user to get to safety
+            elif (tracker.latest_message['intent'].get('name') == "answer_no"):
+                dispatcher.utter_message(text="Please get somewhere where you can be safe until someone arrives")
+                return {"is_safe": "No"}
+            elif (tracker.latest_message['intent'].get('name') == "answer_unsure"):
+                dispatcher.utter_message(text="Try and get somewhere safe until someone arrives")
+                return {"is_safe": "Unsure"}
+            # otherwise answer wasn't given, but no need to re-ask
+            else:
+                dispatcher.utter_message(text="Please make sure you're safe until someone arrives")
+                # return text user gave in case human user can make more sense of it than bot
+                return {"is_safe": slot_value}
         else:
-            ####################################################################
-            # return text user gave in case hman user can make more sense of it than bot
             return {"is_safe": slot_value}
 
 
@@ -651,6 +655,20 @@ class ValidateServiceForm(FormValidationAction):
 
         # if street address is given, don't ask again
         return_dict = {}
+
+        # if entry is list, then there is a problem and the bot probably thinks a number is an address
+        if not isinstance(slot_value, str):
+            for val in slot_value:
+                if not val.isnumeric():
+                    return_dict["street_address"] = val
+                    return_dict["form_street_address"] = val
+                    return return_dict
+        # if value is just a number, isn't a valid street address
+        if slot_value.isnumeric():
+            return_dict["street_address"] = None
+            return_dict["form_street_address"] = None
+            return return_dict
+        # if here then street address was valid
         return_dict["street_address"] = slot_value
         return_dict["form_street_address"] = slot_value
         return return_dict
@@ -794,6 +812,10 @@ class ValidateWrapupForm(FormValidationAction):
                    "burns": "https://www.nhs.uk/conditions/burns-and-scalds/treatment/",
                    "dizziness": "https://www.nhs.uk/conditions/dizziness/",
                    "can't breathe": "https://www.redcross.org.uk/first-aid/learn-first-aid/unresponsive-and-not-breathing#:~:text=Get%20the%20person%20safely%20to,chest%20at%20a%20regular%20rate.",
+                   "choking": "https://www.nhs.uk/common-health-questions/accidents-first-aid-and-treatments/what-should-i-do-if-someone-is-choking/",
+                   "concussion": "https://www.nhs.uk/conditions/concussion/",
+                   "confused": "https://www.nhs.uk/conditions/confusion/",
+                   "suicide": "https://www.nhs.uk/conditions/suicide/",
                    "__default__": "https://www.nhs.uk/conditions/first-aid/after-an-accident/"}
         # default options:
         # https://www.nhs.uk/conditions/first-aid/after-an-accident/
@@ -813,8 +835,16 @@ class ValidateWrapupForm(FormValidationAction):
 
             # get the victim details to search for useful links
             victim_details = tracker.slots.get("victim_details")
+            # if a string, make it a list
+            if isinstance(victim_details, str):
+                victim_details = [victim_details]
             # append with emergency details in case links exist for helping with them
             emergency_details = tracker.slots.get("emergency_details")
+            # if a string, make it a list
+            if isinstance(emergency_details, str):
+                emergency_details = [emergency_details]
+            # link lists to have all information on medical emergency
+            victim_details = victim_details + emergency_details
             links = []
 
             # load in associated symptoms and medical links
@@ -832,25 +862,14 @@ class ValidateWrapupForm(FormValidationAction):
                 return_dict["first_aid"] = "Unknown"
                 dispatcher.utter_message(text="Okay, I will find some useful resources to help you")
 
-            # if only 1 detail, search hotlist directly
-            if isinstance(victim_details, str):
+            for v in victim_details:
                 # if victim detail has useful link associated
-                if victim_details in hotlist:
+                if v in hotlist:
                     # save the link for later use
-                    links.append(hotlist[victim_details])
-                # else no associated useful link, so provide default
-                else:
-                    links.append(hotlist["__default__"])
-            # else is a list and each must be searched for separately
-            else:
-                for v in victim_details:
-                    # if victim detail has useful link associated
-                    if v in hotlist:
-                        # save the link for later use
-                        links.append(hotlist[v])
-                # if no links found, include fallback default
-                if not links:
-                    links.append(hotlist["__default__"])
+                    links.append(hotlist[v])
+            # if no links found, include fallback default
+            if not links:
+                links.append(hotlist["__default__"])
 
             # get the plural right
             if len(links) > 1:

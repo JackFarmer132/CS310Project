@@ -5,7 +5,7 @@ nlu:
     - start_bot
 - intent: start_form
   examples: |
-    - ___
+    - init
 - intent: give_service
   examples: |
     - [Ambulance](service_type) and [police](service_type) quick
@@ -44,9 +44,22 @@ nlu:
     - help us!
     - fine, [police](service_type)
     - hello, i need [law enforcement]{"entity": "service_type", "value": "police"} and a [paramedic]{"entity": "service_type", "value": "ambulance"} sent to [Monks Pond Street](street_address)
-    - [police](service_type)
+    - sorry, [police](service_type) and an [ambulance](service_type) please
+    - send me help now or
+    - come quick, i don't have long
+    - i need some [paramedics]{"entity": "service_type", "value": "ambulance"} to come to [9 Charles Crescent](street_address) please
 - intent: describe_emergency
   examples: |
+    - i'm going to commit [suicide](emergency_details)
+    - i'm going to [take my life]{"entity": "emergency_details", "value": "suicide"}
+    - he's going to [take his life]{"entity": "emergency_details", "value": "suicide"}
+    - she's going to [take her life]{"entity": "emergency_details", "value": "suicide"}
+    - they're going to [take their life]{"entity": "emergency_details", "value": "suicide"}
+    - i'm going to [kill myself]{"entity": "emergency_details", "value": "suicide"}
+    - he's going to [kill himself]{"entity": "emergency_details", "value": "suicide"}
+    - she's going to [kill herself]{"entity": "emergency_details", "value": "suicide"}
+    - they're going to [kill themself]{"entity": "emergency_details", "value": "suicide"}
+    - they're going to [kill themselves]{"entity": "emergency_details", "value": "suicide"}
     - I was diagnosed with [COVID]{"entity": "emergency_details", "value": "COVID-19"}
     - I was diagnosed with [covid]{"entity": "emergency_details", "value": "COVID-19"}
     - I was diagnosed with [covid-19]{"entity": "emergency_details", "value": "COVID-19"}
@@ -67,12 +80,11 @@ nlu:
     - someone [took]{"entity": "emergency_details", "value": "theft"} my purse
     - someone's [half-inched]{"entity": "emergency_details", "value": "theft"} my purse
     - someone's [nicked]{"entity": "emergency_details", "value": "theft"} my purse
-    - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details)
     - I was walking my labradoodle and it started barking. Then I saw a [fire in the bushes](emergency_details) but it has spread now. It’s next to the car park at the bottom of the hill but it’s making its way up now.
     - I’ve just been [burgled](emergency_details)
     - I'm at the [Whitehall](district) Community Centre at [144 Huntington Place](street_address). Ambrose, a neighbour of mine, is [dead](victim_details). Or he's not moving. I'm not sure. Please send help!
     - Someone has [fallen](emergency_details) over and [cut their arm](emergency_details)
-    - Someone’s [broken into](emergency_details) our meeting place and [stolen](emergency_details) things.
+    - Someone’s [broken into]{"entity": "emergency_details", "value": "theft"} our meeting place and [stolen]{"entity": "emergency_details", "value": "theft"} things.
     - An old man just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds.
     - I think my grandad is having a [stroke](emergency_details)
     - someone was just [stabbed]{"entity": "emergency_details", "value": "stabbing"}
@@ -80,8 +92,6 @@ nlu:
     - Someone’s been [stabbed]{"entity": "emergency_details", "value": "stabbing"}, she’s [bleeding](victim_details), help. She’s [unconscious](victim_details)
     - [robbery]{"entity": "emergency_details", "value": "theft"}
     - [stabbing](emergency_details)
-    - 3 men just [robbed]{"entity": "emergency_details", "value": "theft"} my local corner shop in [Shirebrook](district)
-    - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very [scared](victim_details).
     - I’m hiding in the bathroom right now, but I can hear him and he’s getting angry.
     - The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.
     - [ambulance](service_type) please, an old man just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds
@@ -94,12 +104,10 @@ nlu:
     - An old man just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds
     - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds.
     - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode). Please send help quickly.
-    - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode)[NN11 0GH](postcode). Please send help quickly.
     - there are 4 or 5 guys here with guns, please get here quick
     - can i get the [police](service_type)? just found my son with some [drugs](emergency_details) and it's not on
     - just send a couple bobbies over to teach him a lesson, shouldn't be having to but he's having a laught to be honest
-    - help! my son is [choking](emergency_details) on a grape he found and he [can't breathe](victim_details), send a paramedic
-    - help! my son is [choking](emergency_details) on a grape he found and he [can't breathe](victim_details), send a [paramedic](service_type)
+    - help! my son is [choking](emergency_details) on a grape he found and he [can't breathe](victim_details), send a [paramedic]{"entity": "service_type", "value": "ambulance"}
     - oh god it's huge now!
     - we need [firefighters]{"entity": "service_type", "value": "fire department"} right now, there's a massive [fire](emergency_details) at [Saddington Road](street_address)!
     - it's spreading across all the houses now, you need to hurry!
@@ -124,14 +132,22 @@ nlu:
     - two people live there, it's been really quiet for a while so be careful
     - i'm have [stroke](emergency_details)
     - i am [stroke](emergency_details)
-    - i'm going to commit [suicide](emergency_details)
     - someone [beat up](emergency_details) my brother
     - the guy was really tall and ran over to the bridge near us
     - [stabbed]{"entity": "emergency_details", "value": "stabbing"}
     - [stabbed]{"entity": "emergency_details", "value": "stabbing"} [bleeding](victim_details)
+    - could you send the [police](service_type) please? My shop was [broken into]{"entity": "emergency_details", "value": "theft"}
+    - I need assistance. My neighbours in [5 Horncastle Close](street_address) were arguing and I heard a [gunshot](emergency_details). My name is [Chirs]{"entity": "name", "value": "Chris"} and my number is [07443 223424](phone_number). I think one of them must be [dead](victim_details), it's really quiet now.
+    - i haven't heard anything in a while so someone might be waiting for you
+    - i'm having [stroke](emergency_details)
+    - i'm thinking of [taking my life]{"entity": "emergency_details", "value": "suicide"}
+    - my brother was just [beat up](emergency_details) by some thugs
+    - he's [in pain](victim_details) and [can't stand](victim_details), i think he's [broken his leg](emergency_details)
+    - we'll be waiting on the green out front of the houses
 - intent: describe_victim
   examples: |
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
+    - I think she’s [still breathing](victim_details), but she’s [isn't responding](victim_details) to me, I don’t know who she is.
     - He’s [really old](victim_details) and [struggling to breathe]{"entity": "victim_details", "value": "can't breathe"}. He’s [not bleeding](victim_details) though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
     - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he [can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details)
     - I feel like I’m going to [throw up](victim_details) and I have been [feeling very dizzy]{"entity": "victim_details", "value": "dizziness"} since around 3pm. I have a history of [heart conditions](victim_details) so I don’t know if that has caused it.
@@ -139,7 +155,7 @@ nlu:
     - No, I don't think so. I don't want to touch him. He's so [pale](victim_details)
     - She’s got a [nut allergy](victim_details). It’s my mum. She says she [can’t breathe](victim_details) and her [throat is swelling up](victim_details)
     - Yes she’s [conscious](victim_details)
-    - Yes, but there’s [some blood](victim_details) and I’m really worried
+    - Yes, but there’s some [blood]{"entity": "victim_details", "value": "bleeding"} and I’m really worried
     - I have been feeling [very nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
     - They are [bleeding](victim_details) and [unconscious](victim_details)
     - i feel some [dizziness](victim_details)
@@ -154,8 +170,8 @@ nlu:
     - I need an [ambulance](service_type), I tested positive for [Covid-19]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
     - I need an [ambulance](service_type), I tested positive for [coronavirus]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
     - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, i think he's [dead](victim_details)
-    - the guy has a [pistol]{"entity": "emergency_details", "value": "shooting"} and looks like he's going to use it
-    - the man here has a [gun]{"entity": "emergency_details", "value": "shooting"} and looks like he's going to hurt someone
+    - the guy has a [pistol](emergency_details) and looks like he's going to use it
+    - the man here has a [gun](emergency_details) and looks like he's going to hurt someone
     - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, I think they're [dead](victim_details)
     - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, I think they might be [dead](victim_details)
     - she's [crying](victim_details) and [in pain](victim_details), it looks pretty bad
@@ -176,8 +192,9 @@ nlu:
     - i am [confused](victim_details) please
     - they seem to have a [concussion](emergency_details) and are [dazed](victim_details)
     - my brother [cut themselves]{"entity": "victim_details", "value": "bleeding"} really bad
-    - I jsut [cut myself]{"entity": "victim_details", "value": "bleeding"} really bad
+    - I just [cut myself]{"entity": "victim_details", "value": "bleeding"} really bad
     - there's a lot of [blood]{"entity": "victim_details", "value": "bleeding"} and they're [crying](victim_details)
+    - that's it, just a bit annoyed they [took]{"entity": "emergency_details", "value": "theft"} so much
 - intent: give_location
   examples: |
     - Yes, I live locally, postcode is NG20 8QF, [769 Russell Road](street_address)
@@ -189,7 +206,6 @@ nlu:
     - i'm near the park in [Daventry](district)
     - [4 Horncastle Close](street_address)
     - [nn11 0gh](postcode)
-    - [nn11 0gh](postcode)[nn11 0gh](postcode)
     - Yes, I live locally, postcode is [NG20 8QF](postcode), [769 Russell Road](street_address)
     - I live at [100 Moulton Road](street_address), [CH7 4LH](postcode), please send someone quickly
     - [44 Lolands Road](street_address)
@@ -227,6 +243,10 @@ nlu:
     - yeah, the floor i'm on is floor 4
     - i'm [bleeding](victim_details) at [4 Horncastle Close](street_address)
     - swing
+    - [3 Jenner Close](street_address), [Dn357PH](postcode)
+    - my postcode is [DL1 4ET](postcode)
+    - my street address is [28 Milton Close](street_address)
+    - fine, I'm at [4 Speke Street](street_address), [L257TL](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -266,6 +286,10 @@ nlu:
     - my name is [Jack](name)
     - my name is [Henry Higgins](name)
     - [jack](name) still
+    - [Robert](name)
+    - my name is [Alex](name)
+    - my name is [Olivia](name)
+    - my name's [Bobby](district) and his is [Jason](name)
 - intent: give_phone_number
   examples: |
     - [07000000000](phone_number)
@@ -291,6 +315,9 @@ nlu:
     - my number is [07401 222112](phone_number)
     - [07411848586](phone_number)
     - [07443 001002](phone_number)
+    - [07888 122383](phone_number)
+    - my number is [07332 434 454](phone_number)
+    - [07883 334 434](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -334,6 +361,8 @@ nlu:
     - i am yeah, i'm just nextdoor
     - i do but I can't get over there, I don't think it's safe
     - yeah my brother
+    - yeah I'm at the shop and they're gone
+    - i do, but it isn't safe for me to help
 - intent: answer_no
   examples: |
     - No
@@ -388,6 +417,11 @@ nlu:
     - n
     - np
     - noooooo
+    - nah we're okay, a little shaken
+    - no, i'm hiding nextdoor
+    - noo
+    - not for long
+    - nah not a clue
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -418,6 +452,7 @@ nlu:
     - We ran away but I don't know
     - not a clue
     - i don't know it, sorry
+    - sorry, just know the number from the house we're near, not from here
 - synonym: police
   examples: |
     - policeman
@@ -435,6 +470,7 @@ nlu:
     - ambulance
     - EMS
     - ambulance service
+    - paramedics
 - synonym: fire department
   examples: |
     - fire engine
@@ -447,60 +483,18 @@ nlu:
     - firewoman
     - fire fighters
     - fire truck
-- synonym: stabbing
+- synonym: suicide
   examples: |
-    - stabbed
-    - stabbing
-    - stab
-- synonym: theft
-  examples: |
-    - robbed
-    - robbery
-    - stole
-    - theft
-    - stolen
-    - half-inched
-    - mugged
-    - took
-    - nicked
-- synonym: shooting
-  examples: |
-    - shot
-    - shooting
-    - shoot
-    - pistol
-    - gun
-- synonym: burns
-  examples: |
-    - burns
-    - burnt
-    - burned
-- synonym: burglary
-  examples: |
-    - burgled
-    - broken in
-    - burglary
-    - break and entry
-    - broken in to
-    - break in
-    - break-in
-- synonym: bleeding
-  examples: |
-    - cut myself
-    - cut themselves
-    - blood
-    - bleeding
-- synonym: dizziness
-  examples: |
-    - dizzy
-- synonym: can't breathe
-  examples: |
-    - difficulty breathing
-    - cannot breathe
-    - struggling to breathe
-    - trouble breathing
-    - unable to breathe
-    - hard to breathe
+    - take my life
+    - take his life
+    - take her life
+    - take their life
+    - kill myself
+    - kill himself
+    - kill herself
+    - kill themself
+    - kill themselves
+    - taking my life
 - synonym: COVID-19
   examples: |
     - COVID
@@ -509,9 +503,67 @@ nlu:
     - covid 19
     - COVID 19
     - coronavirus
-    - Covid-19
     - Covid 19
+    - Covid-19
     - rona
+- synonym: theft
+  examples: |
+    - robbed
+    - stole
+    - stolen
+    - took
+    - half-inched
+    - nicked
+    - robbery
+    - theft
+    - mugged
+- synonym: burglary
+  examples: |
+    - broken into
+    - burgled
+    - broken in
+    - burglary
+    - break and entry
+    - broken in to
+    - break in
+    - break-in
+- synonym: stabbing
+  examples: |
+    - stabbed
+    - stabbing
+    - stab
+- synonym: Chris
+  examples: |
+    - Chirs
+- synonym: can't breathe
+  examples: |
+    - struggling to breathe
+    - difficulty breathing
+    - cannot breathe
+    - trouble breathing
+    - unable to breathe
+    - hard to breath
+    - hard to breathe
+- synonym: dizziness
+  examples: |
+    - feeling very dizzy
+    - dizzy
+- synonym: bleeding
+  examples: |
+    - blood
+    - cut themselves
+    - cut myself
+    - bleeding
+- synonym: shooting
+  examples: |
+    - shot
+    - shooting
+    - shoot
+- synonym: burns
+  examples: |
+    - burnt
+    - burned
+    - burns
 - regex: phone_number
   examples: |
     - \b07[0-9]{3}\s?[0-9]{3}\s?[0-9]{3}\b
