@@ -7,6 +7,10 @@ import pathlib
 def home_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 
+# Create your views here.
+def data_view(request, *args, **kwargs):
+    return render(request, "data.html", {})
+
 def about_view(request, *args, **kwargs):
 
     # get path of database

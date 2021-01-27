@@ -16,12 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-from pages.views import home_view, about_view
+from pages.views import home_view, about_view, data_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', home_view, name='home'),
     path('about/', about_view, name='about'),
-    path('tinymce/', include('tinymce.urls')),
-    path('my_app/', include('my_app.urls'))
+    path('data/', data_view, name='data'),
+    path('chatroom/', include('chatroom.urls'))
 ]
