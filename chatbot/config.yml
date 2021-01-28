@@ -20,7 +20,7 @@ pipeline:
     max_ngram: 4
 # # https://rasa.com/docs/rasa/components#dietclassifier
   - name: DIETClassifier
-    epochs: 150
+    epochs: 100
 # # allows entities to map to synonym names in nlu file
   - name: EntitySynonymMapper
   - name: ResponseSelector
@@ -36,5 +36,5 @@ policies:
 # # If you'd like to customize them, uncomment and adjust the policies.
 # # See https://rasa.com/docs/rasa/policies for more information.
   - name: MemoizationPolicy
-    max_history: 1
+    max_history: 2
   - name: RulePolicy

@@ -94,6 +94,11 @@ slots:
     type: list
     influence_conversation: false
 responses:
+  utter_default:
+  - text: I'm sorry, I didn't quite find an answer in your response, could you please rephrase?
+  - text: Sorry, I didn't quite understand that, could you please rephrase?
+  - text: Sorry, could you rephrase? I'm not sure what you mean
+  - text: I'm afraid I don't understand, could you try rephrasing please?
   utter_introduce:
   - text: I'm Whitehall, the emergency service chatbot
   - text: My name is Whitehall, the emergency service chatbot
@@ -102,25 +107,20 @@ responses:
   - text: What emergency service do you require?
   - text: Who's services do you require?
   utter_ask_form_postcode:
-  - text: Can you please provide your postcode?
-  - text: Could you provide your postcode please?
-  - text: Could you give me the postcode please?
-  - text: Could I please have the postcode?
   - text: Do you know the postcode to {street_address}
   - text: Could you tell me the postcode for {street_address}
   - text: Do you know the postcode to {street_address} to help the {service_type_string} get there?
   - text: Could you tell me the postcode for {street_address} to help the {service_type_string} get there?
   utter_ask_form_street_address:
-  - text: Can you please provide your location?
+  - text: Could you please provide the street address {service_type_string}?
   - text: Do you know the street address so I can notify the {service_type_string}?
-  - text: Could you please provide the street address?
-  - text: Are you able to tell me the street address?
+  - text: Are you able to tell me the street address so I can forward it to the {service_type_string}?
   utter_ask_street_address:
   - text: Can you please provide the street address?
   utter_ask_location_description:
-  - text: Can you please describe your surroundings? What can you see?
+  # - text: Can you please describe your surroundings? What can you see?
+  # - text: What are your surroundings like? Can you describe where you are?
   - text: Can you give a description of where you are so the {service_type_string} can help get to you?
-  - text: What are your surroundings like? Can you describe where you are?
   - text: Could you tell me about your surrounding so I can pass it onto the {service_type_string}?
   utter_ask_emergency_details:
   - text: Can you please describe the details of your emergency?
@@ -155,7 +155,6 @@ responses:
   - text: Can you tell me your name please?
   - text: Could you please give me your name so the {service_type_string} will be more informed when they arrive please?
   - text: Would you be okay giving me your name? The {service_type_string} may need to know more about you
-  - text: Could you enter your name please?
   utter_ask_form_phone_number:
   - text: Can you please provide your phone number should the {service_type_string} need to contact you over the phone?
   - text: Okay, would you mind giving me your phone number to forward to the {service_type_string}?
@@ -164,26 +163,11 @@ responses:
   - text: Alright, do you think there's anything else the {service_type_string} should know before getting there?
   - text: Do you have any extra details on the situation that you think could be helpful?
   - text: Okay, is there anything else the {service_type_string} should know before they arrive?
-  utter_greet:
-  - text: Hey! How are you?
-  utter_cheer_up:
-  - text: 'Here is something to cheer you up:'
-    image: https://i.imgur.com/nGF1K8f.jpg
-  utter_did_that_help:
-  - text: Did that help you?
-  utter_happy:
-  - text: Great, carry on!
-  utter_goodbye:
-  - text: Bye
-  utter_iamabot:
-  - text: I am a bot, powered by Rasa.
   utter_finish:
   - text: Help is on the way, please stay safe and wait for the professionals to arrive
   - text: Okay, help is coming, please stay safe, the {service_type_string} are on their way
   - text: Alright, I've passed everything onto a human now, please stay safe and wait for the {service_type_string}
   - text: Thanks, the {service_type_string} will be there soon. Stay safe
-  utter_unsure:
-  - text: Sorry, I didn't understand what you just said, could you please respond to the last question?
 actions:
 - action_generate_report
 - action_init_slots

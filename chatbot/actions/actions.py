@@ -238,7 +238,7 @@ class ActionGenerateReport(Action):
                 data.append(self.prepare_report("Extra Details", val))
 
         # get transcript of whole conversation
-        transcript = ""
+        transcript = "<br/><br/><b>Transcript</b><br/><br/>"
         # help eliminate duplicates
         last = ""
 
@@ -248,8 +248,11 @@ class ActionGenerateReport(Action):
                 text = dict['text'].capitalize()
                 # if bot was restarted, ignore what has been done so far
                 if text == "/restart":
-                    transcript = ""
+                    transcript = "<br/><br/><b>Transcript</b><br/><br/>"
                     last = "<b>Whitehall</b>"
+                # don't store the user request to begin conversation
+                elif text == "Init":
+                    continue
                 else:
                     if not (speaker == last):
                         transcript += speaker + ": " + text + "<br/>"
@@ -263,9 +266,9 @@ class ActionGenerateReport(Action):
                 last = speaker
 
         transcript = Paragraph(transcript, styles['Normal'])
-        data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
+        # data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
 
-        pdf_path = self.make_pdf(data, cur_id)
+        pdf_path = self.make_pdf((data, transcript), cur_id)
 
         c.execute("""UPDATE conversations SET
                     Report=?  WHERE id=?""",
@@ -290,7 +293,9 @@ class ActionGenerateReport(Action):
 
 
     # uses data from run to make a table in a pdf
-    def make_pdf(self, data, id):
+    def make_pdf(self, tupl, id):
+
+        data, transcript = tupl
 
         path = str(pathlib.Path(__file__).parent.absolute().parent.absolute().parent.absolute())
         path += "/frontend/whitehall/reports/"
@@ -325,6 +330,9 @@ class ActionGenerateReport(Action):
 
         elements = []
         elements.append(table)
+
+        # add transcript
+        elements.append(transcript)
 
         pdf.build(elements)
 
@@ -377,6 +385,14 @@ class ValidateServiceForm(FormValidationAction):
             s.lower()
             if (s != "police") and (s != "ambulance") and (s != "fire department"):
                 slot_value.remove(s)
+
+        # if no valid ones then re-ask
+        if slot_value == []:
+            return_dict["service_type"] = None
+            return_dict["service_type_memory"] = None
+            return_dict["service_type_string"] = None
+
+            return return_dict
 
         # will hold a string version of the services to allow bot to use them
         service_string = ""

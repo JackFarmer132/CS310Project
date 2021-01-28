@@ -7,16 +7,15 @@ import pathlib
 def home_view(request, *args, **kwargs):
     return render(request, "home.html", {})
 
-# Create your views here.
-def data_view(request, *args, **kwargs):
-    return render(request, "data.html", {})
 
 def about_view(request, *args, **kwargs):
+    return render(request, "about.html", {})
+
+def data_view(request, *args, **kwargs):
 
     # get path of database
     path = str(pathlib.Path(__file__).parent.absolute().parent.absolute())
     path += "/conversations.db"
-    print(path)
     conn = sqlite3.connect(path)
 
     c = conn.cursor()
@@ -61,12 +60,10 @@ def about_view(request, *args, **kwargs):
         cur_entry.append(db_data)
 
     my_context = {
-        "my_text": "database stuff",
-        "my_number": 123,
         "cur_entry": cur_entry
     }
 
     conn.commit()
     conn.close()
 
-    return render(request, "about.html", my_context)
+    return render(request, "data.html", my_context)

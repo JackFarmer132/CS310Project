@@ -2,28 +2,4 @@
 
 {% block content %}
     <h1>About</h1>
-    <p>
-        {{ my_text }}, {{ my_number }}, {{ my_list }}
-    </p>
-    <ul>
-        <li>Item 1</li>
-        <li>Item 2</li>
-        <li>Item 3</li>
-    </ul>
-
-    <ul>
-        {% for entry in cur_entry %}
-            <li>
-            </li>
-            {% for data in entry %}
-                <li>
-                {% for e in data %}
-                    {{ e }}:
-                {% endfor %}
-                </li>
-            {% endfor %}
-        {% endfor %}
-        https://www.google.com/
-    </ul>
-
 {% endblock %}

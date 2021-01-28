@@ -2,4 +2,18 @@
 
 {% block content %}
     <h1>Data</h1>
+    <ul>
+        {% for entry in cur_entry %}
+            <li>
+            </li>
+            {% for data in entry %}
+                <li>
+                {% for e in data %}
+                    {{ e }}:
+                {% endfor %}
+                </li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+
 {% endblock %}
