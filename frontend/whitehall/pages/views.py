@@ -67,3 +67,7 @@ def data_view(request, *args, **kwargs):
     conn.close()
 
     return render(request, "data.html", my_context)
+
+# Create your views here.
+def chatroom_view(request, *args, **kwargs):
+    return render(request, "chatroom.html", {})
