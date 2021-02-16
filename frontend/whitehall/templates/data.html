@@ -1,19 +1,64 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>Data</h1>
-    <ul>
-        {% for entry in cur_entry %}
-            <li>
-            </li>
-            {% for data in entry %}
-                <li>
-                {% for e in data %}
-                    {{ e }}:
+    <head>
+        <style>
+            table {
+                font-family: arial, sans-serif;
+                border-collapse: collapse;
+                width: 95%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            td, th {
+                border: 1px solid #A9A9A9;
+                text-align: center;
+                padding: 10px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #dddddd;
+            }
+        </style>
+    </head>
+
+    <body>
+        <br/><br/><br/><br/>
+        <table>
+            <tr>
+              <th>ID</th>
+              <th>Requested Services</th>
+              <th>Emergency Details</th>
+              <th>Safe</th>
+              <th>Someone Injured</th>
+              <th>Victim Details</th>
+              <th>Street Address</th>
+              <th>Postcode</th>
+              <th>District</th>
+              <th>Location Description</th>
+              <th>First Aid Knowledge</th>
+              <th>Name</th>
+              <th>Phone Number</th>
+              <th>Extra Details</th>
+              <th>Report</th>
+            </tr>
+            <tbody style="text-align:center">
+                {% for entry in cur_entry %}
+                    <tr>
+                      {% for data in entry %}
+                          <td>
+                              {% if "/reports/report_" in data %}
+                                  <a href="{{ data }}">Report Link</a>
+                              {% else %}
+                                  {{ data }}
+                              {% endif %}
+                          </td>
+                      {% endfor %}
+                    </tr>
                 {% endfor %}
-                </li>
-            {% endfor %}
-        {% endfor %}
-    </ul>
+            </tbody>
+        </table>
+    </body>
 
 {% endblock %}

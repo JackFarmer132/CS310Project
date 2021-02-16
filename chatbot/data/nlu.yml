@@ -33,6 +33,7 @@ nlu:
     - [police](service_type) and an [ambulance](service_type) please, we just had a [car crash](emergency_details)
     - [Police](service_type)
     - [ambulance](service_type)
+    - please send a [fireman]{"entity": "service_type", "value": "fire department"}
     - please come quick
     - [fire engine](service_type)
     - I need an [ambulance](service_type)

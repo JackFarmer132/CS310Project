@@ -336,7 +336,7 @@ class ActionGenerateReport(Action):
 
         pdf.build(elements)
 
-        return file_name
+        return "/reports/report_" + str(id) + ".pdf"
 
 
 class ValidateServiceForm(FormValidationAction):
