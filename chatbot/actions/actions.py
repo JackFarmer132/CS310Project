@@ -11,7 +11,7 @@ from rasa_sdk.events import SlotSet
 import sqlite3
 import pathlib
 
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, PageBreak
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.units import inch
@@ -22,6 +22,8 @@ from reportlab.lib.enums import TA_LEFT, TA_CENTER, TA_RIGHT
 # for api calls
 import urllib.request as req
 import json
+
+from datetime import datetime
 
 
 # gets data from api calls
@@ -185,7 +187,7 @@ class ActionGenerateReport(Action):
             domain: DomainDict) -> Dict[Text, Any]:
 
         styles = getSampleStyleSheet()
-        headingStyle = ParagraphStyle(name="left", alignment=TA_CENTER, fontSize=13, leading=10)
+        headingStyle = ParagraphStyle(name="left", alignment=TA_CENTER, fontSize=15, leading=10)
 
         data = [
             [Paragraph("<b>Slot</b>", headingStyle),
@@ -265,8 +267,13 @@ class ActionGenerateReport(Action):
                 transcript += speaker + ": " + text + "<br/>"
                 last = speaker
 
+        # save timestamp of conversation
+        time_obj = datetime.now()
+        time = time_obj.strftime("%d-%b-%Y (%H:%M:%S.%f)")
+
+        transcript = transcript + "<br/> <br/> <br/> <b>Conversation occured at: " + time + "</b>"
+
         transcript = Paragraph(transcript, styles['Normal'])
-        # data.append([Paragraph("<b>Transcript</b>", styles['Normal']), transcript])
 
         pdf_path = self.make_pdf((data, transcript), cur_id)
 
@@ -304,22 +311,13 @@ class ActionGenerateReport(Action):
         pdf = SimpleDocTemplate(file_name, pagesize=letter)
         table = Table(data, colWidths=(2*inch, 5*inch))
         style = TableStyle([
-            ('BACKGROUND', (0,0), (-1,0), colors.darkgrey),
+            ('BACKGROUND', (0,0), (-1,0), colors.lightgrey),
             ('TEXTCOLOR', (0,0), (-1,0), colors.white),
             ('BOTTOMPADDING', (0,0), (-1,0), 10),
             ('VALIGN', (0, 1), (0, -1), 'TOP'),
 
         ])
         table.setStyle(style)
-
-        # alternating row colours
-        row_num = len(data)
-        for i in range(1, row_num):
-            if (i % 2) == 0:
-                ts = TableStyle(
-                    [('BACKGROUND', (0,i), (-1,i), colors.lightgrey)]
-                )
-                table.setStyle(ts)
 
         # add borders
         ts = TableStyle([
@@ -330,6 +328,8 @@ class ActionGenerateReport(Action):
 
         elements = []
         elements.append(table)
+
+        elements.append(PageBreak())
 
         # add transcript
         elements.append(transcript)
@@ -824,7 +824,7 @@ class ValidateWrapupForm(FormValidationAction):
                    "heart attack": "https://www.redcross.org.uk/first-aid/learn-first-aid/heart-attack#:~:text=Help%20the%20person%20to%20sit%20down.&text=Sitting%20will%20ease%20the%20strain,hurt%20themselves%20if%20they%20collapse",
                    "stroke": "https://www.redcross.org.uk/first-aid/learn-first-aid/stroke",
                    "nausea": "https://www.nhs.uk/conditions/feeling-sick-nausea/",
-                   "COVID": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
+                   "COVID-19": "https://www.nhs.uk/conditions/coronavirus-covid-19/self-isolation-and-treatment/how-to-treat-symptoms-at-home/",
                    "burns": "https://www.nhs.uk/conditions/burns-and-scalds/treatment/",
                    "dizziness": "https://www.nhs.uk/conditions/dizziness/",
                    "can't breathe": "https://www.redcross.org.uk/first-aid/learn-first-aid/unresponsive-and-not-breathing#:~:text=Get%20the%20person%20safely%20to,chest%20at%20a%20regular%20rate.",

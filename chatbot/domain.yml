@@ -3,14 +3,14 @@ session_config:
   session_expiration_time: 60
   carry_over_slots_to_new_session: true
 intents:
-- give_service
-- give_name
-- answer_unsure
-- answer_no
+- give_location
 - start_form
 - give_phone_number
+- give_name
 - describe_emergency
-- give_location
+- answer_no
+- give_service
+- answer_unsure
 - describe_victim
 - answer_yes
 - nlu_fallback
@@ -112,14 +112,12 @@ responses:
   - text: Do you know the postcode to {street_address} to help the {service_type_string} get there?
   - text: Could you tell me the postcode for {street_address} to help the {service_type_string} get there?
   utter_ask_form_street_address:
-  - text: Could you please provide the street address {service_type_string}?
+  - text: Could you please provide the street address for the {service_type_string}?
   - text: Do you know the street address so I can notify the {service_type_string}?
   - text: Are you able to tell me the street address so I can forward it to the {service_type_string}?
   utter_ask_street_address:
   - text: Can you please provide the street address?
   utter_ask_location_description:
-  # - text: Can you please describe your surroundings? What can you see?
-  # - text: What are your surroundings like? Can you describe where you are?
   - text: Can you give a description of where you are so the {service_type_string} can help get to you?
   - text: Could you tell me about your surrounding so I can pass it onto the {service_type_string}?
   utter_ask_emergency_details:

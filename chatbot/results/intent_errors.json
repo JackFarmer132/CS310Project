@@ -1,10 +1,650 @@
 [
   {
+    "text": "I think police but I don\u2019t want to cause any trouble",
+    "intent": "give_service",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.8348473906517029
+    }
+  },
+  {
+    "text": "Yeah, hi, I live at 82 Grenfell Tower. There is a fire",
+    "intent": "give_service",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.7025237083435059
+    }
+  },
+  {
+    "text": "There\u2019s an entrance at the back, which is next to the bathroom that I\u2019m in. If he finds out I called the police he will get really angry. Please come quick.",
+    "intent": "give_service",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9683646559715271
+    }
+  },
+  {
+    "text": "I need police and an ambulance. My friend has just been shot outside of 15 South Molton Street. My name is Harry Aust and my contact number is 07402550350 please come quick! He's bleeding and I don't know what to do, the postcode is W1K 5QR. Hurry!",
+    "intent": "give_service",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.2466001808643341
+    }
+  },
+  {
+    "text": "Help, my house is on fire. Address is 5 Horncastle Close, Daventry AA99 9AA. Please send help quickly.",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.9999096393585205
+    }
+  },
+  {
+    "text": "Help, my house is on fire. Address is 5 Horncastle Close, Daventry NN11 0GH. Please send help quickly.",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.9999566674232483
+    }
+  },
+  {
+    "text": "someone is trying to break in",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.5440170764923096
+    }
+  },
+  {
+    "text": "Yes she\u2019s conscious",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "answer_yes",
+      "confidence": 0.6347475051879883
+    }
+  },
+  {
+    "text": "Yes, but there\u2019s some blood and I\u2019m really worried",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "answer_yes",
+      "confidence": 0.7334152460098267
+    }
+  },
+  {
+    "text": "i think she broke her leg and she's freaking out",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.999931812286377
+    }
+  },
+  {
+    "text": "44 Lolands Road",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "give_phone_number",
+      "confidence": 0.9231226444244385
+    }
+  },
+  {
+    "text": "England",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.9988186955451965
+    }
+  },
+  {
+    "text": "yeah, the floor i'm on is floor 4",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "give_phone_number",
+      "confidence": 0.6377446055412292
+    }
+  },
+  {
+    "text": "My name is Kirsty Bridgens, I\u2019m 24",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "give_phone_number",
+      "confidence": 0.660555362701416
+    }
+  },
+  {
+    "text": "Thanks, Taikisha Abimbola",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.4318511188030243
+    }
+  },
+  {
+    "text": "Don Hughes",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9926371574401855
+    }
+  },
+  {
+    "text": "Hillary Smith",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.6721633076667786
+    }
+  },
+  {
+    "text": "Correct",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.4501486122608185
+    }
+  },
+  {
+    "text": "Never",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.46994641423225403
+    }
+  },
+  {
+    "text": "a bit of a scratch but nothing serious",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "answer_yes",
+      "confidence": 0.6386457085609436
+    }
+  },
+  {
+    "text": "nah not a clue",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.9048365950584412
+    }
+  },
+  {
+    "text": "come quick, i don't have long",
+    "intent": "give_service",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.6338678598403931
+    }
+  },
+  {
+    "text": "I\u2019m near Goody\u2019s chicken shop, near the pedestrian crossing. There\u2019s a big field opposite me.",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.600996732711792
+    }
+  },
+  {
+    "text": "could you send the police please? My shop was broken into",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.7856442928314209
+    }
+  },
+  {
+    "text": "he's in pain and can't stand, i think he's broken his leg",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.742648184299469
+    }
+  },
+  {
+    "text": "the guy has a pistol and looks like he's going to use it",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.942152738571167
+    }
+  },
+  {
+    "text": "the man here has a gun and looks like he's going to hurt someone",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9937302470207214
+    }
+  },
+  {
+    "text": "Katie Price",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.6202056407928467
+    }
+  },
+  {
+    "text": "Mark Pask",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.9999285936355591
+    }
+  },
+  {
+    "text": "she does but she can't really do anything right now",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.5885814428329468
+    }
+  },
+  {
+    "text": "i have medical training, yes",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.865629255771637
+    }
+  },
+  {
+    "text": "yeah, we're at the corner of Iveston Lane now",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.9995429515838623
+    }
+  },
+  {
+    "text": "my friend got her leg under the wheel",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.7425585389137268
+    }
+  },
+  {
+    "text": "not sure, I can try and find out",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.947981595993042
+    }
+  },
+  {
+    "text": "Perhaps",
+    "intent": "answer_unsure",
+    "intent_prediction": {
+      "name": "give_name",
+      "confidence": 0.8955011367797852
+    }
+  },
+  {
+    "text": "help",
+    "intent": "give_service",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9999164938926697
+    }
+  },
+  {
+    "text": "someone is ill",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9917017817497253
+    }
+  },
+  {
+    "text": "some have burns all over, burnt by the fire",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "answer_yes",
+      "confidence": 0.6875425577163696
+    }
+  },
+  {
+    "text": "my brother cut themselves really bad",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9733250737190247
+    }
+  },
+  {
+    "text": "we're in a field",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9856357574462891
+    }
+  },
+  {
+    "text": "my address is 73 Ramsey Gardens",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "give_phone_number",
+      "confidence": 0.4163481891155243
+    }
+  },
+  {
+    "text": "Thank you. Thomas Ludlow.",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.47533613443374634
+    }
+  },
+  {
+    "text": "i guess",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.44605377316474915
+    }
+  },
+  {
+    "text": "No, we are all safe, one of the men was carrying a knife and he threatened us with it. He stole from the till and ran away.",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.8900160193443298
+    }
+  },
+  {
+    "text": "no, but it's getting hard to breath",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.9804145097732544
+    }
+  },
+  {
+    "text": "help! my son is choking on a grape he found and he can't breathe, send a paramedic",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.9206643104553223
+    }
+  },
+  {
+    "text": "help",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.9999538064002991
+    }
+  },
+  {
+    "text": "the guy was really tall and ran over to the bridge near us",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9096996188163757
+    }
+  },
+  {
+    "text": "No, I don't think so. I don't want to touch him. He's so pale",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9999046325683594
+    }
+  },
+  {
+    "text": "my house",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9996566772460938
+    }
+  },
+  {
+    "text": "Tom",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.674034595489502
+    }
+  },
+  {
+    "text": "Indeed",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9911630153656006
+    }
+  },
+  {
+    "text": "Yes we will do thanks.",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.45431146025657654
+    }
+  },
+  {
+    "text": "i do but I can't get over there, I don't think it's safe",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9997132420539856
+    }
+  },
+  {
+    "text": "i do, but it isn't safe for me to help",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9998002648353577
+    }
+  },
+  {
+    "text": "I am not",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "answer_yes",
+      "confidence": 0.7238547801971436
+    }
+  },
+  {
+    "text": "No that\u2019s it, but please get someone here quickly, thanks.",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.9419629573822021
+    }
+  },
+  {
+    "text": "not for long",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.9288696646690369
+    }
+  },
+  {
+    "text": "I don\u2019t know, someone just ran out of the building now and he seems hurt. I will go and ask him if there\u2019s anyone else inside",
+    "intent": "answer_unsure",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.7505501508712769
+    }
+  },
+  {
+    "text": "I don\u2019t know, someone just ran out of the building now and he seems hurt. I will go and ask him if there\u2019s anyone else inside.",
+    "intent": "answer_unsure",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.7505501508712769
+    }
+  },
+  {
+    "text": "Someone has fallen over and cut their arm",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.8846654891967773
+    }
+  },
+  {
+    "text": "I\u2019m hiding in the bathroom right now, but I can hear him and he\u2019s getting angry.",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.7738749384880066
+    }
+  },
+  {
+    "text": "he has a gun",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.9988538026809692
+    }
+  },
+  {
+    "text": "someone is having an alergic reaction",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.9623294472694397
+    }
+  },
+  {
+    "text": "please hurry, that sod in the car might get away",
+    "intent": "describe_emergency",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.7287798523902893
+    }
+  },
+  {
+    "text": "I\u2019m not sure, I think she\u2019s in her 50\u2019s. I did see someone in the distance run off, but I couldn\u2019t see them.",
+    "intent": "describe_victim",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.8673948645591736
+    }
+  },
+  {
+    "text": "Shepherd Market, London, W1J 7PA. I\u2019m a regular at this McDonalds but I\u2019ve never seen him before.",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.9035071730613708
+    }
+  },
+  {
+    "text": "Shepherd Market, London, W1J 7PA. I\u2019m a regular at this McDonalds but I\u2019ve never seen him before.",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "describe_victim",
+      "confidence": 0.9035071730613708
+    }
+  },
+  {
+    "text": "sure, it's CV23 8XQ",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.9879613518714905
+    }
+  },
+  {
+    "text": "I'm not sure, street address is Iveston Lane though",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.808374285697937
+    }
+  },
+  {
+    "text": "I'm at the Birmingham Hotel, room 407",
+    "intent": "give_location",
+    "intent_prediction": {
+      "name": "give_phone_number",
+      "confidence": 0.7033042907714844
+    }
+  },
+  {
+    "text": "Robert",
+    "intent": "give_name",
+    "intent_prediction": {
+      "name": "give_location",
+      "confidence": 0.7217892408370972
+    }
+  },
+  {
     "text": "I think so",
     "intent": "answer_yes",
     "intent_prediction": {
-      "name": "nlu_fallback",
-      "confidence": 1.0
+      "name": "answer_no",
+      "confidence": 0.9691248536109924
+    }
+  },
+  {
+    "text": "Yes they\u2019ve ran off",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.828766405582428
+    }
+  },
+  {
+    "text": "don't know about my son's smackhead friends but yeah he's home with me and his mum",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.45900261402130127
+    }
+  },
+  {
+    "text": "i used to be a nurse",
+    "intent": "answer_yes",
+    "intent_prediction": {
+      "name": "describe_emergency",
+      "confidence": 0.4533468186855316
+    }
+  },
+  {
+    "text": "i don't know exactly what it is, sorry. Just near Horsenden Hill",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "answer_unsure",
+      "confidence": 0.9984601736068726
+    }
+  },
+  {
+    "text": "no i'm still inside",
+    "intent": "answer_no",
+    "intent_prediction": {
+      "name": "answer_yes",
+      "confidence": 0.8242487907409668
+    }
+  },
+  {
+    "text": "Maybe",
+    "intent": "answer_unsure",
+    "intent_prediction": {
+      "name": "give_name",
+      "confidence": 0.5762645602226257
+    }
+  },
+  {
+    "text": "Do I have to?",
+    "intent": "answer_unsure",
+    "intent_prediction": {
+      "name": "give_service",
+      "confidence": 0.41244736313819885
+    }
+  },
+  {
+    "text": "not a clue",
+    "intent": "answer_unsure",
+    "intent_prediction": {
+      "name": "answer_no",
+      "confidence": 0.9650465250015259
     }
   }
 ]

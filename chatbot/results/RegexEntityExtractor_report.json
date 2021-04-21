@@ -1,76 +1,76 @@
 {
-  "service_type": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 13,
+  "postcode": {
+    "precision": 0.8507462686567164,
+    "recall": 1.0,
+    "f1-score": 0.9193548387096774,
+    "support": 57,
     "confused_with": {}
   },
   "phone_number": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 6,
-    "confused_with": {}
-  },
-  "emergency_details": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 41,
-    "confused_with": {}
-  },
-  "name": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 15,
-    "confused_with": {}
-  },
-  "postcode": {
-    "precision": 0.2857142857142857,
+    "precision": 1.0,
     "recall": 1.0,
-    "f1-score": 0.4444444444444445,
-    "support": 4,
-    "confused_with": {}
-  },
-  "street_address": {
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1-score": 0.0,
-    "support": 34,
+    "f1-score": 1.0,
+    "support": 58,
     "confused_with": {}
   },
   "district": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 5,
+    "support": 16,
     "confused_with": {}
   },
   "victim_details": {
     "precision": 0.0,
     "recall": 0.0,
     "f1-score": 0.0,
-    "support": 74,
+    "support": 207,
+    "confused_with": {}
+  },
+  "name": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 71,
+    "confused_with": {}
+  },
+  "street_address": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 139,
+    "confused_with": {}
+  },
+  "service_type": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 88,
+    "confused_with": {}
+  },
+  "emergency_details": {
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1-score": 0.0,
+    "support": 191,
     "confused_with": {}
   },
   "micro avg": {
-    "precision": 0.2857142857142857,
-    "recall": 0.020833333333333332,
-    "f1-score": 0.03883495145631068,
-    "support": 192
+    "precision": 0.92,
+    "recall": 0.13905683192261184,
+    "f1-score": 0.2415966386554622,
+    "support": 827
   },
   "macro avg": {
-    "precision": 0.03571428571428571,
-    "recall": 0.125,
-    "f1-score": 0.05555555555555556,
-    "support": 192
+    "precision": 0.23134328358208955,
+    "recall": 0.25,
+    "f1-score": 0.2399193548387097,
+    "support": 827
   },
   "weighted avg": {
-    "precision": 0.005952380952380952,
-    "recall": 0.020833333333333332,
-    "f1-score": 0.00925925925925926,
-    "support": 192
+    "precision": 0.12876969445396957,
+    "recall": 0.13905683192261184,
+    "f1-score": 0.13349845925810352,
+    "support": 827
   }
 }

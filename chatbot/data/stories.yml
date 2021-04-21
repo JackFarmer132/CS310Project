@@ -3654,3 +3654,108 @@ stories:
   - action: action_save_wrapup_info
   - action: utter_finish
   - action: action_generate_report
+
+# robbery
+- story: Call 31
+  steps:
+  - intent: start_form
+  - action: utter_introduce
+  - action: action_init_slots
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - first_aid: Not Relevant
+  - slot_was_set:
+    - is_safe: Irrelevant
+  - action: service_form
+  - active_loop: service_form
+  - slot_was_set:
+    - location_description: Not Needed
+  - slot_was_set:
+    - victim_details: No Victim
+  - slot_was_set:
+    - is_safe: Irrelevant
+  - slot_was_set:
+    - requested_slot: service_type
+  - slot_was_set:
+    - emergency_details:
+      - theft
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - service_type:
+      - police
+  - slot_was_set:
+    - emergency_details: theft
+  - slot_was_set:
+    - service_type_memory:
+      - police
+  - slot_was_set:
+    - service_type_string: police
+  - slot_was_set:
+    - is_safe: null
+  - slot_was_set:
+    - emergency_details_memory: theft
+  - slot_was_set:
+    - requested_slot: is_safe
+  - slot_was_set:
+    - is_safe: No
+  - slot_was_set:
+    - requested_slot: any_injured
+  - slot_was_set:
+    - any_injured: No
+  - slot_was_set:
+    - requested_slot: form_street_address
+  - slot_was_set:
+    - street_address: Imaginary Lane
+  - slot_was_set:
+    - form_street_address: Imaginary Lane
+  - slot_was_set:
+    - street_address: Imaginary Lane
+  - slot_was_set:
+    - requested_slot: form_postcode
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - form_postcode: NN11 0GH
+  - slot_was_set:
+    - postcode: NN11 0GH
+  - slot_was_set:
+    - district: Daventry
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: utter_dispatch
+  - action: action_save_service_info
+  - action: action_manage_first_aid
+  - action: wrapup_form
+  - active_loop: wrapup_form
+  - slot_was_set:
+    - first_aid: Not Relevant
+  - slot_was_set:
+    - requested_slot: form_name
+  - slot_was_set:
+    - name: jack
+  - slot_was_set:
+    - phone_number: 07444 444444
+  - slot_was_set:
+    - form_name: jack
+  - slot_was_set:
+    - phone_number: 07444 444444
+  - slot_was_set:
+    - name: jack
+  - slot_was_set:
+    - form_phone_number: 07444 444444
+  - slot_was_set:
+    - requested_slot: extra_details
+  - slot_was_set:
+    - extra_details: that's all
+  - slot_was_set:
+    - requested_slot: null
+  - active_loop: null
+  - action: action_save_wrapup_info
+  - action: utter_finish
+  - action: action_generate_report

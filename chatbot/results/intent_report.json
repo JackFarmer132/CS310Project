@@ -1,101 +1,102 @@
 {
-  "answer_unsure": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
-    "confused_with": {}
-  },
-  "start_form": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1,
-    "confused_with": {}
-  },
-  "give_location": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 6,
-    "confused_with": {}
-  },
-  "answer_yes": {
-    "precision": 1.0,
-    "recall": 0.8888888888888888,
-    "f1-score": 0.9411764705882353,
-    "support": 9,
+  "give_name": {
+    "precision": 0.9428571428571428,
+    "recall": 0.7857142857142857,
+    "f1-score": 0.8571428571428571,
+    "support": 42,
     "confused_with": {
-      "nlu_fallback": 1
+      "give_location": 3,
+      "answer_no": 3
     }
   },
-  "describe_emergency": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 13,
-    "confused_with": {}
-  },
-  "give_service": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 10,
-    "confused_with": {}
-  },
-  "give_phone_number": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 5,
-    "confused_with": {}
-  },
-  "give_name": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 9,
-    "confused_with": {}
-  },
-  "nlu_fallback": {
-    "precision": 0.5,
-    "recall": 1.0,
-    "f1-score": 0.6666666666666666,
-    "support": 1,
-    "confused_with": {}
+  "give_location": {
+    "precision": 0.8333333333333334,
+    "recall": 0.7843137254901961,
+    "f1-score": 0.8080808080808081,
+    "support": 51,
+    "confused_with": {
+      "give_phone_number": 4,
+      "describe_victim": 2
+    }
   },
   "describe_victim": {
-    "precision": 1.0,
+    "precision": 0.75,
+    "recall": 0.8076923076923077,
+    "f1-score": 0.7777777777777779,
+    "support": 52,
+    "confused_with": {
+      "describe_emergency": 6,
+      "answer_yes": 3
+    }
+  },
+  "answer_unsure": {
+    "precision": 0.7419354838709677,
+    "recall": 0.7931034482758621,
+    "f1-score": 0.7666666666666667,
+    "support": 29,
+    "confused_with": {
+      "give_name": 2,
+      "describe_victim": 2
+    }
+  },
+  "give_service": {
+    "precision": 0.8709677419354839,
+    "recall": 0.9,
+    "f1-score": 0.8852459016393444,
+    "support": 60,
+    "confused_with": {
+      "describe_emergency": 3,
+      "describe_victim": 1
+    }
+  },
+  "give_phone_number": {
+    "precision": 0.84375,
     "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 11,
+    "f1-score": 0.9152542372881356,
+    "support": 27,
     "confused_with": {}
   },
   "answer_no": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 9,
-    "confused_with": {}
+    "precision": 0.7704918032786885,
+    "recall": 0.8103448275862069,
+    "f1-score": 0.7899159663865546,
+    "support": 58,
+    "confused_with": {
+      "answer_yes": 3,
+      "answer_unsure": 3
+    }
   },
-  "begin": {
-    "precision": 1.0,
-    "recall": 1.0,
-    "f1-score": 1.0,
-    "support": 1,
-    "confused_with": {}
+  "answer_yes": {
+    "precision": 0.8285714285714286,
+    "recall": 0.6744186046511628,
+    "f1-score": 0.7435897435897435,
+    "support": 43,
+    "confused_with": {
+      "answer_no": 6,
+      "describe_victim": 3
+    }
   },
-  "accuracy": 0.9883720930232558,
+  "describe_emergency": {
+    "precision": 0.8383838383838383,
+    "recall": 0.8556701030927835,
+    "f1-score": 0.8469387755102041,
+    "support": 97,
+    "confused_with": {
+      "describe_victim": 5,
+      "give_service": 3
+    }
+  },
+  "accuracy": 0.8235294117647058,
   "macro avg": {
-    "precision": 0.9583333333333334,
-    "recall": 0.9907407407407408,
-    "f1-score": 0.9673202614379085,
-    "support": 86
+    "precision": 0.8244767524700981,
+    "recall": 0.8234730336114227,
+    "f1-score": 0.821179192675788,
+    "support": 459
   },
   "weighted avg": {
-    "precision": 0.9941860465116279,
-    "recall": 0.9883720930232558,
-    "f1-score": 0.989968080255358,
-    "support": 86
+    "precision": 0.826352444205566,
+    "recall": 0.8235294117647058,
+    "f1-score": 0.8227866312512163,
+    "support": 459
   }
 }

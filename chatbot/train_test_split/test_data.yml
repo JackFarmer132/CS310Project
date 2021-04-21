@@ -1,0 +1,240 @@
+version: "2.0"
+nlu:
+- intent: begin
+  examples: |
+    - start_bot
+- intent: start_form
+  examples: |
+    - init
+- intent: give_phone_number
+  examples: |
+    - My number is [07000000000](phone_number)
+    - My number is [07000000000](phone_number).
+    - it's [07502 660480](phone_number)
+    - [07882 481625](phone_number)
+- intent: answer_unsure
+  examples: |
+    - I'm unsure
+    - might be
+    - I don't really know
+    - We ran away but I don't know
+    - not that I know of
+    - I might not be
+- intent: give_name
+  examples: |
+    - Thank you. My name is [Zhang Wei](name).
+    - [Matty Carter](name)
+    - my name is [Alex](name)
+    - [Katie Price](name)
+    - my name's [Bobby](district) and his is [Jason](name)
+    - [Jack Farmer](name). My number is [07427521153](phone_number)
+    - my name is [alice](name)
+    - Thank you. My name is [Rodriguez Sebastia](name).
+- intent: answer_yes
+  examples: |
+    - yeah
+    - yeah I'm at the shop and they're gone
+    - Yeah but I need help here
+    - yeah I got away from it, but there are people still around
+    - I am
+    - there are some people tending to the [burned]{"entity": "victim_details", "value": "burns"} people, yeah
+    - i used to be a nurse
+    - yeah my brother
+    - eah
+- intent: give_location
+  examples: |
+    - i'm [bleeding](victim_details) at [4 Horncastle Close](street_address)
+    - sure, it's [CV23 8XQ](postcode)
+    - my house is at [48 Ferndale Park](street_address), [dy9 0rb](postcode)
+    - [23 Frederick Street](street_address), [B1 3HR](postcode)
+    - [NN11 4BT](postcode)
+    - [b90 1da](postcode)
+    - [4 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode).
+    - my street address is [28 Milton Close](street_address)
+    - We are at [16 Stoneygate Drive](street_address), [Hinckley](district), LE10 1TD.
+    - we're on the corner of [Iveston Lane](street_address) now, yeah
+- intent: describe_victim
+  examples: |
+    - Yes, but there’s some [blood]{"entity": "victim_details", "value": "bleeding"} and I’m really worried
+    - there's a lot of [blood]{"entity": "victim_details", "value": "bleeding"} and they're [crying](victim_details)
+    - I feel like I’m going to [throw up](victim_details) and I have been [feeling very dizzy]{"entity": "victim_details", "value": "dizziness"} since around 3pm. I have a history of [heart conditions](victim_details) so I don’t know if that has caused it.
+    - Yes she’s [conscious](victim_details)
+    - they're [seizing up](victim_details) and [not responding](victim_details)
+    - I need an [ambulance](service_type), I tested positive for [Covid-19]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - they're [unable to breathe]{"entity": "victim_details", "value": "can't breathe"}
+    - [bleeding](victim_details)
+    - They are [bleeding](victim_details) and [unconscious](victim_details)
+    - he's [acting strange](victim_details), we've seen the doctor before and think he's getting [dementia](victim_details) but he hasn't been like this before
+    - she's [crying](victim_details) and [in pain](victim_details), it looks pretty bad
+- intent: answer_no
+  examples: |
+    - no, we're okay
+    - No not really. Just come quickly.
+    - we don't, no
+    - i'm not, no
+    - No
+    - I don’t think so
+    - you don't need that! just hurry!
+    - Not really
+    - that's all, thanks
+    - No, we are all safe, one of the men was [carrying a knife](emergency_details) and he threatened us with it. He [stole]{"entity": "emergency_details", "value": "theft"} from the till and ran away.
+    - i don't know exactly what it is, sorry. Just near [Horsenden Hill](street_address)
+- intent: give_service
+  examples: |
+    - send the [police force]{"entity": "service_type", "value": "police"}
+    - please send a [firewoman]{"entity": "service_type", "value": "fire department"}
+    - please come quick
+    - Help us, we need the [fire department](service_type) to come to [9 Charter Avenue](street_address)
+    - help
+    - please send a [fire brigade]{"entity": "service_type", "value": "fire department"}
+    - send me help now or
+    - There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the [police](service_type) he will get really angry. Please come quick.
+    - send a [hospital wagon]{"entity": "service_type", "value": "ambulance"}
+    - please send a [firefighters]{"entity": "service_type", "value": "fire department"}
+    - [police](service_type), please help someone is holding us [hostage](emergency_details)
+    - i need [EMS]{"entity": "service_type", "value": "ambulance"}
+- intent: describe_emergency
+  examples: |
+    - help
+    - we need [firefighters]{"entity": "service_type", "value": "fire department"} right now, there's a massive [fire](emergency_details) at [Saddington Road](street_address)!
+    - no but be careful or that guy will steal your wallets too
+    - they're going to [kill themself]{"entity": "emergency_details", "value": "suicide"}
+    - there's been a [theft](emergency_details) at my house in [24 Kestrel Way](street_address)
+    - I think my grandad is having a [stroke](emergency_details)
+    - [stabbed]{"entity": "emergency_details", "value": "stabbing"}
+    - Help, there’s a huge [fire](emergency_details) in [Horsenden Hill](street_address).
+    - two people live there, it's been really quiet for a while so be careful
+    - they've been in an [accident](emergency_details)
+    - can i get the [police](service_type)? just found my son with some [drugs](emergency_details) and it's not on
+    - i am [stroke](emergency_details)
+    - i'm going to commit [suicide](emergency_details)
+    - I was diagnosed with [Covid-19]{"entity": "emergency_details", "value": "COVID-19"}
+    - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds.
+    - someone is having an [alergic reaction](emergency_details)
+    - 3 men just [stole]{"entity": "emergency_details", "value": "theft"} from my local corner shop in [Shirebrook](district)
+    - I was walking my labradoodle and it started barking. Then I saw a [fire in the bushes](emergency_details) but it has spread now. It’s next to the car park at the bottom of the hill but it’s making its way up now.
+    - I need assistance. My neighbours in [5 Horncastle Close](street_address) were arguing and I heard a [gunshot](emergency_details). My name is [Chirs]{"entity": "name", "value": "Chris"} and my number is [07443 223424](phone_number). I think one of them must be [dead](victim_details), it's really quiet now.
+    - there are 4 or 5 guys here with guns, please get here quick
+- synonym: police
+  examples: |
+    - policeman
+    - law enforcement
+    - police department
+    - cops
+    - police officer
+    - police officers
+    - police force
+    - policewoman
+    - bobbies
+- synonym: ambulance
+  examples: |
+    - hospital wagon
+    - paramedic
+    - EMS
+    - ambulance service
+    - paramedics
+    - ambulance
+- synonym: fire department
+  examples: |
+    - fireman
+    - fire engine
+    - firefighters
+    - fire service
+    - fire brigade
+    - firewomen
+    - firewoman
+    - fire fighters
+    - fire truck
+    - firemen
+- synonym: suicide
+  examples: |
+    - take my life
+    - take his life
+    - take her life
+    - take their life
+    - kill myself
+    - kill himself
+    - kill herself
+    - kill themself
+    - kill themselves
+    - taking my life
+- synonym: COVID-19
+  examples: |
+    - COVID
+    - covid
+    - covid-19
+    - covid 19
+    - COVID 19
+    - coronavirus
+    - Covid 19
+    - Covid-19
+    - rona
+- synonym: theft
+  examples: |
+    - robbed
+    - stole
+    - stolen
+    - took
+    - half-inched
+    - nicked
+    - robbery
+    - theft
+    - mugged
+- synonym: burglary
+  examples: |
+    - broken into
+    - burgled
+    - broken in
+    - burglary
+    - break and entry
+    - broken in to
+    - break in
+    - break-in
+- synonym: stabbing
+  examples: |
+    - stabbed
+    - stabbing
+    - stab
+- synonym: Chris
+  examples: |
+    - Chirs
+- synonym: can't breathe
+  examples: |
+    - struggling to breathe
+    - difficulty breathing
+    - cannot breathe
+    - trouble breathing
+    - unable to breathe
+    - hard to breath
+    - hard to breathe
+- synonym: dizziness
+  examples: |
+    - feeling very dizzy
+    - dizzy
+- synonym: bleeding
+  examples: |
+    - blood
+    - cut themselves
+    - cut myself
+    - bleeding
+- synonym: shooting
+  examples: |
+    - shot
+    - shooting
+    - shoot
+- synonym: burns
+  examples: |
+    - burnt
+    - burned
+    - burns
+- regex: phone_number
+  examples: |
+    - \b07[0-9]{3}\s?[0-9]{3}\s?[0-9]{3}\b
+- regex: postcode
+  examples: |
+    - \b[A-Za-z]{1}[0-9]{1}[A-Za-z]{1}\s?[0-9]{1}[A-Za-z]{2}\b
+    - \b[A-Za-z]{1}[0-9]{1}\s?[0-9]{1}[A-Za-z]{2}\b
+    - \b[A-Za-z]{1}[0-9]{2}\s?[0-9]{1}[A-Za-z]{2}\b
+    - \b[A-Za-z]{2}[0-9]{1}[A-Za-z]{1}\s?[0-9]{1}[A-Za-z]{2}\b
+    - \b[A-Za-z]{2}[0-9]{1}\s?[0-9]{1}[A-Za-z]{2}\b
+    - \b[A-Za-z]{2}[0-9]{2}\s?[0-9]{1}[A-Za-z]{2}\b

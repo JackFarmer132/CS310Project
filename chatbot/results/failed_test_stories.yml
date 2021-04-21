@@ -1,10 +1,11 @@
 version: "2.0"
 stories:
-- story: Shooting Test 1 (/tmp/tmpv65tin1k/dc90b7f6f8a14e539f9e33c255eb3120_test_stories.yml)
+- story: Shooting Test 1 (/tmp/tmpnjda3zr9/f3bcab0b7a9444f281353ccd4ba876a7_test_stories.yml)
   steps:
-  - intent: start_form
-  - action: utter_ask_service_type  # predicted: service_form
-  - intent: give_service  # predicted: give_service: [Police](service_type) to Oxford Circus [underground](emergency_details) station quickly!
+  - intent: start_form  # predicted: give_name: [begin_form](emergency_details)
+  - action: utter_ask_service_type  # predicted: utter_introduce
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_service  # predicted: describe_emergency: [Police](service_type) to [Oxford Circus underground station](street_address) quickly!
     entities:
     - service_type: Police
     - street_address: Oxford Circus
@@ -13,8 +14,9 @@ stories:
       - Police
   - slot_was_set:
     - street_address: Oxford Circus
-  - action: utter_describe_emergency  # predicted: service_form
-  - intent: describe_emergency  # predicted: give_service: There’s a [man](victim_details) with a pistol and he is waving it around [dangerously](victim_details). We need an [ambulance](service_type) too, someone has been shot in the [arm](emergency_details)
+  - action: utter_describe_emergency  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: describe_emergency  # predicted: describe_emergency: There’s a man with a [pistol](emergency_details) and he is waving it around [dangerously](name). We need an [ambulance](service_type) too, someone has been [shot]{"entity": "emergency_details", "value": "shooting"} in the [arm](emergency_details)
     entities:
     - emergency_details: pistol
     - service_type: ambulance
@@ -28,10 +30,12 @@ stories:
   - slot_was_set:
     - victim_details:
       - shot
-  - action: utter_ask_if_safe  # predicted: service_form
-  - intent: answer_unsure  # predicted: describe_victim: We are all running [up](victim_details) the [stairs](victim_details) now, I don’t know where [the man](emergency_details) is [right](victim_details) now.
-  - action: utter_ask_location  # predicted: service_form
-  - intent: give_location  # predicted: describe_victim: Sorry for the delay, I was helping the lady who got shot wrap a bandage around her [arm](emergency_details). I am at Oxford Circus [underground](emergency_details) station in London
+  - action: utter_ask_if_safe  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_unsure
+  - action: utter_ask_location  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_location  # predicted: describe_emergency: Sorry for the [delay](victim_details), I was helping [the lady](emergency_details) who got [shot wrap a](emergency_details) [bandage](emergency_details) around [her arm](emergency_details). I am at [Oxford Circus underground station](street_address) in London
     entities:
     - street_address: Oxford Circus
     - district: London
@@ -39,12 +43,14 @@ stories:
     - district: London
   - slot_was_set:
     - street_address: Oxford Circus
-  - action: utter_dispatch  # predicted: service_form
-  - action: utter_ask_if_first_aid  # predicted: action_listen
+  - action: utter_dispatch  # predicted: action_default_fallback
+  - action: utter_ask_if_first_aid  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
   - intent: answer_no
-  - action: utter_give_link  # predicted: service_form
-  - action: utter_ask_name  # predicted: action_listen
-  - intent: give_name  # predicted: give_name: Thanks, my name is [Benjamin](name), my number is [07427521153](street_address)
+  - action: utter_give_link  # predicted: action_default_fallback
+  - action: utter_ask_name  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_name  # predicted: nlu_fallback: Thanks, my name is [Benjamin](name), my number is [07427521153](phone_number)[07427521153](phone_number)
     entities:
     - name: Benjamin
     - phone_number: '07427521153'
@@ -52,12 +58,14 @@ stories:
     - name: Benjamin
   - slot_was_set:
     - phone_number: '07427521153'
-  - action: utter_ask_extra_details  # predicted: service_form
-- story: Car Accident Test 1 (/tmp/tmpv65tin1k/dc90b7f6f8a14e539f9e33c255eb3120_test_stories.yml)
+  - action: utter_ask_extra_details  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Car Accident Test 1 (/tmp/tmpnjda3zr9/f3bcab0b7a9444f281353ccd4ba876a7_test_stories.yml)
   steps:
-  - intent: start_form
-  - action: utter_ask_service_type  # predicted: service_form
-  - intent: give_service  # predicted: give_service: [Ambulance](service_type) to [Charter Avenue](street_address) please, there has been an [accident](victim_details).
+  - intent: start_form  # predicted: give_name: [begin_form](emergency_details)
+  - action: utter_ask_service_type  # predicted: utter_introduce
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_service  # predicted: describe_emergency: [Ambulance](service_type) to [Charter Avenue](street_address) please, there has been an [accident](emergency_details).
     entities:
     - service_type: Ambulance
     - street_address: Charter Avenue
@@ -66,8 +74,9 @@ stories:
       - Ambulance
   - slot_was_set:
     - street_address: Charter Avenue
-  - action: utter_describe_emergency  # predicted: service_form
-  - intent: describe_emergency  # predicted: give_service: A [woman](victim_details) was just [hit by](emergency_details) a [car](emergency_details), she is [unconscious](victim_details)
+  - action: utter_describe_emergency  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: describe_emergency  # predicted: give_service: A woman was just [hit by a car](emergency_details), she is [unconscious](victim_details)
     entities:
     - emergency_details: hit by a car
     - victim_details: unconscious
@@ -77,10 +86,12 @@ stories:
   - slot_was_set:
     - victim_details:
       - unconscious
-  - action: utter_ask_if_safe  # predicted: service_form
-  - intent: answer_yes  # predicted: give_service: Yes I am, the car is [blocking](victim_details) the [road](street_address) so [the](emergency_details) traffic is not moving
-  - action: utter_ask_location  # predicted: service_form
-  - intent: give_location  # predicted: nlu_fallback: We are opposite [10 Charter Avenue](street_address) in [Coventry](district), I live [in](emergency_details) number [12](street_address) and I was just walking home
+  - action: utter_ask_if_safe  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_yes  # predicted: describe_emergency: Yes I am, the car is blocking the road so the traffic is not moving
+  - action: utter_ask_location  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_location  # predicted: describe_emergency: We are opposite [10 Charter Avenue](street_address) in [Coventry](district), I live in number [12](street_address) and I was just walking home
     entities:
     - street_address: 10 Charter Avenue
     - district: Coventry
@@ -88,30 +99,36 @@ stories:
     - district: Coventry
   - slot_was_set:
     - street_address: 10 Charter Avenue
-  - action: utter_dispatch  # predicted: service_form
-  - action: utter_ask_if_first_aid  # predicted: action_listen
-  - intent: answer_yes  # predicted: describe_victim: Yes, but I’m a bit rusty, [can](victim_details) you give me [some](victim_details) [advice](service_type).
-  - action: utter_give_link  # predicted: service_form
-  - action: utter_ask_name  # predicted: action_listen
-  - intent: give_name  # predicted: give_location: Mark Pask
+  - action: utter_dispatch  # predicted: action_default_fallback
+  - action: utter_ask_if_first_aid  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_yes
+  - action: utter_give_link  # predicted: action_default_fallback
+  - action: utter_ask_name  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_name
     entities:
     - name: Mark Pask
   - slot_was_set:
     - name: Mark Pask
-  - action: utter_ask_phone_number  # predicted: service_form
-  - intent: give_phone_number  # predicted: give_phone_number: [07547287759](phone_number)
-  - action: utter_ask_extra_details  # predicted: service_form
-- story: Stabbing Test 1 (/tmp/tmpv65tin1k/dc90b7f6f8a14e539f9e33c255eb3120_test_stories.yml)
+  - action: utter_ask_phone_number  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_phone_number  # predicted: give_phone_number: [07547287759](phone_number)[07547287759](phone_number)
+  - action: utter_ask_extra_details  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Stabbing Test 1 (/tmp/tmpnjda3zr9/f3bcab0b7a9444f281353ccd4ba876a7_test_stories.yml)
   steps:
-  - intent: start_form
-  - action: utter_ask_service_type  # predicted: service_form
+  - intent: start_form  # predicted: give_name: [begin_form](emergency_details)
+  - action: utter_ask_service_type  # predicted: utter_introduce
+  - action: action_listen  # predicted: action_default_fallback
   - intent: describe_emergency  # predicted: describe_emergency: I’ve just been [stabbed]{"entity": "emergency_details", "value": "stabbing"}! HELP, I don’t want to die just yet
     entities:
     - emergency_details: stabbed
   - slot_was_set:
     - emergency_details:
       - stabbed
-  - action: utter_ask_service_type  # predicted: service_form
+  - action: utter_ask_service_type  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
   - intent: give_service  # predicted: give_service: Sorry, I need an [ambulance](service_type) and a [policeman]{"entity": "service_type", "value": "police"} real quick
     entities:
     - service_type: ambulance
@@ -120,8 +137,9 @@ stories:
     - service_type:
       - ambulance
       - policeman
-  - action: utter_describe_emergency  # predicted: service_form
-  - intent: describe_emergency  # predicted: describe_emergency: I was walking home and I’ve just been [stabbed in the](emergency_details) back, I live in [Brixton](street_address). Please send help, I’m only [17 years old](victim_details)
+  - action: utter_describe_emergency  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: describe_emergency  # predicted: describe_emergency: I was walking home and I’ve just been [stabbed]{"entity": "emergency_details", "value": "stabbing"} in the back, I live in [Brixton](street_address). Please send help, I’m only 17 [years](victim_details) old
     entities:
     - emergency_details: stabbed
     - district: Brixton
@@ -134,30 +152,34 @@ stories:
   - slot_was_set:
     - victim_details:
       - 17 years old
-  - action: utter_ask_if_safe  # predicted: service_form
-  - intent: answer_no  # predicted: describe_emergency: No, I’ve just been [stabbed]{"entity": "emergency_details", "value": "stabbing"}, I’ve never [felt pain](victim_details) like this before, It’s dark and there’s no one around to help me, and I’m [scared](victim_details) they might come back.
+  - action: utter_ask_if_safe  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_no  # predicted: describe_emergency: No, I’ve just been [stabbed]{"entity": "emergency_details", "value": "stabbing"}, I’ve never felt [pain](victim_details) like this before, It’s dark and there’s no one around to help me, and I’m scared they might come back.
     entities:
     - emergency_details: stabbed
   - slot_was_set:
     - emergency_details:
       - stabbed
-  - action: utter_ask_location  # predicted: service_form
-  - intent: give_location  # predicted: describe_emergency: Just opposite [Brixton underground](street_address) station. Sorry I don’t know [the](emergency_details) address, I will find out and let you know.
+  - action: utter_ask_location  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_location  # predicted: answer_unsure: Just opposite Brixton [underground](emergency_details) [station](emergency_details). Sorry I don’t know the address, I will find out and let you know.
     entities:
     - district: Brixton
   - slot_was_set:
     - district: Brixton
-  - action: utter_dispatch  # predicted: service_form
-  - action: utter_ask_if_first_aid  # predicted: action_listen
-  - intent: answer_no  # predicted: describe_victim: Help the [pain](victim_details) is [getting worse](emergency_details), I don’t have a clue how to do [first](emergency_details) aid, I’m [bleeding](victim_details) a lot!
+  - action: utter_dispatch  # predicted: action_default_fallback
+  - action: utter_ask_if_first_aid  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_no  # predicted: describe_emergency: Help the [pain](victim_details) is [getting worse](victim_details), I don’[t](victim_details) have a clue how to do [first](emergency_details) aid, I’m [bleeding](victim_details) a lot!
     entities:
     - victim_details: bleeding
   - slot_was_set:
     - victim_details:
       - bleeding
-  - action: utter_give_link  # predicted: service_form
-  - action: utter_ask_name  # predicted: action_listen
-  - intent: give_name  # predicted: give_phone_number: [Tyrell](street_address) Wellick, my number is [07320497632](phone_number)
+  - action: utter_give_link  # predicted: action_default_fallback
+  - action: utter_ask_name  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_name  # predicted: give_phone_number: [Tyrell Wellick](name), my number is [07320497632](phone_number)[07320497632](phone_number)
     entities:
     - name: Tyrell Wellick
     - phone_number: '07320497632'
@@ -165,19 +187,22 @@ stories:
     - name: Tyrell Wellick
   - slot_was_set:
     - phone_number: '07320497632'
-  - action: utter_ask_extra_details  # predicted: service_form
-- story: Drugs Test 1 (/tmp/tmpv65tin1k/dc90b7f6f8a14e539f9e33c255eb3120_test_stories.yml)
+  - action: utter_ask_extra_details  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: Drugs Test 1 (/tmp/tmpnjda3zr9/f3bcab0b7a9444f281353ccd4ba876a7_test_stories.yml)
   steps:
-  - intent: start_form
-  - action: utter_ask_service_type  # predicted: service_form
+  - intent: start_form  # predicted: give_name: [begin_form](emergency_details)
+  - action: utter_ask_service_type  # predicted: utter_introduce
+  - action: action_listen  # predicted: action_default_fallback
   - intent: give_service
     entities:
     - service_type: Police
   - slot_was_set:
     - service_type:
       - Police
-  - action: utter_describe_emergency  # predicted: service_form
-  - intent: describe_emergency  # predicted: describe_victim: They have had a [few](emergency_details) dodgy people come around [the](emergency_details) back [garden](street_address), and I think they’re [growing](emergency_details) [cannabis](victim_details) in [their](emergency_details) loft. I [can](victim_details) smell it.
+  - action: utter_describe_emergency  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: describe_emergency  # predicted: give_service: They have had a [few](emergency_details) dodgy people come around the back garden, and I think they’re growing [cannabis](victim_details) in [their](emergency_details) [loft](emergency_details). I can smell it.
     entities:
     - emergency_details: dodgy people
     - emergency_details: growing cannabis
@@ -185,8 +210,9 @@ stories:
     - emergency_details:
       - dodgy people
       - growing cannabis
-  - action: utter_ask_location  # predicted: service_form
-  - intent: give_location  # predicted: describe_emergency: [4](street_address) [Horsenden](street_address) Crescent, [Greenford](street_address), [UB6 0JE](postcode)
+  - action: utter_ask_location  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_location  # predicted: give_location: [4](street_address) [Horsenden Crescent](street_address), [Greenford](street_address), [UB6 0JE](postcode)[0JE](postcode)
     entities:
     - street_address: 4 Horsenden Crescent
     - district: Greenford
@@ -197,36 +223,43 @@ stories:
     - postcode: UB6 0JE
   - slot_was_set:
     - street_address: 4 Horsenden Crescent
-  - action: utter_dispatch  # predicted: service_form
-  - action: utter_ask_name  # predicted: action_listen
+  - action: utter_dispatch  # predicted: action_default_fallback
+  - action: utter_ask_name  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
   - intent: give_name
     entities:
     - name: Tom
   - slot_was_set:
     - name: Tom
-  - action: utter_ask_phone_number  # predicted: service_form
-  - intent: give_phone_number
+  - action: utter_ask_phone_number  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_phone_number  # predicted: give_phone_number: [07123456789](phone_number)[07123456789](phone_number)
     entities:
     - phone_number: '07123456789'
   - slot_was_set:
     - phone_number: '07123456789'
-  - action: utter_ask_extra_details  # predicted: service_form
-- story: House Fire Test 1 (/tmp/tmpv65tin1k/dc90b7f6f8a14e539f9e33c255eb3120_test_stories.yml)
+  - action: utter_ask_extra_details  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+- story: House Fire Test 1 (/tmp/tmpnjda3zr9/f3bcab0b7a9444f281353ccd4ba876a7_test_stories.yml)
   steps:
-  - intent: start_form
-  - action: utter_ask_service_type  # predicted: service_form
-  - intent: describe_emergency  # predicted: nlu_fallback: Help, I accidentally started a [fire](emergency_details). I left my [candle](victim_details) on for too long, and it caught my [curtain](victim_details). My room is on [fire](emergency_details) and I [can](victim_details)’t put it out
+  - intent: start_form  # predicted: give_name: [begin_form](emergency_details)
+  - action: utter_ask_service_type  # predicted: utter_introduce
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: describe_emergency  # predicted: describe_emergency: Help, I [accidentally](emergency_details) started a [fire](emergency_details). I [left](emergency_details) my candle on for too long, and it caught my [curtain](victim_details). My room is on [fire](emergency_details) and I can’t put it out
     entities:
     - emergency_details: fire
   - slot_was_set:
     - emergency_details:
       - fire
-  - action: utter_ask_if_safe  # predicted: service_form
-  - intent: answer_unsure  # predicted: describe_emergency: I’m just outside my room. I’m trying to [get](emergency_details) water to extinguish it.
-  - action: utter_ask_any_injured  # predicted: service_form
-  - intent: answer_no  # predicted: describe_victim: No, but it’s [very](emergency_details) warm in here. I really don’t want to lose all my uni work.
-  - action: utter_ask_location  # predicted: service_form
-  - intent: give_location  # predicted: give_phone_number: [93](street_address) Gainsborough Gardens, [Greenford](street_address), [UB6 0PB](postcode)
+  - action: utter_ask_if_safe  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_unsure  # predicted: answer_yes: I’m just outside my room. I’m trying to get water to extinguish it.
+  - action: utter_ask_any_injured  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: answer_no
+  - action: utter_ask_location  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_location  # predicted: give_location: [93 Gainsborough Gardens](street_address), [Greenford](street_address), [UB6 0PB](postcode)[0PB](postcode)
     entities:
     - street_address: 93 Gainsborough Gardens
     - district: Greenford
@@ -237,17 +270,20 @@ stories:
     - postcode: UB6 0PB
   - slot_was_set:
     - street_address: 93 Gainsborough Gardens
-  - action: utter_dispatch  # predicted: service_form
-  - action: utter_ask_name  # predicted: action_listen
-  - intent: give_name  # predicted: give_service: Angela Price
+  - action: utter_dispatch  # predicted: action_default_fallback
+  - action: utter_ask_name  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_name
     entities:
     - name: Angela Price
   - slot_was_set:
     - name: Angela Price
-  - action: utter_ask_phone_number  # predicted: service_form
-  - intent: give_phone_number
+  - action: utter_ask_phone_number  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback
+  - intent: give_phone_number  # predicted: give_phone_number: [07374839287](phone_number)[07374839287](phone_number)
     entities:
     - phone_number: '07374839287'
   - slot_was_set:
     - phone_number: '07374839287'
-  - action: utter_ask_extra_details  # predicted: service_form
+  - action: utter_ask_extra_details  # predicted: action_default_fallback
+  - action: action_listen  # predicted: action_default_fallback

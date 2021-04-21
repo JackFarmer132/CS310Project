@@ -16,7 +16,7 @@ nlu:
     - Hello, [fire brigade](service_type) please
     - I need an [ambulance](service_type) please
     - I need the [fire brigade](service_type) please
-    - I need the [police](service_type) please, someone was just [hit by a car](emergency_details)
+    - I need the [police](service_type) please, someone was just [hit by car](emergency_details)
     - i need the [police](service_type) please
     - [police](service_type)
     - There’s an entrance at the back, which is next to the bathroom that I’m in. If he finds out I called the [police](service_type) he will get really angry. Please come quick.
@@ -25,17 +25,28 @@ nlu:
     - I need [police](service_type) and an [ambulance](service_type). My friend has just been [shot](emergency_details) outside of [15 South Molton Street](street_address). My name is [Harry Aust](name) and my contact number is [07402550350](phone_number) please come quick! He's [bleeding](victim_details) and I don't know what to do, the postcode is [W1K 5QR](postcode). Hurry!
     - [police](service_type), please help someone is holding us [hostage](emergency_details)
     - I need an [ambulance](service_type), my sister just [broke her arm](emergency_details)
-    - an [ambulance](service_type), please. my husband is [acting very confused](victim_details)
-    - an [ambulance](service_type), please. my husband is [acting very confused](emergency_details)
+    - an [ambulance](service_type), please. my husband is [confused](victim_details)
+    - an [ambulance](service_type), please. my husband is [confused](emergency_details)
     - can you send a [policeman]{"entity": "service_type", "value": "police"} to [8 Main Street](street_address) please
-    - i need a [hospital wagon](service_type) right now
     - i need a [hospital wagon]{"entity": "service_type", "value": "ambulance"}
+    - send a [hospital wagon]{"entity": "service_type", "value": "ambulance"}
+    - i require the [paramedic]{"entity": "service_type", "value": "ambulance"}
+    - i need [EMS]{"entity": "service_type", "value": "ambulance"}
+    - i require the [ambulance service]{"entity": "service_type", "value": "ambulance"}
+    - i need [paramedics]{"entity": "service_type", "value": "ambulance"}
     - [police](service_type) and an [ambulance](service_type) please, we just had a [car crash](emergency_details)
     - [Police](service_type)
     - [ambulance](service_type)
     - please send a [fireman]{"entity": "service_type", "value": "fire department"}
+    - please send a [fire engine]{"entity": "service_type", "value": "fire department"}
+    - please send a [firefighters]{"entity": "service_type", "value": "fire department"}
+    - please send a [fire service]{"entity": "service_type", "value": "fire department"}
+    - please send a [fire brigade]{"entity": "service_type", "value": "fire department"}
+    - please send a [firewomen]{"entity": "service_type", "value": "fire department"}
+    - please send a [firewoman]{"entity": "service_type", "value": "fire department"}
+    - please send a [fire fighters]{"entity": "service_type", "value": "fire department"}
+    - please send a [fire truck]{"entity": "service_type", "value": "fire department"}
     - please come quick
-    - [fire engine](service_type)
     - I need an [ambulance](service_type)
     - i need a [fire engine]{"entity": "service_type", "value": "fire department"}
     - [police](service_type) please, my friend was just [hit by a car](emergency_details) and they drove off
@@ -45,12 +56,23 @@ nlu:
     - help us!
     - fine, [police](service_type)
     - hello, i need [law enforcement]{"entity": "service_type", "value": "police"} and a [paramedic]{"entity": "service_type", "value": "ambulance"} sent to [Monks Pond Street](street_address)
+    - i need a [policeman]{"entity": "service_type", "value": "police"}
+    - i need [law enforcement]{"entity": "service_type", "value": "police"}
+    - i need the [police department]{"entity": "service_type", "value": "police"}
+    - i need the [cops]{"entity": "service_type", "value": "police"}
+    - i need a [police officer]{"entity": "service_type", "value": "police"}
+    - i need some [police officers]{"entity": "service_type", "value": "police"}
+    - send the [police force]{"entity": "service_type", "value": "police"}
+    - send a [policewoman]{"entity": "service_type", "value": "police"}
     - sorry, [police](service_type) and an [ambulance](service_type) please
     - send me help now or
     - come quick, i don't have long
     - i need some [paramedics]{"entity": "service_type", "value": "ambulance"} to come to [9 Charles Crescent](street_address) please
 - intent: describe_emergency
   examples: |
+    - someone is having a [heart attack](emergency_details)
+    - they've been in an [accident](emergency_details)
+    - Someone has [collapsed](emergency_details)
     - i'm going to commit [suicide](emergency_details)
     - i'm going to [take my life]{"entity": "emergency_details", "value": "suicide"}
     - he's going to [take his life]{"entity": "emergency_details", "value": "suicide"}
@@ -101,13 +123,12 @@ nlu:
     - I’m near Goody’s chicken shop, near the pedestrian crossing. There’s a big field opposite me.
     - My [husband has been getting very violent](emergency_details) recently and he just [threw a wine bottle](emergency_details) at me. It didn’t hit me but I’m very scared.
     - There’s a [fire](emergency_details) on [44 Lolands Road](street_address), [RM15 4ED](postcode)
-    - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m in McDonalds
-    - An old man just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds
+    - An old man just [fell over](emergency_details), he’s [clutching chest](emergency_details). I’m McDonalds
     - An [old man](victim_details) just [fell to the ground](emergency_details), he’s [clutching onto his chest](emergency_details). I’m [in](emergency_details) McDonalds.
     - Help, my house is on [fire](emergency_details). Address is [5 Horncastle Close](street_address), [Daventry](district) [NN11 0GH](postcode). Please send help quickly.
     - there are 4 or 5 guys here with guns, please get here quick
     - can i get the [police](service_type)? just found my son with some [drugs](emergency_details) and it's not on
-    - just send a couple bobbies over to teach him a lesson, shouldn't be having to but he's having a laught to be honest
+    - just send a couple [bobbies]{"entity": "service_type", "value": "police"} over to teach him a lesson, shouldn't be having to but he's having a laught to be honest
     - help! my son is [choking](emergency_details) on a grape he found and he [can't breathe](victim_details), send a [paramedic]{"entity": "service_type", "value": "ambulance"}
     - oh god it's huge now!
     - we need [firefighters]{"entity": "service_type", "value": "fire department"} right now, there's a massive [fire](emergency_details) at [Saddington Road](street_address)!
@@ -115,8 +136,8 @@ nlu:
     - someone just barged in and [took](emergency_details) my purse from me, then [ran away](emergency_details)
     - i'll be at the house, the guy had dark hair and a scar
     - i think my brother is having a [drug overdose](emergency_details)
-    - someone is trying to [break into the house](emergency_details)
-    - he has a gun
+    - someone is trying to [break in](emergency_details)
+    - he has a [gun](emergency_details)
     - someone is having an [alergic reaction](emergency_details)
     - there's a [fire](emergency_details) in my house
     - there's lots of smoke
@@ -145,8 +166,12 @@ nlu:
     - my brother was just [beat up](emergency_details) by some thugs
     - he's [in pain](victim_details) and [can't stand](victim_details), i think he's [broken his leg](emergency_details)
     - we'll be waiting on the green out front of the houses
+    - [police](service_type) please, i was [robbed]{"entity": "emergency_details", "value": "theft"}
 - intent: describe_victim
   examples: |
+    - they're in [shock](victim_details)
+    - they have an [open wound](victim_details)
+    - someone is [ill](victim_details)
     - I think she’s [still breathing](victim_details), but she’s [not responding](victim_details) to me, I don’t know who she is.
     - I think she’s [still breathing](victim_details), but she’s [isn't responding](victim_details) to me, I don’t know who she is.
     - He’s [really old](victim_details) and [struggling to breathe]{"entity": "victim_details", "value": "can't breathe"}. He’s [not bleeding](victim_details) though. I think he has [heart problems](victim_details). He has a medical alert bracelet.
@@ -167,8 +192,8 @@ nlu:
     - He is [84 years old](victim_details), and he has [dementia](victim_details). He [isn’t talking properly](victim_details) and he [can’t raise his arms up](victim_details). He is [still breathing](victim_details) though, but he looks like he is [in pain](victim_details).
     - I don’t think so. What should I do if he stops breathing? He has asthma and he has [difficulty breathing]{"entity": "victim_details", "value": "can't breathe"} sometimes.
     - I need some advice. I have been feeling very [nauseous](emergency_details) all day and it’s [getting worse](victim_details). I’m not sure what I should do.
-    - i need an [ambulance](service_type), I tested positive for [covid]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
-    - I need an [ambulance](service_type), I tested positive for [Covid-19]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - i need an [ambulance](service_type), I tested positive for [covid]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
+    - I need an [ambulance](service_type), I tested positive for [Covid-19]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
     - I need an [ambulance](service_type), I tested positive for [coronavirus]{"entity": "emergency_details", "value": "COVID-19"} 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My [chest feels very tight](victim_details) and I’m finding it increasingly [difficult to breathe](victim_details). I’m also feeling a bit [faint](victim_details).
     - they [shot]{"entity": "emergency_details", "value": "shooting"} one of the workers here, i think he's [dead](victim_details)
     - the guy has a [pistol](emergency_details) and looks like he's going to use it
@@ -248,6 +273,7 @@ nlu:
     - my postcode is [DL1 4ET](postcode)
     - my street address is [28 Milton Close](street_address)
     - fine, I'm at [4 Speke Street](street_address), [L257TL](postcode)
+    - [NN11 0GH](postcode)
 - intent: give_name
   examples: |
     - I’m [Saranyan](name)
@@ -291,6 +317,7 @@ nlu:
     - my name is [Alex](name)
     - my name is [Olivia](name)
     - my name's [Bobby](district) and his is [Jason](name)
+    - [Imaginary Lane](street_address)
 - intent: give_phone_number
   examples: |
     - [07000000000](phone_number)
@@ -319,6 +346,7 @@ nlu:
     - [07888 122383](phone_number)
     - my number is [07332 434 454](phone_number)
     - [07883 334 434](phone_number)
+    - [jack](name), my number is [07444 444444](phone_number)
 - intent: answer_yes
   examples: |
     - Yes
@@ -423,6 +451,7 @@ nlu:
     - noo
     - not for long
     - nah not a clue
+    - that's all
 - intent: answer_unsure
   examples: |
     - I don't know
@@ -464,26 +493,27 @@ nlu:
     - police officers
     - police force
     - policewoman
+    - bobbies
 - synonym: ambulance
   examples: |
     - hospital wagon
     - paramedic
-    - ambulance
     - EMS
     - ambulance service
     - paramedics
+    - ambulance
 - synonym: fire department
   examples: |
+    - fireman
     - fire engine
     - firefighters
     - fire service
     - fire brigade
-    - firemen
-    - fireman
     - firewomen
     - firewoman
     - fire fighters
     - fire truck
+    - firemen
 - synonym: suicide
   examples: |
     - take my life

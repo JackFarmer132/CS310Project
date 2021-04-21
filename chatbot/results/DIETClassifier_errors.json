@@ -1,5 +1,1304 @@
 [
   {
+    "text": "Yeah, hi, I live at 82 Grenfell Tower. There is a fire",
+    "entities": [
+      {
+        "start": 20,
+        "end": 37,
+        "value": "82 Grenfell Tower",
+        "entity": "street_address"
+      },
+      {
+        "start": 50,
+        "end": 54,
+        "value": "fire",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 20,
+        "end": 22,
+        "confidence_entity": 0.9987964630126953,
+        "value": "82",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 23,
+        "end": 31,
+        "confidence_entity": 0.7259599566459656,
+        "value": "Grenfell",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 48,
+        "end": 49,
+        "confidence_entity": 0.5098894834518433,
+        "value": "a",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 50,
+        "end": 54,
+        "confidence_entity": 0.8889353275299072,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "There\u2019s an entrance at the back, which is next to the bathroom that I\u2019m in. If he finds out I called the police he will get really angry. Please come quick.",
+    "entities": [
+      {
+        "start": 105,
+        "end": 111,
+        "value": "police",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 11,
+        "end": 19,
+        "confidence_entity": 0.49746984243392944,
+        "value": "entrance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "service_type",
+        "start": 105,
+        "end": 111,
+        "confidence_entity": 0.9865708947181702,
+        "value": "police",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I need police and an ambulance. My friend has just been shot outside of 15 South Molton Street. My name is Harry Aust and my contact number is 07402550350 please come quick! He's bleeding and I don't know what to do, the postcode is W1K 5QR. Hurry!",
+    "entities": [
+      {
+        "start": 7,
+        "end": 13,
+        "value": "police",
+        "entity": "service_type"
+      },
+      {
+        "start": 21,
+        "end": 30,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 56,
+        "end": 60,
+        "value": "shot",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 72,
+        "end": 94,
+        "value": "15 South Molton Street",
+        "entity": "street_address"
+      },
+      {
+        "start": 107,
+        "end": 117,
+        "value": "Harry Aust",
+        "entity": "name"
+      },
+      {
+        "start": 143,
+        "end": 154,
+        "value": "07402550350",
+        "entity": "phone_number"
+      },
+      {
+        "start": 179,
+        "end": 187,
+        "value": "bleeding",
+        "entity": "victim_details"
+      },
+      {
+        "start": 233,
+        "end": 240,
+        "value": "W1K 5QR",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "phone_number",
+        "start": 143,
+        "end": 154,
+        "value": "07402550350",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "postcode",
+        "start": 233,
+        "end": 240,
+        "value": "W1K 5QR",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "service_type",
+        "start": 7,
+        "end": 13,
+        "confidence_entity": 0.9935593605041504,
+        "value": "police",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "service_type",
+        "start": 21,
+        "end": 30,
+        "confidence_entity": 0.9995489716529846,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 56,
+        "end": 60,
+        "confidence_entity": 0.9997438788414001,
+        "value": "shooting",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "street_address",
+        "start": 72,
+        "end": 74,
+        "confidence_entity": 0.9934895038604736,
+        "value": "15",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 81,
+        "end": 94,
+        "confidence_entity": 0.9811508059501648,
+        "value": "Molton Street",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 107,
+        "end": 112,
+        "confidence_entity": 0.32515856623649597,
+        "value": "Harry",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 125,
+        "end": 132,
+        "confidence_entity": 0.5340907573699951,
+        "value": "contact",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 179,
+        "end": 187,
+        "confidence_entity": 0.8750694394111633,
+        "value": "bleeding",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i require the ambulance service",
+    "entities": [
+      {
+        "start": 14,
+        "end": 31,
+        "value": "ambulance",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 14,
+        "end": 23,
+        "confidence_entity": 0.9995294809341431,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "please send a fire service",
+    "entities": [
+      {
+        "start": 14,
+        "end": 26,
+        "value": "fire department",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 14,
+        "end": 18,
+        "confidence_entity": 0.6644473075866699,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "send the police force",
+    "entities": [
+      {
+        "start": 9,
+        "end": 21,
+        "value": "police",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 9,
+        "end": 15,
+        "confidence_entity": 0.7158286571502686,
+        "value": "police",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "There\u2019s a fire on 44 Lolands Road, RM15 4ED",
+    "entities": [
+      {
+        "start": 10,
+        "end": 14,
+        "value": "fire",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 18,
+        "end": 33,
+        "value": "44 Lolands Road",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 35,
+        "end": 43,
+        "value": "RM15 4ED",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 10,
+        "end": 14,
+        "confidence_entity": 0.8566309809684753,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 18,
+        "end": 33,
+        "confidence_entity": 0.9979002475738525,
+        "value": "44 Lolands Road",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 35,
+        "end": 43,
+        "confidence_entity": 0.9985466599464417,
+        "value": "RM15 4ED",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Help, my house is on fire. Address is 5 Horncastle Close, Daventry AA99 9AA. Please send help quickly.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 25,
+        "value": "fire",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 38,
+        "end": 56,
+        "value": "5 Horncastle Close",
+        "entity": "street_address"
+      },
+      {
+        "start": 58,
+        "end": 66,
+        "value": "Daventry",
+        "entity": "district"
+      },
+      {
+        "start": 67,
+        "end": 75,
+        "value": "AA99 9AA",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 67,
+        "end": 75,
+        "value": "AA99 9AA",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "service_type",
+        "start": 21,
+        "end": 25,
+        "confidence_entity": 0.43126195669174194,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 38,
+        "end": 56,
+        "confidence_entity": 0.9992421865463257,
+        "value": "5 Horncastle Close",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "district",
+        "start": 58,
+        "end": 66,
+        "confidence_entity": 0.9970293045043945,
+        "value": "Daventry",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 67,
+        "end": 75,
+        "confidence_entity": 0.5966218709945679,
+        "value": "AA99 9AA",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I'm at the Whitehall Community Centre at 144 Huntington Place. Ambrose, a neighbour of mine, is dead. Or he's not moving. I'm not sure. Please send help!",
+    "entities": [
+      {
+        "start": 11,
+        "end": 20,
+        "value": "Whitehall",
+        "entity": "district"
+      },
+      {
+        "start": 41,
+        "end": 61,
+        "value": "144 Huntington Place",
+        "entity": "street_address"
+      },
+      {
+        "start": 96,
+        "end": 100,
+        "value": "dead",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 21,
+        "end": 37,
+        "confidence_entity": 0.3143240809440613,
+        "value": "Community Centre",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 41,
+        "end": 44,
+        "confidence_entity": 0.9988598823547363,
+        "value": "144",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 45,
+        "end": 55,
+        "confidence_entity": 0.886628270149231,
+        "value": "Huntington",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 63,
+        "end": 70,
+        "confidence_entity": 0.9901103377342224,
+        "value": "Ambrose",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 96,
+        "end": 100,
+        "confidence_entity": 0.9965316653251648,
+        "value": "dead",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My husband has been getting very violent recently and he just threw a wine bottle at me. It didn\u2019t hit me but I\u2019m very scared.",
+    "entities": [
+      {
+        "start": 3,
+        "end": 40,
+        "value": "husband has been getting very violent",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 62,
+        "end": 81,
+        "value": "threw a wine bottle",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 28,
+        "end": 32,
+        "confidence_entity": 0.9598302245140076,
+        "value": "very",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 33,
+        "end": 40,
+        "confidence_entity": 0.9789808392524719,
+        "value": "violent",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 68,
+        "end": 69,
+        "confidence_entity": 0.9249443411827087,
+        "value": "a",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 99,
+        "end": 102,
+        "confidence_entity": 0.9918981790542603,
+        "value": "hit",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 114,
+        "end": 118,
+        "confidence_entity": 0.7920849323272705,
+        "value": "very",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Help, my house is on fire. Address is 5 Horncastle Close, Daventry NN11 0GH. Please send help quickly.",
+    "entities": [
+      {
+        "start": 21,
+        "end": 25,
+        "value": "fire",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 38,
+        "end": 56,
+        "value": "5 Horncastle Close",
+        "entity": "street_address"
+      },
+      {
+        "start": 58,
+        "end": 66,
+        "value": "Daventry",
+        "entity": "district"
+      },
+      {
+        "start": 67,
+        "end": 75,
+        "value": "NN11 0GH",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 67,
+        "end": 75,
+        "value": "NN11 0GH",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "service_type",
+        "start": 21,
+        "end": 25,
+        "confidence_entity": 0.4408479928970337,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 38,
+        "end": 56,
+        "confidence_entity": 0.9992361068725586,
+        "value": "5 Horncastle Close",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "district",
+        "start": 58,
+        "end": 66,
+        "confidence_entity": 0.9968870282173157,
+        "value": "Daventry",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 67,
+        "end": 75,
+        "confidence_entity": 0.9975277781486511,
+        "value": "NN11 0GH",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "someone is trying to break in",
+    "entities": [
+      {
+        "start": 21,
+        "end": 29,
+        "value": "break in",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 11,
+        "end": 26,
+        "confidence_entity": 0.5190027356147766,
+        "value": "trying to break",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 27,
+        "end": 29,
+        "confidence_entity": 0.4672990143299103,
+        "value": "in",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there's been a shooting at 9 Seven Trees Court, I'm their neighbour. I heard shouting and then gunfire, I think someone is injured or even dead. The postcode is PL4 8PQ and my name is Danny Johnson, my number is 07400 554923 and you need to send someone please",
+    "entities": [
+      {
+        "start": 15,
+        "end": 23,
+        "value": "shooting",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 27,
+        "end": 46,
+        "value": "9 Seven Trees Court",
+        "entity": "street_address"
+      },
+      {
+        "start": 95,
+        "end": 102,
+        "value": "gunfire",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 123,
+        "end": 130,
+        "value": "injured",
+        "entity": "victim_details"
+      },
+      {
+        "start": 139,
+        "end": 143,
+        "value": "dead",
+        "entity": "victim_details"
+      },
+      {
+        "start": 161,
+        "end": 168,
+        "value": "PL4 8PQ",
+        "entity": "postcode"
+      },
+      {
+        "start": 184,
+        "end": 197,
+        "value": "Danny Johnson",
+        "entity": "name"
+      },
+      {
+        "start": 212,
+        "end": 224,
+        "value": "07400 554923",
+        "entity": "phone_number"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "phone_number",
+        "start": 212,
+        "end": 224,
+        "value": "07400 554923",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "postcode",
+        "start": 161,
+        "end": 168,
+        "value": "PL4 8PQ",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 27,
+        "end": 28,
+        "confidence_entity": 0.9993628859519958,
+        "value": "9",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 35,
+        "end": 40,
+        "confidence_entity": 0.8199589252471924,
+        "value": "Trees",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 52,
+        "end": 57,
+        "confidence_entity": 0.9986805319786072,
+        "value": "their",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 95,
+        "end": 102,
+        "confidence_entity": 0.9915032386779785,
+        "value": "gunfire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 139,
+        "end": 143,
+        "confidence_entity": 0.9962626099586487,
+        "value": "dead",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 165,
+        "end": 168,
+        "confidence_entity": 0.7256829142570496,
+        "value": "8PQ",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "phone_number",
+        "start": 212,
+        "end": 224,
+        "confidence_entity": 0.512065052986145,
+        "value": "07400 554923",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my brother was just beat up by some thugs",
+    "entities": [
+      {
+        "start": 20,
+        "end": 27,
+        "value": "beat up",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 20,
+        "end": 30,
+        "confidence_entity": 0.921052098274231,
+        "value": "beat up by",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 36,
+        "end": 41,
+        "confidence_entity": 0.9657220244407654,
+        "value": "thugs",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I think she\u2019s still breathing, but she\u2019s not responding to me, I don\u2019t know who she is.",
+    "entities": [
+      {
+        "start": 14,
+        "end": 29,
+        "value": "still breathing",
+        "entity": "victim_details"
+      },
+      {
+        "start": 41,
+        "end": 55,
+        "value": "not responding",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 14,
+        "end": 29,
+        "confidence_entity": 0.9921588897705078,
+        "value": "still breathing",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 41,
+        "end": 55,
+        "confidence_entity": 0.6078528165817261,
+        "value": "not responding",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 69,
+        "end": 70,
+        "confidence_entity": 0.5927643179893494,
+        "value": "t",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "He is 84 years old, and he has dementia. He isn\u2019t talking properly and he can\u2019t raise his arms up. He is still breathing though, but he looks like he is in pain",
+    "entities": [
+      {
+        "start": 6,
+        "end": 18,
+        "value": "84 years old",
+        "entity": "victim_details"
+      },
+      {
+        "start": 31,
+        "end": 39,
+        "value": "dementia",
+        "entity": "victim_details"
+      },
+      {
+        "start": 44,
+        "end": 66,
+        "value": "isn\u2019t talking properly",
+        "entity": "victim_details"
+      },
+      {
+        "start": 74,
+        "end": 97,
+        "value": "can\u2019t raise his arms up",
+        "entity": "victim_details"
+      },
+      {
+        "start": 105,
+        "end": 120,
+        "value": "still breathing",
+        "entity": "victim_details"
+      },
+      {
+        "start": 153,
+        "end": 160,
+        "value": "in pain",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 6,
+        "end": 18,
+        "confidence_entity": 0.9162431359291077,
+        "value": "84 years old",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 31,
+        "end": 39,
+        "confidence_entity": 0.9987021684646606,
+        "value": "dementia",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 44,
+        "end": 66,
+        "confidence_entity": 0.9952229857444763,
+        "value": "isn\u2019t talking properly",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 74,
+        "end": 97,
+        "confidence_entity": 0.9917405843734741,
+        "value": "can\u2019t raise his arms up",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 105,
+        "end": 120,
+        "confidence_entity": 0.9896442890167236,
+        "value": "still breathing",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 150,
+        "end": 152,
+        "confidence_entity": 0.6308900117874146,
+        "value": "is",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 153,
+        "end": 160,
+        "confidence_entity": 0.984728991985321,
+        "value": "in pain",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Yes, but there\u2019s some blood and I\u2019m really worried",
+    "entities": [
+      {
+        "start": 22,
+        "end": 27,
+        "value": "bleeding",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "he looks like he's in pain please hurry, i don't want him to die!",
+    "entities": [
+      {
+        "start": 19,
+        "end": 26,
+        "value": "in pain",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 19,
+        "end": 26,
+        "confidence_entity": 0.9933128952980042,
+        "value": "in pain",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 47,
+        "end": 48,
+        "confidence_entity": 0.9909546971321106,
+        "value": "t",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 58,
+        "end": 60,
+        "confidence_entity": 0.6729872822761536,
+        "value": "to",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i think she broke her leg and she's freaking out",
+    "entities": [
+      {
+        "start": 12,
+        "end": 25,
+        "value": "broke her leg",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 36,
+        "end": 48,
+        "value": "freaking out",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 12,
+        "end": 25,
+        "confidence_entity": 0.858200192451477,
+        "value": "broke her leg",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there's a lot of blood and they're crying",
+    "entities": [
+      {
+        "start": 17,
+        "end": 22,
+        "value": "bleeding",
+        "entity": "victim_details"
+      },
+      {
+        "start": 35,
+        "end": 41,
+        "value": "crying",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 35,
+        "end": 41,
+        "confidence_entity": 0.9928218722343445,
+        "value": "crying",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I live at 100 Moulton Road, CH7 4LH, please send someone quickly",
+    "entities": [
+      {
+        "start": 10,
+        "end": 26,
+        "value": "100 Moulton Road",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 28,
+        "end": 35,
+        "value": "CH7 4LH",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 10,
+        "end": 26,
+        "confidence_entity": 0.9993821382522583,
+        "value": "100 Moulton Road",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 28,
+        "end": 35,
+        "confidence_entity": 0.9992057681083679,
+        "value": "CH7 4LH",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "6 Wintergreen Avenue, Liverpool. I am by myself at home.",
+    "entities": [
+      {
+        "start": 0,
+        "end": 20,
+        "value": "6 Wintergreen Avenue",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 0,
+        "end": 20,
+        "confidence_entity": 0.37361982464790344,
+        "value": "6 Wintergreen Avenue",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 22,
+        "end": 31,
+        "confidence_entity": 0.35468265414237976,
+        "value": "Liverpool",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 41,
+        "end": 47,
+        "confidence_entity": 0.9970989227294922,
+        "value": "myself",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "England",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 0,
+        "end": 7,
+        "confidence_entity": 0.673321545124054,
+        "value": "England",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "we're on the corner of Factory Road, LE10 0DS",
+    "entities": [
+      {
+        "start": 23,
+        "end": 35,
+        "value": "Factory Road",
+        "entity": "street_address"
+      },
+      {
+        "start": 37,
+        "end": 45,
+        "value": "LE10 0DS",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 37,
+        "end": 45,
+        "value": "LE10 0DS",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 23,
+        "end": 35,
+        "confidence_entity": 0.6279074549674988,
+        "value": "Factory Road",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My name is Kirsty Bridgens, I\u2019m 24",
+    "entities": [
+      {
+        "start": 11,
+        "end": 26,
+        "value": "Kirsty Bridgens",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 11,
+        "end": 26,
+        "confidence_entity": 0.33872759342193604,
+        "value": "Kirsty Bridgens",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 32,
+        "end": 34,
+        "confidence_entity": 0.8866307139396667,
+        "value": "24",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Don Hughes",
+    "entities": [
+      {
+        "start": 0,
+        "end": 10,
+        "value": "Don Hughes",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Hillary Smith",
+    "entities": [
+      {
+        "start": 0,
+        "end": 13,
+        "value": "Hillary Smith",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 0,
+        "end": 7,
+        "confidence_entity": 0.6168986558914185,
+        "value": "Hillary",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my name is Henry Higgins",
+    "entities": [
+      {
+        "start": 11,
+        "end": 24,
+        "value": "Henry Higgins",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 11,
+        "end": 24,
+        "confidence_entity": 0.7686935067176819,
+        "value": "Henry Higgins",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my name is Alex",
+    "entities": [
+      {
+        "start": 11,
+        "end": 15,
+        "value": "Alex",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "yeah we're inside now but he's in a lot of pain, send someone!",
+    "entities": [
+      {
+        "start": 43,
+        "end": 47,
+        "value": "pain",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 31,
+        "end": 33,
+        "confidence_entity": 0.9871774911880493,
+        "value": "in",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 43,
+        "end": 47,
+        "confidence_entity": 0.9991316199302673,
+        "value": "pain",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there are some people tending to the burned people, yeah",
+    "entities": [
+      {
+        "start": 37,
+        "end": 43,
+        "value": "burns",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I don't know, wait let me check, I\u2019m in Canley, not sure where though",
+    "entities": [
+      {
+        "start": 40,
+        "end": 46,
+        "value": "Canley",
+        "entity": "district"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 26,
+        "end": 31,
+        "confidence_entity": 0.6039021611213684,
+        "value": "check",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
     "text": "Help us, we need the fire department to come to 9 Charter Avenue",
     "entities": [
       {
@@ -20,7 +1319,7 @@
         "entity": "emergency_details",
         "start": 21,
         "end": 36,
-        "confidence_entity": 0.5415662527084351,
+        "confidence_entity": 0.8953046798706055,
         "value": "fire department",
         "extractor": "DIETClassifier"
       },
@@ -28,156 +1327,703 @@
         "entity": "street_address",
         "start": 48,
         "end": 64,
-        "confidence_entity": 0.8403874635696411,
+        "confidence_entity": 0.9986217021942139,
         "value": "9 Charter Avenue",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "3 men just robbed my local corner shop in Shirebrook",
+    "text": "an ambulance, please. my husband is confused",
     "entities": [
       {
-        "start": 11,
-        "end": 17,
-        "value": "robbed",
+        "start": 3,
+        "end": 12,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 36,
+        "end": 44,
+        "value": "confused",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 3,
+        "end": 12,
+        "confidence_entity": 0.9930331707000732,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 36,
+        "end": 44,
+        "confidence_entity": 0.8456732034683228,
+        "value": "confused",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "please send a fire engine",
+    "entities": [
+      {
+        "start": 14,
+        "end": 25,
+        "value": "fire department",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 14,
+        "end": 18,
+        "confidence_entity": 0.9185824394226074,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i need a fire engine",
+    "entities": [
+      {
+        "start": 9,
+        "end": 20,
+        "value": "fire department",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 9,
+        "end": 13,
+        "confidence_entity": 0.6801334619522095,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "police please, my friend was just hit by a car and they drove off",
+    "entities": [
+      {
+        "start": 0,
+        "end": 6,
+        "value": "police",
+        "entity": "service_type"
+      },
+      {
+        "start": 34,
+        "end": 46,
+        "value": "hit by a car",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 0,
+        "end": 6,
+        "confidence_entity": 0.9940263032913208,
+        "value": "police",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 34,
+        "end": 40,
+        "confidence_entity": 0.8501628637313843,
+        "value": "hit by",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 43,
+        "end": 46,
+        "confidence_entity": 0.759833812713623,
+        "value": "car",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 56,
+        "end": 61,
+        "confidence_entity": 0.8516248464584351,
+        "value": "drove",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Someone has collapsed",
+    "entities": [
+      {
+        "start": 12,
+        "end": 21,
+        "value": "collapsed",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 12,
+        "end": 21,
+        "confidence_entity": 0.4204487204551697,
+        "value": "collapsed",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there's been a theft at my house in 24 Kestrel Way",
+    "entities": [
+      {
+        "start": 15,
+        "end": 20,
+        "value": "theft",
         "entity": "emergency_details"
       },
       {
-        "start": 42,
-        "end": 52,
-        "value": "Shirebrook",
+        "start": 36,
+        "end": 50,
+        "value": "24 Kestrel Way",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 36,
+        "end": 46,
+        "confidence_entity": 0.7351062297821045,
+        "value": "24 Kestrel",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "someone's nicked my purse",
+    "entities": [
+      {
+        "start": 10,
+        "end": 16,
+        "value": "theft",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "The man who just walked out said that his 6 year old daughter is still in there, we need someone quick.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 65,
+        "end": 70,
+        "confidence_entity": 0.5392349362373352,
+        "value": "still",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there are 4 or 5 guys here with guns, please get here quick",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 32,
+        "end": 36,
+        "confidence_entity": 0.917479932308197,
+        "value": "guns",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I don\u2019t think so. What should I do if he stops breathing? He has asthma and he has difficulty breathing sometimes.",
+    "entities": [
+      {
+        "start": 83,
+        "end": 103,
+        "value": "can't breathe",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 6,
+        "end": 7,
+        "confidence_entity": 0.9652528166770935,
+        "value": "t",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 41,
+        "end": 56,
+        "confidence_entity": 0.6424782872200012,
+        "value": "stops breathing",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 83,
+        "end": 103,
+        "confidence_entity": 0.9994540810585022,
+        "value": "can't breathe",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "the guy has a pistol and looks like he's going to use it",
+    "entities": [
+      {
+        "start": 14,
+        "end": 20,
+        "value": "pistol",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Yes, I live locally, postcode is NG20 8QF, 769 Russell Road",
+    "entities": [
+      {
+        "start": 33,
+        "end": 41,
+        "value": "NG20 8QF",
+        "entity": "postcode"
+      },
+      {
+        "start": 43,
+        "end": 59,
+        "value": "769 Russell Road",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 33,
+        "end": 41,
+        "value": "NG20 8QF",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 43,
+        "end": 59,
+        "confidence_entity": 0.36464470624923706,
+        "value": "769 Russell Road",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "We are at 16 Stoneygate Drive, Hinckley, LE10 1TD. He has been living with our family since 2015. I am his grandson, and my parents are at work.",
+    "entities": [
+      {
+        "start": 10,
+        "end": 29,
+        "value": "16 Stoneygate Drive",
+        "entity": "street_address"
+      },
+      {
+        "start": 31,
+        "end": 39,
+        "value": "Hinckley",
         "entity": "district"
+      },
+      {
+        "start": 41,
+        "end": 49,
+        "value": "LE10 1TD",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 41,
+        "end": 49,
+        "value": "LE10 1TD",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 10,
+        "end": 29,
+        "confidence_entity": 0.9970462918281555,
+        "value": "16 Stoneygate Drive",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "district",
+        "start": 31,
+        "end": 39,
+        "confidence_entity": 0.9991468191146851,
+        "value": "Hinckley",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 41,
+        "end": 45,
+        "confidence_entity": 0.5706686973571777,
+        "value": "LE10",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 92,
+        "end": 96,
+        "confidence_entity": 0.996080219745636,
+        "value": "2015",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "My name is Ben and I\u2019m calling from Coventry",
+    "entities": [
+      {
+        "start": 11,
+        "end": 14,
+        "value": "Ben",
+        "entity": "name"
+      },
+      {
+        "start": 36,
+        "end": 44,
+        "value": "Coventry",
+        "entity": "district"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "district",
+        "start": 36,
+        "end": 44,
+        "confidence_entity": 0.9294365048408508,
+        "value": "Coventry",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my name's Ben Abbis",
+    "entities": [
+      {
+        "start": 10,
+        "end": 19,
+        "value": "Ben Abbis",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 10,
+        "end": 19,
+        "confidence_entity": 0.55,
+        "value": "Ben Abbis",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Mark Pask",
+    "entities": [
+      {
+        "start": 0,
+        "end": 9,
+        "value": "Mark Pask",
+        "entity": "name"
       }
     ],
     "predicted_entities": [
       {
         "entity": "street_address",
         "start": 0,
-        "end": 1,
-        "confidence_entity": 0.41184794902801514,
-        "value": "3",
+        "end": 9,
+        "confidence_entity": 0.528929591178894,
+        "value": "Mark Pask",
         "extractor": "DIETClassifier"
-      },
+      }
+    ]
+  },
+  {
+    "text": "i have medical training, yes",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 15,
+        "end": 23,
+        "confidence_entity": 0.8718917965888977,
+        "value": "training",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my friend got her leg under the wheel",
+    "entities": [],
+    "predicted_entities": [
       {
         "entity": "emergency_details",
-        "start": 11,
-        "end": 17,
-        "confidence_entity": 0.9960569143295288,
-        "value": "theft",
+        "start": 14,
+        "end": 27,
+        "confidence_entity": 0.5686761140823364,
+        "value": "her leg under",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Perhaps",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 0,
+        "end": 7,
+        "confidence_entity": 0.6435568928718567,
+        "value": "Perhaps",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i need EMS",
+    "entities": [
+      {
+        "start": 7,
+        "end": 10,
+        "value": "ambulance",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "please send a fire truck",
+    "entities": [
+      {
+        "start": 14,
+        "end": 24,
+        "value": "fire department",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 14,
+        "end": 24,
+        "confidence_entity": 0.502629280090332,
+        "value": "fire department",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "hello, i need law enforcement and a paramedic sent to Monks Pond Street",
+    "entities": [
+      {
+        "start": 14,
+        "end": 29,
+        "value": "police",
+        "entity": "service_type"
+      },
+      {
+        "start": 36,
+        "end": 45,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 54,
+        "end": 71,
+        "value": "Monks Pond Street",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 14,
+        "end": 29,
+        "confidence_entity": 0.9979398846626282,
+        "value": "police",
         "extractor": "DIETClassifier",
         "processors": [
           "EntitySynonymMapper"
         ]
       },
       {
-        "entity": "district",
-        "start": 42,
-        "end": 52,
-        "confidence_entity": 0.9953566193580627,
-        "value": "Shirebrook",
+        "entity": "service_type",
+        "start": 36,
+        "end": 45,
+        "confidence_entity": 0.9933508038520813,
+        "value": "ambulance",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "street_address",
+        "start": 60,
+        "end": 71,
+        "confidence_entity": 0.6312803030014038,
+        "value": "Pond Street",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "My husband has been getting very violent recently and he just threw a wine bottle at me. It didn\u2019t hit me but I\u2019m very scared",
+    "text": "i'm going to commit suicide",
     "entities": [
       {
-        "start": 3,
-        "end": 40,
-        "value": "husband has been getting very violent",
-        "entity": "emergency_details"
-      },
-      {
-        "start": 62,
-        "end": 81,
-        "value": "threw a wine bottle",
-        "entity": "emergency_details"
-      },
-      {
-        "start": 119,
-        "end": 125,
-        "value": "scared",
-        "entity": "victim_details"
-      }
-    ],
-    "predicted_entities": [
-      {
-        "entity": "emergency_details",
-        "start": 3,
-        "end": 14,
-        "confidence_entity": 0.49770212173461914,
-        "value": "husband has",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "emergency_details",
         "start": 20,
-        "end": 40,
-        "confidence_entity": 0.4940386414527893,
-        "value": "getting very violent",
-        "extractor": "DIETClassifier"
+        "end": 27,
+        "value": "suicide",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "someone's half-inched my purse",
+    "entities": [
+      {
+        "start": 10,
+        "end": 21,
+        "value": "theft",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I\u2019ve just been burgled",
+    "entities": [
+      {
+        "start": 15,
+        "end": 22,
+        "value": "burgled",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "There\u2019s a fire on 44 Lolands Road, RM15 4ED",
+    "entities": [
+      {
+        "start": 10,
+        "end": 14,
+        "value": "fire",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 18,
+        "end": 33,
+        "value": "44 Lolands Road",
+        "entity": "street_address"
+      },
+      {
+        "start": 35,
+        "end": 43,
+        "value": "RM15 4ED",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 35,
+        "end": 43,
+        "value": "RM15 4ED",
+        "extractor": "RegexEntityExtractor"
       },
       {
         "entity": "emergency_details",
-        "start": 62,
-        "end": 81,
-        "confidence_entity": 0.8419222831726074,
-        "value": "threw a wine bottle",
+        "start": 10,
+        "end": 14,
+        "confidence_entity": 0.9508566856384277,
+        "value": "fire",
         "extractor": "DIETClassifier"
       },
       {
-        "entity": "victim_details",
-        "start": 114,
-        "end": 118,
-        "confidence_entity": 0.598942756652832,
-        "value": "very",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "victim_details",
-        "start": 119,
-        "end": 125,
-        "confidence_entity": 0.9954055547714233,
-        "value": "scared",
+        "entity": "street_address",
+        "start": 18,
+        "end": 33,
+        "confidence_entity": 0.999438464641571,
+        "value": "44 Lolands Road",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "I was walking my labradoodle and it started barking. Then I saw a fire in the bushes but it has spread now. It\u2019s next to the car park at the bottom of the hill but it\u2019s making its way up now.",
+    "text": "An old man just fell over, he\u2019s clutching chest. I\u2019m McDonalds",
     "entities": [
       {
-        "start": 66,
-        "end": 84,
-        "value": "fire in the bushes",
+        "start": 16,
+        "end": 25,
+        "value": "fell over",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 32,
+        "end": 47,
+        "value": "clutching chest",
         "entity": "emergency_details"
       }
     ],
     "predicted_entities": [
       {
         "entity": "emergency_details",
-        "start": 66,
-        "end": 73,
-        "confidence_entity": 0.5430793762207031,
-        "value": "fire in",
+        "start": 16,
+        "end": 25,
+        "confidence_entity": 0.9611121416091919,
+        "value": "fell over",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "emergency_details",
-        "start": 78,
-        "end": 84,
-        "confidence_entity": 0.994277834892273,
-        "value": "bushes",
+        "start": 30,
+        "end": 31,
+        "confidence_entity": 0.6496440172195435,
+        "value": "s",
         "extractor": "DIETClassifier"
       },
       {
-        "entity": "victim_details",
-        "start": 184,
-        "end": 186,
-        "confidence_entity": 0.5256328582763672,
-        "value": "up",
+        "entity": "emergency_details",
+        "start": 32,
+        "end": 47,
+        "confidence_entity": 0.9979056119918823,
+        "value": "clutching chest",
         "extractor": "DIETClassifier"
       }
     ]
@@ -202,42 +2048,226 @@
         "end": 65,
         "value": "clutching onto his chest",
         "entity": "emergency_details"
+      },
+      {
+        "start": 71,
+        "end": 73,
+        "value": "in",
+        "entity": "emergency_details"
       }
     ],
     "predicted_entities": [
       {
-        "entity": "victim_details",
-        "start": 3,
-        "end": 10,
-        "confidence_entity": 0.676190197467804,
-        "value": "old man",
-        "extractor": "DIETClassifier"
-      },
-      {
         "entity": "emergency_details",
         "start": 16,
-        "end": 20,
-        "confidence_entity": 0.9956764578819275,
-        "value": "fell",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "emergency_details",
-        "start": 24,
         "end": 34,
-        "confidence_entity": 0.5980380177497864,
-        "value": "the ground",
+        "confidence_entity": 0.9974372386932373,
+        "value": "fell to the ground",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "emergency_details",
         "start": 41,
         "end": 65,
-        "confidence_entity": 0.8618934154510498,
+        "confidence_entity": 0.9954056739807129,
         "value": "clutching onto his chest",
         "extractor": "DIETClassifier"
       }
     ]
+  },
+  {
+    "text": "someone just barged in and took my purse from me, then ran away",
+    "entities": [
+      {
+        "start": 27,
+        "end": 31,
+        "value": "took",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 55,
+        "end": 63,
+        "value": "ran away",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 27,
+        "end": 31,
+        "confidence_entity": 0.9993430972099304,
+        "value": "theft",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "i think my brother is having a drug overdose",
+    "entities": [
+      {
+        "start": 31,
+        "end": 44,
+        "value": "drug overdose",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 31,
+        "end": 35,
+        "confidence_entity": 0.9954555034637451,
+        "value": "drug",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there's lots of smoke",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 16,
+        "end": 21,
+        "confidence_entity": 0.5491205453872681,
+        "value": "smoke",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "there's a fire in the garden",
+    "entities": [
+      {
+        "start": 10,
+        "end": 14,
+        "value": "fire",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 10,
+        "end": 14,
+        "confidence_entity": 0.6755995154380798,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 22,
+        "end": 28,
+        "confidence_entity": 0.6941394209861755,
+        "value": "garden",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I need assistance. My neighbours in 5 Horncastle Close were arguing and I heard a gunshot. My name is Chirs and my number is 07443 223424. I think one of them must be dead, it's really quiet now.",
+    "entities": [
+      {
+        "start": 36,
+        "end": 54,
+        "value": "5 Horncastle Close",
+        "entity": "street_address"
+      },
+      {
+        "start": 82,
+        "end": 89,
+        "value": "gunshot",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 102,
+        "end": 107,
+        "value": "Chris",
+        "entity": "name"
+      },
+      {
+        "start": 125,
+        "end": 137,
+        "value": "07443 223424",
+        "entity": "phone_number"
+      },
+      {
+        "start": 167,
+        "end": 171,
+        "value": "dead",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "phone_number",
+        "start": 125,
+        "end": 137,
+        "value": "07443 223424",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 36,
+        "end": 54,
+        "confidence_entity": 0.9997100234031677,
+        "value": "5 Horncastle Close",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 82,
+        "end": 89,
+        "confidence_entity": 0.9936826229095459,
+        "value": "gunshot",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "phone_number",
+        "start": 125,
+        "end": 137,
+        "confidence_entity": 0.27665138244628906,
+        "value": "07443 223424",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 167,
+        "end": 171,
+        "confidence_entity": 0.9991776347160339,
+        "value": "dead",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "they have an open wound",
+    "entities": [
+      {
+        "start": 13,
+        "end": 23,
+        "value": "open wound",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "someone is ill",
+    "entities": [
+      {
+        "start": 11,
+        "end": 14,
+        "value": "ill",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": []
   },
   {
     "text": "I tested positive for COVID-19 2 weeks ago and I have been isolating since. However, my symptoms have gotten worse recently. My chest feels very tight and I\u2019m finding it increasingly difficult to breathe. I\u2019m also feeling a bit faint",
@@ -246,7 +2276,7 @@
         "start": 22,
         "end": 30,
         "value": "COVID-19",
-        "entity": "victim_details"
+        "entity": "emergency_details"
       },
       {
         "start": 128,
@@ -269,26 +2299,21 @@
     ],
     "predicted_entities": [
       {
-        "entity": "victim_details",
+        "entity": "emergency_details",
         "start": 22,
         "end": 30,
-        "confidence_entity": 0.9928538203239441,
+        "confidence_entity": 0.9987019300460815,
         "value": "COVID-19",
-        "extractor": "DIETClassifier"
-      },
-      {
-        "entity": "street_address",
-        "start": 31,
-        "end": 32,
-        "confidence_entity": 0.41599470376968384,
-        "value": "2",
-        "extractor": "DIETClassifier"
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
       },
       {
         "entity": "victim_details",
         "start": 128,
         "end": 150,
-        "confidence_entity": 0.7705738544464111,
+        "confidence_entity": 0.6620166301727295,
         "value": "chest feels very tight",
         "extractor": "DIETClassifier"
       },
@@ -296,15 +2321,23 @@
         "entity": "victim_details",
         "start": 183,
         "end": 203,
-        "confidence_entity": 0.7127863168716431,
+        "confidence_entity": 0.9673432111740112,
         "value": "difficult to breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 214,
+        "end": 221,
+        "confidence_entity": 0.71262127161026,
+        "value": "feeling",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "victim_details",
         "start": 228,
         "end": 233,
-        "confidence_entity": 0.9948186278343201,
+        "confidence_entity": 0.9978378415107727,
         "value": "faint",
         "extractor": "DIETClassifier"
       }
@@ -336,16 +2369,16 @@
       {
         "entity": "victim_details",
         "start": 12,
-        "end": 23,
-        "confidence_entity": 0.996180534362793,
-        "value": "nut allergy",
+        "end": 15,
+        "confidence_entity": 0.5035135746002197,
+        "value": "nut",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "victim_details",
         "start": 51,
         "end": 64,
-        "confidence_entity": 0.8101944327354431,
+        "confidence_entity": 0.9975343942642212,
         "value": "can\u2019t breathe",
         "extractor": "DIETClassifier"
       },
@@ -353,45 +2386,2096 @@
         "entity": "victim_details",
         "start": 73,
         "end": 79,
-        "confidence_entity": 0.9975876808166504,
+        "confidence_entity": 0.8347557783126831,
         "value": "throat",
         "extractor": "DIETClassifier"
       },
       {
         "entity": "victim_details",
-        "start": 83,
+        "start": 92,
         "end": 94,
-        "confidence_entity": 0.978135883808136,
-        "value": "swelling up",
+        "confidence_entity": 0.9613845348358154,
+        "value": "up",
         "extractor": "DIETClassifier"
       }
     ]
   },
   {
-    "text": "My name is Kirsty Bridgens, I\u2019m 24",
+    "text": "I need some advice. I have been feeling very nauseous all day and it\u2019s getting worse. I\u2019m not sure what I should do.",
+    "entities": [
+      {
+        "start": 45,
+        "end": 53,
+        "value": "nauseous",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 71,
+        "end": 84,
+        "value": "getting worse",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 12,
+        "end": 18,
+        "confidence_entity": 0.6290462613105774,
+        "value": "advice",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 40,
+        "end": 53,
+        "confidence_entity": 0.49281036853790283,
+        "value": "very nauseous",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 71,
+        "end": 78,
+        "confidence_entity": 0.9575325846672058,
+        "value": "getting",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my brother cut themselves really bad",
     "entities": [
       {
         "start": 11,
+        "end": 25,
+        "value": "bleeding",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 11,
+        "end": 25,
+        "confidence_entity": 0.67,
+        "value": "bleeding",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "the postcodes le12 8th",
+    "entities": [
+      {
+        "start": 14,
+        "end": 22,
+        "value": "le12 8th",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 14,
+        "end": 22,
+        "value": "le12 8th",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "we're on Cold Overton Road i think",
+    "entities": [
+      {
+        "start": 9,
         "end": 26,
-        "value": "Kirsty Bridgens",
+        "value": "Cold Overton Road",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 14,
+        "end": 26,
+        "confidence_entity": 0.5285561084747314,
+        "value": "Overton Road",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i live at 73 Ramsey Gardens",
+    "entities": [
+      {
+        "start": 10,
+        "end": 27,
+        "value": "73 Ramsey Gardens",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 10,
+        "end": 12,
+        "confidence_entity": 0.9974105954170227,
+        "value": "73",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "name",
+        "start": 13,
+        "end": 27,
+        "confidence_entity": 0.5844253301620483,
+        "value": "Ramsey Gardens",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my address is 73 Ramsey Gardens",
+    "entities": [
+      {
+        "start": 14,
+        "end": 31,
+        "value": "73 Ramsey Gardens",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 14,
+        "end": 16,
+        "confidence_entity": 0.9973347187042236,
+        "value": "73",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "name",
+        "start": 17,
+        "end": 31,
+        "confidence_entity": 0.5774983763694763,
+        "value": "Ramsey Gardens",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Thank you. Thomas Ludlow.",
+    "entities": [
+      {
+        "start": 11,
+        "end": 24,
+        "value": "Thomas Ludlow",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "it's Judy Harolds",
+    "entities": [
+      {
+        "start": 5,
+        "end": 17,
+        "value": "Judy Harolds",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "my name is Ronald",
+    "entities": [
+      {
+        "start": 11,
+        "end": 17,
+        "value": "Ronald",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 11,
+        "end": 17,
+        "confidence_entity": 0.6731621623039246,
+        "value": "Ronald",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my name's Bobby and his is Jason",
+    "entities": [
+      {
+        "start": 10,
+        "end": 15,
+        "value": "Bobby",
+        "entity": "district"
+      },
+      {
+        "start": 27,
+        "end": 32,
+        "value": "Jason",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 10,
+        "end": 15,
+        "confidence_entity": 0.7103032469749451,
+        "value": "Bobby",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "No, we are all safe, one of the men was carrying a knife and he threatened us with it. He stole from the till and ran away.",
+    "entities": [
+      {
+        "start": 40,
+        "end": 56,
+        "value": "carrying a knife",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 90,
+        "end": 95,
+        "value": "theft",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 28,
+        "end": 31,
+        "confidence_entity": 0.9942197799682617,
+        "value": "the",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 51,
+        "end": 56,
+        "confidence_entity": 0.8123661875724792,
+        "value": "knife",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 64,
+        "end": 74,
+        "confidence_entity": 0.5386756658554077,
+        "value": "threatened",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 90,
+        "end": 95,
+        "confidence_entity": 0.767512857913971,
+        "value": "theft",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "no, but it's getting hard to breath",
+    "entities": [
+      {
+        "start": 21,
+        "end": 35,
+        "value": "can't breathe",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 13,
+        "end": 20,
+        "confidence_entity": 0.9870039820671082,
+        "value": "getting",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 26,
+        "end": 35,
+        "confidence_entity": 0.9883071780204773,
+        "value": "to breath",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "nah we're okay, a little shaken",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 18,
+        "end": 24,
+        "confidence_entity": 0.9972227811813354,
+        "value": "little",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 25,
+        "end": 31,
+        "confidence_entity": 0.8928967714309692,
+        "value": "shaken",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I need an ambulance, my sister just broke her arm",
+    "entities": [
+      {
+        "start": 10,
+        "end": 19,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 36,
+        "end": 49,
+        "value": "broke her arm",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 10,
+        "end": 19,
+        "confidence_entity": 0.9223389029502869,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 21,
+        "end": 23,
+        "confidence_entity": 0.9795713424682617,
+        "value": "my",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 36,
+        "end": 49,
+        "confidence_entity": 0.9743698239326477,
+        "value": "broke her arm",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "an ambulance, please. my husband is confused",
+    "entities": [
+      {
+        "start": 3,
+        "end": 12,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 36,
+        "end": 44,
+        "value": "confused",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 3,
+        "end": 12,
+        "confidence_entity": 0.9932301044464111,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 36,
+        "end": 44,
+        "confidence_entity": 0.9975278973579407,
+        "value": "confused",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "police and an ambulance please, we just had a car crash",
+    "entities": [
+      {
+        "start": 0,
+        "end": 6,
+        "value": "police",
+        "entity": "service_type"
+      },
+      {
+        "start": 14,
+        "end": 23,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 46,
+        "end": 55,
+        "value": "car crash",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 0,
+        "end": 6,
+        "confidence_entity": 0.9961252808570862,
+        "value": "police",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "service_type",
+        "start": 14,
+        "end": 23,
+        "confidence_entity": 0.9790719151496887,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 50,
+        "end": 55,
+        "confidence_entity": 0.38873377442359924,
+        "value": "crash",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i need the cops",
+    "entities": [
+      {
+        "start": 11,
+        "end": 15,
+        "value": "police",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "i need some paramedics to come to 9 Charles Crescent please",
+    "entities": [
+      {
+        "start": 12,
+        "end": 22,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 34,
+        "end": 52,
+        "value": "9 Charles Crescent",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 12,
+        "end": 22,
+        "confidence_entity": 0.9995203018188477,
+        "value": "ambulance",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "street_address",
+        "start": 34,
+        "end": 43,
+        "confidence_entity": 0.9968403577804565,
+        "value": "9 Charles",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "someone is having a heart attack",
+    "entities": [
+      {
+        "start": 20,
+        "end": 32,
+        "value": "heart attack",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 20,
+        "end": 25,
+        "confidence_entity": 0.9692378044128418,
+        "value": "heart",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "name",
+        "start": 26,
+        "end": 32,
+        "confidence_entity": 0.8301705121994019,
+        "value": "attack",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I was diagnosed with the rona",
+    "entities": [
+      {
+        "start": 25,
+        "end": 29,
+        "value": "COVID-19",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "name",
+        "start": 25,
+        "end": 29,
+        "confidence_entity": 0.5789361596107483,
+        "value": "COVID-19",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I was walking my labradoodle and it started barking. Then I saw a fire in the bushes but it has spread now. It\u2019s next to the car park at the bottom of the hill but it\u2019s making its way up now.",
+    "entities": [
+      {
+        "start": 66,
+        "end": 84,
+        "value": "fire in the bushes",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 17,
+        "end": 28,
+        "confidence_entity": 0.442090779542923,
+        "value": "labradoodle",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 36,
+        "end": 43,
+        "confidence_entity": 0.9603356719017029,
+        "value": "started",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 66,
+        "end": 70,
+        "confidence_entity": 0.9432072639465332,
+        "value": "fire",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 71,
+        "end": 73,
+        "confidence_entity": 0.6028338074684143,
+        "value": "in",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 118,
+        "end": 120,
+        "confidence_entity": 0.990673840045929,
+        "value": "to",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 141,
+        "end": 147,
+        "confidence_entity": 0.746847927570343,
+        "value": "bottom",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 155,
+        "end": 159,
+        "confidence_entity": 0.9452421069145203,
+        "value": "hill",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 169,
+        "end": 175,
+        "confidence_entity": 0.8757942914962769,
+        "value": "making",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 184,
+        "end": 186,
+        "confidence_entity": 0.9924231767654419,
+        "value": "up",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Someone\u2019s broken into our meeting place and stolen things.",
+    "entities": [
+      {
+        "start": 10,
+        "end": 21,
+        "value": "theft",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 44,
+        "end": 50,
+        "value": "theft",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 10,
+        "end": 21,
+        "confidence_entity": 0.9974876642227173,
+        "value": "theft",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "street_address",
+        "start": 34,
+        "end": 39,
+        "confidence_entity": 0.9974828362464905,
+        "value": "place",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 44,
+        "end": 50,
+        "confidence_entity": 0.9994303584098816,
+        "value": "theft",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "An old man just fell to the ground, he\u2019s clutching onto his chest. I\u2019m in McDonalds.",
+    "entities": [
+      {
+        "start": 16,
+        "end": 34,
+        "value": "fell to the ground",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 41,
+        "end": 65,
+        "value": "clutching onto his chest",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 3,
+        "end": 10,
+        "confidence_entity": 0.6091071367263794,
+        "value": "old man",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 16,
+        "end": 34,
+        "confidence_entity": 0.9554398655891418,
+        "value": "fell to the ground",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 41,
+        "end": 65,
+        "confidence_entity": 0.9898012280464172,
+        "value": "clutching onto his chest",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 71,
+        "end": 73,
+        "confidence_entity": 0.9105314612388611,
+        "value": "in",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "ambulance please, an old man just fell to the ground, he\u2019s clutching onto his chest. I\u2019m in McDonalds",
+    "entities": [
+      {
+        "start": 0,
+        "end": 9,
+        "value": "ambulance",
+        "entity": "service_type"
+      },
+      {
+        "start": 34,
+        "end": 52,
+        "value": "fell to the ground",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 59,
+        "end": 83,
+        "value": "clutching onto his chest",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "service_type",
+        "start": 0,
+        "end": 9,
+        "confidence_entity": 0.9656468629837036,
+        "value": "ambulance",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 21,
+        "end": 28,
+        "confidence_entity": 0.8884980082511902,
+        "value": "old man",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 34,
+        "end": 52,
+        "confidence_entity": 0.9103536009788513,
+        "value": "fell to the ground",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 59,
+        "end": 83,
+        "confidence_entity": 0.988014280796051,
+        "value": "clutching onto his chest",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 89,
+        "end": 91,
+        "confidence_entity": 0.9339337348937988,
+        "value": "in",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "help! my son is choking on a grape he found and he can't breathe, send a paramedic",
+    "entities": [
+      {
+        "start": 16,
+        "end": 23,
+        "value": "choking",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 51,
+        "end": 64,
+        "value": "can't breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 73,
+        "end": 82,
+        "value": "ambulance",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 16,
+        "end": 23,
+        "confidence_entity": 0.9481002688407898,
+        "value": "choking",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 27,
+        "end": 28,
+        "confidence_entity": 0.5195024013519287,
+        "value": "a",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 51,
+        "end": 64,
+        "confidence_entity": 0.9964014291763306,
+        "value": "can't breathe",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "service_type",
+        "start": 73,
+        "end": 82,
+        "confidence_entity": 0.9990493655204773,
+        "value": "ambulance",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "I think she\u2019s still breathing, but she\u2019s isn't responding to me, I don\u2019t know who she is.",
+    "entities": [
+      {
+        "start": 14,
+        "end": 29,
+        "value": "still breathing",
+        "entity": "victim_details"
+      },
+      {
+        "start": 41,
+        "end": 57,
+        "value": "isn't responding",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 14,
+        "end": 29,
+        "confidence_entity": 0.9957700371742249,
+        "value": "still breathing",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 41,
+        "end": 57,
+        "confidence_entity": 0.5358733534812927,
+        "value": "isn't responding",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 71,
+        "end": 72,
+        "confidence_entity": 0.6972626447677612,
+        "value": "t",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I feel like I\u2019m going to throw up and I have been feeling very dizzy since around 3pm. I have a history of heart conditions so I don\u2019t know if that has caused it.",
+    "entities": [
+      {
+        "start": 25,
+        "end": 33,
+        "value": "throw up",
+        "entity": "victim_details"
+      },
+      {
+        "start": 50,
+        "end": 68,
+        "value": "dizziness",
+        "entity": "victim_details"
+      },
+      {
+        "start": 107,
+        "end": 123,
+        "value": "heart conditions",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 22,
+        "end": 24,
+        "confidence_entity": 0.9365296959877014,
+        "value": "to",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 25,
+        "end": 33,
+        "confidence_entity": 0.6456364989280701,
+        "value": "throw up",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 58,
+        "end": 62,
+        "confidence_entity": 0.6084789037704468,
+        "value": "very",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 63,
+        "end": 68,
+        "confidence_entity": 0.9982612729072571,
+        "value": "dizziness",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "street_address",
+        "start": 96,
+        "end": 103,
+        "confidence_entity": 0.5645986795425415,
+        "value": "history",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 107,
+        "end": 112,
+        "confidence_entity": 0.9984452128410339,
+        "value": "heart",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 133,
+        "end": 134,
+        "confidence_entity": 0.6640152931213379,
+        "value": "t",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "No, I don't think so. I don't want to touch him. He's so pale",
+    "entities": [
+      {
+        "start": 57,
+        "end": 61,
+        "value": "pale",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "he's acting strange, we've seen the doctor before and think he's getting dementia but he hasn't been like this before",
+    "entities": [
+      {
+        "start": 5,
+        "end": 19,
+        "value": "acting strange",
+        "entity": "victim_details"
+      },
+      {
+        "start": 73,
+        "end": 81,
+        "value": "dementia",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 73,
+        "end": 81,
+        "confidence_entity": 0.998936116695404,
+        "value": "dementia",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "They're bleeding and say they're in pain, they say they're light-headed too",
+    "entities": [
+      {
+        "start": 8,
+        "end": 16,
+        "value": "bleeding",
+        "entity": "victim_details"
+      },
+      {
+        "start": 33,
+        "end": 40,
+        "value": "in pain",
+        "entity": "victim_details"
+      },
+      {
+        "start": 59,
+        "end": 71,
+        "value": "light-headed",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 8,
+        "end": 16,
+        "confidence_entity": 0.9806609153747559,
+        "value": "bleeding",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 33,
+        "end": 40,
+        "confidence_entity": 0.9567121267318726,
+        "value": "in pain",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 59,
+        "end": 71,
+        "confidence_entity": 0.7872612476348877,
+        "value": "light-headed",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 72,
+        "end": 75,
+        "confidence_entity": 0.7593169808387756,
+        "value": "too",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "they seem to have a concussion and are dazed",
+    "entities": [
+      {
+        "start": 20,
+        "end": 30,
+        "value": "concussion",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 39,
+        "end": 44,
+        "value": "dazed",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "I just cut myself really bad",
+    "entities": [
+      {
+        "start": 7,
+        "end": 17,
+        "value": "bleeding",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 7,
+        "end": 10,
+        "confidence_entity": 0.991510272026062,
+        "value": "cut",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I live at 100 Moulton Road, CH7 4LH, please send someone quickly",
+    "entities": [
+      {
+        "start": 10,
+        "end": 26,
+        "value": "100 Moulton Road",
+        "entity": "street_address"
+      },
+      {
+        "start": 28,
+        "end": 35,
+        "value": "CH7 4LH",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 28,
+        "end": 35,
+        "value": "CH7 4LH",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 10,
+        "end": 26,
+        "confidence_entity": 0.9986178874969482,
+        "value": "100 Moulton Road",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "we've blocked up the road a bit but you should get here okay. the postcode is LE15 6NU",
+    "entities": [
+      {
+        "start": 78,
+        "end": 86,
+        "value": "LE15 6NU",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 78,
+        "end": 86,
+        "value": "LE15 6NU",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "victim_details",
+        "start": 6,
+        "end": 16,
+        "confidence_entity": 0.903083086013794,
+        "value": "blocked up",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 21,
+        "end": 25,
+        "confidence_entity": 0.9989176988601685,
+        "value": "road",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 78,
+        "end": 82,
+        "confidence_entity": 0.5570763349533081,
+        "value": "LE15",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "b90 1da",
+    "entities": [
+      {
+        "start": 0,
+        "end": 7,
+        "value": "b90 1da",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 0,
+        "end": 7,
+        "value": "b90 1da",
+        "extractor": "RegexEntityExtractor"
+      }
+    ]
+  },
+  {
+    "text": "Thank you. My name is Zhang Wei",
+    "entities": [
+      {
+        "start": 22,
+        "end": 31,
+        "value": "Zhang Wei",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Tom",
+    "entities": [
+      {
+        "start": 0,
+        "end": 3,
+        "value": "Tom",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Thank you. My name is Zhang Wei.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 31,
+        "value": "Zhang Wei",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "i am yeah but he isn't",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 17,
+        "end": 20,
+        "confidence_entity": 0.6532184481620789,
+        "value": "isn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i do, but it isn't safe for me to help",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 13,
+        "end": 16,
+        "confidence_entity": 0.9946609139442444,
+        "value": "isn",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "i'm going to take my life",
+    "entities": [
+      {
+        "start": 13,
+        "end": 25,
+        "value": "suicide",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 13,
+        "end": 17,
+        "confidence_entity": 0.999531626701355,
+        "value": "take",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 21,
+        "end": 25,
+        "confidence_entity": 0.99946528673172,
+        "value": "life",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Someone has fallen over and cut their arm",
+    "entities": [
+      {
+        "start": 12,
+        "end": 18,
+        "value": "fallen",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 28,
+        "end": 41,
+        "value": "cut their arm",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 28,
+        "end": 31,
+        "confidence_entity": 0.9985892176628113,
+        "value": "cut",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 38,
+        "end": 41,
+        "confidence_entity": 0.997183620929718,
+        "value": "arm",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "just send a couple bobbies over to teach him a lesson, shouldn't be having to but he's having a laught to be honest",
+    "entities": [
+      {
+        "start": 19,
+        "end": 26,
+        "value": "police",
+        "entity": "service_type"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "district",
+        "start": 19,
+        "end": 26,
+        "confidence_entity": 0.5017899870872498,
+        "value": "police",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      }
+    ]
+  },
+  {
+    "text": "someone is having an alergic reaction",
+    "entities": [
+      {
+        "start": 21,
+        "end": 37,
+        "value": "alergic reaction",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 21,
+        "end": 37,
+        "confidence_entity": 0.4822540283203125,
+        "value": "alergic reaction",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "please hurry, that sod in the car might get away",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 23,
+        "end": 25,
+        "confidence_entity": 0.3221819996833801,
+        "value": "in",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 30,
+        "end": 33,
+        "confidence_entity": 0.45156994462013245,
+        "value": "car",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "emergency_details",
+        "start": 44,
+        "end": 48,
+        "confidence_entity": 0.8562602400779724,
+        "value": "away",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "someone beat up my brother",
+    "entities": [
+      {
+        "start": 8,
+        "end": 15,
+        "value": "beat up",
+        "entity": "emergency_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 8,
+        "end": 12,
+        "confidence_entity": 0.9944881796836853,
+        "value": "beat",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "they're in shock",
+    "entities": [
+      {
+        "start": 11,
+        "end": 16,
+        "value": "shock",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 11,
+        "end": 16,
+        "confidence_entity": 0.4968380033969879,
+        "value": "shock",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I have been feeling very nauseous all day and it\u2019s getting worse. I\u2019m not sure what I should do.",
+    "entities": [
+      {
+        "start": 20,
+        "end": 33,
+        "value": "very nauseous",
+        "entity": "emergency_details"
+      },
+      {
+        "start": 51,
+        "end": 64,
+        "value": "getting worse",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 25,
+        "end": 33,
+        "confidence_entity": 0.9985609650611877,
+        "value": "nauseous",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 51,
+        "end": 64,
+        "confidence_entity": 0.546464741230011,
+        "value": "getting worse",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "He\u2019s really old and struggling to breathe. He\u2019s not bleeding though. I think he has heart problems. He has a medical alert bracelet.",
+    "entities": [
+      {
+        "start": 5,
+        "end": 15,
+        "value": "really old",
+        "entity": "victim_details"
+      },
+      {
+        "start": 20,
+        "end": 41,
+        "value": "can't breathe",
+        "entity": "victim_details"
+      },
+      {
+        "start": 84,
+        "end": 98,
+        "value": "heart problems",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 5,
+        "end": 15,
+        "confidence_entity": 0.9494020342826843,
+        "value": "really old",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 20,
+        "end": 41,
+        "confidence_entity": 0.9897599816322327,
+        "value": "can't breathe",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "victim_details",
+        "start": 48,
+        "end": 60,
+        "confidence_entity": 0.6394229531288147,
+        "value": "not bleeding",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 84,
+        "end": 98,
+        "confidence_entity": 0.9848191738128662,
+        "value": "heart problems",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "He is 84 years old, and he has dementia. He isn\u2019t talking properly and he can\u2019t raise his arms up. He is still breathing though, but he looks like he is in pain.",
+    "entities": [
+      {
+        "start": 6,
+        "end": 18,
+        "value": "84 years old",
+        "entity": "victim_details"
+      },
+      {
+        "start": 31,
+        "end": 39,
+        "value": "dementia",
+        "entity": "victim_details"
+      },
+      {
+        "start": 44,
+        "end": 66,
+        "value": "isn\u2019t talking properly",
+        "entity": "victim_details"
+      },
+      {
+        "start": 74,
+        "end": 97,
+        "value": "can\u2019t raise his arms up",
+        "entity": "victim_details"
+      },
+      {
+        "start": 105,
+        "end": 120,
+        "value": "still breathing",
+        "entity": "victim_details"
+      },
+      {
+        "start": 153,
+        "end": 160,
+        "value": "in pain",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 6,
+        "end": 18,
+        "confidence_entity": 0.9356268048286438,
+        "value": "84 years old",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 31,
+        "end": 39,
+        "confidence_entity": 0.9988679885864258,
+        "value": "dementia",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 44,
+        "end": 66,
+        "confidence_entity": 0.9810090065002441,
+        "value": "isn\u2019t talking properly",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 74,
+        "end": 97,
+        "confidence_entity": 0.9754127264022827,
+        "value": "can\u2019t raise his arms up",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 105,
+        "end": 120,
+        "confidence_entity": 0.9970056414604187,
+        "value": "still breathing",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 150,
+        "end": 152,
+        "confidence_entity": 0.5902723073959351,
+        "value": "is",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 153,
+        "end": 160,
+        "confidence_entity": 0.9478673338890076,
+        "value": "in pain",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my partner is dizzy but mostly okay, the other car driver is bleeding and can't stand up",
+    "entities": [
+      {
+        "start": 14,
+        "end": 19,
+        "value": "dizziness",
+        "entity": "victim_details"
+      },
+      {
+        "start": 61,
+        "end": 69,
+        "value": "bleeding",
+        "entity": "victim_details"
+      },
+      {
+        "start": 74,
+        "end": 88,
+        "value": "can't stand up",
+        "entity": "victim_details"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "victim_details",
+        "start": 14,
+        "end": 19,
+        "confidence_entity": 0.9984012246131897,
+        "value": "dizziness",
+        "extractor": "DIETClassifier",
+        "processors": [
+          "EntitySynonymMapper"
+        ]
+      },
+      {
+        "entity": "emergency_details",
+        "start": 41,
+        "end": 46,
+        "confidence_entity": 0.6188110113143921,
+        "value": "other",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "street_address",
+        "start": 47,
+        "end": 57,
+        "confidence_entity": 0.63,
+        "value": "car driver",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 61,
+        "end": 69,
+        "confidence_entity": 0.8355145454406738,
+        "value": "bleeding",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "victim_details",
+        "start": 74,
+        "end": 88,
+        "confidence_entity": 0.7154840230941772,
+        "value": "can't stand up",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Shepherd Market, London, W1J 7PA. I\u2019m a regular at this McDonalds but I\u2019ve never seen him before.",
+    "entities": [
+      {
+        "start": 0,
+        "end": 15,
+        "value": "Shepherd Market",
+        "entity": "street_address"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 25,
+        "end": 32,
+        "value": "W1J 7PA",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "name",
+        "start": 9,
+        "end": 15,
+        "confidence_entity": 0.925201952457428,
+        "value": "Market",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 25,
+        "end": 28,
+        "confidence_entity": 0.9115099906921387,
+        "value": "W1J",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "We are at 16 Stoneygate Drive, Hinckley, LE10 1TD.",
+    "entities": [
+      {
+        "start": 10,
+        "end": 29,
+        "value": "16 Stoneygate Drive",
+        "entity": "street_address"
+      },
+      {
+        "start": 31,
+        "end": 39,
+        "value": "Hinckley",
+        "entity": "district"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 41,
+        "end": 49,
+        "value": "LE10 1TD",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 10,
+        "end": 29,
+        "confidence_entity": 0.9982996582984924,
+        "value": "16 Stoneygate Drive",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "district",
+        "start": 31,
+        "end": 39,
+        "confidence_entity": 0.9984649419784546,
+        "value": "Hinckley",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 41,
+        "end": 49,
+        "confidence_entity": 0.9977284073829651,
+        "value": "LE10 1TD",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Shepherd Market, London, W1J 7PA. I\u2019m a regular at this McDonalds but I\u2019ve never seen him before.",
+    "entities": [
+      {
+        "start": 0,
+        "end": 15,
+        "value": "Shepherd Market",
+        "entity": "street_address"
+      },
+      {
+        "start": 25,
+        "end": 32,
+        "value": "W1J 7PA",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 25,
+        "end": 32,
+        "value": "W1J 7PA",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "name",
+        "start": 9,
+        "end": 15,
+        "confidence_entity": 0.925201952457428,
+        "value": "Market",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 25,
+        "end": 28,
+        "confidence_entity": 0.9115099906921387,
+        "value": "W1J",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my house is at 48 Ferndale Park, dy9 0rb",
+    "entities": [
+      {
+        "start": 15,
+        "end": 31,
+        "value": "48 Ferndale Park",
+        "entity": "street_address"
+      },
+      {
+        "start": 33,
+        "end": 40,
+        "value": "dy9 0rb",
+        "entity": "postcode"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "postcode",
+        "start": 33,
+        "end": 40,
+        "value": "dy9 0rb",
+        "extractor": "RegexEntityExtractor"
+      },
+      {
+        "entity": "street_address",
+        "start": 15,
+        "end": 26,
+        "confidence_entity": 0.8768385052680969,
+        "value": "48 Ferndale",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "postcode",
+        "start": 37,
+        "end": 40,
+        "confidence_entity": 0.8690000772476196,
+        "value": "0rb",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "I'm at the Birmingham Hotel, room 407",
+    "entities": [
+      {
+        "start": 11,
+        "end": 21,
+        "value": "Birmingham",
+        "entity": "district"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 11,
+        "end": 27,
+        "confidence_entity": 0.4902092218399048,
+        "value": "Birmingham Hotel",
+        "extractor": "DIETClassifier"
+      },
+      {
+        "entity": "phone_number",
+        "start": 34,
+        "end": 37,
+        "confidence_entity": 0.4459673762321472,
+        "value": "407",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Thank you. My name is Rodriguez Sebastia",
+    "entities": [
+      {
+        "start": 22,
+        "end": 40,
+        "value": "Rodriguez Sebastia",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 22,
+        "end": 31,
+        "confidence_entity": 0.6610993146896362,
+        "value": "Rodriguez",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Thank you. My name is Rodriguez Sebastia.",
+    "entities": [
+      {
+        "start": 22,
+        "end": 40,
+        "value": "Rodriguez Sebastia",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "street_address",
+        "start": 22,
+        "end": 31,
+        "confidence_entity": 0.6610993146896362,
+        "value": "Rodriguez",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "Susie Evans",
+    "entities": [
+      {
+        "start": 0,
+        "end": 11,
+        "value": "Susie Evans",
         "entity": "name"
       }
     ],
     "predicted_entities": [
       {
         "entity": "name",
-        "start": 11,
-        "end": 26,
-        "confidence_entity": 0.9921591281890869,
-        "value": "Kirsty Bridgens",
+        "start": 6,
+        "end": 11,
+        "confidence_entity": 0.5119914412498474,
+        "value": "Evans",
         "extractor": "DIETClassifier"
-      },
+      }
+    ]
+  },
+  {
+    "text": "Matty Carter",
+    "entities": [
+      {
+        "start": 0,
+        "end": 12,
+        "value": "Matty Carter",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
       {
         "entity": "street_address",
-        "start": 32,
-        "end": 34,
-        "confidence_entity": 0.5173699259757996,
-        "value": "24",
+        "start": 0,
+        "end": 12,
+        "confidence_entity": 0.64,
+        "value": "Matty Carter",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "my name is Oliver",
+    "entities": [
+      {
+        "start": 11,
+        "end": 17,
+        "value": "Oliver",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": []
+  },
+  {
+    "text": "Robert",
+    "entities": [
+      {
+        "start": 0,
+        "end": 6,
+        "value": "Robert",
+        "entity": "name"
+      }
+    ],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 0,
+        "end": 6,
+        "confidence_entity": 0.37485501170158386,
+        "value": "Robert",
+        "extractor": "DIETClassifier"
+      }
+    ]
+  },
+  {
+    "text": "No, they all ran away.",
+    "entities": [],
+    "predicted_entities": [
+      {
+        "entity": "emergency_details",
+        "start": 17,
+        "end": 21,
+        "confidence_entity": 0.9192941784858704,
+        "value": "away",
         "extractor": "DIETClassifier"
       }
     ]
