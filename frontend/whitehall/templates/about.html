@@ -3,14 +3,14 @@
 {% block content %}
     <head>
         <style>
-            P.blocktext1 {
+            P.text-block {
                 margin-left: auto;
                 margin-right: auto;
                 text-align: center;
                 font-size: 18px;
                 width: 50em
             }
-            .center1 {
+            .main_pic {
                 margin: 0;
                 position: absolute;
                 top: 15%;
@@ -18,7 +18,7 @@
                 -ms-transform: translate(-50%, -50%);
                 transform: translate(-50%, -50%);
             }
-            .center2 {
+            .button_loc {
                 margin: 0;
                 position: absolute;
                 top: 80%;
@@ -42,24 +42,24 @@
     </head>
 
     <body>
-        <p class="center1">
+        <p class="main_pic">
             <img src="/images/whitehall.png" alt="Whitehall">
         </p>
 
-        <p class="blocktext1">
+        <p class="text-block">
             <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><i>WHITEHALL</i> was created for a Third Year Project at the University of Warwick. In concept, it aims to simulate what emergency call handlers may be like in the future. Chatbots have become extremely prominent in customer service fields, with advancements in appointment booking and ordering also pushing chatbots to the forefront of customer and client handling. Following this trend, emergency service handlers have the capability of being enforced with such a chatbot- mitigating pressure during high traffic events and reducing the pressure on human call operators.
         </p>
 
-        <p class="blocktext1">
+        <p class="text-block">
             <i>WHITEHALL</i>’s main goal during conversation is to identify key information that will allow the correct emergency service to be dispatched quickly, as well as provide said services with details about the caller’s needs. It knows many different words for many different ideas, meaning it can understand language in a variety of ways to help the user. Once it has determined it knows enough to request the aid of a service, it will continue asking the user questions to gather extra details (like names and phone numbers). <i>WHITEHALL</i> will also try and help during medical emergencies by providing links from trusted sources regarding emergency healthcare.
         </p>
 
-        <p class="blocktext1">
+        <p class="text-block">
             <i>WHITEHALL</i> is built using Rasa- an open-source conversational AI training system. Rasa allows <i>WHITEHALL</i> to be trained using real emergency call data, as well with any conversations it has with users. Rasa allows the chatbot to act dynamically and sensibly and is a very powerful tool in the chatbot development field. As a result of its use, the chatbot presented here was able to be quickly developed wwhilst mirroring the quality of other online chatbots.
         </p>
 
-        <p class="center2">
-            <a href="http://127.0.0.1:8000/chatroom/" class="button">Talk to WHITEHALL</a>
+        <p class="button_loc">
+            <a href="{% url 'home' %}" class="button">Talk to WHITEHALL</a>
         </p>
 
 

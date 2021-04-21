@@ -8,6 +8,15 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.topnav img{
+  width: 45px;
+  height: 45px;
+  float: right;
+  margin-right: 10px;
+  top: 2px;
+  position: relative;
+}
+
 .topnav {
   overflow: hidden;
   background-color: #343d4e;
@@ -31,15 +40,37 @@ body {
   background-color: #464e5e;
   color: white;
 }
+
+.navimg{
+  float: right;
+  width: 45px;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 0 0;
+  text-decoration: none;
+  font-size: 17px;
+  margin-right: 5px;
+}
+
+.navimg a:hover {
+  background-color: #343d4e;
+}
+
+.navimg a{
+  color: #f2f2f2;
+  padding: 0 0;
+  text-decoration: none;
+  font-size: 17px;
+}
 </style>
 </head>
 <body>
 
 <div class="topnav">
-  <a class="active" href="{% url 'home' %}">Home</a>
-  <a href="{% url 'about' %}">About</a>
+  <a class="active" href="{% url 'about' %}">Home</a>
   <a href="{% url 'data' %}">Data</a>
-  <a href="{% url 'chatroom' %}">Chatroom</a>
+  <a href="{% url 'home' %}">Chatroom</a>
+  <div class="navimg"><a href="https://www.facebook.com/WhitehallTheChatbot"><img src="/images/messenger.png"></a></div>
 </div>
 
 </body>

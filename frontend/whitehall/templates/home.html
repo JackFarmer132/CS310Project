@@ -3,13 +3,28 @@
 {% block content %}
     <head>
         <style>
-            P.blocktext1 {
+
+            .block{
                 margin-left: auto;
                 margin-right: auto;
                 text-align: center;
                 font-size: 18px;
                 width: 50em
+                background: red;
+                margin-top: 100px;
+                width: 70%;
+                max-width: 800px;
+                border: solid 1px black;
+                padding: 20px 20px;
             }
+
+            /* P.block {
+                margin-left: auto;
+                margin-right: auto;
+                text-align: center;
+                font-size: 18px;
+                width: 50em
+            } */
             .button {
                 background-color: #464e5e;
                 border: none;
@@ -25,7 +40,7 @@
               .center {
                   margin: 0;
                   position: absolute;
-                  top: 40%;
+                  top: 42%;
                   left: 50%;
                   -ms-transform: translate(-50%, -50%);
                   transform: translate(-50%, -50%);
@@ -34,10 +49,11 @@
     </head>
 
     <body>
-        <p class="blocktext1">
-            <br /> <br /> <br /> <br /><i>WHITEHALL</i> is a prototype chatbot intended for managing emergency service calls and forwarding information to the respective service(s). It is not a functioning system, nor is it a valid method of contacting the emergency services. Should you need assistance from the emergency services, please call 999 or 111 depending on the situation. Guidance for the appropriate contact can be found
-            <a href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/"><b>here</b></a>. Information you enter will be stored so please refrain from entering anything personal. Please use fake names and addresses when communicating with <i>WHITEHALL</i> to avoid sensitive information being stored and potentially used by other parties.
-        </p>
+
+        <div class="block">
+          <i>WHITEHALL</i> is a prototype chatbot intended for managing emergency service calls and forwarding information to the respective service(s). It is not a functioning system, nor is it a valid method of contacting the emergency services. Should you need assistance from the emergency services, please call 999 or 111 depending on the situation. Guidance for the appropriate contact can be found
+          <a href="https://www.nhs.uk/nhs-services/urgent-and-emergency-care-services/when-to-call-999/"><b>here</b></a>. Information you enter will be stored so please refrain from entering anything personal. Please use fake names and addresses when communicating with <i>WHITEHALL</i> to avoid sensitive information being stored and potentially used by other parties.
+        </div>
 
         <p class="center">
             <a href="http://127.0.0.1:8000/chatroom/" class="button">Continue to Chatbot</a>
