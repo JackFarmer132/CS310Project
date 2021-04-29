@@ -2,6 +2,10 @@ Whitehall is a conversational agent that fulfils the role of an emergency call h
 
 
 
+Commands given assume Linux is being used. Navigate to the top level directory and execute 'python -m pip install -r requirements.txt' to install the necessary python packages
+
+
+
 ------------------------------------------------------------------------------
 
 
@@ -17,6 +21,10 @@ Getting Whitehall Working
 •	In a third terminal, navigate to /CS310Project/frontend/whitehall and run the following: ‘python manage.py runserver’
 
 •	Use link provided by the third terminal to enter the user interface
+
+• To begin conversation, execute 'init'
+
+•	To restart conversations after finishing, execute '/restart' and use 'init' again
 
 
 
