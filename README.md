@@ -1,20 +1,13 @@
-Whitehall is a conversational agent that fulfils the role of an emergency call handler. It will learn information from conversations and store them for moderation and evaluation.
-
-
-
-Commands given assume Linux is being used. Navigate to the top level directory and execute 'python -m pip install -r requirements.txt' to install the necessary python packages
-
+Whitehall is a conversational agent that fulfils the role of an emergency call handler. Python 3 is required to run the project code. requrements.txt contains all necessary packages to install for code operation.
 
 
 ------------------------------------------------------------------------------
-
-
 
 Getting Whitehall Working
 
 •	Install the required dependencies
 
-•	In one terminal, navigate to /CS310Project/chatbot and run the following: 'rasa run -m models --enable-api --cors "*" --debug'
+•	In one terminal, navigate to /CS310Project/chatbot and run the following: 'rasa run -m models --enable-api --cors "*"'
 
 •	In a second terminal, again navigate to /CS310Project/chatbot and run the following: 'rasa run actions’
 
@@ -22,15 +15,13 @@ Getting Whitehall Working
 
 •	Use link provided by the third terminal to enter the user interface
 
-• To begin conversation, execute 'init'
+• To begin conversation, execute 'init' in the provided textbox
 
 •	To restart conversations after finishing, execute '/restart' and use 'init' again
 
-
+•	To access version of Whitehall that audibly responds, navigate to url 'http://127.0.0.1:8000/noisy_chatroom/'
 
 ------------------------------------------------------------------------------
-
-
 
 Using the Shell
 
@@ -38,13 +29,9 @@ Using the Shell
 
 •	In a second terminal, again navigate to /CS310Project/chatbot and run the following: 'rasa run actions’
 
-•	This provides the default interface for Whitehall, which may be preferable. One can use ‘rasa shell –debug’ to see stages of processing
-
-
+•	This provides the default interface for Whitehall, which may be preferable. One can use ‘rasa shell --debug’ to see stages of processing
 
 ------------------------------------------------------------------------------
-
-
 
 Running Tests
 
